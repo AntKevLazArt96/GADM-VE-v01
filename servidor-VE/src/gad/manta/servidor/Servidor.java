@@ -10,7 +10,7 @@ public class Servidor implements IServidor {
 	public String saludar(String nombre) throws RemoteException {
 		// TODO Auto-generated method stub
 		System.out.println("Tu nombre es: "+ nombre);
-		return "Hola tu nombre es "+ nombre;
+		return "Hola "+ nombre +", bienvenido al Sistema";
 	}
 
 }

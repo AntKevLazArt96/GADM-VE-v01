@@ -18,13 +18,13 @@ public class MainServidor {
 			IServidor remote = (IServidor)UnicastRemoteObject.exportObject(servidor, 8888);
 			
 			Registry registry = LocateRegistry.createRegistry(1099);
-			registry.rebind("Pepito", remote);
+			registry.rebind("VotoE", remote);
 			
 			System.out.println(registry.toString());
 			System.out.println("Servidor Liso, Preione enter para terminar");
 	        System.in.read();
 	        
-	        registry.unbind("Pepito");
+	        registry.unbind("VotoE");
 	        UnicastRemoteObject.unexportObject(servidor, true);
 			
 		} catch (RemoteException e) {
