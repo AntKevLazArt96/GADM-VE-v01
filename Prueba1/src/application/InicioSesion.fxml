@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IniSesionControll">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #eeeeee;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IniSesionControll">
    <children>
       <AnchorPane layoutX="17.0" layoutY="157.0" prefHeight="132.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -28,7 +28,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <JFXButton layoutX="1161.0" layoutY="50.0" text=" " AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="25.0" />
+            <JFXButton layoutX="1161.0" layoutY="50.0" text="X" textFill="#f8f4f4" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="25.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="41.0" layoutY="97.0" prefHeight="640.0" prefWidth="308.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="110.0">
