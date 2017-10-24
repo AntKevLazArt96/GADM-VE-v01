@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="svgad.ClientePrincipalController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="853.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="svgad.ClientePrincipalController">
    <children>
       <AnchorPane layoutX="11.0" layoutY="673.0" prefHeight="35.0" prefWidth="1280.0" style="-fx-background-color: #0288d1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -38,23 +38,13 @@
                   <Font name="System Bold" size="48.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="800.0" layoutY="5.0" prefHeight="112.0" prefWidth="301.0" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="5.0">
+            <AnchorPane layoutX="959.0" layoutY="8.0" prefHeight="112.0" prefWidth="301.0" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="8.0">
                <children>
                   <ImageView fitHeight="94.0" fitWidth="116.0" layoutX="111.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <image>
                         <Image url="@../../../Recursos/customer_person_people_woman_you_1627.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="90.0" layoutY="42.0" text="Bienvenido" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="42.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="27.0" layoutY="62.0" text="UsuarioX ApellidoX" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="65.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
          </children>
@@ -71,8 +61,14 @@
       <Label layoutX="116.0" layoutY="274.0" text="Descripcion" />
       <Label layoutX="116.0" layoutY="352.0" text="Documentos y anexos" />
       <Label layoutX="80.0" layoutY="478.0" text="Resolucion" />
-      <Button layoutX="470.0" layoutY="555.0" mnemonicParsing="false" text="Guardar " />
-      <Button layoutX="766.0" layoutY="555.0" mnemonicParsing="false" text="Cancelar" textOverrun="CLIP" />
+      <Button layoutX="149.0" layoutY="603.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="143.0" text="Guardar ">
+         <font>
+            <Font size="27.0" />
+         </font></Button>
+      <Button layoutX="537.0" layoutY="609.0" mnemonicParsing="false" prefHeight="63.0" prefWidth="116.0" text="Cancelar" textOverrun="CLIP">
+         <font>
+            <Font size="22.0" />
+         </font></Button>
       <Button layoutX="666.0" layoutY="398.0" mnemonicParsing="false" text="Examinar" />
       <TextField layoutX="328.0" layoutY="207.0" />
       <TextArea layoutX="301.0" layoutY="277.0" prefHeight="84.0" prefWidth="226.0" />
