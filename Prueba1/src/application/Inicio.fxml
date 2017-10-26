@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import de.jensd.fx.glyphs.materialicons.*?>
+<?import javafx.scene.image.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InicioController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InicioController">
    <children>
       <ImageView fitHeight="325.0" fitWidth="507.0" layoutX="290.0" layoutY="456.0" opacity="0.22" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,25 +24,39 @@
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="HOME" size="25.0" />
+               </graphic>
             </JFXButton>
             <JFXButton alignment="BASELINE_LEFT" layoutX="61.0" layoutY="117.0" prefHeight="39.0" prefWidth="230.0" text="SESIONES" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25.0" />
+               </graphic>
             </JFXButton>
             <JFXButton alignment="BASELINE_LEFT" layoutX="61.0" layoutY="164.0" prefHeight="39.0" prefWidth="230.0" text="REPORTES" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="FOLDER" size="25.0" />
+               </graphic>
             </JFXButton>
             <JFXButton alignment="BASELINE_LEFT" layoutX="61.0" layoutY="203.0" prefHeight="39.0" prefWidth="230.0" text="PANEL CONTROL" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="APPS" size="25.0" />
+               </graphic>
             </JFXButton>
             <AnchorPane layoutX="30.0" layoutY="316.0" prefHeight="800.0" prefWidth="60.0" style="-fx-background-color: #03a9f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
+                  <MaterialDesignIconView fill="WHITE" glyphName="VIEW_HEADLINE" layoutX="13.0" layoutY="105.0" size="35.0" text="" />
                   <JFXButton layoutX="6.0" layoutY="636.0" prefHeight="50.0" prefWidth="50.0" text=" " />
+                  <MaterialDesignIconView fill="WHITE" glyphName="POWER" layoutX="11.0" layoutY="677.0" size="40" text="" />
                </children></AnchorPane>
             <AnchorPane layoutX="32.0" layoutY="14.0" prefHeight="59.0" prefWidth="290.0" style="-fx-background-color: #0288d1;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>

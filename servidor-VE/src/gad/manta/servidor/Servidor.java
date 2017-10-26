@@ -12,5 +12,4 @@ public class Servidor implements IServidor {
 		System.out.println("Tu nombre es: "+ nombre);
 		return "Hola "+ nombre +", bienvenido al Sistema";
 	}
-
 }

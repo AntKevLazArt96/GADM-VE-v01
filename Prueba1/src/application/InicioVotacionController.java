@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package svgad;
+package application;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Usuario
  */
-public class ClientePrincipalController implements Initializable {
+public class InicioVotacionController implements Initializable {
 
     /**
      * Initializes the controller class.

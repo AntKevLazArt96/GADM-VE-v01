@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.materialdesignicons.*?>
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="svgad.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
    <children>
       <AnchorPane prefHeight="350.0" prefWidth="258.0" style="-fx-background-color: #03a9f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="260.0" fitWidth="190.0" layoutX="34.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="24.0">
                <image>
-                  <Image url="@../../../Recursos/logomanta2.png" />
+                  <Image url="@../../../Recursos/logomanta.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" layoutX="67.0" layoutY="271.0" prefHeight="48.0" prefWidth="125.0" text="Sistema GAD" textFill="WHITE" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="66.0">

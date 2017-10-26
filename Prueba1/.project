@@ -2,6 +2,7 @@
 <projectDescription>
 	<name>Prueba1</name>
 	<comment></comment>
+
 	<projects>
 	</projects>
 	<buildSpec>
@@ -16,6 +17,11 @@
 			</arguments>
 		</buildCommand>
 	</buildSpec>
+	<dependency>
+			  <groupId>de.jensd</groupId>
+			  <artifactId>fontawesomefx</artifactId>
+			  <version>8.9</version>
+			</dependency>
 	<natures>
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
