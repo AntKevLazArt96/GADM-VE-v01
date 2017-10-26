@@ -76,7 +76,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <JFXButton layoutX="675.0" layoutY="499.0" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="INICIAR VOTACIÓN" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
+            <JFXButton layoutX="675.0" layoutY="499.0" onMouseClicked="#IniciarVoto" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="INICIAR VOTACIÓN" textFill="WHITE" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0">
                <font>
                   <Font size="14.0" />
                </font>
