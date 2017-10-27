@@ -1,4 +1,4 @@
-package application;
+package cliente;
 	
 
 import javafx.application.Application;
@@ -14,11 +14,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("InicioSesion.fxml"));
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Login.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
-			//primaryStage.initStyle(StageStyle.UNDECORATED);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
 			primaryStage.show();
 			
 			

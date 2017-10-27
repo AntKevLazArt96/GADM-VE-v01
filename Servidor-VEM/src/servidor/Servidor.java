@@ -12,4 +12,15 @@ public class Servidor implements IServidor {
 		System.out.println("Tu nombre es: "+ nombre);
 		return "Hola "+ nombre +", bienvenido al Sistema";
 	}
+
+	@Override
+	public String login(String username, String password) throws RemoteException {
+		
+		System.out.println(username+" Inicio Sesion");
+		return username;
+	}
+	
+	
+	
+	
 }
