@@ -26,12 +26,12 @@ public class SampleController implements Initializable{
 			Registry registry = LocateRegistry.createRegistry(1099);
 			registry.rebind("VotoE", remote);
 			
-			System.out.println(registry.toString());
-			System.out.println("Servidor Liso, Preione enter para terminar");
-	        System.in.read();
+			//System.out.println(registry.toString());
+			//System.out.println("Servidor Liso, Preione enter para terminar");
+	        //System.in.read();
 	        
-	        registry.unbind("VotoE");
-	        UnicastRemoteObject.unexportObject(servidor, true);
+	        //registry.unbind("VotoE");
+	        //UnicastRemoteObject.unexportObject(servidor, true);
 			
 		} catch (RemoteException e) {
 			System.out.println(e);
