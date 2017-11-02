@@ -16,26 +16,20 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class IniSesionControll {
+public class subInicioCtrl {
 
     @FXML
-    private JFXButton btnIniVoto;
+    private JFXButton btn_inicio;
 
     @FXML
-    private JFXButton btn_fin;
-
-    @FXML
-    void IniVotoAction(ActionEvent event) throws IOException {
-    	/*// get a handle to the stage
-	    Stage actualStage = (Stage) btnIniVoto.getScene().getWindow();
+    void iniciarAction(ActionEvent event) throws IOException {
+    	/*Stage actualStage = (Stage) btn_inicio.getScene().getWindow();
 	    // do what you have to do
-	    actualStage.close();
-	    */
+	    actualStage.close();*/
 	    
 	    Stage newStage = new Stage();
 		
-	   
-	   AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("InicioVotacion.fxml"));
+	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("InicioSesion.fxml"));
         Scene scene = new Scene(pane);
         
         //Pantalla completa
@@ -51,15 +45,6 @@ public class IniSesionControll {
         newStage.setScene(scene);
         newStage.initStyle(StageStyle.UNDECORATED);
         newStage.show();
-    }
-
-
-    @FXML
-    void finAction(ActionEvent event) {
-    	// get a handle to the stage
-	    Stage stage = (Stage) btn_fin.getScene().getWindow();
-	    // do what you have to do
-	    stage.close();
     }
 
 }

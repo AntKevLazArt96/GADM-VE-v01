@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.subSesionesCtrl">
+   <children>
+      <AnchorPane prefHeight="73.0" prefWidth="800.0" style="-fx-background-color: #0288D1;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="21.0" layoutY="6.0" text="Panel de Sesiones" textFill="WHITE" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="6.0">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="151.0" layoutY="131.0" prefHeight="178.0" prefWidth="179.0" AnchorPane.leftAnchor="151.0" AnchorPane.topAnchor="131.0">
+         <children>
+            <JFXButton fx:id="bnt_nuevo" layoutX="45.0" layoutY="41.0" onAction="#btnNuevoAction" prefHeight="116.0" prefWidth="120.0" style="-fx-background-color: #00bcd4;" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_PLUS" size="80" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="63.0" layoutY="137.0" text="NUEVO">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="472.0" layoutY="122.0" prefHeight="178.0" prefWidth="179.0" AnchorPane.topAnchor="131.0">
+         <children>
+            <JFXButton layoutX="45.0" layoutY="41.0" prefHeight="116.0" prefWidth="120.0" style="-fx-background-color: #00bcd4;" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="18.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="PENCIL" size="80" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="60.0" layoutY="137.0" prefHeight="27.0" prefWidth="60.0" text="EDITAR" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="151.0" layoutY="322.0" prefHeight="178.0" prefWidth="179.0" AnchorPane.topAnchor="322.0">
+         <children>
+            <JFXButton layoutX="45.0" layoutY="41.0" prefHeight="116.0" prefWidth="120.0" style="-fx-background-color: #00bcd4;" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="18.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="MAGNIFY" size="80" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="55.0" layoutY="137.0" prefHeight="27.0" prefWidth="69.0" text="BUSCAR" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="472.0" layoutY="322.0" prefHeight="178.0" prefWidth="179.0" AnchorPane.topAnchor="322.0">
+         <children>
+            <JFXButton layoutX="45.0" layoutY="41.0" prefHeight="116.0" prefWidth="120.0" style="-fx-background-color: #00bcd4;" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="18.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="PLAY" size="80" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="28.0" layoutY="137.0" prefHeight="27.0" prefWidth="130.0" text="INICIAR SESION" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

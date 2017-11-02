@@ -5,57 +5,100 @@
  */
 package application;
 
+import java.io.IOException;
 import java.net.URL;
-import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ResourceBundle;
 
-import gad.manta.common.IServidor;
-import gad.manta.common.Utils;
+import com.jfoenix.controls.JFXButton;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import servidor.Servidor;
-
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 /**
  *
  * @author Usuario
  */
 public class InicioController implements Initializable {
-    
+	
+	@FXML
+    private JFXButton inicioButton;
+
     @FXML
-    private Label label;
-    
+    private JFXButton sesionButton;
+
     @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
-    }
+    private JFXButton buttonControlPane;
+    
+	@FXML private JFXButton closeButton;
+	
+	@FXML
+    private AnchorPane panel;
+ 
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	try {
-			Utils.setCodeBase(IServidor.class);
-			
-			Servidor servidor = new Servidor();
-			IServidor remote = (IServidor)UnicastRemoteObject.exportObject(servidor, 8888);
-			
-			Registry registry = LocateRegistry.createRegistry(1099);
-			registry.rebind("VotoE", remote);
-			
-			System.out.println(registry.toString());
-			System.out.println("Servidor Liso, Preione enter para terminar");
-	        /*System.in.read();
-	    
-	        registry.unbind("VotoE");
-	        UnicastRemoteObject.unexportObject(servidor, true);
-			*/
-		} catch (RemoteException e) {
-			System.out.println(e);
+			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("SubInicio.fxml"));
+			panel.getChildren().setAll(pane);
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
     }    
+    
+    @FXML
+    void closeButtonAction(ActionEvent event) throws IOException {
+    		// logica para cerrar sesion
+	    Stage actualStage = (Stage) closeButton.getScene().getWindow();
+	    // do what you have to do
+	    actualStage.close();
+	    
+		Stage newStage = new Stage();
+		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("login.fxml"));
+        Scene scene = new Scene(pane);
+
+        newStage.setScene(scene);
+        newStage.initStyle(StageStyle.UNDECORATED);
+        newStage.show();
+    }
+    
+    @FXML
+    void buttonControlPaneAction(ActionEvent event) {
+    	try {
+			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PanelControl.fxml"));
+			panel.getChildren().setAll(pane);
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    @FXML
+    void inicioButtonAction(ActionEvent event) {
+    	try {
+			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("SubInicio.fxml"));
+			panel.getChildren().setAll(pane);
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void sessionButtonAction(ActionEvent event) {
+    	try {
+			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("SubSesiones.fxml"));
+			panel.getChildren().setAll(pane);
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
     
 }

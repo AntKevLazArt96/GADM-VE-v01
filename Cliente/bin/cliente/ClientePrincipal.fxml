@@ -41,7 +41,7 @@
                <children>
                   <ImageView fitHeight="94.0" fitWidth="116.0" layoutX="111.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <image>
-                        <Image url="@../../../Recursos/customer_person_people_woman_you_1627.png" />
+                        <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="90.0" layoutY="42.0" text="Bienvenido" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="42.0">
@@ -68,7 +68,7 @@
       </Label>
       <ImageView fitHeight="224.0" fitWidth="499.0" layoutX="680.0" layoutY="338.0" opacity="0.22" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="41.0" AnchorPane.rightAnchor="0.0">
          <image>
-            <Image url="@../../../Recursos/GADM-de-Manta-01-01.png" />
+            <Image url="@../../res/GADM-de-Manta-01-01.png" />
          </image>
       </ImageView>
       <AnchorPane layoutX="76.0" layoutY="178.0" prefHeight="200.0" prefWidth="1124.0">
@@ -91,7 +91,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="145.0" text="Fecha: 06/06/06" textFill="#212121" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="120.0">
+            <Label layoutX="28.0" layoutY="145.0" text="Fecha: 01/11/17" textFill="#212121" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="120.0">
                <font>
                   <Font size="24.0" />
                </font>
