@@ -1,25 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
-<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.effect.*?>
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import de.jensd.fx.glyphs.materialicons.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NuevaSesionCtrl">
+<AnchorPane id="AnchorPane" fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NuevaSesionCtrl">
    <children>
-      <ImageView fitHeight="170.0" fitWidth="449.0" layoutX="602.0" layoutY="594.0" opacity="0.22" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../res/GADM-de-Manta-01-01.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="73.0" layoutY="62.0" text="TITULO">
+      <AnchorPane layoutX="29.0" layoutY="101.0" prefHeight="490.0" prefWidth="308.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <AnchorPane layoutX="31.0" layoutY="33.0" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="24.0" layoutY="39.0" prefHeight="27.0" prefWidth="166.0" text="ORDEN DEL DIA" textFill="#212121" AnchorPane.bottomAnchor="424.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="39.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
+               </graphic>
+            </Label>
+            <TableView layoutX="17.0" layoutY="83.0" prefHeight="473.0" prefWidth="277.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="C1" />
+                  <TableColumn prefWidth="204.0" text="C2" />
+               </columns>
+            </TableView>
+            <JFXButton layoutX="193.0" layoutY="37.0" prefHeight="35.0" prefWidth="98.0" style="-fx-background-color: #00bcd4;" text="AGREGAR" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
+               </graphic>
+            </JFXButton>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+      <Label layoutX="40.0" layoutY="24.0" text="Preparacion de Sesión">
          <font>
             <Font size="30.0" />
          </font>
@@ -27,56 +48,67 @@
             <MaterialDesignIconView glyphName="FORMAT_ALIGN_JUSTIFY" size="30" />
          </graphic>
       </Label>
-      <Label layoutX="73.0" layoutY="185.0" text="Descripción">
-         <font>
-            <Font size="29.0" />
-         </font>
-         <graphic>
-            <MaterialIconView glyphName="DESCRIPTION" size="30" />
-         </graphic>
-      </Label>
-      <Label layoutX="67.0" layoutY="326.0" text=" Documentos y Anexos">
-         <font>
-            <Font size="29.0" />
-         </font>
-         <graphic>
-            <MaterialIconView glyphName="ATTACH_FILE" size="30" />
-         </graphic>
-      </Label>
-      <Label layoutX="82.0" layoutY="478.0" text="Resolución">
-         <font>
-            <Font size="30.0" />
-         </font>
-         <graphic>
-            <MaterialIconView glyphName="BUILD" size="30" />
-         </graphic>
-      </Label>
-      <JFXButton layoutX="120.0" layoutY="632.0" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Guardar" textFill="WHITE">
-         <font>
-            <Font size="28.0" />
-         </font>
-         <graphic>
-            <FontAwesomeIconView glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="30" />
-         </graphic>
-      </JFXButton>
-      <JFXButton layoutX="374.0" layoutY="632.0" prefHeight="60.0" prefWidth="204.0" style="-fx-background-color: #00bcd4;" text="Cancelar" textFill="WHITE">
-         <font>
-            <Font size="28.0" />
-         </font>
-         <graphic>
-            <MaterialDesignIconView glyphName="CLOSE_CIRCLE_OUTLINE" size="30" />
-         </graphic>
-      </JFXButton>
-      <JFXButton layoutX="581.0" layoutY="334.0" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Examinar" textFill="WHITE">
-         <font>
-            <Font size="21.0" />
-         </font>
-         <graphic>
-            <MaterialDesignIconView glyphName="FOLDER_UPLOAD" size="30" />
-         </graphic>
-      </JFXButton>
-      <JFXTextField layoutX="449.0" layoutY="70.0" prefHeight="34.0" prefWidth="298.0" />
-      <JFXTextArea layoutX="356.0" layoutY="423.0" />
-      <JFXTextArea layoutX="439.0" layoutY="159.0" prefHeight="103.0" prefWidth="332.0" />
+      <AnchorPane layoutX="376.0" layoutY="101.0" prefHeight="490.0" prefWidth="592.0" style="-fx-background-color: #FFFFFF;" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="100.0">
+         <children>
+            <AnchorPane layoutX="31.0" layoutY="33.0" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="28.0" layoutY="40.0" prefHeight="27.0" prefWidth="115.0" text="DETALLE" textFill="#212121" AnchorPane.bottomAnchor="423.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="40.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
+               </graphic>
+            </Label>
+            <Label layoutX="32.0" layoutY="98.0" text="Descripción" AnchorPane.leftAnchor="30.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="DESCRIPTION" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextArea layoutX="34.0" layoutY="132.0" prefHeight="92.0" prefWidth="532.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextArea>
+            <Label layoutX="38.0" layoutY="253.0" text="Documentos y Anexos" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="253.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="ATTACH_FILE" size="20" text="" />
+               </graphic>
+            </Label>
+            <JFXButton layoutX="304.0" layoutY="431.0" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="GUARDAR" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="442.0" layoutY="429.0" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="CANCELAR" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="270.0" layoutY="263.0" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="EXAMINAR" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="67.0" layoutY="293.0" text="documento.pdf" />
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
    </children>
 </AnchorPane>

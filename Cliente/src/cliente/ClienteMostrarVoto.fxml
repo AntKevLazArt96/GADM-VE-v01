@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ClienteVotoController">
+   <children>
+      <AnchorPane layoutX="57.0" layoutY="22.0" prefHeight="64.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="79.0" layoutY="28.0" text="SESIÓN EXTRAORDINARIA No. 1" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="1161.0" layoutY="50.0" text=" " AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="25.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="31.0" layoutY="693.0" prefHeight="35.0" prefWidth="1280.0" style="-fx-background-color: #0288d1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="60.0" layoutY="3.0" text="15:33" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="60.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="CLOCK" size="20" />
+               </graphic>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="144.0" layoutY="55.0" prefHeight="596.0" prefWidth="1009.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="69.0" AnchorPane.topAnchor="55.0">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="45.0" layoutY="28.0" text="PUNTO 1" textFill="#212121">
+               <font>
+                  <Font size="26.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView glyphName="LABEL" size="20.0" />
+               </graphic>
+            </Label>
+            <JFXButton layoutX="57.0" layoutY="197.0" prefHeight="362.0" prefWidth="841.0" style="-fx-background-color: #4CAF50;" text="VOTO A FAVOR" textFill="WHITE" AnchorPane.leftAnchor="57.0" AnchorPane.topAnchor="197.0">
+               <font>
+                  <Font size="96.0" />
+               </font>
+            </JFXButton>
+            <JFXTextArea editable="false" layoutX="74.0" layoutY="66.0" prefHeight="103.0" prefWidth="810.0" text="Lectura y aprobacion del Acta No. 011-2017, correspondiente a la sesion ordinaria del Consejo Municipal de Manta del dia lunes 20 de MARZO del 2017.">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextArea>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>
