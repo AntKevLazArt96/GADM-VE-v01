@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -19,10 +20,7 @@ import javafx.stage.StageStyle;
 public class IniSesionControll {
 
     @FXML
-    private JFXButton btnIniVoto;
-
-    @FXML
-    private JFXButton btn_fin;
+    private JFXButton btnIniVoto,btn_fin,btn_voz;
 
     @FXML
     void IniVotoAction(ActionEvent event) throws IOException {
@@ -53,7 +51,8 @@ public class IniSesionControll {
         newStage.show();
     }
 
-
+    @FXML
+    private AnchorPane panelvoz;
     @FXML
     void finAction(ActionEvent event) {
     	// get a handle to the stage
@@ -61,5 +60,22 @@ public class IniSesionControll {
 	    // do what you have to do
 	    stage.close();
     }
+    
+    @FXML
+    void handleButtonAction(ActionEvent event) {
+    	if(event.getSource()==btn_voz) {
+    		
+    		if(panelvoz.visibleProperty().getValue()==true)
+    		{
+    			panelvoz.setVisible(false);
+    		}
+    		else {
+    			panelvoz.setVisible(true);
+    		}
+    		
+    	}
+    }
+   
+    
 
 }

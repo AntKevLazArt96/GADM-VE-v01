@@ -35,31 +35,21 @@
                   <MaterialDesignIconView glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <Label layoutX="82.0" layoutY="90.0" text="Punto a tratar texto generico ejemplo" textFill="#757575">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Label>
-            <JFXButton layoutX="134.0" layoutY="186.0" prefHeight="133.0" prefWidth="273.0" style="-fx-background-color: #4CAF50;" text="SI" textFill="WHITE" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="170.0">
-               <font>
-                  <Font size="64.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="492.0" layoutY="184.0" prefHeight="133.0" prefWidth="273.0" style="-fx-background-color: #F44336;" text="NO" textFill="WHITE" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="170.0">
-               <font>
-                  <Font size="64.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="90.0" layoutY="351.0" prefHeight="133.0" prefWidth="273.0" style="-fx-background-color: #F5F5F5;" text="BLANCO" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="350.0">
+            <JFXButton layoutX="119.0" layoutY="235.0" prefHeight="133.0" prefWidth="273.0" style="-fx-background-color: #4CAF50;" text="A Favor" textFill="WHITE" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="235.0">
                <font>
                   <Font size="48.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="524.0" layoutY="358.0" prefHeight="133.0" prefWidth="273.0" style="-fx-background-color: #B2EBF2;" text="SALVO" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="350.0">
+            <JFXButton layoutX="485.0" layoutY="231.0" prefHeight="133.0" prefWidth="273.0" style="-fx-background-color: #F44336;" text="En Contra" textFill="WHITE" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="231.0">
                <font>
                   <Font size="48.0" />
                </font>
             </JFXButton>
+            <JFXTextArea editable="false" layoutX="86.0" layoutY="80.0" prefHeight="76.0" prefWidth="717.0" text="Lectura y aprobacion del Acta No. 011-2017, correspondiente a la sesion ordinaria del Consejo Municipal de Manta del dia lunes 20 de MARZO del 2017.">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextArea>
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />
@@ -67,7 +57,7 @@
       </AnchorPane>
       <AnchorPane layoutX="57.0" layoutY="22.0" prefHeight="132.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="79.0" layoutY="28.0" prefHeight="53.0" prefWidth="614.0" text="SESIÓN EXTRAORDINARIA No. 1" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="25.0">
+            <Label layoutX="45.0" layoutY="44.0" prefHeight="53.0" prefWidth="647.0" text="SESIÓN EXTRAORDINARIA No. 125" textFill="WHITE" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="44.0">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>

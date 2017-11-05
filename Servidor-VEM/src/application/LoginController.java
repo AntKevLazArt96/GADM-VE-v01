@@ -53,7 +53,7 @@ public class LoginController implements Initializable {
 	    // do what you have to do
 	    actualStage.close();
 	    
-	    servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+	    servidor = (IServidor)Naming.lookup("rmi://192.168.1.5/VotoE");
 	    
 	    Stage newStage = new Stage();
 		
