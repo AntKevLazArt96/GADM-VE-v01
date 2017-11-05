@@ -47,14 +47,14 @@ public class LoginController implements Initializable {
 	    // do what you have to do
 	    actualStage.close();
 	    
-	    servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+	    servidor = (IServidor)Naming.lookup("rmi://192.168.1.5/VotoE");
 	    
 	    Stage newStage = new Stage();
 		
 	    String login = servidor.login(txt_username.getText(),txt_password.getText());
 		
 	    System.out.println(login);
-		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteVoto.fxml"));
+		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClientePrincipal.fxml"));
         Scene scene = new Scene(pane);
         
         //Pantalla completa

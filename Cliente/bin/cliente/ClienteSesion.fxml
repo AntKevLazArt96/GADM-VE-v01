@@ -10,24 +10,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cliente.ClienteSesionController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ClienteSesionController">
    <children>
       <AnchorPane layoutX="47.0" layoutY="12.0" prefHeight="132.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="79.0" layoutY="28.0" text="SESIÓN No. 1" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="25.0">
+            <Label layoutX="79.0" layoutY="28.0" prefHeight="53.0" prefWidth="631.0" text="SESIÓN EXTRAORDINARIA No. 125" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="System Bold" size="36.0" />
-               </font>
-            </Label>
-            <Label layoutX="397.0" layoutY="31.0" text="TEMA:" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="500.0" AnchorPane.topAnchor="35.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="399.0" layoutY="59.0" prefHeight="27.0" prefWidth="850.0" text="Tema generico de ejemplo" textFill="WHITE" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="60.0">
-               <font>
-                  <Font size="24.0" />
                </font>
             </Label>
             <JFXButton layoutX="1161.0" layoutY="50.0" text=" " AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="25.0">
@@ -48,22 +37,33 @@
                   <MaterialDesignIconView glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <Label layoutX="82.0" layoutY="81.0" text="Punto a tratar texto generico ejemplo" textFill="#757575">
+            <JFXTextArea editable="false" layoutX="50.0" layoutY="90.0" prefHeight="183.0" prefWidth="780.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="Lectura y aprobacion del Acta No. 011-2017, correspondiente a la sesion ordinaria del Consejo Municipal de Manta del dia lunes 20 de MARZO del 2017." AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="90.0">
                <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <JFXTextArea editable="false" layoutX="50.0" layoutY="130.0" prefHeight="105.0" prefWidth="768.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" AnchorPane.bottomAnchor="325.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="130.0" />
-            <AnchorPane layoutX="50.0" layoutY="278.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="278.0">
+                  <Font size="18.0" />
+               </font></JFXTextArea>
+            <AnchorPane layoutX="56.0" layoutY="233.0" prefHeight="206.0" prefWidth="768.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="300.0">
                <children>
                   <Label layoutX="2.0" text="Documentacion" textFill="#212121" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                      <graphic>
-                        <MaterialDesignIconView glyphName="BOOK_OPEN" size="20.0" />
+                        <MaterialDesignIconView fill="#212121" glyphName="BOOK_OPEN" size="20.0" />
                      </graphic>
                   </Label>
+                  <AnchorPane layoutX="12.0" layoutY="29.0" prefHeight="163.0" prefWidth="133.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="29.0">
+                     <children>
+                        <JFXButton layoutX="29.0" layoutY="26.0" prefHeight="99.0" prefWidth="95.0" style="-fx-background-color: #BDBDBD;" text=" " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                           <graphic>
+                              <MaterialDesignIconView fill="WHITE" glyphName="FILE_PDF" size="60" />
+                           </graphic>
+                        </JFXButton>
+                        <Label layoutX="25.0" layoutY="122.0" text="documento.pdf" />
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children>
