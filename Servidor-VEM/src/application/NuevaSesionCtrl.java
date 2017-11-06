@@ -19,7 +19,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.layout.AnchorPane;
 
 public class NuevaSesionCtrl implements Initializable{
-
+	
+	ObservableList<String> lista = 
+	
     @FXML
     private AnchorPane panel;
     @FXML
