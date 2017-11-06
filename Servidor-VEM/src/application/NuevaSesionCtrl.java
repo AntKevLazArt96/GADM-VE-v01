@@ -26,7 +26,7 @@ public class NuevaSesionCtrl {
 
     @FXML
     void onCancelAction(ActionEvent event) {
-    	/*try {
+    	try {
     		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("subSesiones.fxml"));
 			
 			panel.getChildren().setAll(pane);
@@ -34,7 +34,7 @@ public class NuevaSesionCtrl {
     	} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
     }
 
 }
