@@ -35,18 +35,18 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="22.0" layoutY="98.0" prefHeight="560.0" prefWidth="1228.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="110.0">
+      <AnchorPane layoutX="371.0" layoutY="98.0" prefHeight="560.0" prefWidth="879.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="110.0">
          <effect>
             <DropShadow color="#a8a8a8" />
          </effect>
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="51.0" layoutY="58.0" text="PUNTO 1" textFill="#212121">
+            <Label layoutX="51.0" layoutY="58.0" text="Convocatoria 014-2017" textFill="#212121">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <JFXTextArea editable="false" layoutX="50.0" layoutY="112.0" prefHeight="105.0" prefWidth="768.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="Conocimiento, analisis y resolucion de la propuesta presentada por INMOCOSTAZUL, referente al bien inmuelble donde se encuentra implantado el Mall del Pacifico de la ciudad de Manta." AnchorPane.bottomAnchor="343.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="112.0">
+            <JFXTextArea editable="false" layoutX="50.0" layoutY="112.0" prefHeight="105.0" prefWidth="768.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="SESION ORDINARIA DEL CONSEJO DEL GOBIERNO AUTONOMOO DESENTRALIZADO MUNICIPAL DEL CANTON MANTA, CORRESPONDE AL DIA LUNES 10 DE ABRIL DEL 2017, A LAS 16H00. EN EL SALON DE ACTOS DEL GADMC-MANTA" AnchorPane.bottomAnchor="343.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="112.0">
                <font>
                   <Font size="18.0" />
                </font></JFXTextArea>
@@ -173,6 +173,25 @@
                </children>
             </GridPane>
          </children>
+      </AnchorPane>
+      <AnchorPane layoutX="30.0" layoutY="111.0" prefHeight="560.0" prefWidth="317.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="110.0">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="27.0" layoutY="33.0" text="Quorum" textFill="#212121">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <TableView layoutX="15.0" layoutY="81.0" prefHeight="450.0" prefWidth="278.0">
+              <columns>
+                <TableColumn prefWidth="204.33333587646484" text="Nombre" />
+                <TableColumn prefWidth="72.66666412353516" text="Estado" />
+              </columns>
+            </TableView>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
       </AnchorPane>
    </children>
 </AnchorPane>

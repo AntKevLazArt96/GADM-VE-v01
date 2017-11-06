@@ -29,7 +29,7 @@ public class subInicioCtrl {
 	    
 	    Stage newStage = new Stage();
 		
-	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("InicioSesion.fxml"));
+	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("AprobarSesion.fxml"));
         Scene scene = new Scene(pane);
         
         //Pantalla completa

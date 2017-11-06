@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ClientePreSesionController">
+   <children>
+      <AnchorPane layoutX="47.0" layoutY="12.0" prefHeight="115.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="79.0" layoutY="28.0" prefHeight="53.0" prefWidth="631.0" text="SESIÓN EXTRAORDINARIA No. 000" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="25.0">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="1161.0" layoutY="50.0" text=" " AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="25.0">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="TEXT_TO_SPEECH" size="60.0" text="" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="227.0" layoutY="121.0" prefHeight="554.0" prefWidth="586.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="110.0">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="51.0" layoutY="47.0" text="CONVOCATORIA 014-2017" textFill="#212121">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView glyphName="LABEL" size="20.0" />
+               </graphic>
+            </Label>
+            <JFXTextArea editable="false" layoutX="50.0" layoutY="90.0" prefHeight="183.0" prefWidth="780.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="SESION ORDINARIA DEL CONCEJO DEL GOBIERNO AUTONOMO DESCENTRALIZADO MUNICIPAL DEL CANTON MANTA, CORRESPONDE AL DIA LUNES 10 DE ABRIL DEL 2017, A LAS 16H00. EN EL SALON DE ACTOS DEL GADMC-MANTA" AnchorPane.bottomAnchor="270.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="90.0">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextArea>
+            <AnchorPane layoutX="56.0" layoutY="233.0" prefHeight="206.0" prefWidth="768.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="300.0">
+               <children>
+                  <Label layoutX="2.0" text="Documentacion" textFill="#212121" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="#212121" glyphName="BOOK_OPEN" size="20.0" />
+                     </graphic>
+                  </Label>
+                  <AnchorPane layoutX="12.0" layoutY="29.0" prefHeight="163.0" prefWidth="133.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="29.0">
+                     <children>
+                        <JFXButton layoutX="29.0" layoutY="26.0" prefHeight="99.0" prefWidth="95.0" style="-fx-background-color: #BDBDBD;" text=" " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                           <font>
+                              <Font size="1.0" />
+                           </font>
+                           <graphic>
+                              <MaterialDesignIconView fill="WHITE" glyphName="FILE_PDF" size="60" />
+                           </graphic>
+                        </JFXButton>
+                        <Label layoutX="25.0" layoutY="122.0" text="documento.pdf" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="21.0" layoutY="683.0" prefHeight="35.0" prefWidth="1280.0" style="-fx-background-color: #0288d1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Label layoutX="60.0" layoutY="3.0" text="15:33" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="60.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="CLOCK" size="20" />
+               </graphic>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="436.0" layoutY="107.0" prefHeight="554.0" prefWidth="614.0" style="-fx-background-color: #FFFFFF;" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="110.0">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="51.0" layoutY="47.0" text="ORDEN DEL DIA" textFill="#212121">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView glyphName="LABEL" size="20.0" />
+               </graphic>
+            </Label>
+            <AnchorPane layoutX="29.0" layoutY="94.0" prefHeight="218.0" prefWidth="230.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="80.0">
+               <children>
+                  <GridPane layoutX="47.0" layoutY="29.0" prefHeight="416.0" prefWidth="496.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="0.0" prefWidth="48.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="0.0" prefWidth="448.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="84.66665649414062" minHeight="10.0" prefHeight="80.66665649414062" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="92.66668701171875" minHeight="10.0" prefHeight="92.66668701171875" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="99.33331298828125" minHeight="10.0" prefHeight="99.33331298828125" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <JFXTextArea editable="false" focusColor="WHITE" prefHeight="50.0" prefWidth="461.0" text="Lectura y aprobacion del Acta No. 011-2017, correspondiente a la sesion ordinaria del Consejo Municipal de Manta del dia lines 20 de MARZO del 2017" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets top="5.0" />
+                           </GridPane.margin>
+                        </JFXTextArea>
+                        <Label text="1.-">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="2.-" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="3.-" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="4.-" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextArea editable="false" focusColor="WHITE" prefHeight="50.0" prefWidth="461.0" text="Conocimineto analisis y resolucion de la propuesta presentada por INMOCOSTAZUL referente al bien inmueble donde se encuentra implantado el Mall del Pacifico de la ciudad de Manta" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </JFXTextArea>
+                        <JFXTextArea editable="false" focusColor="WHITE" prefHeight="50.0" prefWidth="461.0" text="Presentacion de anteproyectos de malecones de la parroquias rurales Santa Marianita y San Lorenzo, por parte del Arq. Juvenal Zambrano, Director de Planificacion y Ordenamiento Territorial, atendiendo la peticion formulada por el edil señor Isidoro Mntalvan Flores" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </JFXTextArea>
+                        <JFXTextArea editable="false" focusColor="WHITE" prefHeight="50.0" prefWidth="461.0" text="Conocimientos de las siguiente resoluciones administrativas de expropiacion y ocupacion inmediata, de la conformidad de Art. 57 literal 1) del Codigo Organico de Organizacion Territorial, Autnomia y Desentralizacion" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </JFXTextArea>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

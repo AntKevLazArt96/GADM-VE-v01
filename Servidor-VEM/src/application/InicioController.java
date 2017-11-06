@@ -49,7 +49,7 @@ public class InicioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	try {
-			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("SubSesiones.fxml"));
+			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("SubInicio.fxml"));
 			panel.getChildren().setAll(pane);
 			
     	} catch (IOException e) {

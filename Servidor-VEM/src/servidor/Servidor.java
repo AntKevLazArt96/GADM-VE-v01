@@ -38,7 +38,7 @@ public class Servidor implements IServidor {
 		ResultSet resultado = st.executeQuery("select verificar_usuario('"+username+"','"+password+"');");
 		resultado.next();
 		resultado_validacion= resultado.getString(1);
-		
+		db.close();
 		
 		}catch(Exception e) {
 			System.out.println("Error: " + e.getMessage());
@@ -46,6 +46,31 @@ public class Servidor implements IServidor {
 		}
 		
 		return resultado_validacion;
+	}
+
+	@Override
+	public int agregarSesion(String fechaRegistro, String fechaIntervencion, String horaIntervencion,
+			String convocatoria, String titulo) throws RemoteException {
+		int idsesion=0;
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select *from ingresar_sesion('"+fechaRegistro+"','"+fechaIntervencion+"','"+horaIntervencion+"','"+convocatoria+"','"+titulo+"');");
+			resultado.next();
+			idsesion= resultado.getInt(1);
+			db.close();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return idsesion;
+		
 	}
 	
 }
