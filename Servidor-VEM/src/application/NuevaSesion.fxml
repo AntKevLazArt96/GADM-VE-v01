@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.fontawesome.*?>
-<?import de.jensd.fx.glyphs.materialdesignicons.*?>
-<?import de.jensd.fx.glyphs.materialicons.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NuevaSesionCtrl">
+<AnchorPane id="AnchorPane" fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NuevaSesionCtrl">
    <children>
-      <AnchorPane layoutX="29.0" layoutY="101.0" prefHeight="490.0" prefWidth="308.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane layoutX="23.0" layoutY="218.0" prefHeight="490.0" prefWidth="308.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="218.0">
          <children>
             <AnchorPane layoutX="31.0" layoutY="33.0" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="24.0" layoutY="39.0" prefHeight="27.0" prefWidth="166.0" text="ORDEN DEL DIA" textFill="#212121" AnchorPane.bottomAnchor="424.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="39.0">
@@ -40,7 +43,7 @@
             <DropShadow color="#a8a8a8" />
          </effect>
       </AnchorPane>
-      <Label layoutX="40.0" layoutY="24.0" text="Preparacion de Sesión">
+      <Label layoutX="40.0" layoutY="13.0" text="Preparacion de Sesión">
          <font>
             <Font size="30.0" />
          </font>
@@ -48,7 +51,7 @@
             <MaterialDesignIconView glyphName="FORMAT_ALIGN_JUSTIFY" size="30" />
          </graphic>
       </Label>
-      <AnchorPane layoutX="376.0" layoutY="101.0" prefHeight="490.0" prefWidth="592.0" style="-fx-background-color: #FFFFFF;" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="100.0">
+      <AnchorPane layoutX="358.0" layoutY="218.0" prefHeight="490.0" prefWidth="592.0" style="-fx-background-color: #FFFFFF;" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="218.0">
          <children>
             <AnchorPane layoutX="31.0" layoutY="33.0" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="28.0" layoutY="40.0" prefHeight="27.0" prefWidth="115.0" text="DETALLE" textFill="#212121" AnchorPane.bottomAnchor="423.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="40.0">
@@ -88,7 +91,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="442.0" layoutY="429.0" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="CANCELAR" textFill="WHITE">
+            <JFXButton fx:id="btn_cancelar" layoutX="442.0" layoutY="429.0" onAction="#onCancelAction" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="CANCELAR" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -105,6 +108,53 @@
                </graphic>
             </JFXButton>
             <Label layoutX="67.0" layoutY="293.0" text="documento.pdf" />
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="23.0" layoutY="67.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="933.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="350.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="18.0" layoutY="75.0" prefHeight="27.0" prefWidth="82.0" text="TITULO" textFill="#212121">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
+               </graphic>
+            </Label>
+            <JFXButton layoutX="794.0" layoutY="38.0" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="GUARDAR" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_cancelar1" layoutX="794.0" layoutY="84.0" onAction="#onCancelAction" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="CANCELAR" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="18.0" layoutY="28.0" prefHeight="27.0" prefWidth="166.0" text="CONVOCATORIA" textFill="#212121">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
+               </graphic>
+            </Label>
+            <JFXTextField layoutX="186.0" layoutY="29.0" prefHeight="25.0" prefWidth="67.0" text=" 014-2017" />
+            <Label layoutX="256.0" layoutY="65.0" prefHeight="25.0" prefWidth="538.0" text=" DEL CONCEJO DEL GOBIERNO AUTÓNOMO DESCENTRALIZADO MUNICIPAL DEL CANTÓN MANTA, " />
+            <Label layoutX="111.0" layoutY="69.0" text="SESIÓN" />
+            <Label layoutX="111.0" layoutY="92.0" text="CORRESPONDIENTE AL DÍA  " />
+            <Label layoutX="506.0" layoutY="92.0" text="EN EL SALON DE ACTOS DEL GADMC-MANTA" />
+            <Label layoutX="378.0" layoutY="92.0" text=", A LAS" />
+            <JFXDatePicker fx:id="date" layoutX="264.0" layoutY="88.0" prefHeight="25.0" prefWidth="108.0" />
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />

@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class subSesionesCtrl {
 
-    @FXML
+	@FXML
     private AnchorPane panel;
 
     @FXML
@@ -20,8 +20,10 @@ public class subSesionesCtrl {
     @FXML
     void btnNuevoAction(ActionEvent event) {
     	try {
-			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("NuevaSesion.fxml"));
-			panel.getParent();
+    		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("NuevaSesion.fxml"));
+			
+			panel.getChildren().setAll(pane);
+		    
     	} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

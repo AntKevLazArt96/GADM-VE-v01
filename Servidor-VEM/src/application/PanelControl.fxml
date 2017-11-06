@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.panelConController">
+<AnchorPane fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.panelConController">
    <children>
       <AnchorPane prefHeight="73.0" prefWidth="800.0" style="-fx-background-color: #0288D1;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -19,7 +19,7 @@
       </AnchorPane>
       <AnchorPane layoutX="151.0" layoutY="131.0" prefHeight="178.0" prefWidth="179.0" AnchorPane.leftAnchor="151.0" AnchorPane.topAnchor="131.0">
          <children>
-            <JFXButton layoutX="45.0" layoutY="41.0" prefHeight="116.0" prefWidth="120.0" style="-fx-background-color: #00bcd4;" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0">
+            <JFXButton fx:id="btn_newUser" layoutX="45.0" layoutY="41.0" onAction="#onNewUser" prefHeight="116.0" prefWidth="120.0" style="-fx-background-color: #00bcd4;" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0">
                <font>
                   <Font size="11.0" />
                </font>

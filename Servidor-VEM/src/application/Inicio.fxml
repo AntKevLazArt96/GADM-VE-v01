@@ -74,7 +74,7 @@
             </AnchorPane>
             <AnchorPane layoutX="78.0" layoutY="597.0" prefHeight="52.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="2.0" layoutY="1.0" prefHeight="27.0" prefWidth="109.0" text="UsuarioX " textFill="WHITE">
+                  <Label fx:id="txt_username" layoutX="2.0" layoutY="1.0" prefHeight="27.0" prefWidth="109.0" text="UsuarioX " textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
