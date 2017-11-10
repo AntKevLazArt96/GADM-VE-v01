@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -34,8 +35,19 @@ public class InicioVotacionController implements Initializable {
     
     @FXML
     private JFXButton btn_voz;
+    
+    @FXML
+    private JFXButton btn_finVoto;
+    
     @FXML
     private AnchorPane panelvoz;
+    
+    @FXML
+    void finVoto(ActionEvent event) {
+    	Stage stage = (Stage) btn_finVoto.getScene().getWindow();
+	    // do what you have to do
+	    stage.close();
+    }
     
     @FXML
     void handleButtonAction(ActionEvent event) {

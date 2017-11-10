@@ -1,7 +1,12 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
 import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -9,18 +14,60 @@ import gad.manta.common.IServidor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import modelo.Conexion;
+import modelo.Sesion;
+import servidor.Servidor;
 
-public class subInicioCtrl {
+public class subInicioCtrl implements Initializable{
+	
+	private Conexion conexion;
+	
+	private Servidor servidor;
+	@FXML
+    private AnchorPane panel;
+
+    @FXML
+    private AnchorPane paneHaySesion;
 
     @FXML
     private JFXButton btn_inicio;
 
+    @FXML
+    private JFXButton btn_ver;
+
+    @FXML
+    private AnchorPane paneNoHaySesion;
+
+    @FXML
+    private JFXButton btn_nuevaSesion;
+    
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		conexion = new Conexion();
+    	
+		Date fechaActual = new Date(Calendar.getInstance().getTime().getTime());
+		
+		
+		conexion.establecerConexion();
+			if(Sesion.haySesionParaHoy(conexion.getConnection(), fechaActual)) {
+				paneHaySesion.setVisible(true);
+				paneNoHaySesion.setVisible(false);
+			}else {
+				paneHaySesion.setVisible(false);
+				paneNoHaySesion.setVisible(true);
+			}
+		conexion.cerrarConexion();
+		
+	}
+    
+    
     @FXML
     void iniciarAction(ActionEvent event) throws IOException {
     	/*Stage actualStage = (Stage) btn_inicio.getScene().getWindow();
@@ -29,7 +76,7 @@ public class subInicioCtrl {
 	    
 	    Stage newStage = new Stage();
 		
-	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("AprobarSesion.fxml"));
+	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("Quorum.fxml"));
         Scene scene = new Scene(pane);
         
         //Pantalla completa
@@ -46,5 +93,12 @@ public class subInicioCtrl {
         newStage.initStyle(StageStyle.UNDECORATED);
         newStage.show();
     }
+    
+    @FXML
+    void onNuevaSesion(ActionEvent event) {
+
+    }
+
+	
 
 }

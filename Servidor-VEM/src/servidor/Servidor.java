@@ -3,7 +3,11 @@ package servidor;
 import java.rmi.RemoteException;
 
 import gad.manta.common.IServidor;
+import modelo.Usuario;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Servidor implements IServidor {
 	
@@ -45,6 +49,8 @@ public class Servidor implements IServidor {
 			e.printStackTrace();
 		}
 		
+		System.out.println("el usuario se ha logueado correctamente");
+		
 		return resultado_validacion;
 	}
 
@@ -72,5 +78,41 @@ public class Servidor implements IServidor {
 		return idsesion;
 		
 	}
+
+	@Override
+	public List<String> consultaUsuario() throws RemoteException {
+		List<String> listausuario = new ArrayList<>();
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select nombre from usuario;");
+			
+			while(resultado.next()) {
+				listausuario.add(resultado.getString(1));
+			}
+			db.close();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return listausuario;
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void iniciarSesion() throws RemoteException {
+		System.out.println("La secretaria cambio de pantalla");
+		
+	}
+	
+	
+
+	
 	
 }

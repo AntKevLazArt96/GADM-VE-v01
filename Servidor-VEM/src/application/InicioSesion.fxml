@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.materialdesignicons.*?>
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #eeeeee;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IniSesionControll">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #eeeeee;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IniSesionControll">
    <children>
       <AnchorPane layoutX="17.0" layoutY="157.0" prefHeight="132.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="50.0" layoutY="34.0" prefHeight="53.0" prefWidth="524.0" text="Sesión Extraordinaria No. 125" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="30.0">
+            <Label layoutX="50.0" layoutY="34.0" prefHeight="53.0" prefWidth="524.0" text="CONVOCATORIA 014-2017" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
@@ -63,7 +60,7 @@
          </effect>
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="51.0" layoutY="58.0" text="PUNTO 2" textFill="#212121">
+            <Label layoutX="51.0" layoutY="58.0" text="PUNTO 1" textFill="#212121">
                <font>
                   <Font size="22.0" />
                </font>
@@ -71,10 +68,6 @@
                   <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <JFXTextArea editable="false" layoutX="50.0" layoutY="112.0" prefHeight="105.0" prefWidth="768.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="Conocimiento, analisis y resolucion de la propuesta presentada por INMOCOSTAZUL, referente al bien inmuelble donde se encuentra implantado el Mall del Pacifico de la ciudad de Manta." AnchorPane.bottomAnchor="343.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="112.0">
-               <font>
-                  <Font size="18.0" />
-               </font></JFXTextArea>
             <AnchorPane layoutX="56.0" layoutY="326.0" prefHeight="206.0" prefWidth="768.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="280.0">
                <children>
                   <Label layoutX="2.0" text="Documentacion" textFill="#212121" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
@@ -113,6 +106,11 @@
                   <Font size="14.0" />
                </font>
             </JFXButton>
+            <JFXTextArea editable="false" layoutX="51.0" layoutY="99.0" prefHeight="109.0" prefWidth="780.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="Lectura y aprobacion del Acta No. 011-2017, correspondiente a la sesion ordinaria del Consejo Municipal de Manta del dia lunes 20 de MARZO del 2017.">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextArea>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="1.0" layoutY="663.0" prefHeight="29.0" prefWidth="1280.0" style="-fx-background-color: #0288d1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

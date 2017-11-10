@@ -21,7 +21,7 @@
       <AnchorPane layoutX="23.0" layoutY="218.0" prefHeight="490.0" prefWidth="308.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="23.0" AnchorPane.topAnchor="218.0">
          <children>
             <AnchorPane layoutX="31.0" layoutY="33.0" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="24.0" layoutY="39.0" prefHeight="27.0" prefWidth="166.0" text="ORDEN DEL DIA" textFill="#212121" AnchorPane.bottomAnchor="424.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="39.0">
+            <Label layoutX="24.0" layoutY="42.0" prefHeight="27.0" prefWidth="166.0" text="ORDEN DEL DIA" textFill="#212121" AnchorPane.bottomAnchor="421.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="42.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -29,10 +29,10 @@
                   <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
                </graphic>
             </Label>
-            <TableView layoutX="17.0" layoutY="83.0" prefHeight="473.0" prefWidth="277.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0">
+            <TableView fx:id="tabla" layoutX="17.0" layoutY="83.0" prefHeight="473.0" prefWidth="277.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="204.0" text="C2" />
+                  <TableColumn fx:id="punto" prefWidth="75.0" text="Punto" />
+                  <TableColumn fx:id="descripcion" prefWidth="204.0" text="Descripcion" />
                </columns>
             </TableView>
          </children>
@@ -51,7 +51,7 @@
       <AnchorPane layoutX="358.0" layoutY="218.0" prefHeight="490.0" prefWidth="592.0" style="-fx-background-color: #FFFFFF;" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="218.0">
          <children>
             <AnchorPane layoutX="31.0" layoutY="33.0" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="28.0" layoutY="40.0" prefHeight="27.0" prefWidth="115.0" text="DETALLE" textFill="#212121" AnchorPane.bottomAnchor="423.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="40.0">
+            <Label layoutX="31.0" layoutY="44.0" prefHeight="27.0" prefWidth="115.0" text="DETALLE" textFill="#212121" AnchorPane.bottomAnchor="419.0" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="44.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -67,7 +67,7 @@
                   <MaterialIconView glyphName="DESCRIPTION" size="20" />
                </graphic>
             </Label>
-            <JFXTextArea layoutX="34.0" layoutY="132.0" prefHeight="92.0" prefWidth="532.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+            <JFXTextArea fx:id="txt_descripcion" layoutX="34.0" layoutY="132.0" prefHeight="92.0" prefWidth="532.0" text="Lectura y aprobación del Acta No. 011-2017, correspondiente a la sesión ordinaria del Concejo Municipal de Manta del día lunes 20 de Marzo del 2017." AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -88,7 +88,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" />
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="270.0" layoutY="263.0" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="EXAMINAR" textFill="WHITE">
+            <JFXButton fx:id="btn_examinar" layoutX="267.0" layoutY="249.0" onAction="#onExaAction" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="EXAMINAR" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -96,7 +96,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
                </graphic>
             </JFXButton>
-            <Label layoutX="67.0" layoutY="293.0" text="documento.pdf" />
+            <Label fx:id="lbl_file" layoutX="57.0" layoutY="298.0" prefHeight="17.0" prefWidth="497.0" />
             <JFXButton fx:id="btn_addOrden" layoutX="306.0" layoutY="429.0" onAction="#onAddOrden" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="AGREGAR" textFill="WHITE">
                <font>
                   <Font size="14.0" />
@@ -113,7 +113,16 @@
                   <MaterialIconView glyphName="DESCRIPTION" size="20" />
                </graphic>
             </Label>
-            <JFXComboBox fx:id="cbx_tipoSes1" layoutX="206.0" layoutY="345.0" prefHeight="25.0" prefWidth="372.0" />
+            <JFXComboBox fx:id="cbx_proponente" layoutX="206.0" layoutY="345.0" prefHeight="25.0" prefWidth="372.0" />
+            <Label layoutX="246.0" layoutY="64.0" text="Punto No.">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="DESCRIPTION" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="PuntoOrden" layoutX="353.0" layoutY="64.0" prefHeight="25.0" prefWidth="13.0" text="1" />
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />
@@ -154,7 +163,7 @@
                   <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
                </graphic>
             </Label>
-            <JFXTextField fx:id="txt_convocatoria" layoutX="186.0" layoutY="29.0" prefHeight="25.0" prefWidth="67.0" text=" 014-2017" />
+            <JFXTextField fx:id="txt_convocatoria" layoutX="186.0" layoutY="29.0" prefHeight="25.0" prefWidth="67.0" text="014-2017" />
             <Label fx:id="lbl2" layoutX="300.0" layoutY="65.0" prefHeight="25.0" prefWidth="489.0" text=" DEL CONCEJO DEL GOBIERNO AUTÓNOMO DESCENTRALIZADO MUNICIPAL DEL CANTÓN" />
             <Label fx:id="lbl1" layoutX="111.0" layoutY="69.0" text="SESIÓN" />
             <Label fx:id="lbl3" layoutX="111.0" layoutY="95.0" prefHeight="17.0" prefWidth="202.0" text="MANTA, CORRESPONDIENTE AL DÍA  " />

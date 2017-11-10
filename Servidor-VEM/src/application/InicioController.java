@@ -31,6 +31,9 @@ public class InicioController implements Initializable {
 
     @FXML
     private JFXButton sesionButton;
+    
+    @FXML
+    private JFXButton btn_asistencia;
 
     @FXML
     private JFXButton buttonControlPane;
@@ -93,6 +96,17 @@ public class InicioController implements Initializable {
     void inicioButtonAction(ActionEvent event) {
     	try {
 			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("SubInicio.fxml"));
+			panel.getChildren().setAll(pane);
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    @FXML
+    void onAsistenciaButton(ActionEvent event) {
+    	try {
+			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("Quorum.fxml"));
 			panel.getChildren().setAll(pane);
     	} catch (IOException e) {
 			// TODO Auto-generated catch block
