@@ -3,7 +3,6 @@ package servidor;
 import java.rmi.RemoteException;
 
 import gad.manta.common.IServidor;
-import modelo.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;

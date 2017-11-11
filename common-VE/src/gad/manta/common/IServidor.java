@@ -2,8 +2,6 @@ package gad.manta.common;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.sql.Connection;
-import java.sql.Date;
 import java.util.List;
 
 public interface IServidor extends Remote {

@@ -20,7 +20,6 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 
-import gad.manta.common.IServidor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,7 +41,7 @@ import modelo.Sesion;
 import modelo.Usuario;
 
 public class NuevaSesionCtrl implements Initializable{
-	private static IServidor servidor;
+	//private static IServidor servidor;
 	
 	public static int idSesion = 0;
 	

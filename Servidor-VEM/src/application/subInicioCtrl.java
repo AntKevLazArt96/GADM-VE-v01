@@ -2,15 +2,12 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
-import java.rmi.Naming;
-import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
-import gad.manta.common.IServidor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,13 +20,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.Conexion;
 import modelo.Sesion;
-import servidor.Servidor;
 
 public class subInicioCtrl implements Initializable{
 	
 	private Conexion conexion;
 	
-	private Servidor servidor;
+	//private Servidor servidor;
 	@FXML
     private AnchorPane panel;
 

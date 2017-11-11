@@ -1,6 +1,5 @@
 package modelo;
 
-import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

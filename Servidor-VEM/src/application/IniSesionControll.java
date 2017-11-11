@@ -1,17 +1,14 @@
 package application;
 
 import java.io.IOException;
-import java.rmi.Naming;
 
 import com.jfoenix.controls.JFXButton;
 
-import gad.manta.common.IServidor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;

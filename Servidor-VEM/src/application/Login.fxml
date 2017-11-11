@@ -16,7 +16,7 @@
          <children>
             <ImageView fitHeight="260.0" fitWidth="190.0" layoutX="34.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="24.0">
                <image>
-                  <Image url="@../../../Recursos/logomanta.png" />
+                  <Image url="@../../res/logomanta.png" />
                </image>
             </ImageView>
             <Label alignment="CENTER" layoutX="67.0" layoutY="271.0" prefHeight="48.0" prefWidth="125.0" text="Sistema GAD" textFill="WHITE" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="66.0">

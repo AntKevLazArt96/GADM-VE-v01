@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="lib"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/common-VE"/>
 	<classpathentry kind="src" path="res"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/anthony-pc/Desktop/GADM-VE-v01/librerias/jfoenix.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/anthony-pc/Desktop/GADM-VE-v01/librerias/fontawesomefx-8.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/anthony-pc/Desktop/GADM-VE-v01/Servidor-VEM/lib/fontawesomefx-8.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/anthony-pc/Desktop/GADM-VE-v01/Servidor-VEM/lib/jfoenix.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
