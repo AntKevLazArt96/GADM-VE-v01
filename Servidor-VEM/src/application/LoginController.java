@@ -1,18 +1,16 @@
 package application;
 
 import java.io.IOException;
-import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
-import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import gad.manta.common.IServidor;
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -21,8 +19,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-public class LoginController implements Initializable {
+public class LoginController extends Application {
 	private static IServidor servidor;
+	   
 
     
 	@FXML private JFXTextField txt_username;
@@ -53,6 +52,11 @@ public class LoginController implements Initializable {
 	    FXMLLoader loader= new FXMLLoader(getClass().getResource("Inicio.fxml"));
 	    String username = servidor.login(txt_username.getText(),txt_password.getText());
 	    
+	    data.ip = "192.168.1.6";
+        data.port = 6666;
+	    data.name = username;
+	    
+	    
 	    if(username!=null) {
 	    	
 		    AnchorPane pane = loader.load();
@@ -78,16 +82,12 @@ public class LoginController implements Initializable {
 	    }
 	}
 	
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-    	
-    
-    		
-    	
-    	
-    	
-    	
-        
-    }    
+
+
+	@Override
+	public void start(Stage arg0) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}    
     
 }

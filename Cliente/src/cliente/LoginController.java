@@ -42,6 +42,9 @@ public class LoginController implements Initializable {
 
 	@FXML
 	private void loginAction() throws IOException, NotBoundException{
+		
+		
+		
 		// get a handle to the stage
 	    Stage actualStage = (Stage) closeButton.getScene().getWindow();
 	    // do what you have to do
@@ -52,7 +55,10 @@ public class LoginController implements Initializable {
 	    Stage newStage = new Stage();
 		
 	    String login = servidor.login(txt_username.getText(),txt_password.getText());
-		
+	    System.out.println("Clicked");
+        data.ip = "192.168.1.6";
+        data.port = 6666;
+	    data.name = login;
 	    System.out.println(login);
 		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClientePreSesion.fxml"));
         Scene scene = new Scene(pane);

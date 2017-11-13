@@ -33,7 +33,7 @@
             </JFXButton>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="40.0" layoutY="121.0" prefHeight="590.0" prefWidth="312.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="90.0">
+      <AnchorPane layoutX="41.0" layoutY="90.0" prefHeight="590.0" prefWidth="312.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="90.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="27.0" layoutY="33.0" text="Resumen" textFill="#212121" AnchorPane.topAnchor="40.0">
@@ -44,7 +44,7 @@
                   <MaterialDesignIconView glyphName="MENU" size="30" />
                </graphic>
             </Label>
-            <JFXButton fx:id="btnIniVoto" layoutX="57.0" layoutY="398.0" onAction="#IniVotoAction" prefHeight="47.0" prefWidth="185.0" style="-fx-background-color: #00bcd4;" text="INICIAR SESIÓN" textFill="WHITE" AnchorPane.leftAnchor="57.0">
+            <JFXButton fx:id="btnIniVoto" disable="true" layoutX="51.0" layoutY="395.0" onAction="#IniVotoAction" prefHeight="47.0" prefWidth="206.0" style="-fx-background-color: #00bcd4;" text="REGISTRAR QUORUM" textFill="WHITE" AnchorPane.leftAnchor="51.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -52,7 +52,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="PLAY" size="30" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnCerrar" layoutX="58.0" layoutY="450.0" onAction="#onCerrar" prefHeight="47.0" prefWidth="185.0" style="-fx-background-color: #757575;" text="CANCELAR" textFill="WHITE">
+            <JFXButton fx:id="btnCerrar" layoutX="58.0" layoutY="450.0" onAction="#onCerrar" prefHeight="47.0" prefWidth="185.0" style="-fx-background-color: #757575;" text="CERRAR" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -68,7 +68,7 @@
                   <MaterialDesignIconView glyphName="ACCOUNT_PLUS" size="20" />
                </graphic>
             </Label>
-            <Label layoutX="139.0" layoutY="145.0" text="8" textFill="#4caf50">
+            <Label fx:id="lblpresentes" layoutX="139.0" layoutY="145.0" text="0" textFill="#4caf50">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -81,12 +81,12 @@
                   <MaterialDesignIconView glyphName="ACCOUNT_REMOVE" size="20" />
                </graphic>
             </Label>
-            <Label layoutX="139.0" layoutY="211.0" text="4" textFill="#d32f2f">
+            <Label fx:id="lblausentes" layoutX="133.0" layoutY="211.0" text="12" textFill="#d32f2f">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <JFXTextArea editable="false" layoutX="26.0" layoutY="287.0" prefHeight="53.0" prefWidth="254.0" text="Se cumple con el mínimo de miembros para inicar la sesión.">
+            <JFXTextArea editable="false" layoutX="26.0" layoutY="287.0" prefHeight="53.0" prefWidth="254.0" text="No se cumple con el mínimo de miembros para inicar la sesión.">
                <font>
                   <Font size="14.0" />
                </font>
@@ -127,92 +127,92 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                              <ImageView fx:id="img2" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="1">
                                  <image>
                                     <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="img1" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                              <ImageView fx:id="img3" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="2">
                                  <image>
                                     <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                              <ImageView fx:id="img4" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="3">
                                  <image>
                                     <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                              <ImageView fx:id="img5" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="4">
                                  <image>
                                     <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+                              <ImageView fx:id="img6" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="5">
                                  <image>
                                     <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1">
+                              <Label fx:id="user1" prefHeight="20.0" prefWidth="187.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Presente" textFill="#4caf50" GridPane.columnIndex="2">
+                              <Label fx:id="status1" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <Label fx:id="user2" prefHeight="20.0" prefWidth="189.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <Label fx:id="user3" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <Label fx:id="user4" prefHeight="20.0" prefWidth="191.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <Label fx:id="user5" prefWidth="189.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <Label fx:id="user6" prefHeight="20.0" prefWidth="185.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                              <Label fx:id="status3" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                              <Label fx:id="status5" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="Ausente" textFill="#d32f2f" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                              <Label fx:id="status6" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                              <Label fx:id="status2" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                              <Label fx:id="status4" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -227,92 +227,92 @@
                            <children>
                               <GridPane layoutX="47.0" layoutY="29.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                  <children>
-                                    <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                                    <ImageView fx:id="img8" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="1">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="img7" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                                    <ImageView fx:id="img9" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="2">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                                    <ImageView fx:id="img10" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="3">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                                    <ImageView fx:id="img11" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="4">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+                                    <ImageView fx:id="img12" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="5">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1">
+                                    <Label fx:id="user7" prefHeight="20.0" prefWidth="190.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Presente" textFill="#4caf50" GridPane.columnIndex="2">
+                                    <Label fx:id="status7" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <Label fx:id="user8" prefHeight="20.0" prefWidth="186.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <Label fx:id="user9" prefHeight="20.0" prefWidth="193.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <Label fx:id="user10" prefHeight="20.0" prefWidth="196.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <Label fx:id="user11" prefHeight="20.0" prefWidth="187.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                    <Label fx:id="user12" prefHeight="20.0" prefWidth="196.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Ausente" textFill="#d32f2f" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <Label fx:id="status8" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                    <Label fx:id="status9" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                    <Label fx:id="status11" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Ausente" textFill="#d32f2f" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                    <Label fx:id="status10" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label text="Ausente" textFill="#d32f2f" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                    <Label fx:id="estatus12" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -345,6 +345,14 @@
       </AnchorPane>
       <AnchorPane layoutX="11.0" layoutY="673.0" prefHeight="29.0" prefWidth="1280.0" style="-fx-background-color: #0288d1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
+            <JFXButton fx:id="btn_fin" layoutX="1115.0" layoutY="-1.0" onAction="#finAction" prefHeight="25.0" prefWidth="141.0" text="Terminar sesión" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="24.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="POWER" size="18" />
+               </graphic>
+            </JFXButton>
             <Label layoutX="56.0" layoutY="6.0" text="15:33" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0">
                <font>
                   <Font size="18.0" />

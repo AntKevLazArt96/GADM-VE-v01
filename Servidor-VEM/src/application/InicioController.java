@@ -6,8 +6,13 @@
 package application;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.jfoenix.controls.JFXButton;
 
@@ -25,6 +30,7 @@ import javafx.stage.StageStyle;
  * @author Usuario
  */
 public class InicioController implements Initializable {
+	
 	
 	@FXML
     private JFXButton inicioButton;
@@ -59,6 +65,10 @@ public class InicioController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
+    	
+    	
+    	
     }    
     
     public void setUsername(String text) {
