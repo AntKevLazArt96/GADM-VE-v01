@@ -46,13 +46,13 @@ public class LoginController extends Application {
 	    // do what you have to do
 	    actualStage.close();
 	    
-	    servidor = (IServidor)Naming.lookup("rmi://192.168.128.1/VotoE");
+	    servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
 	    
 	    Stage newStage = new Stage();
 	    FXMLLoader loader= new FXMLLoader(getClass().getResource("Inicio.fxml"));
 	    String username = servidor.login(txt_username.getText(),txt_password.getText());
 	    
-	    data.ip = "192.168.128.1";
+	    data.ip = "192.168.1.6";
         data.port = 6666;
 	    data.name = username;
 	    
