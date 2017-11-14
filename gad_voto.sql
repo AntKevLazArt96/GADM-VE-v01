@@ -75,22 +75,16 @@ select * from usuario;
 
 drop function verificar_usuario(varchar,varchar);
 
-create or replace function verificar_usuario(in varchar,in varchar)
-RETURNS varchar as
+create or replace function verificar_usuario(in character varying,in character varying,out integer, out varchar,out varchar, out varchar, out varchar, out varchar, out varchar,out varchar)
+RETURNS SETOF record AS
 $$
-declare 
-	cedula varchar;
 begin
-	IF EXISTS (select * from public.usuario where usuario=$1 and contracena=$2)
-	THEN
-    	RETURN $1;
-	ELSE
-		RETURN 0;
-	END IF;
+	return query select * from usuario where usuario=$1 and contracena=$2;
+	
 end
 $$
 LANGUAGE plpgsql VOLATILE;
-select verificar_usuario('christian.pinargote','123456789');
+select * from verificar_usuario('concejal1','1234');
 
 
 
@@ -117,6 +111,7 @@ end
 $$
 LANGUAGE plpgsql VOLATILE;
 
+select *from consulta_usuario_ced('123456789');
 create or replace function consulta_usuario_user(in varchar,out integer, out varchar,out varchar, out varchar, out varchar, out varchar, out varchar,out varchar)
 RETURNS SETOF record AS
 $$
