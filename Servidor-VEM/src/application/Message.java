@@ -2,7 +2,7 @@ package application;
 
 public class Message {
     private String name;
-    private String status;
+    private String message;
 
     public String getName() {
         return name;
@@ -12,13 +12,15 @@ public class Message {
         this.name = name;
     }
 
-	public String getStatus() {
-		return status;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setMessage(String message) {
+		this.message = message;
 	}
+
+
 
   
 }

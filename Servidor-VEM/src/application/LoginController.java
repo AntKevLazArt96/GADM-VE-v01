@@ -1,8 +1,10 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -11,6 +13,7 @@ import gad.manta.common.IServidor;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -19,7 +22,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-public class LoginController extends Application {
+public class LoginController implements Initializable {
 	private static IServidor servidor;
 	   
 
@@ -84,9 +87,12 @@ public class LoginController extends Application {
 	
 
 
+
+
 	@Override
-	public void start(Stage arg0) throws Exception {
-		// TODO Auto-generated method stub
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		txt_username.setText("secretaria");
+		txt_password.setText("1234");
 		
 	}    
     

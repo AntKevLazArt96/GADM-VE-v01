@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.materialdesignicons.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ClienteVotoController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ClienteVotoOrdenCtrl">
    <children>
       <AnchorPane layoutX="31.0" layoutY="693.0" prefHeight="35.0" prefWidth="1280.0" style="-fx-background-color: #0288d1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -27,7 +25,7 @@
       <AnchorPane layoutX="237.0" layoutY="131.0" prefHeight="543.0" prefWidth="868.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="131.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="51.0" layoutY="47.0" text="PUNTO 1" textFill="#212121">
+            <Label layoutX="51.0" layoutY="47.0" text="Convocatoria 014-2017" textFill="#212121">
                <font>
                   <Font size="26.0" />
                </font>
@@ -35,17 +33,17 @@
                   <MaterialDesignIconView glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <JFXButton layoutX="119.0" layoutY="235.0" prefHeight="133.0" prefWidth="273.0" style="-fx-background-color: #4CAF50;" text="A Favor" textFill="WHITE" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="235.0">
+            <JFXButton fx:id="bnt_aprobar" layoutX="114.0" layoutY="235.0" onAction="#onAprobar" prefHeight="133.0" prefWidth="316.0" style="-fx-background-color: #4CAF50;" text="APROBAR" textFill="WHITE" AnchorPane.leftAnchor="114.0" AnchorPane.topAnchor="235.0">
                <font>
                   <Font size="48.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="485.0" layoutY="231.0" prefHeight="133.0" prefWidth="273.0" style="-fx-background-color: #F44336;" text="En Contra" textFill="WHITE" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="231.0">
+            <JFXButton fx:id="bntRechazar" layoutX="485.0" layoutY="231.0" onAction="#onRechazar" prefHeight="133.0" prefWidth="316.0" style="-fx-background-color: #F44336;" text="RECHAZAR" textFill="WHITE" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="231.0">
                <font>
                   <Font size="48.0" />
                </font>
             </JFXButton>
-            <JFXTextArea editable="false" layoutX="86.0" layoutY="80.0" prefHeight="76.0" prefWidth="717.0" text="Lectura y aprobacion del Acta No. 011-2017, correspondiente a la sesion ordinaria del Consejo Municipal de Manta del dia lunes 20 de MARZO del 2017.">
+            <JFXTextArea editable="false" layoutX="86.0" layoutY="80.0" prefHeight="90.0" prefWidth="717.0" text="SESION ORDINARIA DEL CONCEJO DEL GOBIERNO AUTONOMO DESCENTRALIZADO MUNICIPAL DEL CANTON MANTA, CORRESPONDE AL DIA LUNES 10 DE ABRIL DEL 2017, A LAS 16H00. EN EL SALON DE ACTOS DEL GADMC-MANTA">
                <font>
                   <Font size="18.0" />
                </font>
@@ -57,7 +55,7 @@
       </AnchorPane>
       <AnchorPane layoutX="57.0" layoutY="22.0" prefHeight="132.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="45.0" layoutY="44.0" prefHeight="53.0" prefWidth="647.0" text="SESIÓN EXTRAORDINARIA No. 125" textFill="WHITE" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="44.0">
+            <Label layoutX="45.0" layoutY="44.0" prefHeight="53.0" prefWidth="647.0" text="Convocatoria 014-2017" textFill="WHITE" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="44.0">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>

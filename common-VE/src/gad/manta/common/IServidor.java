@@ -11,6 +11,13 @@ public interface IServidor extends Remote {
 	public List<String> consultaUsuario()throws RemoteException;
 	
 	public List<Usuario> consultaQuorum()throws RemoteException;
+	//para crear el voto
+	public String addVoto(String usuario, String voto)throws RemoteException;
+	//para la lista de votos en la secretaria
+	public List<Voto> votantes()throws RemoteException;
+	public List<Voto> votosAprobados()throws RemoteException;
+	public List<Voto> votosRechazados()throws RemoteException;
+	
 	
 	public int iniciarSesion(String nombre)throws RemoteException;
 	public void enviar(String cuerpo, int sesionDe, int SesionA)throws RemoteException;

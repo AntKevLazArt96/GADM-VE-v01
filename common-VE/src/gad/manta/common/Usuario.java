@@ -2,7 +2,6 @@ package gad.manta.common;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class Usuario implements Serializable {
 	
 	/**
@@ -15,6 +14,10 @@ public class Usuario implements Serializable {
 		this.nombre= nombre;
 		this.status = status;
 		this.img= img;
+	}
+	
+	public Usuario() {
+		
 	}
 
 
