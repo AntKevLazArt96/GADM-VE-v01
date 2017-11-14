@@ -16,7 +16,8 @@ public class subSesionesCtrl {
 
     @FXML
     private JFXButton bnt_nuevo;
-
+    @FXML
+    private JFXButton btn_modifi;
     @FXML
     void btnNuevoAction(ActionEvent event) {
     	try {
@@ -30,6 +31,20 @@ public class subSesionesCtrl {
 		}
 
     }
+    @FXML
+    void btnModiAction(ActionEvent event) {
+    	try {
+    		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ModificacionSesion.fxml"));
+			
+			panel.getChildren().setAll(pane);
+		    
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    }
+    
 
 }
 

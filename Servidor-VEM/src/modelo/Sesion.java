@@ -102,6 +102,18 @@ public class Sesion {
 		
 	}
 	
+	public static void llenarInformacion_sesion(Connection connection, ObservableList<Sesion> sesio) {
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet resultado = statement.executeQuery("select * from sesion");
+			while(resultado.next()) {
+				sesio.add(new Sesion(resultado.getInt(1),resultado.getDate(2),resultado.getDate(3),resultado.getString(4),resultado.getString(5),resultado.getString(6)));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
 	public static void llenarInformacion(Connection connection, ObservableList<Usuario> users) {
 		try {
 			Statement statement = connection.createStatement();

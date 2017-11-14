@@ -21,7 +21,6 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -31,8 +30,6 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 
 import gad.manta.common.IServidor;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -47,7 +44,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import modelo.Conexion;
@@ -56,7 +52,7 @@ import modelo.Pdf;
 import modelo.Sesion;
 import modelo.Usuario;
 
-public class NuevaSesionCtrl implements Initializable{
+public class ModificacionSesionCtrl implements Initializable{
 	private static IServidor servidor;
 	
 	public static Integer idSesion = 0;
@@ -69,6 +65,8 @@ public class NuevaSesionCtrl implements Initializable{
 	
 	@FXML
     private ObservableList<Usuario> proponentes;
+
+    private ObservableList<Sesion> convocatoria;
 	
 	@FXML
     private ObservableList<OrdenDia> listaOrden;
@@ -83,7 +81,9 @@ public class NuevaSesionCtrl implements Initializable{
     
     @FXML
     private JFXComboBox<String> cbx_tipoSes;
-    
+
+    @FXML
+    private JFXComboBox<Sesion> cbx_combocatoria;
     @FXML
     private JFXComboBox<Usuario> cbx_proponente;
     
@@ -144,13 +144,16 @@ public class NuevaSesionCtrl implements Initializable{
 		
 		conexion.establecerConexion();
 		proponentes =FXCollections.observableArrayList();
-		
-		Usuario.llenarInformacion(conexion.getConnection(), proponentes);
-
+		Sesion.llenarInformacion(conexion.getConnection(), proponentes);
 		cbx_proponente.setItems(proponentes);
-		
 		conexion.cerrarConexion();
 		
+		conexion.establecerConexion();
+		convocatoria=FXCollections.observableArrayList();
+		Sesion.llenarInformacion_sesion(conexion.getConnection(), convocatoria);
+		System.out.println(convocatoria);
+		cbx_combocatoria.setItems(convocatoria);
+		conexion.cerrarConexion();
 		
 		
 	}
@@ -281,14 +284,8 @@ public class NuevaSesionCtrl implements Initializable{
     @FXML
     void mostrar_pdf(MouseEvent  event) throws RemoteException{
     	
-    	try {
-    		String ruta="";
-        	ruta=list_pdf.getSelectionModel().selectedItemProperty().getValue();
-    	    File path = new File (ruta);
-    	    Desktop.getDesktop().open(path);
-    	}catch (IOException ex) {
-    	     ex.printStackTrace();
-    	}
+    	System.out.println(	);
+    	System.out.println("aa");
     }
     
     @FXML
@@ -337,4 +334,3 @@ public class NuevaSesionCtrl implements Initializable{
     
     
 }
-
