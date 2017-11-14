@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import gad.manta.common.IServidor;
 import gad.manta.common.Mensaje;
 import gad.manta.common.Usuario;
+import gad.manta.common.Voto;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,7 +25,10 @@ public class Servidor implements IServidor {
     
     private Map<Integer, List<Mensaje>> buffer =  new HashMap<Integer, List<Mensaje>>();
 
-    List<Usuario> lista = new ArrayList<>();
+    List<Usuario> listaUsuario = new ArrayList<>();
+    List<Voto> listaVotantes = new ArrayList<>();
+    List<Voto> listaVotoAprueba = new ArrayList<>();
+    List<Voto> listaVotoRechaza = new ArrayList<>();
     
 	@Override
 	public String saludar(String nombre) throws RemoteException {
@@ -58,7 +62,7 @@ public class Servidor implements IServidor {
 		db.close();
 		//Para el Quorum
 		if(!username.equals("secretaria")) {
-			lista.add(new Usuario(resultado_validacion,"PRESENTE",""));
+			listaUsuario.add(new Usuario(resultado_validacion,"PRESENTE",""));
 		}
 			
 		
@@ -74,8 +78,43 @@ public class Servidor implements IServidor {
 	
 	@Override
 	public List<Usuario> consultaQuorum() throws RemoteException {
-		return lista;
+		return listaUsuario;
 	}
+	
+	@Override
+	public String addVoto(String usuario, String voto) throws RemoteException {
+		// TODO Auto-generated method stub
+		if(voto.contains("APROBAR")) {
+			listaVotoAprueba.add(new Voto(usuario,voto));
+		}
+		if(voto.contains("RECHAZAR")) {
+			listaVotoRechaza.add(new Voto(usuario,voto));
+		}
+		listaVotantes.add(new Voto(usuario,voto));
+		
+		
+		return usuario;
+	}
+	
+	@Override
+	public List<Voto> votosAprobados() throws RemoteException {
+		// TODO Auto-generated method stub
+		return listaVotoAprueba;
+	}
+	
+	@Override
+	public List<Voto> votosRechazados() throws RemoteException {
+		// TODO Auto-generated method stub
+		return listaVotoRechaza;
+	}
+	
+	@Override
+	public List<Voto> votantes() throws RemoteException {
+		// TODO Auto-generated method stub
+		return listaVotantes;
+	}
+	
+	
 	
 	
 	
@@ -168,6 +207,12 @@ public class Servidor implements IServidor {
         System.out.println(sesion_nombre.get(sesionDe)+ " Envio un mensaje a "+ sesion_nombre.get(SesionA));
 		
 	}
+
+	
+
+	
+
+	
 
 	
 	

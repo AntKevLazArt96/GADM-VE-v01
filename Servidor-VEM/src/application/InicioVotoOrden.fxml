@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InicioVotacionController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InicioVotoOrdenCtrl">
    <children>
       <AnchorPane layoutX="109.0" layoutY="24.0" prefHeight="113.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -40,9 +40,9 @@
                   <MaterialDesignIconView glyphName="POCKET" size="18.0" />
                </graphic>
             </Label>
-            <AnchorPane layoutX="54.0" layoutY="129.0" prefHeight="221.0" prefWidth="268.0" AnchorPane.bottomAnchor="239.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+            <AnchorPane layoutX="54.0" layoutY="129.0" prefHeight="113.0" prefWidth="256.0" AnchorPane.bottomAnchor="387.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
                <children>
-                  <Label layoutX="19.0" layoutY="31.0" text="A FAVOR" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="15.0">
+                  <Label layoutX="19.0" layoutY="31.0" text="APROBADO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="15.0">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -50,7 +50,7 @@
                         <MaterialDesignIconView fill="#00c91b" glyphName="CHECKBOX_MARKED" size="30" />
                      </graphic>
                   </Label>
-                  <Label layoutX="19.0" layoutY="72.0" text="EN CONTRA" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="65.0">
+                  <Label layoutX="19.0" layoutY="72.0" text="RECHAZADO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="65.0">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -58,7 +58,17 @@
                         <MaterialDesignIconView fill="#dd0000" glyphName="CLOSE_BOX" size="30" />
                      </graphic>
                   </Label>
-                  <Label layoutX="18.0" layoutY="111.0" text="BLANCO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="115.0">
+                  <Label fx:id="lblAprobado" layoutX="230.0" layoutY="30.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblRechazado" layoutX="230.0" layoutY="70.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="65.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="20.0" layoutY="116.0" text="EN ESPERA">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -66,30 +76,7 @@
                         <MaterialDesignIconView glyphName="CHECKBOX_BLANK_OUTLINE" size="30" />
                      </graphic>
                   </Label>
-                  <Label layoutX="18.0" layoutY="151.0" text="SALVO VOTO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="171.0">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <graphic>
-                        <MaterialDesignIconView glyphName="CODE_STRING" size="30.0" />
-                     </graphic>
-                  </Label>
-                  <Label layoutX="230.0" layoutY="30.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="15.0">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="230.0" layoutY="70.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="65.0">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="228.0" layoutY="109.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="115.0">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="225.0" layoutY="171.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="171.0">
+                  <Label fx:id="lblEspera" layoutX="225.0" layoutY="116.0" text="0">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -104,7 +91,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="ALERT_BOX" size="30" text="" />
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="50.0" layoutY="472.0" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #757575;" text="REINICIAR VOTACION" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <JFXButton layoutX="50.0" layoutY="472.0" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #757575;" text="REINICIAR VOTOR" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -189,7 +176,7 @@
             <DropShadow color="#a8a8a8" />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="377.0" layoutY="101.0" prefHeight="560.0" prefWidth="879.0" style="-fx-background-color: #FFFFFF;">
+      <AnchorPane layoutX="367.0" layoutY="100.0" prefHeight="560.0" prefWidth="879.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="51.0" layoutY="40.0" text="Lista de Miembros" textFill="#212121" AnchorPane.topAnchor="40.0">

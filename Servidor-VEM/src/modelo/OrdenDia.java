@@ -13,7 +13,6 @@ public class OrdenDia {
 	private int idSesion;
 	private int numeroPunto;
 	private String tema;
-	private String documentacion;
 	private int proponente;
 	
 	public int getNumeroPunto() {
@@ -34,12 +33,6 @@ public class OrdenDia {
 	public void setTema(String tema) {
 		this.tema = tema;
 	}
-	public String getDocumentacion() {
-		return documentacion;
-	}
-	public void setDocumentacion(String documentacion) {
-		this.documentacion = documentacion;
-	}
 	
 	public int getProponente() {
 		return proponente;
@@ -55,34 +48,36 @@ public class OrdenDia {
 	}
 	
 	
-	public OrdenDia(int idSesion, int numeroPunto, String tema , String documentacion,int proponente) {
+	public OrdenDia(int idSesion, int numeroPunto, String tema ,int proponente) {
 		this.idSesion = idSesion;
 		this.numeroPunto= numeroPunto;
 		this.tema= tema;
-		this.documentacion = documentacion;
 		this.proponente = proponente;
 	}
 	
-	public OrdenDia(int id,int idSesion, int numeroPunto, String tema , String documentacion,int proponente) {
+	public OrdenDia(int id,int idSesion, int numeroPunto, String tema , int proponente) {
 		this.id= id;
 		this.idSesion = idSesion;
 		this.numeroPunto= numeroPunto;
 		this.tema= tema;
-		this.documentacion = documentacion;
 		this.proponente = proponente;
 	}
 	
 	public int guardarRegistro(Connection connection) {
-		String sql = "INSERT INTO orden_dia(id_sesion,numero_punto, tema_punto, documentacion,proponente) values (?,?,?,?,?);";
+		String sql = "INSERT INTO orden_dia(id_sesion,numero_punto, tema_punto,proponente) values (?,?,?,?);";
 		try {
 			PreparedStatement instruccion = connection.prepareStatement(sql);
 			instruccion.setInt(1, idSesion);
 			instruccion.setInt(2, numeroPunto);
 			instruccion.setString(3, tema);
-			instruccion.setString(4, documentacion);
-			instruccion.setInt(5, proponente);
-			return instruccion.executeUpdate();
-			
+			instruccion.setInt(4, proponente);
+			instruccion.execute();
+			Statement statement = connection.createStatement();
+			ResultSet resultado = statement.executeQuery("select id from orden_dia order by id desc limit  1");
+			int id = 0;
+			resultado.next();
+			id=resultado.getInt(1);
+			return id;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,14 +92,12 @@ public class OrdenDia {
 			Statement statement = connection.createStatement();
 			ResultSet resultado = statement.executeQuery("select *from orden_dia where id_sesion="+idSesion);
 			while(resultado.next()) {
-				orden.add(new OrdenDia(resultado.getInt(1),resultado.getInt(2),resultado.getInt(3),resultado.getString(4),resultado.getString(5),resultado.getInt(6)));
+				orden.add(new OrdenDia(resultado.getInt(1),resultado.getInt(2),resultado.getInt(3),resultado.getString(4),resultado.getInt(5)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 	}
-	
-
 
 }

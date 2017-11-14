@@ -48,7 +48,7 @@
                   <Font size="48.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="400.0" layoutY="397.0" prefHeight="133.0" prefWidth="439.0" style="-fx-background-color: #B2EBF2;" text="SALVO EL VOTO" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="397.0">
+            <JFXButton layoutX="400.0" layoutY="397.0" prefHeight="133.0" prefWidth="439.0" style="-fx-background-color: #B2EBF2;" text="SALVO MI VOTO" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="397.0">
                <font>
                   <Font size="48.0" />
                </font>

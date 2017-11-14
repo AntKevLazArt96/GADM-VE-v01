@@ -75,6 +75,7 @@ public class Sesion {
 	
 	
 	
+	
 	public int guardarRegistro(Connection connection) {
 		String sql = "insert into sesion(fecha_registro,fecha_intervencion,hora_intervencion,convocatoria,titulo) values (?,?,?,?,?);";
 		try {

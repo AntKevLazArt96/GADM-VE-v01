@@ -169,6 +169,8 @@ public class QuorumCtrl implements Initializable {
 
     @FXML
     private Label estatus12;
+    @FXML
+    private JFXTextArea txtCumple;
 
     @FXML
     private JFXButton btn_fin;
@@ -203,14 +205,14 @@ public class QuorumCtrl implements Initializable {
                         String newMsgJson = dis.readUTF();
 
                         System.out.println("RE : " + newMsgJson);
-                        Message newMsg = new Message();
+                        Usuario newMsg = new Usuario();
                       
 
                         Object obj = parser.parse(newMsgJson);
                         JSONObject msg = (JSONObject) obj;
 
-                        newMsg.setName((String) msg.get("name"));
-                        newMsg.setStatus((String) msg.get("status"));
+                        newMsg.setNombre((String) msg.get("name"));
+                        newMsg.setStatus((String) msg.get("message"));
                         
                                                 
                         Platform.runLater(new Runnable() {
@@ -308,8 +310,10 @@ public class QuorumCtrl implements Initializable {
 											estatus12.setVisible(true);
 										}
 										
-										if(lista.size()>=2) {
+										if(lista.size()>=0) {
 											btnIniVoto.setDisable(false);
+											txtCumple.setText("Cumple con el mínimo de miembros para inicar la sesión");
+											
 										}
 									}
 									
