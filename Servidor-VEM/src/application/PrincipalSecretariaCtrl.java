@@ -1,5 +1,7 @@
 package application;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,6 +31,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -46,6 +49,11 @@ public class PrincipalSecretariaCtrl implements Initializable{
     private JFXTextArea label_titulo;
     @FXML
     private TableView<OrdenDia> tabla_ordenDia;
+    @FXML
+    private Label label_punto;
+    
+    @FXML
+    private TableView table_documentacion;
     @FXML
     private JFXTextField sesionA;
     
@@ -135,5 +143,18 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	    System.out.println(sesionDe);
 		
 	}
+	
+	@FXML
+    void mostrar_documentacion(MouseEvent  event) throws RemoteException{
+    	
+    	try {
+    		String ruta="";
+        	ruta=list_pdf.getSelectionModel().selectedItemProperty().getValue();
+    	    File path = new File (ruta);
+    	    Desktop.getDesktop().open(path);
+    	}catch (IOException ex) {
+    	     ex.printStackTrace();
+    	}
+    }
 
 }
