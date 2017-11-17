@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import de.jensd.fx.glyphs.materialicons.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="980.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IngresoPerCtrl">
+   <children>
+      <AnchorPane layoutX="44.0" layoutY="114.0" prefHeight="584.0" prefWidth="968.0">
+         <children>
+            <JFXTextField layoutX="20.0" layoutY="159.0" prefHeight="34.0" prefWidth="298.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="160.0">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+            <JFXTextField layoutX="-1.0" layoutY="54.0" prefHeight="34.0" prefWidth="298.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="54.0">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+            <Label layoutX="4.0" layoutY="25.0" text="Cedula" AnchorPane.leftAnchor="20.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="ACCOUNT_BOX" size="20" />
+               </graphic>
+            </Label>
+            <Label layoutX="20.0" layoutY="124.0" text="Nombres y Apellidos" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="128.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="BORDER_COLOR" size="20" />
+               </graphic>
+            </Label>
+            <Label layoutX="598.0" layoutY="128.0" text="Contraseña" AnchorPane.leftAnchor="570.0" AnchorPane.topAnchor="128.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView fill="#070707" glyphName="LOCK" size="20" />
+               </graphic>
+            </Label>
+            <Label layoutX="20.0" layoutY="335.0" text="Cargo" AnchorPane.leftAnchor="20.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="PERSON_ADD" size="20" />
+               </graphic>
+            </Label>
+            <Label layoutX="581.0" layoutY="226.0" text="Foto" AnchorPane.leftAnchor="570.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="PERSON" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField layoutX="590.0" layoutY="192.0" prefHeight="34.0" prefWidth="298.0" AnchorPane.leftAnchor="570.0" AnchorPane.topAnchor="160.0">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+            <JFXTextField layoutX="20.0" layoutY="367.0" prefHeight="34.0" prefWidth="298.0" AnchorPane.leftAnchor="20.0">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+            <JFXButton layoutX="764.0" layoutY="233.0" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: #00bcd4;" text="Buscar" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView fill="#fff7f7" glyphName="CAMERA_ENHANCE" size="25" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="46.0" layoutY="226.0" text="Celular" AnchorPane.leftAnchor="20.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="TABLET_ANDROID" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField layoutX="20.0" layoutY="258.0" prefHeight="34.0" prefWidth="298.0" AnchorPane.leftAnchor="20.0">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+            <JFXButton layoutX="529.0" layoutY="529.0" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Guardar" textFill="#f2eeee">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="25" />
+               </graphic>
+            </JFXButton>
+            <ImageView fitHeight="222.0" fitWidth="200.0" layoutX="586.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+               </image>
+            </ImageView>
+            <JFXTextField layoutX="608.0" layoutY="57.0" prefHeight="34.0" prefWidth="298.0" AnchorPane.leftAnchor="570.0" AnchorPane.topAnchor="54.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="571.0" layoutY="25.0" text="Usuario" AnchorPane.leftAnchor="570.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView fill="#070707" glyphName="PERSON" size="20" />
+               </graphic>
+            </Label>
+            <JFXButton layoutX="712.0" layoutY="529.0" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#e0f0f2" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" text="" />
+               </graphic>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="73.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="13.0" layoutY="19.0" text="Nuevo Usuario" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="25.0">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView glyphName="FORMAT_ALIGN_JUSTIFY" size="30" />
+               </graphic>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

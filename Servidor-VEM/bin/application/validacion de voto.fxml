@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import de.jensd.fx.glyphs.materialicons.*?>
+<?import javafx.scene.image.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="153.0" layoutY="49.0" prefHeight="587.0" prefWidth="984.0">
+         <children>
+            <Label layoutX="6.0" layoutY="102.0" prefHeight="45.0" prefWidth="899.0" text="Cambiar el plan de recolección de basura en los barrios de manta">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="5.0" layoutY="16.0" text="Punto 1">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView glyphName="FORMAT_LIST_NUMBERS" size="30" />
+               </graphic>
+            </Label>
+            <Label layoutX="196.0" layoutY="231.0" prefHeight="104.0" prefWidth="665.0" text="USTED A VOTADO ">
+               <font>
+                  <Font size="71.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="246.0" layoutY="363.0" prefHeight="168.0" prefWidth="421.0" style="-fx-background-color: #00bcd4;" text="SI" textFill="WHITE">
+               <font>
+                  <Font size="92.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <Label layoutX="683.0" layoutY="644.0" prefHeight="45.0" prefWidth="563.0" text="Por favor espere mientra termina la sesión">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
