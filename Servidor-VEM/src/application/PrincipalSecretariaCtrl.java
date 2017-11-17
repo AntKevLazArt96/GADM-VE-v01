@@ -1,60 +1,64 @@
 package application;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.Socket;
+import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
-
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 
-
+import gad.manta.common.IServidor;
+import gad.manta.common.Sesion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class PrincipalSecretariaCtrl {
-	
-	public static Thread th;
-    Socket sock;
-    DataOutputStream dos;
-    DataInputStream dis;
+public class PrincipalSecretariaCtrl implements Initializable{
+	private static IServidor servidor;
+	int sesionDe = 0;
 	
     @FXML
-    private JFXButton btnVotacion;
+    private JFXButton btnIniSesion;
+    @FXML
+    private Label label_convocatoria;
+    @FXML
+    private JFXTextArea label_titulo;
+    @FXML
+    private TableView tabla_ordenDia;
+    @FXML
+    private JFXTextField sesionA;
+    
+    @FXML
+    private JFXButton btn_pdf;
 
     @FXML
-    private JFXButton btnModificar;
-
-    @FXML
-    void onModificar(ActionEvent event) {
-    	
-    }
-
-    @FXML
-    void onVotacion(ActionEvent event) throws IOException {
-    	/*Stage stage = (Stage) btnVotacion.getScene().getWindow();
+    void iniSesion(ActionEvent event) throws IOException, NotBoundException {   	    	    	    	    	
+    	Stage stage = (Stage) btnIniSesion.getScene().getWindow();
 	    // do what you have to do
 	    stage.close();
-    	*/
+	    
     	
     	Stage newStage = new Stage();
 		
-	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("InicioVotoOrden.fxml"));
-        Scene scene = new Scene(pane);
+	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("inicioSesion.fxml"));
+	    servidor.enviar("hola como estas", sesionDe, Integer.valueOf(sesionA.getText()));	    
+	    Scene scene = new Scene(pane);
         
         //Pantalla completa
         Screen screen = Screen.getPrimary();
@@ -69,8 +73,38 @@ public class PrincipalSecretariaCtrl {
         newStage.setScene(scene);
         newStage.initStyle(StageStyle.UNDECORATED);
         newStage.show();
-    		
 
     }
+
+
+    @FXML
+       void mostrar_pdf(ActionEvent event) {
+
+       }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		try {
+			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+			List<Sesion> lista = servidor.consultarSesion();
+			label_titulo.setText(lista.get(0).getTitulo());
+			label_convocatoria.setText(lista.get(0).getConvocatoria());
+			
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	    try {
+			sesionDe = servidor.iniciarSesion("christian.pinargote");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    System.out.println(sesionDe);
+		
+	}
 
 }

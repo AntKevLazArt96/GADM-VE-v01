@@ -6,6 +6,8 @@ import gad.manta.common.IServidor;
 import gad.manta.common.Mensaje;
 import gad.manta.common.Usuario;
 import gad.manta.common.Voto;
+import gad.manta.common.Sesion;
+//import modelo.Sesion;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class Servidor implements IServidor {
     List<Voto> listaVotantes = new ArrayList<>();
     List<Voto> listaVotoAprueba = new ArrayList<>();
     List<Voto> listaVotoRechaza = new ArrayList<>();
+    List<Sesion> lista_sesion = new ArrayList<Sesion>();
     
 	@Override
 	public String saludar(String nombre) throws RemoteException {
@@ -51,7 +54,7 @@ public class Servidor implements IServidor {
 			cnfe.printStackTrace();
 			
 		}
-		//conección a la base de datos  
+		//conecciï¿½n a la base de datos  
 		Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
 		Statement st = db.createStatement();
 		
@@ -208,6 +211,40 @@ public class Servidor implements IServidor {
 		
 	}
 
+	@Override
+	public List<Sesion> consultarSesion() throws RemoteException {
+		
+		try {
+			//para verificar si esta instalado el drive de postgressql
+			
+			try {
+				Class.forName("org.postgresql.Driver");
+				
+			}catch(ClassNotFoundException cnfe){
+				System.out.println("Drive no encontrado");
+				cnfe.printStackTrace();
+				
+			}
+			//conecciï¿½n a la base de datos  
+			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select convocatoria,titulo from sesion where fecha_intervencion='2017-11-14';");
+			
+			resultado.next();
+			lista_sesion.add(new Sesion(resultado.getString(1),resultado.getString(2)));
+			db.close();
+				
+			
+			}catch(Exception e) {
+				System.out.println("Error: " + e.getMessage());
+				e.printStackTrace();
+			}
+		
+		return lista_sesion;	
+		}
+	
 	
 
 	

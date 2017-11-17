@@ -8,16 +8,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ClienteVotoController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ClienteMostrarVotoCtrl">
    <children>
-      <AnchorPane layoutX="57.0" layoutY="22.0" prefHeight="64.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="115.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;">
          <children>
-            <Label layoutX="79.0" layoutY="28.0" text="CONVOCATORIA 014-2017" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="25.0">
+            <Label layoutX="79.0" layoutY="28.0" prefHeight="53.0" prefWidth="631.0" text="CONVOCATORIA 014-2017" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="25.0">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <JFXButton layoutX="1161.0" layoutY="50.0" text=" " AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="25.0" />
+            <JFXButton layoutX="1161.0" layoutY="50.0" text=" " AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="25.0">
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="TEXT_TO_SPEECH" size="60.0" text="" />
+               </graphic>
+            </JFXButton>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="31.0" layoutY="693.0" prefHeight="35.0" prefWidth="1280.0" style="-fx-background-color: #0288d1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -32,10 +36,10 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="144.0" layoutY="55.0" prefHeight="596.0" prefWidth="1009.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="69.0" AnchorPane.topAnchor="55.0">
+      <AnchorPane layoutX="142.0" layoutY="115.0" prefHeight="572.0" prefWidth="1009.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="33.0" AnchorPane.topAnchor="115.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="45.0" layoutY="28.0" text="PUNTO 1" textFill="#212121">
+            <Label layoutX="45.0" layoutY="28.0" text="CONVOCATORIA 014-2017" textFill="#212121">
                <font>
                   <Font size="26.0" />
                </font>
@@ -43,12 +47,12 @@
                   <MaterialDesignIconView glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <JFXButton layoutX="57.0" layoutY="197.0" prefHeight="362.0" prefWidth="841.0" style="-fx-background-color: #4CAF50;" text="VOTO A FAVOR" textFill="WHITE" AnchorPane.leftAnchor="57.0" AnchorPane.topAnchor="197.0">
+            <JFXButton fx:id="verVoto" layoutX="57.0" layoutY="197.0" prefHeight="362.0" prefWidth="841.0" style="-fx-background-color: #4CAF50;" textFill="WHITE" AnchorPane.leftAnchor="57.0" AnchorPane.topAnchor="197.0">
                <font>
                   <Font size="96.0" />
                </font>
             </JFXButton>
-            <JFXTextArea editable="false" layoutX="74.0" layoutY="66.0" prefHeight="103.0" prefWidth="810.0" text="Lectura y aprobacion del Acta No. 011-2017, correspondiente a la sesion ordinaria del Consejo Municipal de Manta del dia lunes 20 de MARZO del 2017.">
+            <JFXTextArea editable="false" layoutX="74.0" layoutY="66.0" prefHeight="103.0" prefWidth="810.0" text="SESION ORDINARIA DEL CONCEJO DEL GOBIERNO AUTONOMO DESCENTRALIZADO MUNICIPAL DEL CANTON MANTA, CORRESPONDE AL DIA LUNES 10 DE ABRIL DEL 2017, A LAS 16H00. EN EL SALON DE ACTOS DEL GADMC-MANTA">
                <font>
                   <Font size="18.0" />
                </font>

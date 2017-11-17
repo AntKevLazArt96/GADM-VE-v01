@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
 
+
 public interface IServidor extends Remote {
 	public String saludar(String nombre) throws RemoteException;
 	public String login(String username,String password) throws RemoteException;
@@ -21,4 +22,5 @@ public interface IServidor extends Remote {
 	
 	public int iniciarSesion(String nombre)throws RemoteException;
 	public void enviar(String cuerpo, int sesionDe, int SesionA)throws RemoteException;
+	public List<Sesion> consultarSesion() throws RemoteException;
 }

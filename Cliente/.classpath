@@ -7,7 +7,7 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/common-VE"/>
 	<classpathentry kind="src" path="res"/>
 	<classpathentry exported="true" kind="lib" path="lib/json_simple-1.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/anthony-pc/Desktop/GADM-VE-v01/Servidor-VEM/lib/fontawesomefx-8.6.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/anthony-pc/Desktop/GADM-VE-v01/Servidor-VEM/lib/jfoenix.jar"/>
+	<classpathentry kind="lib" path="C:/librerias/fontawesomefx-8.6.jar"/>
+	<classpathentry kind="lib" path="C:/librerias/jfoenix.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

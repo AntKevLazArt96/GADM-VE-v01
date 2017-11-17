@@ -76,6 +76,11 @@ public class Sesion {
 	
 	
 	
+	public Sesion(String convocatoria, String titulo) {
+		super();
+		this.convocatoria = convocatoria;
+		this.titulo = titulo;
+	}
 	public int guardarRegistro(Connection connection) {
 		String sql = "insert into sesion(fecha_registro,fecha_intervencion,hora_intervencion,convocatoria,titulo) values (?,?,?,?,?);";
 		try {

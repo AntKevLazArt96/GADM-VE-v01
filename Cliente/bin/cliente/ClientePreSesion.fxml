@@ -88,7 +88,7 @@
       <AnchorPane layoutX="436.0" layoutY="107.0" prefHeight="554.0" prefWidth="707.0" style="-fx-background-color: #FFFFFF;" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="110.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="51.0" layoutY="47.0" text="ORDEN DEL DIA PROPUESTO" textFill="#212121">
+            <Label fx:id="lblOrden" layoutX="51.0" layoutY="47.0" text="ORDEN DEL DIA PROPUESTO" textFill="#212121">
                <font>
                   <Font size="22.0" />
                </font>
