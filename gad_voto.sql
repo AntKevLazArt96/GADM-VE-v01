@@ -319,18 +319,32 @@ select * from consulta_sesion_completa('2017-11-03');
 
 
 
-select numero_punto,tema_punto,us.nombre from sesion as s
+select numero_punto, nombre, pdf from sesion as s
 		inner join orden_dia as od on s.id=od.id_sesion
-		inner join usuario as us on us.id=od.proponente 
-		inner join pdf as p on p.id_orden_dia=od.id where s.fecha_intervencion='2017-11-14';
-
-
-select * from pdf
+		inner join pdf as p on p.id_orden_dia=od.id where s.fecha_intervencion='2017-11-17';
+delete from sesion;
+delete from orden_dia;
+select * from pdf;
 
 select convocatoria,titulo from sesion where fecha_intervencion='2017-10-17';
-select numero_punto,tema_punto,us.nombre from sesion as s inner join orden_dia as od on s.id=od.id_sesion inner join usuario as us on us.id=od.proponente where s.fecha_intervencion='2017-11-17';
+select numero_punto,tema_punt 	o,us.nombre from sesion as s inner join orden_dia as od on s.id=od.id_sesion inner join usuario as us on us.id=od.proponente where s.fecha_intervencion='2017-11-17';
 
-select convocatoria,titulo from sesion where fecha_intervencion='"+annio+"-"+mes+"-"+dia+"';"
+select convocatoria,titulo from sesion where fecha_intervencion='"+annio+"-"+mes+"-"+dia+"';
+
+
+DROP TABLE public.pdf;
+
+CREATE TABLE public.pdf
+(
+  id serial,
+  id_orden_dia integer,
+  nombre varchar(200),
+  pdf bytea
+)
+
+
+select * from pdf;
+
 
 
 
