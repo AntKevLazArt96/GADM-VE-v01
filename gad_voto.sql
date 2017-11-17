@@ -1,4 +1,4 @@
--- Database: gad_voto
+﻿-- Database: gad_voto
 
 -- DROP DATABASE gad_voto;
 
@@ -209,20 +209,21 @@ LANGUAGE plpgsql VOLATILE;
 select * from consulta_sesion(1);
 
 
---drop table orden_dia;
-create table orden_dia(
-id serial,
-id_sesion integer,
-numero_punto integer,
-nombre_punto varchar(100),
-descripcion_punto varchar(500),
-documentacion varchar(100),
-num_si integer null,
-num_no integer null,
-num_blanco integer null,
-num_salvo integer null,
-resultado_votacion integer null
-);
+ DROP TABLE public.orden_dia;
+
+CREATE TABLE public.orden_dia
+(
+  id integer ,
+  id_sesion integer,
+  numero_punto integer,
+  tema_punto character varying(500),
+  proponente integer,
+  num_si integer,
+  num_no integer,
+  num_blanco integer,
+  num_salvo integer,
+  resultado_votacion integer
+)
 
 
 --ingresar OD 
@@ -318,9 +319,15 @@ select * from consulta_sesion_completa('2017-11-03');
 
 
 
+select numero_punto,tema_punto from sesion as s
+		inner join orden_dia as od on s.id=od.id_sesion
+		inner join usuario as us on us.id=od.proponente where s.fecha_intervencion='2017-11-14';
 
 
+select * from sesion as s
+		inner join orden_dia as od on s.id=od.id_sesion
 
+select convocatoria,titulo from sesion where fecha_intervencion='2017-11-14';
 
 
 
