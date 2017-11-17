@@ -24,4 +24,5 @@ public interface IServidor extends Remote {
 	public void enviar(String cuerpo, int sesionDe, int SesionA)throws RemoteException;
 	public List<Sesion> consultarSesion() throws RemoteException;
 	public List<OrdenDia> consultarOrden() throws RemoteException;
+	public List<Documentacion> mostrarDocumentacion() throws RemoteException;
 }

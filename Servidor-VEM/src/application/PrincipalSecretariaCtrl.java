@@ -16,6 +16,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
+import gad.manta.common.Documentacion;
 import gad.manta.common.IServidor;
 import gad.manta.common.OrdenDia;
 import gad.manta.common.Sesion;
@@ -53,7 +54,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
     private Label label_punto;
     
     @FXML
-    private TableView table_documentacion;
+    private TableView<Documentacion> table_documentacion;
     @FXML
     private JFXTextField sesionA;
     
@@ -123,10 +124,30 @@ public class PrincipalSecretariaCtrl implements Initializable{
 			ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
 					lista_orden
 					);
-			
-			
 			tabla_ordenDia.getColumns().addAll(num_punto,descripcion,proponente);
 			tabla_ordenDia.setItems(datos);
+	
+			List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
+			TableColumn punto = new TableColumn("Documentación perteneciente al punto");
+			punto.setMinWidth(250);
+			punto.setCellValueFactory(
+	                new PropertyValueFactory<>("punto"));
+	 
+	        TableColumn nombre = new TableColumn("Nombre");
+	        nombre.setMinWidth(400);
+	        nombre.setCellValueFactory(
+	                new PropertyValueFactory<>("nombre"));
+	 
+	        TableColumn pdf = new TableColumn("Pdf");
+	        pdf.setMinWidth(200);
+	        pdf.setCellValueFactory(
+	                new PropertyValueFactory<>("pdf"));
+			ObservableList<Documentacion> datos_pdf = FXCollections.observableArrayList(
+					lista_documentacion
+					);
+			table_documentacion.getColumns().addAll(punto,nombre,pdf		);
+			table_documentacion.setItems(datos_pdf);
+	
 			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
@@ -147,14 +168,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	@FXML
     void mostrar_documentacion(MouseEvent  event) throws RemoteException{
     	
-    	try {
-    		String ruta="";
-        	ruta=list_pdf.getSelectionModel().selectedItemProperty().getValue();
-    	    File path = new File (ruta);
-    	    Desktop.getDesktop().open(path);
-    	}catch (IOException ex) {
-    	     ex.printStackTrace();
-    	}
+    	
     }
 
 }

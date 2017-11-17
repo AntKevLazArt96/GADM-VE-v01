@@ -292,7 +292,7 @@ public class NuevaSesionCtrl implements Initializable{
     }
     
     @FXML
-    void onAddOrden(ActionEvent event) throws RemoteException {
+    void onAddOrden(ActionEvent event) throws IOException {
     	
     	System.out.println("El id de la sesion es: "+idSesion);
     	if(idSesion==0) {
@@ -313,12 +313,18 @@ public class NuevaSesionCtrl implements Initializable{
         	int longitud_lista=0;
         	longitud_lista=list_pdf.getItems().size();
         
-        	while(longitud_lista>0) {
-        		System.out.println(list_pdf.getItems().get(longitud_lista-1).toString());
-        		Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).toString());
-            	pdf.guardarRegistro_pdf(conexion.getConnection());
-        		longitud_lista--;
-        	}
+        	while(longitud_lista>0)
+				try {
+					{
+						System.out.println(list_pdf.getItems().get(longitud_lista-1).toString());
+						Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).toString());
+						pdf.guardarRegistro_pdf(conexion.getConnection());
+						longitud_lista--;
+					}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
         	conexion.cerrarConexion();
         	
         	limpiar();

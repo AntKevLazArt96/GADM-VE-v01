@@ -289,7 +289,7 @@ public class ModificacionSesionCtrl implements Initializable{
     }
     
     @FXML
-    void onAddOrden(ActionEvent event) throws RemoteException {
+    void onAddOrden(ActionEvent event) throws IOException {
     	
     	System.out.println("El id de la sesion es: "+idSesion);
     	if(idSesion==0) {

@@ -2,6 +2,7 @@ package servidor;
 
 import java.rmi.RemoteException;
 
+import gad.manta.common.Documentacion;
 import gad.manta.common.IServidor;
 import gad.manta.common.Mensaje;
 import gad.manta.common.OrdenDia;
@@ -36,6 +37,7 @@ public class Servidor implements IServidor {
     List<Voto> listaVotoRechaza = new ArrayList<>();
     List<Sesion> lista_sesion = new ArrayList<Sesion>();
     List<OrdenDia> lista_ordendia = new ArrayList<OrdenDia>();
+    List<Documentacion> lista_documentacion = new ArrayList<Documentacion>();
     Calendar fecha = new GregorianCalendar();
     int annio = fecha.get(Calendar.YEAR);
     int mes = fecha.get(Calendar.MONTH)+1;
@@ -287,7 +289,43 @@ public class Servidor implements IServidor {
 		
 		return lista_ordendia;	
 		}
-	
+
+	@Override
+	public List<Documentacion> mostrarDocumentacion() throws RemoteException {
+
+		try {
+			//para verificar si esta instalado el drive de postgressql
+			
+			try {
+				Class.forName("org.postgresql.Driver");
+				
+			}catch(ClassNotFoundException cnfe){
+				System.out.println("Drive no encontrado");
+				cnfe.printStackTrace();
+				
+			}
+			//conecci�n a la base de datos  
+			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select numero_punto, nombre, pdf from sesion as s\r\n" + 
+					"		inner join orden_dia as od on s.id=od.id_sesion\r\n" + 
+					"		inner join pdf as p on p.id_orden_dia=od.id where s.fecha_intervencion='"+annio+"-"+mes+"-"+dia+"';");
+			while (resultado.next()) {
+				
+			    lista_documentacion.add(new Documentacion(resultado.getInt(1),resultado.getString(2),resultado.getBytes(3)));
+			}
+			db.close();
+				
+			
+			}catch(Exception e) {
+				System.out.println("Error: " + e.getMessage());
+				e.printStackTrace();
+			}
+		
+		return lista_documentacion;	
+		}	
 
 	
 

@@ -213,7 +213,7 @@ select * from consulta_sesion(1);
 
 CREATE TABLE public.orden_dia
 (
-  id integer ,
+  id serial ,
   id_sesion integer,
   numero_punto integer,
   tema_punto character varying(500),
@@ -319,18 +319,18 @@ select * from consulta_sesion_completa('2017-11-03');
 
 
 
-select numero_punto,tema_punto from sesion as s
+select numero_punto,tema_punto,us.nombre from sesion as s
 		inner join orden_dia as od on s.id=od.id_sesion
-		inner join usuario as us on us.id=od.proponente where s.fecha_intervencion='2017-11-14';
+		inner join usuario as us on us.id=od.proponente 
+		inner join pdf as p on p.id_orden_dia=od.id where s.fecha_intervencion='2017-11-14';
 
 
-select * from sesion as s
-		inner join orden_dia as od on s.id=od.id_sesion
+select * from pdf
 
-select convocatoria,titulo from sesion where fecha_intervencion='2017-11-14';
+select convocatoria,titulo from sesion where fecha_intervencion='2017-10-17';
+select numero_punto,tema_punto,us.nombre from sesion as s inner join orden_dia as od on s.id=od.id_sesion inner join usuario as us on us.id=od.proponente where s.fecha_intervencion='2017-11-17';
 
-
-
+select convocatoria,titulo from sesion where fecha_intervencion='"+annio+"-"+mes+"-"+dia+"';"
 
 
 
