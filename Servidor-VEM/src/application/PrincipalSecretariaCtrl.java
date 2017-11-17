@@ -15,7 +15,10 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import gad.manta.common.IServidor;
+import gad.manta.common.OrdenDia;
 import gad.manta.common.Sesion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +26,9 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -40,7 +45,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
     @FXML
     private JFXTextArea label_titulo;
     @FXML
-    private TableView tabla_ordenDia;
+    private TableView<OrdenDia> tabla_ordenDia;
     @FXML
     private JFXTextField sesionA;
     
@@ -82,6 +87,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 
        }
 
+	@SuppressWarnings({ "unchecked", "unchecked" })
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -90,6 +96,29 @@ public class PrincipalSecretariaCtrl implements Initializable{
 			List<Sesion> lista = servidor.consultarSesion();
 			label_titulo.setText(lista.get(0).getTitulo());
 			label_convocatoria.setText(lista.get(0).getConvocatoria());
+			
+			List<OrdenDia>lista_orden=servidor.consultarOrden();
+			TableColumn num_punto = new TableColumn("N° Punto");
+			num_punto.setMinWidth(50);
+			num_punto.setCellValueFactory(
+	                new PropertyValueFactory<>("numeroPunto"));
+	 
+	        TableColumn descripcion = new TableColumn("Descripción");
+	        descripcion.setMinWidth(900);
+	        descripcion.setCellValueFactory(
+	                new PropertyValueFactory<>("tema"));
+	 
+	        TableColumn proponente = new TableColumn("Proponente");
+	        proponente.setMinWidth(300);
+	        proponente.setCellValueFactory(
+	                new PropertyValueFactory<>("proponente"));
+			ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
+					lista_orden
+					);
+			
+			
+			tabla_ordenDia.getColumns().addAll(num_punto,descripcion,proponente);
+			tabla_ordenDia.setItems(datos);
 			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block

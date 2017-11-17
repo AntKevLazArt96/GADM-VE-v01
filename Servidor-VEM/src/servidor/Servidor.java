@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import gad.manta.common.IServidor;
 import gad.manta.common.Mensaje;
+import gad.manta.common.OrdenDia;
 import gad.manta.common.Usuario;
 import gad.manta.common.Voto;
 import gad.manta.common.Sesion;
@@ -11,6 +12,8 @@ import gad.manta.common.Sesion;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +35,11 @@ public class Servidor implements IServidor {
     List<Voto> listaVotoAprueba = new ArrayList<>();
     List<Voto> listaVotoRechaza = new ArrayList<>();
     List<Sesion> lista_sesion = new ArrayList<Sesion>();
+    List<OrdenDia> lista_ordendia = new ArrayList<OrdenDia>();
+    Calendar fecha = new GregorianCalendar();
+    int annio = fecha.get(Calendar.YEAR);
+    int mes = fecha.get(Calendar.MONTH)+1;
+    int dia = fecha.get(Calendar.DAY_OF_MONTH);
     
 	@Override
 	public String saludar(String nombre) throws RemoteException {
@@ -230,7 +238,7 @@ public class Servidor implements IServidor {
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
-			ResultSet resultado = st.executeQuery("select convocatoria,titulo from sesion where fecha_intervencion='2017-11-14';");
+			ResultSet resultado = st.executeQuery("select convocatoria,titulo from sesion where fecha_intervencion='"+annio+"-"+mes+"-"+dia+"';");
 			
 			resultado.next();
 			lista_sesion.add(new Sesion(resultado.getString(1),resultado.getString(2)));
@@ -244,9 +252,41 @@ public class Servidor implements IServidor {
 		
 		return lista_sesion;	
 		}
-	
-	
 
+	@Override
+	public List<OrdenDia> consultarOrden() throws RemoteException {
+
+		try {
+			//para verificar si esta instalado el drive de postgressql
+			
+			try {
+				Class.forName("org.postgresql.Driver");
+				
+			}catch(ClassNotFoundException cnfe){
+				System.out.println("Drive no encontrado");
+				cnfe.printStackTrace();
+				
+			}
+			//conecci�n a la base de datos  
+			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select numero_punto,tema_punto,us.nombre from sesion as s inner join orden_dia as od on s.id=od.id_sesion inner join usuario as us on us.id=od.proponente where s.fecha_intervencion='"+annio+"-"+mes+"-"+dia+"';");
+			
+			while(resultado.next()) {
+				lista_ordendia.add(new OrdenDia(resultado.getInt(1),resultado.getString(2),resultado.getString(3)));	
+			}
+			db.close();
+				
+			
+			}catch(Exception e) {
+				System.out.println("Error: " + e.getMessage());
+				e.printStackTrace();
+			}
+		
+		return lista_ordendia;	
+		}
 	
 
 	
