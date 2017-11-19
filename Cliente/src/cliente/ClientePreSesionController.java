@@ -26,6 +26,7 @@ import gad.manta.common.Sesion;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,8 +45,6 @@ import javafx.stage.StageStyle;
 public class ClientePreSesionController implements Initializable  {
 	@FXML
     private Label lblOrden;
-	
-	
 	//variable statica para rmi
 	private static IServidor servidor;
 	
@@ -160,7 +159,6 @@ public class ClientePreSesionController implements Initializable  {
 
 	    }
 	
-	 @SuppressWarnings({ "unchecked", "unchecked" })
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			
@@ -219,20 +217,17 @@ public class ClientePreSesionController implements Initializable  {
 			}
 			
 			
-		    try {
-				sesionDe = servidor.iniciarSesion("christian.pinargote");
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		    System.out.println(sesionDe);
-			
 		}
 		
 		@FXML
 	    void mostrar_documentacion(MouseEvent  event) throws RemoteException{
 	    	
 	    	
+	    }
+		
+		@FXML
+	    void mostrar_pdf(ActionEvent event) {
+
 	    }
 
 	}

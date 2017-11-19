@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 
 public class OrdenDia {
 	private int id;
-	private int idSesion;
+	private String convocatoria;
 	private int numeroPunto;
 	private String tema;
 	private int proponente;
@@ -21,12 +21,7 @@ public class OrdenDia {
 	public void setNumeroPunto(int numeroPunto) {
 		this.numeroPunto = numeroPunto;
 	}
-	public int getIdSesion() {
-		return idSesion;
-	}
-	public void setIdSesion(int idSesion) {
-		this.idSesion = idSesion;
-	}
+	
 	public String getTema() {
 		return tema;
 	}
@@ -48,32 +43,32 @@ public class OrdenDia {
 	}
 	
 	
-	public OrdenDia(int idSesion, int numeroPunto, String tema ,int proponente) {
-		this.idSesion = idSesion;
+	public OrdenDia(String convocatoria, int numeroPunto, String tema ,int proponente) {
+		this.convocatoria = convocatoria;
 		this.numeroPunto= numeroPunto;
 		this.tema= tema;
 		this.proponente = proponente;
 	}
 	
-	public OrdenDia(int id,int idSesion, int numeroPunto, String tema , int proponente) {
+	public OrdenDia(int id,String convocatoria, int numeroPunto, String tema , int proponente) {
 		this.id= id;
-		this.idSesion = idSesion;
+		this.convocatoria = convocatoria;
 		this.numeroPunto= numeroPunto;
 		this.tema= tema;
 		this.proponente = proponente;
 	}
 	
 	public int guardarRegistro(Connection connection) {
-		String sql = "INSERT INTO orden_dia(id_sesion,numero_punto, tema_punto,proponente) values (?,?,?,?);";
+		String sql = "select *from ingresar_orden_dia(?,?,?,?);";
 		try {
 			PreparedStatement instruccion = connection.prepareStatement(sql);
-			instruccion.setInt(1, idSesion);
+			instruccion.setString(1, convocatoria);
 			instruccion.setInt(2, numeroPunto);
 			instruccion.setString(3, tema);
 			instruccion.setInt(4, proponente);
 			instruccion.execute();
 			Statement statement = connection.createStatement();
-			ResultSet resultado = statement.executeQuery("select id from orden_dia order by id desc limit  1");
+			ResultSet resultado = statement.executeQuery("select id_ordendia from OrdenDia_VE order by id_ordendia desc limit  1");
 			int id = 0;
 			resultado.next();
 			id=resultado.getInt(1);
@@ -87,17 +82,23 @@ public class OrdenDia {
 	}
 	
 	
-	public static void llenarInformacion(Connection connection, ObservableList<OrdenDia> orden, int idSesion) {
+	public static void llenarInformacion(Connection connection, ObservableList<OrdenDia> orden, String convocatoria) {
 		try {
 			Statement statement = connection.createStatement();
-			ResultSet resultado = statement.executeQuery("select *from orden_dia where id_sesion="+idSesion);
+			ResultSet resultado = statement.executeQuery("select *from OrdenDia_VE where convocatoria_sesion='"+convocatoria+"';");
 			while(resultado.next()) {
-				orden.add(new OrdenDia(resultado.getInt(1),resultado.getInt(2),resultado.getInt(3),resultado.getString(4),resultado.getInt(5)));
+				orden.add(new OrdenDia(resultado.getInt(1),resultado.getString(2),resultado.getInt(3),resultado.getString(4),resultado.getInt(5)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
+	}
+	public String getConvocatoria() {
+		return convocatoria;
+	}
+	public void setConvocatoria(String convocatoria) {
+		this.convocatoria = convocatoria;
 	}
 
 }

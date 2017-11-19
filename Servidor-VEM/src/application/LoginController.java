@@ -55,6 +55,7 @@ public class LoginController implements Initializable {
 	    FXMLLoader loader= new FXMLLoader(getClass().getResource("Inicio.fxml"));
 	    String username = servidor.login(txt_username.getText(),txt_password.getText());
 	    
+	    
 	    data.ip = "192.168.1.6";
         data.port = 6666;
 	    data.name = username;

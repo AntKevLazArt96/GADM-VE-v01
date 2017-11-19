@@ -48,14 +48,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import modelo.Conexion;
 import modelo.OrdenDia;
-import modelo.Pdf;
+import modelo.ActaPdf;
 import modelo.Sesion;
 import modelo.Usuario;
 
 public class ModificacionSesionCtrl implements Initializable{
 	private static IServidor servidor;
 	
-	public static Integer idSesion = 0;
+	public static String convocatoria_sesion = null;
 	public static Integer idOrden = 0;
 	public static String ruta_pdf = "";
 	ObservableList<String> tipoSesion = FXCollections.
@@ -185,12 +185,12 @@ public class ModificacionSesionCtrl implements Initializable{
     	Date fechaIntervencion = Date.valueOf(date.getValue());
     	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
     	
-    	Sesion sesion = new Sesion(fechaRegistro, fechaIntervencion , horaIntervencion, convocatoria, titulo);
+    	//Sesion sesion = new Sesion(fechaRegistro, fechaIntervencion , horaIntervencion, convocatoria, titulo);
     	conexion.establecerConexion();
-    	idSesion = sesion.guardarRegistro(conexion.getConnection());
+    	//idSesion = sesion.guardarRegistro(conexion.getConnection());
     	conexion.cerrarConexion();
     	
-    	if(idSesion ==0 ) {
+    	if(convocatoria_sesion ==null ) {
     		Alert mensaje = new Alert(AlertType.ERROR);
     		mensaje.setTitle("Sesion Guardada");
     		mensaje.setContentText("Hubo algun error");
@@ -199,7 +199,7 @@ public class ModificacionSesionCtrl implements Initializable{
     	}else {
     		Alert mensaje = new Alert(AlertType.INFORMATION);
     		mensaje.setTitle("Sesion Guardada");
-    		mensaje.setContentText("Ahora prodece a agregar la orden del dia "+idSesion);
+    		mensaje.setContentText("Ahora prodece a agregar la orden del dia "+convocatoria_sesion);
     		mensaje.setHeaderText("Sesion Guardada");
     		mensaje.show();
     		bloquear();
@@ -207,7 +207,7 @@ public class ModificacionSesionCtrl implements Initializable{
     		listaOrden =FXCollections.observableArrayList();
     		conexion.establecerConexion();
         	
-    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,idSesion);
+    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,convocatoria_sesion);
     		conexion.cerrarConexion();
     		
     		tabla.setItems(listaOrden);
@@ -291,17 +291,17 @@ public class ModificacionSesionCtrl implements Initializable{
     @FXML
     void onAddOrden(ActionEvent event) throws IOException {
     	
-    	System.out.println("El id de la sesion es: "+idSesion);
-    	if(idSesion==0) {
+    	System.out.println("El id de la sesion es: "+convocatoria_sesion);
+    	if(convocatoria_sesion==null) {
     		JOptionPane.showMessageDialog(null, "Primero Tienes que agregar la sesion");
     	}else {
     		System.out.println(PuntoOrden.getText());
     		System.out.println(txt_descripcion.getText());
     		System.out.println(rutapdf);
     		System.out.println(cbx_proponente.getValue().getId());
-    		System.out.println(idSesion);
+    		System.out.println(convocatoria_sesion);
     		
-    		OrdenDia sesion = new OrdenDia(idSesion,Integer.valueOf(PuntoOrden.getText()), txt_descripcion.getText(), cbx_proponente.getValue().getId());
+    		OrdenDia sesion = new OrdenDia(convocatoria_sesion,Integer.valueOf(PuntoOrden.getText()), txt_descripcion.getText(), cbx_proponente.getValue().getId());
         	conexion.establecerConexion();
         	idOrden=sesion.guardarRegistro(conexion.getConnection());
         	
@@ -312,7 +312,7 @@ public class ModificacionSesionCtrl implements Initializable{
         
         	while(longitud_lista>0) {
         		System.out.println(list_pdf.getItems().get(longitud_lista-1).toString());
-        		Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).toString());
+        		ActaPdf pdf = new ActaPdf(idOrden,list_pdf.getItems().get(longitud_lista-1).toString());
             	pdf.guardarRegistro_pdf(conexion.getConnection());
         		longitud_lista--;
         	}
@@ -323,7 +323,7 @@ public class ModificacionSesionCtrl implements Initializable{
         	listaOrden =FXCollections.observableArrayList();
     		conexion.establecerConexion();
         	
-    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,idSesion);
+    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,convocatoria_sesion);
     		conexion.cerrarConexion();
     		
     		tabla.setItems(listaOrden);

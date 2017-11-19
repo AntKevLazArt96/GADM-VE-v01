@@ -3,6 +3,7 @@ package application;
 import java.awt.EventQueue;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
@@ -34,8 +35,13 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -47,6 +53,13 @@ public class QuorumCtrl implements Initializable {
     Socket sock;
     DataOutputStream dos;
     DataInputStream dis;
+    
+    @FXML
+    private Circle cirlogin;
+    @FXML
+    private Label lbl_nombre;
+    
+    
     @FXML
     private Label lblpresentes;
 
@@ -317,9 +330,6 @@ public class QuorumCtrl implements Initializable {
 										}
 									}
 									
-									
-									
-									
 								} catch (RemoteException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -385,9 +395,20 @@ public class QuorumCtrl implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		lbl_nombre.setText(data.name);
+		
+		cirlogin.setStroke(Color.SEAGREEN);
+		File f = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res\\concejal1.png");
+        Image im = new Image(f.toURI().toString());
+        cirlogin.setFill(new ImagePattern(im));
+        cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
 		
 	}
+	
+	@FXML
+    void handleButtonAction(ActionEvent event) {
+
+    }
 
 
 	

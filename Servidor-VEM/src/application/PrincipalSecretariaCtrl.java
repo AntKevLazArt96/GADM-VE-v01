@@ -32,8 +32,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -42,6 +47,11 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	private static IServidor servidor;
 	int sesionDe = 0;
 	
+	@FXML
+    private Circle cirlogin;
+    @FXML
+    private Label lbl_nombre;
+    
     @FXML
     private JFXButton btnIniSesion;
     @FXML
@@ -71,7 +81,6 @@ public class PrincipalSecretariaCtrl implements Initializable{
     	Stage newStage = new Stage();
 		
 	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("inicioSesion.fxml"));
-	    servidor.enviar("hola como estas", sesionDe, Integer.valueOf(sesionA.getText()));	    
 	    Scene scene = new Scene(pane);
         
         //Pantalla completa
@@ -99,20 +108,29 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	@SuppressWarnings({ "unchecked", "unchecked" })
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		lbl_nombre.setText(data.name);
 		
+		File f = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res\\concejal1.png");
+        Image im = new Image(f.toURI().toString());
+        cirlogin.setFill(new ImagePattern(im));
+        cirlogin.setStroke(Color.SEAGREEN);
+        cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
+        
 		try {
 			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
 			List<Sesion> lista = servidor.consultarSesion();
 			label_titulo.setText(lista.get(0).getTitulo());
 			label_convocatoria.setText(lista.get(0).getConvocatoria());
 			
+			
 			List<OrdenDia>lista_orden=servidor.consultarOrden();
-			TableColumn num_punto = new TableColumn("NÂ° Punto");
+			
+			TableColumn num_punto = new TableColumn("No. Punto");
 			num_punto.setMinWidth(50);
 			num_punto.setCellValueFactory(
 	                new PropertyValueFactory<>("numeroPunto"));
 	 
-	        TableColumn descripcion = new TableColumn("DescripciÃ³n");
+	        TableColumn descripcion = new TableColumn("Descripción");
 	        descripcion.setMinWidth(900);
 	        descripcion.setCellValueFactory(
 	                new PropertyValueFactory<>("tema"));
@@ -124,11 +142,12 @@ public class PrincipalSecretariaCtrl implements Initializable{
 			ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
 					lista_orden
 					);
+			
 			tabla_ordenDia.getColumns().addAll(num_punto,descripcion,proponente);
 			tabla_ordenDia.setItems(datos);
 	
-			List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
-			TableColumn punto = new TableColumn("DocumentaciÃ³n perteneciente al punto");
+			/*List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
+			TableColumn punto = new TableColumn("Documentación perteneciente al punto");
 			punto.setMinWidth(250);
 			punto.setCellValueFactory(
 	                new PropertyValueFactory<>("punto"));
@@ -145,30 +164,30 @@ public class PrincipalSecretariaCtrl implements Initializable{
 			ObservableList<Documentacion> datos_pdf = FXCollections.observableArrayList(
 					lista_documentacion
 					);
-			table_documentacion.getColumns().addAll(punto,nombre,pdf		);
-			table_documentacion.setItems(datos_pdf);
+			table_documentacion.getColumns().addAll(punto,nombre,pdf);
+			table_documentacion.setItems(datos_pdf);*/
 	
 			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-	    try {
-			sesionDe = servidor.iniciarSesion("christian.pinargote");
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    System.out.println(sesionDe);
-		
+	
 	}
 	
 	@FXML
     void mostrar_documentacion(MouseEvent  event) throws RemoteException{
-    	
+    	System.out.println("Mostrando Documentos");
     	
     }
+
+
+	@FXML 
+	public void handleButtonAction(ActionEvent event) {
+		
+	}
+
+
+	
 
 }

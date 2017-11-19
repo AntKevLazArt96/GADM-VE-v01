@@ -5,23 +5,27 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class Pdf {
+public class ActaPdf {
 	private int id;
-	private int id_orden_dia;
 	private String nombre;
 	private String ruta_pdf;
 	
+	public ActaPdf() {
+		
+	}
 	
-	public Pdf(int id, int id_orden_dia, String ruta_pdf) {
+	public ActaPdf(int id, String ruta_pdf) {
 		this.id = id;
-		this.id_orden_dia = id_orden_dia;
 		this.ruta_pdf = ruta_pdf;
 	}
-	public Pdf(int id_orden_dia, String ruta_pdf) {
-		this.id_orden_dia = id_orden_dia;
+	public ActaPdf( String nombre,String ruta_pdf) {
+		this.nombre= nombre;
 		this.ruta_pdf = ruta_pdf;
+		
 	}
 
 	public int getId() {
@@ -32,13 +36,6 @@ public class Pdf {
 		this.id = id;
 	}
 
-	public int getId_orden_dia() {
-		return id_orden_dia;
-	}
-
-	public void setId_orden_dia(int id_orden_dia) {
-		this.id_orden_dia = id_orden_dia;
-	}
 
 	public String getRuta_pdf() {
 		return ruta_pdf;
@@ -49,24 +46,39 @@ public class Pdf {
 	}
 
 	public int guardarRegistro_pdf(Connection connection) throws IOException {
-		String sql = "INSERT INTO pdf(id_orden_dia,nombre,pdf) VALUES (?, ?, ?);";
+		String sql = "select * from agregar_acta(?, ?);";
 		try {
 			File pdf = new File(ruta_pdf);
 			FileInputStream fis = new FileInputStream(pdf);
     		PreparedStatement ps = connection.prepareStatement(sql);
-    		ps.setInt(1,id_orden_dia);
-    		ps.setString(2, pdf.getName());
-    		ps.setBinaryStream(3, fis, (int)pdf.length());
-    		ps.executeUpdate();
-    		ps.close();
+    		//ps.setString(1,getNombre());
+    		ps.setString(1, pdf.getName());
+    		ps.setBinaryStream(2, fis, (int)pdf.length());
+    		ps.execute();
     		fis.close();
     		
-			return 1;
+    		Statement statement = connection.createStatement();
+			ResultSet resultado = statement.executeQuery("select id_pdf from Pdf_VE where nombre_pdf='"+pdf.getName()+"'");
+			int id = 0;
+			while(resultado.next()) {
+				id=resultado.getInt(1);
+			}
+			
+			return id;
+    		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0;
 		}
 		
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	}

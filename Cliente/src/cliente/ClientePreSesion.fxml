@@ -53,22 +53,6 @@
                   <MaterialDesignIconView glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <JFXButton fx:id="btnIniSesion" layoutX="743.0" layoutY="568.0" onAction="#iniSesion" prefHeight="47.0" prefWidth="262.0" style="-fx-background-color: #00bcd4;" text="SOMETER A VOTACION" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="743.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="PLAY" size="30" />
-               </graphic>
-            </JFXButton>
-            <JFXButton layoutX="952.0" layoutY="568.0" prefHeight="47.0" prefWidth="246.0" style="-fx-background-color: #757575;" text="MODIFICAR ORDEN DEL DIA" textFill="WHITE" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="1012.0" AnchorPane.rightAnchor="17.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="30" />
-               </graphic>
-            </JFXButton>
             <TableView fx:id="tabla_ordenDia" layoutX="14.0" layoutY="230.0" onMouseClicked="#mostrar_documentacion" prefHeight="273.0" prefWidth="739.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0">
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

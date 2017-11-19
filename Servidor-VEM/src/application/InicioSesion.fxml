@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.image.*?>
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
@@ -13,23 +22,41 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #eeeeee;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IniSesionControll">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #eeeeee;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IniSesionControll">
    <children>
-      <AnchorPane layoutX="17.0" layoutY="157.0" prefHeight="132.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="77.0" layoutY="42.0" prefHeight="115.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="50.0" layoutY="34.0" prefHeight="53.0" prefWidth="524.0" text="CONVOCATORIA 014-2017" textFill="WHITE" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="30.0">
+            <ImageView fitHeight="130.0" fitWidth="1280.0" layoutX="515.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../../../Cliente/res/titulo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="79.0" layoutY="28.0" prefHeight="53.0" prefWidth="631.0" text="CONVOCATORIA 014-2017" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                <font>
-                  <Font name="System Bold" size="36.0" />
+                  <Font name="System Bold" size="31.0" />
                </font>
             </Label>
-            <JFXButton fx:id="btn_voz" layoutX="1152.0" layoutY="26.0" onAction="#handleButtonAction" text=" " AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="25.0">
+            <JFXButton layoutX="1161.0" layoutY="50.0" text=" " AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
                <graphic>
                   <MaterialDesignIconView fill="WHITE" glyphName="TEXT_TO_SPEECH" size="60.0" text="" />
                </graphic>
-               <font>
-                  <Font size="1.0" />
-               </font>
             </JFXButton>
+            <Label layoutX="59.0" layoutY="65.0" text="Lunes, 01 Enero 2017" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Circle fx:id="cirlogin" fill="WHITE" layoutX="1093.0" layoutY="57.0" radius="42.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="15.0" />
+            <Label layoutX="822.0" layoutY="31.0" text="Lic. Christina Pinargote" textFill="WHITE" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="31.0">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="815.0" layoutY="60.0" text="Secretaria" textFill="WHITE" AnchorPane.rightAnchor="387.0" AnchorPane.topAnchor="60.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="41.0" layoutY="97.0" prefHeight="640.0" prefWidth="308.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="110.0">

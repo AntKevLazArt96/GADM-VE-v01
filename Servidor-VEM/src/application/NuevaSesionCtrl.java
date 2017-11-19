@@ -52,14 +52,16 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import modelo.Conexion;
 import modelo.OrdenDia;
-import modelo.Pdf;
+import modelo.ActaPdf;
 import modelo.Sesion;
 import modelo.Usuario;
 
 public class NuevaSesionCtrl implements Initializable{
 	private static IServidor servidor;
 	
-	public static Integer idSesion = 0;
+	public static String convocatoria = "";
+	public static Integer idPdf = 0;
+	public static Integer idActa = 0;
 	public static Integer idOrden = 0;
 	public static String ruta_pdf = "";
 	ObservableList<String> tipoSesion = FXCollections.
@@ -126,12 +128,16 @@ public class NuevaSesionCtrl implements Initializable{
     private JFXButton btn_cancelar;
     @FXML
     private JFXButton btn_examinar;
-    
+    @FXML
+    private JFXButton btn_examinarActa;
     @FXML
     private JFXButton btn_addOrden;
     
     @FXML
     private JFXListView<String> list_pdf;
+    
+    @FXML
+    private JFXListView<String> pdf_acta;
     
     
     @Override
@@ -145,7 +151,7 @@ public class NuevaSesionCtrl implements Initializable{
 		conexion.establecerConexion();
 		proponentes =FXCollections.observableArrayList();
 		
-		Usuario.llenarInformacion(conexion.getConnection(), proponentes);
+		Sesion.llenarInformacion(conexion.getConnection(), proponentes);
 
 		cbx_proponente.setItems(proponentes);
 		
@@ -174,7 +180,7 @@ public class NuevaSesionCtrl implements Initializable{
     
     @FXML
     void onAddSesion(ActionEvent event) throws MalformedURLException, RemoteException, NotBoundException {
-    	String convocatoria = txt_convocatoria.getText();
+    	String txtconvocatoria = txt_convocatoria.getText();
     	String [] meses = {"ENERO","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
     	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
     	String horaIntervencion = time.getValue().toString();
@@ -182,12 +188,13 @@ public class NuevaSesionCtrl implements Initializable{
     	Date fechaIntervencion = Date.valueOf(date.getValue());
     	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
     	
-    	Sesion sesion = new Sesion(fechaRegistro, fechaIntervencion , horaIntervencion, convocatoria, titulo);
+    	Sesion sesion = new Sesion(txtconvocatoria,titulo,fechaRegistro, fechaIntervencion , horaIntervencion,idPdf );
     	conexion.establecerConexion();
-    	idSesion = sesion.guardarRegistro(conexion.getConnection());
+    	convocatoria = sesion.guardarRegistro(conexion.getConnection());
+    	System.out.println(convocatoria);
     	conexion.cerrarConexion();
     	
-    	if(idSesion ==0 ) {
+    	if(convocatoria =="" ) {
     		Alert mensaje = new Alert(AlertType.ERROR);
     		mensaje.setTitle("Sesion Guardada");
     		mensaje.setContentText("Hubo algun error");
@@ -196,7 +203,7 @@ public class NuevaSesionCtrl implements Initializable{
     	}else {
     		Alert mensaje = new Alert(AlertType.INFORMATION);
     		mensaje.setTitle("Sesion Guardada");
-    		mensaje.setContentText("Ahora prodece a agregar la orden del dia "+idSesion);
+    		mensaje.setContentText("Ahora prodece a agregar la orden del dia "+convocatoria);
     		mensaje.setHeaderText("Sesion Guardada");
     		mensaje.show();
     		bloquear();
@@ -204,7 +211,7 @@ public class NuevaSesionCtrl implements Initializable{
     		listaOrden =FXCollections.observableArrayList();
     		conexion.establecerConexion();
         	
-    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,idSesion);
+    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,convocatoria);
     		conexion.cerrarConexion();
     		
     		tabla.setItems(listaOrden);
@@ -254,6 +261,7 @@ public class NuevaSesionCtrl implements Initializable{
     			Path TO = Paths.get(dbpath);
     			//crea en dirrectorio si no existe
     			File folder = new File(filePath);
+    			//pdf.guardarRegistro_pdf(conexion.getConnection());
     			if (!folder.exists()) {
     				folder.mkdir();	
     			}
@@ -270,6 +278,60 @@ public class NuevaSesionCtrl implements Initializable{
     			}else {
     				System.out.println("Ya existe el fichero  "+ fichero.getName());
     			}
+    			
+    			conexion.establecerConexion();
+    			ActaPdf pdf = new ActaPdf(selectedf.getName(),dbpath);
+    			idActa= pdf.guardarRegistro_pdf(conexion.getConnection());
+        		conexion.cerrarConexion();
+        	}
+		} catch (NullPointerException nl) {
+			nl.printStackTrace();
+		}
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+    }
+    
+    String dbpath="";
+    @FXML
+    void onExaActa(ActionEvent event) throws IOException {
+    	
+    	try {
+        	FileChooser fc = new FileChooser();
+        	//fc.setInitialDirectory(new File(""));
+        	fc.getExtensionFilters().addAll(new ExtensionFilter("PDF Files","*.pdf"));
+        	File selectedf = fc.showOpenDialog(null);
+        	if(selectedf!=null) {
+        		String filePath = "C:\\Documentos-GAD_VOTO";
+    			dbpath = "C:\\Documentos-GAD_VOTO\\" + selectedf.getName();
+    			//origen
+    			Path FROM = Paths.get(selectedf.getAbsolutePath());
+    			//destino
+    			Path TO = Paths.get(dbpath);
+    			//crea en dirrectorio si no existe
+    			File folder = new File(filePath);
+    			
+    			if (!folder.exists()) {
+    				folder.mkdir();	
+    			}
+    			File fichero= new File(dbpath);
+    			if(!fichero.exists()) {			
+    				//agrega al lisview
+    				pdf_acta.getItems().add(selectedf.getName());
+    				//copia el archivo al directorio
+    				CopyOption[] opciones= new CopyOption[] {
+        					StandardCopyOption.REPLACE_EXISTING,
+        					StandardCopyOption.COPY_ATTRIBUTES
+        			};
+        			Files.copy(FROM, TO,opciones);
+    			}else {
+    				System.out.println("Ya existe el fichero  "+ fichero.getName());
+    			}
+    			
+    			conexion.establecerConexion();
+    			ActaPdf pdf = new ActaPdf(selectedf.getName(),dbpath);
+    			idPdf= pdf.guardarRegistro_pdf(conexion.getConnection());
+        		conexion.cerrarConexion();
         	}
 		} catch (NullPointerException nl) {
 			nl.printStackTrace();
@@ -292,21 +354,34 @@ public class NuevaSesionCtrl implements Initializable{
     }
     
     @FXML
+    void mostrar_acta(MouseEvent  event) throws RemoteException{
+    	
+    	try {
+    		String acta="";
+    		acta=pdf_acta.getSelectionModel().selectedItemProperty().getValue();
+    		File path = new File (dbpath);
+    	    Desktop.getDesktop().open(path);
+    	}catch (IOException ex) {
+    	     ex.printStackTrace();
+    	}
+    }
+    
+    @FXML
     void onAddOrden(ActionEvent event) throws IOException {
     	
-    	System.out.println("El id de la sesion es: "+idSesion);
-    	if(idSesion==0) {
+    	System.out.println("La convocatoria es: "+convocatoria);
+    	if(convocatoria=="") {
     		JOptionPane.showMessageDialog(null, "Primero Tienes que agregar la sesion");
     	}else {
     		System.out.println(PuntoOrden.getText());
     		System.out.println(txt_descripcion.getText());
     		System.out.println(rutapdf);
     		System.out.println(cbx_proponente.getValue().getId());
-    		System.out.println(idSesion);
+    		System.out.println(convocatoria);
     		
-    		OrdenDia sesion = new OrdenDia(idSesion,Integer.valueOf(PuntoOrden.getText()), txt_descripcion.getText(), cbx_proponente.getValue().getId());
+    		OrdenDia orden = new OrdenDia(convocatoria,Integer.valueOf(PuntoOrden.getText()), txt_descripcion.getText(), cbx_proponente.getValue().getId());
         	conexion.establecerConexion();
-        	idOrden=sesion.guardarRegistro(conexion.getConnection());
+        	idOrden=orden.guardarRegistro(conexion.getConnection());
         	
         	
         	conexion.establecerConexion();
@@ -317,7 +392,7 @@ public class NuevaSesionCtrl implements Initializable{
 				try {
 					{
 						System.out.println(list_pdf.getItems().get(longitud_lista-1).toString());
-						Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).toString());
+						ActaPdf pdf = new ActaPdf(idOrden,list_pdf.getItems().get(longitud_lista-1).toString());
 						pdf.guardarRegistro_pdf(conexion.getConnection());
 						longitud_lista--;
 					}
@@ -332,7 +407,7 @@ public class NuevaSesionCtrl implements Initializable{
         	listaOrden =FXCollections.observableArrayList();
     		conexion.establecerConexion();
         	
-    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,idSesion);
+    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,convocatoria);
     		conexion.cerrarConexion();
     		
     		tabla.setItems(listaOrden);
