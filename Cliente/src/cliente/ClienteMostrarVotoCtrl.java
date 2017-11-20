@@ -1,5 +1,6 @@
 package cliente;
 
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -18,8 +19,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 
 import gad.manta.common.IServidor;
+import gad.manta.common.Sesion;
+import gad.manta.common.Usuario;
 import gad.manta.common.Voto;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -29,14 +33,34 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ClienteMostrarVotoCtrl implements Initializable {
 
+	@FXML
+    private Label label_convocatoria;
+	
+	@FXML
+    private Label label_convocatoria2;
+	@FXML
+    private JFXTextArea label_titulo;
+
+    @FXML
+    private Circle cirlogin;
+
+    @FXML
+    private Label lbl_nombre;
+	
     @FXML
     private JFXButton verVoto;
     
@@ -120,14 +144,11 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                             		newStage.setWidth(bounds.getWidth());
                             		newStage.setHeight(bounds.getHeight());
                                     
-                                    
                                     newStage.setScene(scene);
                                     newStage.initStyle(StageStyle.UNDECORATED);
                                     newStage.show();
                             		
                             	}
-                            	
-                            	
                             }
                         });
                                                 
@@ -135,7 +156,6 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                 } catch(Exception E) {
                     E.printStackTrace();
                 }
-
             });
 
             th.start();
@@ -145,16 +165,45 @@ public class ClienteMostrarVotoCtrl implements Initializable {
         }
 
     }
+    
 
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		if(data.voto.equals("APROBAR")) {
-			verVoto.setText("APROBAR");	
+		//cargar header
+		
+		lbl_nombre.setText(data.name);
+		
+		
+		cirlogin.setFill(new ImagePattern(data.imagen));
+        cirlogin.setStroke(Color.SEAGREEN);
+        cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
+        
+		label_titulo.setText(data.titulo);
+		label_convocatoria.setText(data.convocatoria);
+		label_convocatoria2.setText(data.convocatoria);
+		
+		
+		
+		if(data.voto.equals("APROBADO")) {
+			verVoto.setText("APROBADO");	
 		}
-		if(data.voto.equals("RECHAZAR")) {
-			verVoto.setText("RECHAZAR");	
+		if(data.voto.equals("RECHAZADO")) {
+			verVoto.setText("RECHAZADO");	
 			verVoto.setStyle("-fx-background-color: red;");
 		}
+		
+		try {
+			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+		} catch (MalformedURLException | RemoteException | NotBoundException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
+		
+	
+		
+		
 		
 		
 		

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
@@ -60,10 +61,7 @@
                   <MaterialIconView fill="#070707" glyphName="LOCK" size="20" />
                </graphic>
             </Label>
-            <JFXTextField fx:id="txt_password" layoutX="20.0" layoutY="394.0" prefHeight="34.0" prefWidth="298.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="394.0">
-               <font>
-                  <Font size="18.0" />
-               </font></JFXTextField>
+            <JFXPasswordField fx:id="txt_password" layoutX="20.0" layoutY="399.0" prefHeight="39.0" prefWidth="298.0" />
             <Label layoutX="484.0" layoutY="25.0" text="Cargo" AnchorPane.leftAnchor="484.0">
                <font>
                   <Font size="18.0" />
@@ -111,6 +109,14 @@
                </font>
                <graphic>
                   <MaterialDesignIconView fill="#e0f0f2" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" text="" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_eliminar" contentDisplay="CENTER" layoutX="609.0" layoutY="155.0" onAction="#eliminarImg" prefHeight="39.0" prefWidth="36.0" style="-fx-background-color: #00bcd4;" textFill="WHITE" AnchorPane.rightAnchor="310.0" AnchorPane.topAnchor="155.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#e0f0f2" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" text="" wrappingWidth="25.0" />
                </graphic>
             </JFXButton>
          </children>

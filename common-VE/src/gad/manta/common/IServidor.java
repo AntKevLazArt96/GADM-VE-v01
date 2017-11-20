@@ -10,6 +10,11 @@ public interface IServidor extends Remote {
 	public int agregarSesion(String fechaRegistro,String fechaIntervencion,String horaIntervencion,String convocatoria,String titulo) throws RemoteException;
 	public List<String> consultaUsuario()throws RemoteException;
 	
+	public Usuario usuario(String username)throws RemoteException;
+	public List<Usuario> listaUsuarios()throws RemoteException;
+	
+	public List<Usuario> asistenciaUsuarios(int id_quorum)throws RemoteException;
+	
 	public List<Usuario> consultaQuorum()throws RemoteException;
 	//para crear el voto
 	public String addVoto(String usuario, String voto)throws RemoteException;
@@ -19,7 +24,7 @@ public interface IServidor extends Remote {
 	public List<Voto> votosRechazados()throws RemoteException;
 	
 	
-	public List<Sesion> consultarSesion() throws RemoteException;
+	public Sesion consultarSesion() throws RemoteException;
 	public List<OrdenDia> consultarOrden() throws RemoteException;
 	public List<Documentacion> mostrarDocumentacion() throws RemoteException;
 }

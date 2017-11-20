@@ -80,7 +80,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
     	
     	Stage newStage = new Stage();
 		
-	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("inicioSesion.fxml"));
+	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("InicioVotoOrden.fxml"));
 	    Scene scene = new Scene(pane);
         
         //Pantalla completa
@@ -118,9 +118,9 @@ public class PrincipalSecretariaCtrl implements Initializable{
         
 		try {
 			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
-			List<Sesion> lista = servidor.consultarSesion();
-			label_titulo.setText(lista.get(0).getTitulo());
-			label_convocatoria.setText(lista.get(0).getConvocatoria());
+			Sesion sesion = servidor.consultarSesion();
+			label_titulo.setText(sesion.getTitulo());
+			label_convocatoria.setText(sesion.getConvocatoria());
 			
 			
 			List<OrdenDia>lista_orden=servidor.consultarOrden();

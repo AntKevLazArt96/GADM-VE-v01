@@ -115,6 +115,11 @@ public class Sesion {
 		this.description= titulo;
 	}
 	
+	public Sesion(int id_quorum, String convocatoria) {
+		this.id_quorum=id_quorum;
+		this.convocatoria=convocatoria;
+	}
+	
 	
 
 	public String guardarRegistro(Connection connection) {
@@ -164,22 +169,38 @@ public class Sesion {
 		} 
 	}
 	
-	public static boolean haySesionParaHoy(Connection connection,Date fechaIntervencion) {
+	public static String haySesionParaHoy(Connection connection,Date fechaIntervencion) {
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultado = statement.executeQuery("select * from Sesion_VE where intervention_sesion='"+fechaIntervencion+"';");
 			if(resultado.next()) {
-				return  true;
+				return  resultado.getString(1);
 			}else {
-				return false;
+				return "";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
+			return "";
 		} 
 		
-		
+	}
+	public int addQuorum(Connection connection) {
+		String sql = "update Sesion_VE set id_quorum =? where convocatoria_sesion=?;";
+		try {
+			PreparedStatement instruccion = connection.prepareStatement(sql);
+			instruccion.setInt(1, id_quorum);
+			instruccion.setString(2, convocatoria);
+			
+			instruccion.execute();
+			
+			return 0;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 1;
+		}
 		
 	}
 

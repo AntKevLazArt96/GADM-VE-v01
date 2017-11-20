@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import com.jfoenix.controls.*?>
-<?import de.jensd.fx.glyphs.materialdesignicons.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,46 +12,52 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InicioVotoOrdenCtrl">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InicioVotoOrdenCtrl">
    <children>
-      <AnchorPane layoutX="119.0" layoutY="34.0" prefHeight="115.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="113.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="130.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ImageView fitHeight="130.0" fitWidth="1262.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../../../Cliente/res/titulo.png" />
+                  <Image url="@../../res/titulo.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="btn_voz" layoutX="1161.0" layoutY="50.0" onAction="#handleButtonAction" text=" " AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="25.0">
+            <JFXButton fx:id="btn_voz" layoutX="1168.0" layoutY="23.0" onAction="#handleButtonAction" text=" " AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="23.0">
                <graphic>
                   <MaterialDesignIconView fill="WHITE" glyphName="TEXT_TO_SPEECH" size="60.0" text="" />
                </graphic>
             </JFXButton>
-            <Label text="Secretaria" textFill="WHITE" AnchorPane.rightAnchor="387.0" AnchorPane.topAnchor="60.0">
+            <Label layoutX="732.0" layoutY="60.0" text="Secretaria" textFill="WHITE" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="732.0" AnchorPane.topAnchor="60.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label text="Lic. Christina Pinargote" textFill="WHITE" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="31.0">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-            <Circle fx:id="cirlogin" fill="WHITE" radius="42.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="15.0" />
             <Label text="Lunes, 01 Enero 2017" textFill="WHITE" AnchorPane.leftAnchor="59.0" AnchorPane.topAnchor="61.0">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="53.0" prefWidth="631.0" text="CONVOCATORIA 014-2017" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <Label prefHeight="53.0" prefWidth="203.0" text="Convocatoria" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="System Bold" size="31.0" />
                </font>
             </Label>
+            <Label fx:id="label_convocatoria" layoutX="223.0" layoutY="20.0" prefHeight="53.0" prefWidth="150.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="31.0" />
+               </font>
+            </Label>
+            <Circle fx:id="cirlogin" fill="WHITE" layoutX="1105.0" layoutY="57.0" radius="52.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="5.0" />
+            <Label fx:id="lbl_nombre" layoutX="732.0" layoutY="33.0" prefHeight="27.0" prefWidth="320.0" text="LCDA. XIOMARA ARTEAGA RIVAS" textFill="WHITE" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="732.0" AnchorPane.topAnchor="33.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="51.0" layoutY="107.0" prefHeight="560.0" prefWidth="296.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="110.0">
+      <AnchorPane layoutX="61.0" layoutY="117.0" prefHeight="560.0" prefWidth="296.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="110.0">
          <children>
             <AnchorPane layoutX="31.0" layoutY="33.0" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="58.0" layoutY="39.0" prefHeight="27.0" prefWidth="172.0" text="RESUMEN VOTOS" textFill="#212121" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="39.0">
@@ -121,7 +119,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="ALERT_BOX" size="30" text="" />
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="50.0" layoutY="472.0" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #757575;" text="REINICIAR VOTOR" textFill="WHITE" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <JFXButton layoutX="50.0" layoutY="472.0" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #757575;" text="REINICIAR VOTOS" textFill="WHITE" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -129,6 +127,27 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="30" />
                </graphic>
             </JFXButton>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="360.0" layoutY="126.0" prefHeight="152.0" prefWidth="925.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="51.0" layoutY="58.0" text="Aprobacion del acta" textFill="#212121" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
+               </graphic>
+            </Label>
+            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="25.0" layoutY="70.0" prefHeight="59.0" prefWidth="885.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="SESION ORDINARIA DEL CONSEJO DEL GOBIERNO AUTONOMOO DESENTRALIZADO MUNICIPAL DEL CANTON MANTA, CORRESPONDE AL DIA LUNES 10 DE ABRIL DEL 2017, A LAS 16H00. EN EL SALON DE ACTOS DEL GADMC-MANTA" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextArea>
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />
@@ -206,7 +225,7 @@
             <DropShadow color="#a8a8a8" />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="367.0" layoutY="278.0" prefHeight="470.0" prefWidth="925.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="278.0">
+      <AnchorPane layoutX="335.0" layoutY="284.0" prefHeight="470.0" prefWidth="925.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="278.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="51.0" layoutY="40.0" text="Lista de Miembros" textFill="#212121" AnchorPane.topAnchor="40.0">
@@ -221,13 +240,13 @@
                <content>
                   <AnchorPane prefHeight="602.0" prefWidth="884.0">
                      <children>
-                        <AnchorPane layoutX="47.0" layoutY="47.0" prefHeight="470.0" prefWidth="400.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <AnchorPane prefHeight="470.0" prefWidth="400.0" AnchorPane.leftAnchor="0.0">
                            <children>
-                              <GridPane layoutX="47.0" layoutY="29.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                              <GridPane layoutX="47.0" layoutY="29.0" prefHeight="450.0" prefWidth="415.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="-25.0" AnchorPane.topAnchor="10.0">
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.33331298828125" minWidth="10.0" prefWidth="91.33334350585938" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.33331298828125" minWidth="10.0" prefWidth="187.66668701171875" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.66668701171875" minWidth="10.0" prefWidth="96.33331298828125" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.33331298828125" minWidth="10.0" prefWidth="77.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="206.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="134.0" minWidth="10.0" prefWidth="131.0" />
                                  </columnConstraints>
                                  <rowConstraints>
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -238,92 +257,92 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <ImageView fx:id="img2" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                                    <ImageView fx:id="img2" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="1">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="img1" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="img1" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="img3" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                                    <ImageView fx:id="img3" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="2">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="img4" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                                    <ImageView fx:id="img4" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="3">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="img5" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                                    <ImageView fx:id="img5" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="4">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <ImageView fx:id="img6" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+                                    <ImageView fx:id="img6" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="5">
                                        <image>
                                           <Image url="@../../res/customer_person_people_woman_you_1627.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="user1" prefHeight="20.0" prefWidth="187.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1">
+                                    <Label fx:id="user1" prefHeight="20.0" prefWidth="213.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="status1" text="Presente" textFill="#4caf50" GridPane.columnIndex="2">
+                                    <Label fx:id="status1" prefHeight="27.0" prefWidth="119.0" text="RECHAZADO" textFill="#4caf50" visible="false" GridPane.columnIndex="2">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="user2" prefHeight="20.0" prefWidth="189.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <Label fx:id="user2" prefHeight="20.0" prefWidth="219.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="user3" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                    <Label fx:id="user3" prefHeight="20.0" prefWidth="210.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="user4" prefHeight="20.0" prefWidth="191.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                    <Label fx:id="user4" prefHeight="20.0" prefWidth="216.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="user5" prefWidth="189.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                    <Label fx:id="user5" prefHeight="20.0" prefWidth="233.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="user6" prefHeight="20.0" prefWidth="185.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                    <Label fx:id="user6" prefHeight="20.0" prefWidth="212.0" text="Nombre Apellido Usuario" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="status3" text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                    <Label fx:id="status3" prefHeight="27.0" prefWidth="131.0" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="status5" text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                    <Label fx:id="status5" prefHeight="27.0" prefWidth="154.0" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="status6" text="Ausente" textFill="#d32f2f" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                    <Label fx:id="status6" prefHeight="27.0" prefWidth="142.0" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="status2" text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <Label fx:id="status2" prefHeight="27.0" prefWidth="124.0" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="status4" text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                    <Label fx:id="status4" prefHeight="27.0" prefWidth="138.0" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -332,11 +351,11 @@
                               </GridPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="246.0" layoutY="10.0" prefHeight="470.0" prefWidth="400.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="410.0" AnchorPane.topAnchor="10.0">
+                        <AnchorPane layoutX="470.0" prefHeight="470.0" prefWidth="400.0" AnchorPane.rightAnchor="14.0">
                            <children>
                               <AnchorPane layoutX="-5.0" layoutY="-2.0" prefHeight="470.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <GridPane layoutX="47.0" layoutY="29.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <GridPane layoutX="-24.0" layoutY="10.0" prefHeight="450.0" prefWidth="439.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="-24.0" AnchorPane.rightAnchor="-15.0" AnchorPane.topAnchor="10.0">
                                        <children>
                                           <ImageView fx:id="img8" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" visible="false" GridPane.rowIndex="1">
                                              <image>
@@ -373,7 +392,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="status7" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2">
+                                          <Label fx:id="status7" prefHeight="27.0" prefWidth="114.0" text="RECHAZADO" textFill="#4caf50" visible="false" GridPane.columnIndex="2">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -403,12 +422,12 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="status8" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                          <Label fx:id="status8" prefHeight="27.0" prefWidth="102.0" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="status9" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                          <Label fx:id="status9" prefHeight="27.0" prefWidth="100.0" text="Presente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -418,7 +437,7 @@
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="status10" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                          <Label fx:id="status10" prefHeight="27.0" prefWidth="122.0" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                              <font>
                                                 <Font name="System Bold" size="18.0" />
                                              </font>
@@ -430,9 +449,9 @@
                                           </Label>
                                        </children>
                                        <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.33331298828125" minWidth="10.0" prefWidth="91.33334350585938" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="214.33331298828125" minWidth="10.0" prefWidth="187.66668701171875" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="97.66668701171875" minWidth="10.0" prefWidth="96.33331298828125" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.33331298828125" minWidth="10.0" prefWidth="80.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.0" minWidth="10.0" prefWidth="234.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="125.0" />
                                        </columnConstraints>
                                        <rowConstraints>
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -451,27 +470,6 @@
                   </AnchorPane>
                </content>
             </ScrollPane>
-         </children>
-         <effect>
-            <DropShadow color="#a8a8a8" />
-         </effect>
-      </AnchorPane>
-      <AnchorPane layoutX="350.0" layoutY="116.0" prefHeight="152.0" prefWidth="925.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
-         <children>
-            <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="51.0" layoutY="58.0" text="Aprobacion del acta" textFill="#212121" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="30.0">
-               <font>
-                  <Font size="22.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
-               </graphic>
-            </Label>
-            <JFXTextArea editable="false" layoutX="25.0" layoutY="70.0" prefHeight="59.0" prefWidth="885.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="SESION ORDINARIA DEL CONSEJO DEL GOBIERNO AUTONOMOO DESENTRALIZADO MUNICIPAL DEL CANTON MANTA, CORRESPONDE AL DIA LUNES 10 DE ABRIL DEL 2017, A LAS 16H00. EN EL SALON DE ACTOS DEL GADMC-MANTA" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextArea>
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />

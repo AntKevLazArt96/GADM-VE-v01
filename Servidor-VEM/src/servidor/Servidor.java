@@ -1,5 +1,7 @@
 package servidor;
 
+
+
 import java.rmi.RemoteException;
 
 import gad.manta.common.Documentacion;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Random;
+
 
 public class Servidor implements IServidor {
 	public Servidor() throws RemoteException{
@@ -32,11 +34,12 @@ public class Servidor implements IServidor {
     int mes = fecha.get(Calendar.MONTH)+1;
     int dia = fecha.get(Calendar.DAY_OF_MONTH);
     
+    
 	
 
 	@Override
 	public String login(String username, String password) throws RemoteException {
-		String resultado_validacion="";
+		
 		try {
 		//para verificar si esta instalado el drive de postgressql
 		
@@ -49,28 +52,103 @@ public class Servidor implements IServidor {
 			
 		}
 		//conecci�n a la base de datos  
-		Connection db = DriverManager.getConnection("jdbc:postgresql:Pruebas","postgres","1234");
+		Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
 		Statement st = db.createStatement();
-		
+		int id;
+		String usuario="";
+		byte[] img=null;
 		//ejecucion y resultado de la consulta
 		ResultSet resultado = st.executeQuery("select *from verificar_usuario('"+username+"','"+password+"');");
 		resultado.next();
-		resultado_validacion= resultado.getString(4);
+		id= resultado.getInt(1);
+		usuario= resultado.getString(2);
+		img= resultado.getBytes(3);
 		db.close();
+		
+		
+		
 		//Para el Quorum
 		if(!username.equals("secretaria")) {
-			listaUsuario.add(new Usuario(resultado_validacion,"PRESENTE",""));
-		}
+			listaUsuario.add(new Usuario(id,usuario,"PRESENTE", img));
 			
-		
+			
+		}
+		System.out.println("el usuario se ha logueado correctamente");
+			
+		return usuario;
 		}catch(Exception e) {
 			System.out.println("Error: " + e.getMessage());
 			e.printStackTrace();
+			return null;
 		}
 		
-		System.out.println("el usuario se ha logueado correctamente");
+	}
+	
+	@Override
+	public Usuario usuario(String name)  {
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select *from consulta_usuario_name('"+name+"');");
+			resultado.next();
+			Usuario user = new Usuario(resultado.getInt(1),resultado.getString(2),resultado.getBytes(3));
+			db.close();
+			return user;
 		
-		return resultado_validacion;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}	
+	
+	@Override
+	public List<Usuario> listaUsuarios() throws RemoteException {
+		List<Usuario> listaUsuario = new ArrayList<>();
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select *from consulta_usuarios();");
+			while(resultado.next()) {
+				listaUsuario.add(new Usuario(resultado.getInt(1),resultado.getString(2),resultado.getBytes(3)));
+			}
+			db.close();
+			return listaUsuario;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	@Override
+	public List<Usuario> asistenciaUsuarios(int id_quorum) throws RemoteException {
+		List<Usuario> listaUsuario = new ArrayList<>();
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select *from asistencia_concejales("+id_quorum+");");
+			while(resultado.next()) {
+				listaUsuario.add(new Usuario(resultado.getInt(1),resultado.getString(2),resultado.getString(3),resultado.getBytes(4)));
+			}
+			db.close();
+			return listaUsuario;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	@Override
@@ -81,10 +159,10 @@ public class Servidor implements IServidor {
 	@Override
 	public String addVoto(String usuario, String voto) throws RemoteException {
 		// TODO Auto-generated method stub
-		if(voto.contains("APROBAR")) {
+		if(voto.contains("APROBADO")) {
 			listaVotoAprueba.add(new Voto(usuario,voto));
 		}
-		if(voto.contains("RECHAZAR")) {
+		if(voto.contains("RECHAZADO")) {
 			listaVotoRechaza.add(new Voto(usuario,voto));
 		}
 		listaVotantes.add(new Voto(usuario,voto));
@@ -122,7 +200,7 @@ public class Servidor implements IServidor {
 		int idsesion=0;
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:Pruebas","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
@@ -146,7 +224,7 @@ public class Servidor implements IServidor {
 		List<String> listausuario = new ArrayList<>();
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:Pruebas","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select name_user from User_VE;");
@@ -170,9 +248,8 @@ public class Servidor implements IServidor {
 	
 
 	@Override
-	public List<Sesion> consultarSesion() throws RemoteException {
-		List<Sesion> lista_sesion = new ArrayList<Sesion>();
-	   
+	public Sesion consultarSesion() throws RemoteException {
+		
 		try {
 			//para verificar si esta instalado el drive de postgressql
 			
@@ -185,23 +262,23 @@ public class Servidor implements IServidor {
 				
 			}
 			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:Pruebas","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select convocatoria_sesion,description_sesion from Sesion_VE where intervention_sesion='"+annio+"-"+mes+"-"+dia+"';");
 			
 			resultado.next();
-			lista_sesion.add(new Sesion(resultado.getString(1),resultado.getString(2)));
+			Sesion sesion = new Sesion(resultado.getString(1),resultado.getString(2));
 			db.close();
-				
+			
+			return sesion;	
 			
 			}catch(Exception e) {
 				System.out.println("Error: " + e.getMessage());
 				e.printStackTrace();
+				return null;
 			}
-		
-		return lista_sesion;	
 		}
 
 	@Override
@@ -221,7 +298,7 @@ public class Servidor implements IServidor {
 				
 			}
 			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:Pruebas","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
@@ -257,7 +334,7 @@ public class Servidor implements IServidor {
 				
 			}
 			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:Pruebas","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
@@ -275,7 +352,13 @@ public class Servidor implements IServidor {
 			}
 		
 		return lista_documentacion;	
-		}	
+		}
+
+
+
+	
+
+	
 
 	
 

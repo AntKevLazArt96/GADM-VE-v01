@@ -1,10 +1,7 @@
 package modelo;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,8 +18,7 @@ public class Usuario {
 	private String nombre;
 	private String usuario;
 	private String password;
-	private String ruta_img;
-	private String img;
+	private int id_img;
 	private String codigoHuella;
 	
 	public Usuario(Integer id , String cedula, String cargo,String nombre, String usuario, String password, String ruta_img, String codigoHuella) {
@@ -32,17 +28,16 @@ public class Usuario {
 		this.cargo=cargo;
 		this.usuario=usuario;
 		this.password=password;
-		this.ruta_img=ruta_img;
 		this.codigoHuella=codigoHuella;
 	}
 	
-	public Usuario( String cedula, String cargo,String nombre, String usuario, String password, String ruta_img) {
+	public Usuario(String cedula, String cargo,String nombre, String usuario, String password, int id_img) {
 		this.cedula=cedula;
 		this.nombre=nombre;
 		this.cargo=cargo;
 		this.usuario=usuario;
 		this.password=password;
-		this.ruta_img=ruta_img;
+		this.id_img=id_img;
 	}
 	
 	public Integer getId() {
@@ -81,12 +76,14 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getImg() {
-		return img;
+	public int getId_img() {
+		return id_img;
 	}
-	public void setImg(String img) {
-		this.img = img;
+
+	public void setId_img(int id_img) {
+		this.id_img = id_img;
 	}
+	
 	public String getCodigoHuella() {
 		return codigoHuella;
 	}
@@ -111,56 +108,24 @@ public class Usuario {
 	public String toString() {
 		return nombre;
 	}
-	public String guardarRegistro(Connection connection)  throws IOException {
+	public int guardarRegistro(Connection connection)  throws IOException {
 		String sql = "select ingresar_usuario(?,?,?,?,?,?);";
 		try {
-			System.out.println("La ruta es: "+getRuta_img());
-			File img = new File(getRuta_img());
-			FileInputStream fis = new FileInputStream(img);
 			PreparedStatement instruccion = connection.prepareStatement(sql);
 			instruccion.setString(1, getCedula());
 			instruccion.setString(2,getCargo() );
 			instruccion.setString(3,getNombre() );
 			instruccion.setString(4, getUsuario());
 			instruccion.setString(5,getPassword());
-			instruccion.setBinaryStream(6, fis, (int)img.length());
+			instruccion.setInt(6, getId_img());
 			instruccion.execute();
-			return getCedula();
+			return 1;
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
-		}
-		
-	}
-	
-	public InputStream consultarImg(Connection connection) throws FileNotFoundException {
-		String sql = "select img_user from User_VE where cedula_user=?";
-		try {
-			PreparedStatement instruccion = connection.prepareStatement(sql);
-			instruccion.setString(1, getCedula());
-			
-			ResultSet resultado = instruccion.executeQuery();
-			InputStream is = null;
-			while(resultado.next()) {
-				is = resultado.getBinaryStream(1);
-			}
-			return is;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-		
+			return 0;
+		}		
 	}
 
-	public String getRuta_img() {
-		return ruta_img;
-	}
-
-	public void setRuta_img(String ruta_img) {
-		this.ruta_img = ruta_img;
-	}
 }

@@ -2,38 +2,60 @@ package application;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 
 import gad.manta.common.IServidor;
+import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
 import gad.manta.common.Voto;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class InicioVotoOrdenCtrl {
+public class InicioVotoOrdenCtrl implements Initializable {
 	private static IServidor servidor;
-	
+	@FXML
+    private Label label_convocatoria;
+	@FXML
+    private JFXTextArea label_titulo;
+
+    @FXML
+    private Circle cirlogin;
+
+    @FXML
+    private Label lbl_nombre;
+    
+    
     @FXML
     private JFXButton btn_voz;
 
@@ -376,5 +398,29 @@ public class InicioVotoOrdenCtrl {
     void handleButtonAction(ActionEvent event) {
 
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		lbl_nombre.setText(data.name);
+		
+		File f = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res\\concejal1.png");
+        Image im = new Image(f.toURI().toString());
+        cirlogin.setFill(new ImagePattern(im));
+        cirlogin.setStroke(Color.SEAGREEN);
+        cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
+        
+        try {
+			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+			Sesion sesion = servidor.consultarSesion();
+			label_titulo.setText(sesion.getTitulo());
+			label_convocatoria.setText(sesion.getConvocatoria());
+			
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 
 }

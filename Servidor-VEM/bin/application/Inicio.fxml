@@ -74,7 +74,7 @@
             </AnchorPane>
             <AnchorPane layoutX="60.0" layoutY="591.0" prefHeight="99.0" prefWidth="217.0" AnchorPane.bottomAnchor="35.0">
                <children>
-                  <Label fx:id="txt_username" layoutY="11.0" prefHeight="37.0" prefWidth="156.0" text="LCDA. MARIA XIOMARA ARTEAGA RIVAS" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="51.0">
+                  <Label fx:id="txt_username" layoutY="11.0" prefHeight="37.0" prefWidth="158.0" text="LCDA. PATRICIA GONZÁLES LOPEZ" textFill="WHITE" wrapText="true" AnchorPane.bottomAnchor="51.0">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

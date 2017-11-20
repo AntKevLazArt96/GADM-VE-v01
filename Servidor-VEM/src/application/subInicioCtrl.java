@@ -52,7 +52,10 @@ public class subInicioCtrl implements Initializable{
 		
 		
 		conexion.establecerConexion();
-			if(Sesion.haySesionParaHoy(conexion.getConnection(), fechaActual)) {
+			String resultado = Sesion.haySesionParaHoy(conexion.getConnection(), fechaActual);
+			
+			if(resultado != "") {
+				data.convocatoria_sesion=resultado;
 				paneHaySesion.setVisible(true);
 				paneNoHaySesion.setVisible(false);
 			}else {
@@ -66,9 +69,9 @@ public class subInicioCtrl implements Initializable{
     
     @FXML
     void iniciarAction(ActionEvent event) throws IOException {
-    	/*Stage actualStage = (Stage) btn_inicio.getScene().getWindow();
+    	Stage actualStage = (Stage) btn_inicio.getScene().getWindow();
 	    // do what you have to do
-	    actualStage.close();*/
+	    actualStage.close();
 	    
 	    Stage newStage = new Stage();
 		

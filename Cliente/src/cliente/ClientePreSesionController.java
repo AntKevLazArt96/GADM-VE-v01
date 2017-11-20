@@ -1,7 +1,9 @@
 package cliente;
 
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.Socket;
@@ -19,10 +21,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
+import cliente.data;
 import gad.manta.common.Documentacion;
 import gad.manta.common.IServidor;
 import gad.manta.common.OrdenDia;
 import gad.manta.common.Sesion;
+import gad.manta.common.Usuario;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,13 +40,27 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ClientePreSesionController implements Initializable  {
+	
+	@FXML
+    private Circle cirlogin;
+	@FXML
+    private Label lbl_nombre;
+	@FXML
+    private JFXButton btn_voz;
+	
+	
 	@FXML
     private Label lblOrden;
 	//variable statica para rmi
@@ -107,7 +125,7 @@ public class ClientePreSesionController implements Initializable  {
 	                            public void run() {
 	                            	if(newMsg.getName().equals("cambio de pantalla")) {
 	                            		System.out.println("estoy en el cliente y se cambio de pantalla en el servidor");
-	                            		Stage stage = (Stage) lblOrden.getScene().getWindow();
+	                            		Stage stage = (Stage) label_punto.getScene().getWindow();
 									    // do what you have to do
 									    stage.close();
 	                            		
@@ -158,23 +176,54 @@ public class ClientePreSesionController implements Initializable  {
 	        }
 
 	    }
-	
+	 public Image convertirImg(byte[] bytes) throws IOException {
+			ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+			
+			Image img = new Image(bis);
+			return img;
+		}
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
+				try {
+					servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+				} catch (MalformedURLException | RemoteException | NotBoundException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+			
+			lbl_nombre.setText(data.name);
 			
 			try {
-				servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
-				List<Sesion> lista = servidor.consultarSesion();
-				label_titulo.setText(lista.get(0).getTitulo());
-				label_convocatoria.setText(lista.get(0).getConvocatoria());
+				Usuario user = servidor.usuario(data.name);
+				Image im = convertirImg(user.getImg());
+		        cirlogin.setFill(new ImagePattern(im));
+		        cirlogin.setStroke(Color.SEAGREEN);
+		        cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
+			
+			} catch (RemoteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
+			
+			try {
+				
+				Sesion sesion = servidor.consultarSesion();
+				label_titulo.setText(sesion.getTitulo());
+				label_convocatoria.setText(sesion.getConvocatoria());
 				
 				List<OrdenDia>lista_orden=servidor.consultarOrden();
-				TableColumn num_punto = new TableColumn("NÂ° Punto");
+				TableColumn num_punto = new TableColumn("No. Punto");
 				num_punto.setMinWidth(50);
 				num_punto.setCellValueFactory(
 		                new PropertyValueFactory<>("numeroPunto"));
 		 
-		        TableColumn descripcion = new TableColumn("DescripciÃ³n");
+		        TableColumn descripcion = new TableColumn("Descripción");
 		        descripcion.setMinWidth(900);
 		        descripcion.setCellValueFactory(
 		                new PropertyValueFactory<>("tema"));
@@ -190,7 +239,7 @@ public class ClientePreSesionController implements Initializable  {
 				tabla_ordenDia.setItems(datos);
 		
 				List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
-				TableColumn punto = new TableColumn("DocumentaciÃ³n perteneciente al punto");
+				TableColumn punto = new TableColumn("Documentación perteneciente al punto");
 				punto.setMinWidth(250);
 				punto.setCellValueFactory(
 		                new PropertyValueFactory<>("punto"));
@@ -211,7 +260,7 @@ public class ClientePreSesionController implements Initializable  {
 				table_documentacion.setItems(datos_pdf);
 		
 				
-			} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -227,6 +276,11 @@ public class ClientePreSesionController implements Initializable  {
 		
 		@FXML
 	    void mostrar_pdf(ActionEvent event) {
+
+	    }
+		
+		@FXML
+	    void pedirPalabra(ActionEvent event) {
 
 	    }
 

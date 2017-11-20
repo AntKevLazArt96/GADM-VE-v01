@@ -55,6 +55,7 @@ public class LoginController implements Initializable {
 	    Stage newStage = new Stage();
 		
 	    String login = servidor.login(txt_username.getText(),txt_password.getText());
+	    
 	    System.out.println("Clicked");
         data.ip = "192.168.1.6";
         data.port = 6666;

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -10,23 +18,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.LoginController">
    <children>
       <AnchorPane prefHeight="350.0" prefWidth="258.0" style="-fx-background-color: #03a9f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="260.0" fitWidth="190.0" layoutX="34.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="24.0">
+            <ImageView fitHeight="72.0" fitWidth="81.0" layoutX="89.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="215.0">
                <image>
                   <Image url="@../../res/logomanta.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="67.0" layoutY="271.0" prefHeight="48.0" prefWidth="125.0" text="Sistema GAD" textFill="WHITE" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="66.0">
+            <Label alignment="CENTER" layoutX="53.0" layoutY="276.0" prefHeight="48.0" prefWidth="153.0" text="GAD Manta" textFill="WHITE" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="52.0">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="22.0" />
                </font>
             </Label>
+            <Label layoutX="103.0" layoutY="310.0" text="Alcaldia" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font>
+            </Label>
+            <Circle fill="WHITE" layoutX="130.0" layoutY="111.0" radius="97.0" stroke="TRANSPARENT" strokeType="INSIDE" />
          </children>
       </AnchorPane>
-      <Label layoutX="287.0" layoutY="30.0" text="INICIO DE SESION" textFill="#757575">
+      <Label layoutX="287.0" layoutY="30.0" text="INICIO DE SESIÓN" textFill="#757575">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

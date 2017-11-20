@@ -13,6 +13,7 @@ public class Server {
     public static List<Client> clients;
     public static DataOutputStream dos;
     DataInputStream dis;
+    public ServerSocket servSock;
     Server() {
 
     	System.out.println("Server in the 192.168.1.6:6666 " );
@@ -23,7 +24,7 @@ public class Server {
         clients = new ArrayList<Client>();
 
         try {
-            ServerSocket servSock = new ServerSocket(6666);
+            servSock = new ServerSocket(6666);
 
             while(true) {
                 client = servSock.accept();
