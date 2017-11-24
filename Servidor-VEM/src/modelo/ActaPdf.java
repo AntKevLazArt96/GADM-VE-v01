@@ -57,7 +57,7 @@ public class ActaPdf {
     		fis.close();
     		
     		Statement statement = connection.createStatement();
-			ResultSet resultado = statement.executeQuery("select id_pdf from Pdf_VE where nombre_pdf='"+pdf.getName()+"'");
+			ResultSet resultado = statement.executeQuery("select id_pdf from acta_ve where nombre_pdf='"+pdf.getName()+"'");
 			int id = 0;
 			while(resultado.next()) {
 				id=resultado.getInt(1);

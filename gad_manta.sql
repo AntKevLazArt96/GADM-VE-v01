@@ -1,4 +1,4 @@
-drop schema public cascade;
+﻿drop schema public cascade;
 create schema public authorization postgres;
 set search_path to public;
 
@@ -54,7 +54,13 @@ CREATE TABLE Pdf_VE (
                 archivo_pdf BYTEA NOT NULL,
                 CONSTRAINT pdf_ve_pk PRIMARY KEY (id_pdf)
 );
-
+CREATE TABLE acta_ve
+(
+  id_pdf serial,
+  nombre_pdf character varying NOT NULL,
+  archivo_pdf bytea NOT NULL,
+  CONSTRAINT acta_ve_pk PRIMARY KEY (id_pdf) 
+);
 
 CREATE TABLE Sesion_VE (
                 convocatoria_sesion VARCHAR NOT NULL,
@@ -140,7 +146,7 @@ NOT DEFERRABLE;
 
 ALTER TABLE Sesion_VE ADD CONSTRAINT pdf_ve_sesion_ve_fk
 FOREIGN KEY (id_pdf)
-REFERENCES Pdf_VE (id_pdf)
+REFERENCES acta_ve (id_pdf)
 ON DELETE CASCADE
 ON UPDATE CASCADE
 NOT DEFERRABLE;
@@ -293,17 +299,19 @@ select *from Pdf_VE;
 
 --drop function agregar_pdf(varchar, bytea)
 --create or replace function agregar_pdf(in varchar,in bytea,out integer, out varchar, out bytea)
-create or replace function agregar_acta(in varchar,in bytea)
-returns void AS
---returns SETOF record AS
-$$
+CREATE OR REPLACE FUNCTION public.agregar_acta(
+    character varying,
+    bytea)
+  RETURNS void AS
+$BODY$
 begin 
-	insert into Pdf_VE(nombre_pdf,archivo_pdf) values
+	insert into acta_ve(nombre_pdf,archivo_pdf) values
 				($1,$2);
     --return query select * from Pdf_VE where nombre_pdf=$1;
 end;
-$$
-LANGUAGE plpgsql;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100;
 
 ----------SESION--------------
 create or replace function ingresar_sesion(varchar,varchar,date,date,varchar,integer)

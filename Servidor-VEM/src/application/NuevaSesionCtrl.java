@@ -52,6 +52,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import modelo.Conexion;
 import modelo.OrdenDia;
+import modelo.Pdf;
 import modelo.ActaPdf;
 import modelo.Sesion;
 import modelo.Usuario;
@@ -169,7 +170,9 @@ public class NuevaSesionCtrl implements Initializable{
     	btn_addSesion.setVisible(false);
     }
     public void limpiar() {
-    	PuntoOrden.setText(null);
+    	int punto=0;
+    	punto=(Integer.parseInt(PuntoOrden.getText())+1);
+    	PuntoOrden.setText(Integer.toString(punto));
     	txt_descripcion.setText(null);
     	cbx_proponente.setValue(null);
     	rutapdf="";
@@ -188,7 +191,7 @@ public class NuevaSesionCtrl implements Initializable{
     	Date fechaIntervencion = Date.valueOf(date.getValue());
     	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
     	
-    	Sesion sesion = new Sesion(txtconvocatoria,titulo,fechaRegistro, fechaIntervencion , horaIntervencion,idPdf );
+    	Sesion sesion = new Sesion(txtconvocatoria,titulo,fechaRegistro, fechaIntervencion , horaIntervencion,idActa );
     	conexion.establecerConexion();
     	convocatoria = sesion.guardarRegistro(conexion.getConnection());
     	System.out.println(convocatoria);
@@ -279,10 +282,7 @@ public class NuevaSesionCtrl implements Initializable{
     				System.out.println("Ya existe el fichero  "+ fichero.getName());
     			}
     			
-    			conexion.establecerConexion();
-    			ActaPdf pdf = new ActaPdf(selectedf.getName(),dbpath);
-    			idActa= pdf.guardarRegistro_pdf(conexion.getConnection());
-        		conexion.cerrarConexion();
+    			
         	}
 		} catch (NullPointerException nl) {
 			nl.printStackTrace();
@@ -330,7 +330,7 @@ public class NuevaSesionCtrl implements Initializable{
     			
     			conexion.establecerConexion();
     			ActaPdf pdf = new ActaPdf(selectedf.getName(),dbpath);
-    			idPdf= pdf.guardarRegistro_pdf(conexion.getConnection());
+    			idActa= pdf.guardarRegistro_pdf(conexion.getConnection());
         		conexion.cerrarConexion();
         	}
 		} catch (NullPointerException nl) {

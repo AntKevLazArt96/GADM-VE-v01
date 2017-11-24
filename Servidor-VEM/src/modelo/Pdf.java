@@ -55,7 +55,7 @@ public class Pdf {
 	}
 
 	public int guardarRegistro_pdf(Connection connection) throws IOException {
-		String sql = "INSERT INTO pdf(id_orden_dia,nombre,pdf) VALUES (?, ?, ?);";
+		String sql = "INSERT INTO pdf_ve(id_orden_dia,nombre,pdf) VALUES (?, ?, ?);";
 		try {
 			File pdf = new File(ruta_pdf);
 			FileInputStream fis = new FileInputStream(pdf);
