@@ -18,7 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import modelo.Conexion;
-import modelo.Imagen;
 import modelo.Usuario;
 
 public class IngresoPerCtrl implements Initializable {
@@ -69,13 +68,13 @@ public class IngresoPerCtrl implements Initializable {
         		String ruta=file+((int) (Math.random() * 10000) + 50)+"."+exten;
         		
         		conexion.establecerConexion();
-        		Imagen img = new Imagen(ruta,selectedf.getAbsolutePath().toString());        		
+        		/*Imagen img = new Imagen(ruta,selectedf.getAbsolutePath().toString());        		
         		id_img = img.guardarRegistro(conexion.getConnection());
         		
         		InputStream is = img.consultarImg(id_img,conexion.getConnection());
     			
         		Image imgn = new Image(is);
-    			lbl_foto.setImage(imgn);
+    			lbl_foto.setImage(imgn);*/
     			conexion.cerrarConexion();
     			btn_eliminar.setVisible(true);
     			btn_examinar.setVisible(false);
@@ -154,14 +153,14 @@ public class IngresoPerCtrl implements Initializable {
 	@FXML
     void eliminarImg(ActionEvent event) {
 		conexion.establecerConexion();
-		Imagen img = new Imagen();
+		/*Imagen img = new Imagen();
 		int resultado = img.eliminarImg(id_img,conexion.getConnection());
 		conexion.cerrarConexion();
 		if(resultado ==1) {
 			imgBlanco();
 		}else {
 			System.out.println("Error en la consulta");
-		}
+		}*/
 	}
 
 }

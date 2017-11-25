@@ -1,27 +1,20 @@
 package application;
 
-import java.awt.EventQueue;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.InetAddress;
 import java.net.MalformedURLException;
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import javax.swing.JOptionPane;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -49,7 +42,6 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import modelo.ActaPdf;
 import modelo.Asistencia;
 import modelo.Conexion;
 import modelo.Quorum;
