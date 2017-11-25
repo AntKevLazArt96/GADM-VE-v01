@@ -223,7 +223,7 @@ public class InicioVotoCtrl implements Initializable {
                 dos = new DataOutputStream(sock.getOutputStream());
                 dis = new DataInputStream(sock.getInputStream());
 
-                dos.writeUTF("cambio de pantalla");
+                dos.writeUTF("cambio de pantalla2");
                 //System.out.println(data.name);
                 /*
                 * This Thread let the client recieve the message from the server for any time;

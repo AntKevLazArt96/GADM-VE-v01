@@ -3,13 +3,8 @@ package cliente;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import org.json.simple.JSONObject;
@@ -19,20 +14,24 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 
 import gad.manta.common.IServidor;
-import gad.manta.common.OrdenDia;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ClienteSesionCtrl implements Initializable {
-	
-	private static IServidor servidor;
     @FXML
     private JFXButton btn_voz;
 
@@ -91,7 +90,7 @@ public class ClienteSesionCtrl implements Initializable {
                         String titulo = (String) msg.get("titulo");
                         String proponente = (String) msg.get("proponente");
                         //String documentacion = (String) msg.get("documento");
-                        
+                        String name =(String) msg.get("name");
                         
                         Platform.runLater(new Runnable() {
                             @Override
@@ -100,14 +99,53 @@ public class ClienteSesionCtrl implements Initializable {
                             		lbl_punto.setText(""+punto);
                                 	label_titulo.setText(titulo);
                                     label_proponente.setText(proponente);
+                                    
+                                    puntoATratar.num_punto= punto;
+                            		puntoATratar.tema = titulo;
+                            		puntoATratar.proponente= proponente;
+                            		
+                                    
                             	}else {
                             		lbl_punto.setText("Esperando...");
                                 	label_titulo.setText("Esperando...");
                                     label_proponente.setText("Esperando...");
                             	}
                             	
-                            	
-                                
+                            	if(name.equals("cambio de pantalla2")) {
+                            		System.out.println("estoy en el cliente y se cambio de pantalla en el servidor");
+                            		//paso variables al voto
+                            		Stage stage = (Stage) lbl_punto.getScene().getWindow();
+								    // do what you have to do
+								    stage.close();
+								    Stage newStage = new Stage();
+                            		
+                            	    AnchorPane pane = null;
+									try {
+										pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteVoto.fxml"));
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+									
+                                    Scene scene = new Scene(pane);
+                                    
+                                    //Pantalla completa
+                                    Screen screen = Screen.getPrimary();
+                            		Rectangle2D bounds = screen.getVisualBounds();
+
+                            		newStage.setX(bounds.getMinX());
+                            		newStage.setY(bounds.getMinY());
+                            		newStage.setWidth(bounds.getWidth());
+                            		newStage.setHeight(bounds.getHeight());
+                                    
+                                    
+                                    newStage.setScene(scene);
+                                    newStage.initStyle(StageStyle.UNDECORATED);
+                                    newStage.show();
+                        		
+                            	}
+                            
                             }
                         });
                     }

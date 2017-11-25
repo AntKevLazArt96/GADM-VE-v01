@@ -38,7 +38,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ClienteMostrarVotoCtrl implements Initializable {
+public class ClienteMostrarVotoOrdenCtrl implements Initializable {
 
 	@FXML
     private Label label_convocatoria;
@@ -66,7 +66,7 @@ public class ClienteMostrarVotoCtrl implements Initializable {
       DataOutputStream dos;
       DataInputStream dis;
     
-    public ClienteMostrarVotoCtrl() {
+    public ClienteMostrarVotoOrdenCtrl() {
     	try {
   			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
   		} catch (MalformedURLException | RemoteException | NotBoundException e) {
@@ -103,6 +103,8 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
+                            	
+                            	
                             	
                             	if(newMsg.getName().contains("APROBADO")) {
                             		Alert mensaje = new Alert(AlertType.INFORMATION);
@@ -173,14 +175,14 @@ public class ClienteMostrarVotoCtrl implements Initializable {
         cirlogin.setStroke(Color.SEAGREEN);
         cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
         
-		label_titulo.setText(puntoATratar.tema);
+		label_titulo.setText(data.titulo);
 		label_convocatoria.setText(data.convocatoria);
-		label_convocatoria2.setText(puntoATratar.num_punto);
+		label_convocatoria2.setText(data.convocatoria);
 		
 		
 		
-		if(data.voto.equals("FAVOR")) {
-			verVoto.setText("A FAVOR");	
+		if(data.voto.equals("APROBADO")) {
+			verVoto.setText("APROBADO");	
 		}
 		if(data.voto.equals("RECHAZADO")) {
 			verVoto.setText("RECHAZADO");	

@@ -72,7 +72,7 @@ public class ClienteVotoOrdenCtrl implements Initializable {
 	    data.name = login;*/
 	    data.voto="APROBADO";
 	    System.out.println(login);
-		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteMostrarVoto.fxml"));
+		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteMostrarVotoOrden.fxml"));
         Scene scene = new Scene(pane);
         
         //Pantalla completa
@@ -102,7 +102,7 @@ public class ClienteVotoOrdenCtrl implements Initializable {
 		
 	    servidor.addVoto(data.name, "RECHAZADO",data.img);
 	    data.voto="RECHAZADO";
-	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteMostrarVoto.fxml"));
+	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteMostrarVotoOrden.fxml"));
         Scene scene = new Scene(pane);
         
         //Pantalla completa

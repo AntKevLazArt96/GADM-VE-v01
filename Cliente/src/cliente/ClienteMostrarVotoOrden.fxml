@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ClienteMostrarVotoCtrl">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ClienteMostrarVotoOrdenCtrl">
    <children>
       <AnchorPane layoutX="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="113.0" prefWidth="1295.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -68,7 +68,7 @@
       <AnchorPane layoutX="257.0" layoutY="151.0" prefHeight="543.0" prefWidth="868.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="110.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="51.0" layoutY="47.0" text="Punto" textFill="#212121">
+            <Label layoutX="51.0" layoutY="47.0" text="Convocatoria " textFill="#212121">
                <font>
                   <Font size="26.0" />
                </font>
@@ -81,7 +81,7 @@
                   <Font size="18.0" />
                </font>
             </JFXTextArea>
-            <Label fx:id="label_convocatoria2" layoutX="151.0" layoutY="47.0" text="1" textFill="#212121">
+            <Label fx:id="label_convocatoria2" layoutX="234.0" layoutY="47.0" text="000-0000" textFill="#212121">
                <font>
                   <Font size="26.0" />
                </font>
