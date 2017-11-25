@@ -1,6 +1,6 @@
 package application;
 
-import java.awt.Desktop;
+//import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -8,7 +8,7 @@ import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -105,7 +105,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 
        }
 
-	@SuppressWarnings({ "unchecked", "unchecked" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		lbl_nombre.setText(data.name);
@@ -130,7 +130,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 			num_punto.setCellValueFactory(
 	                new PropertyValueFactory<>("numeroPunto"));
 	 
-	        TableColumn descripcion = new TableColumn("Descripción");
+	       TableColumn descripcion = new TableColumn("Descripción");
 	        descripcion.setMinWidth(900);
 	        descripcion.setCellValueFactory(
 	                new PropertyValueFactory<>("tema"));

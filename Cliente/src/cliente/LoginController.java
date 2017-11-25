@@ -42,9 +42,7 @@ public class LoginController implements Initializable {
 
 	@FXML
 	private void loginAction() throws IOException, NotBoundException{
-		
-		
-		
+	
 		// get a handle to the stage
 	    Stage actualStage = (Stage) closeButton.getScene().getWindow();
 	    // do what you have to do

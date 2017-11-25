@@ -9,10 +9,12 @@ public class Voto implements Serializable {
 	 */
 	private static final long serialVersionUID = -1317952102785898032L;
 	private String nombre,voto;
+	private byte[] img;
 
-	public Voto(String nombre,String voto) {
-		this.setNombre(nombre);
-		this.setVoto(voto);
+	public Voto(String nombre,String voto,byte[] img) {
+		this.nombre=nombre;
+		this.voto=voto;
+		this.img=img;
 	}
 
 	public String getNombre() {
@@ -29,6 +31,14 @@ public class Voto implements Serializable {
 
 	public void setVoto(String voto) {
 		this.voto = voto;
+	}
+
+	public byte[] getImg() {
+		return img;
+	}
+
+	public void setImg(byte[] img) {
+		this.img = img;
 	}
 
 

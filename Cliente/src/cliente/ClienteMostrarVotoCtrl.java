@@ -1,6 +1,6 @@
 package cliente;
 
-import java.io.ByteArrayInputStream;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -10,10 +10,8 @@ import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,9 +20,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 
 import gad.manta.common.IServidor;
-import gad.manta.common.Sesion;
-import gad.manta.common.Usuario;
-import gad.manta.common.Voto;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,9 +30,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -54,7 +47,7 @@ public class ClienteMostrarVotoCtrl implements Initializable {
     private Label label_convocatoria2;
 	@FXML
     private JFXTextArea label_titulo;
-
+	
     @FXML
     private Circle cirlogin;
 
@@ -65,7 +58,7 @@ public class ClienteMostrarVotoCtrl implements Initializable {
     private JFXButton verVoto;
     
   //variable statica para rmi
-  	private static IServidor servidor;
+  	static IServidor servidor;
   	
   	//variables estaticas para socket
   	public static Thread th;
@@ -110,6 +103,9 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
+                            	
+                            	
+                            	
                             	if(newMsg.getName().contains("APROBADO")) {
                             		Alert mensaje = new Alert(AlertType.INFORMATION);
                             		mensaje.setTitle("Orden del día Aprobado");
@@ -175,7 +171,7 @@ public class ClienteMostrarVotoCtrl implements Initializable {
 		lbl_nombre.setText(data.name);
 		
 		
-		cirlogin.setFill(new ImagePattern(data.imagen));
+		cirlogin.setFill(new ImagePattern(data.Imagen));
         cirlogin.setStroke(Color.SEAGREEN);
         cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
         

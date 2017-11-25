@@ -3,7 +3,6 @@ package cliente;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.Socket;
@@ -51,7 +50,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ClientePreSesionController implements Initializable  {
+public class ClientePreSesionCtrl implements Initializable  {
 	
 	@FXML
     private Circle cirlogin;
@@ -93,7 +92,7 @@ public class ClientePreSesionController implements Initializable  {
     private JFXButton btn_pdf;
 	
 	//inicializamos socket
-	 public ClientePreSesionController() {
+	 public ClientePreSesionCtrl() {
 	        try {
 
 	            sock = new Socket(data.ip, data.port);
@@ -121,19 +120,19 @@ public class ClientePreSesionController implements Initializable  {
 	                        newMsg.setName((String) msg.get("name"));
 	                        newMsg.setMessage((String) msg.get("status"));
 	                        Platform.runLater(new Runnable() {
-	                            @Override
+	                            @SuppressWarnings("deprecation")
+								@Override
 	                            public void run() {
 	                            	if(newMsg.getName().equals("cambio de pantalla")) {
 	                            		System.out.println("estoy en el cliente y se cambio de pantalla en el servidor");
 	                            		Stage stage = (Stage) label_punto.getScene().getWindow();
 									    // do what you have to do
 									    stage.close();
-	                            		
-	                            		Stage newStage = new Stage();
+									    Stage newStage = new Stage();
 	                            		
 	                            	    AnchorPane pane = null;
 										try {
-											pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteVotoAprobacion.fxml"));
+											pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteVotoOrden.fxml"));
 										} catch (IOException e) {
 											// TODO Auto-generated catch block
 											e.printStackTrace();
@@ -182,6 +181,7 @@ public class ClientePreSesionController implements Initializable  {
 			Image img = new Image(bis);
 			return img;
 		}
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 				try {
@@ -195,7 +195,9 @@ public class ClientePreSesionController implements Initializable  {
 			
 			try {
 				Usuario user = servidor.usuario(data.name);
-				Image im = convertirImg(user.getImg());
+				data.img=user.getImg();
+				Image im = convertirImg(data.img);
+				data.Imagen = im;
 		        cirlogin.setFill(new ImagePattern(im));
 		        cirlogin.setStroke(Color.SEAGREEN);
 		        cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));

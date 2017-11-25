@@ -65,7 +65,7 @@ public class ClienteVotoOrdenCtrl implements Initializable {
 	    
 	    Stage newStage = new Stage();
 		
-	    String login = servidor.addVoto(data.name, "APROBADO");
+	    String login = servidor.addVoto(data.name, "APROBADO",data.img);
 	    /*System.out.println("Clicked");
         data.ip = "192.168.1.6";
         data.port = 6666;
@@ -100,7 +100,7 @@ public class ClienteVotoOrdenCtrl implements Initializable {
 	    
 	    Stage newStage = new Stage();
 		
-	    String login = servidor.addVoto(data.name, "RECHAZADO");
+	    servidor.addVoto(data.name, "RECHAZADO",data.img);
 	    data.voto="RECHAZADO";
 	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteMostrarVoto.fxml"));
         Scene scene = new Scene(pane);
@@ -139,9 +139,7 @@ public class ClienteVotoOrdenCtrl implements Initializable {
 		lbl_nombre.setText(data.name);
 		
 		try {
-			Usuario user = servidor.usuario(data.name);
-			Image im = convertirImg(user.getImg());
-			data.imagen=im;
+			Image im = convertirImg(data.img);
 			
 	        cirlogin.setFill(new ImagePattern(im));
 	        cirlogin.setStroke(Color.SEAGREEN);
@@ -162,7 +160,5 @@ public class ClienteVotoOrdenCtrl implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
-
 }

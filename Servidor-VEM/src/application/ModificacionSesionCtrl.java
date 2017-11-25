@@ -1,8 +1,7 @@
 package application;
 
-import java.awt.Desktop;
+//import java.awt.Desktop;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -14,10 +13,9 @@ import java.nio.file.StandardCopyOption;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalTime;
-import java.sql.Date;
-import java.util.Calendar;
+//import java.sql.Date;
+//import java.util.Calendar;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -53,7 +51,7 @@ import modelo.Sesion;
 import modelo.Usuario;
 
 public class ModificacionSesionCtrl implements Initializable{
-	private static IServidor servidor;
+	static IServidor servidor;
 	
 	public static String convocatoria_sesion = null;
 	public static Integer idOrden = 0;
@@ -177,13 +175,13 @@ public class ModificacionSesionCtrl implements Initializable{
     
     @FXML
     void onAddSesion(ActionEvent event) throws MalformedURLException, RemoteException, NotBoundException {
-    	String convocatoria = txt_convocatoria.getText();
-    	String [] meses = {"ENERO","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
-    	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
-    	String horaIntervencion = time.getValue().toString();
-    	String titulo = lbl1.getText()+" "+cbx_tipoSes.getValue()+lbl2.getText()+" "+lbl3.getText()+fechaCompleta+", A lAS "+horaIntervencion+" "+lbl4.getText();
-    	Date fechaIntervencion = Date.valueOf(date.getValue());
-    	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
+    	//String convocatoria = txt_convocatoria.getText();
+    	//String [] meses = {"ENERO","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
+    	//String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
+    	//String horaIntervencion = time.getValue().toString();
+    	//String titulo = lbl1.getText()+" "+cbx_tipoSes.getValue()+lbl2.getText()+" "+lbl3.getText()+fechaCompleta+", A lAS "+horaIntervencion+" "+lbl4.getText();
+    	//Date fechaIntervencion = Date.valueOf(date.getValue());
+    	//Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
     	
     	//Sesion sesion = new Sesion(fechaRegistro, fechaIntervencion , horaIntervencion, convocatoria, titulo);
     	conexion.establecerConexion();

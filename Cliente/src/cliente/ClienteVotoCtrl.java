@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Usuario
  */
-public class ClienteVotoController implements Initializable {
+public class ClienteVotoCtrl implements Initializable {
 
     /**
      * Initializes the controller class.
