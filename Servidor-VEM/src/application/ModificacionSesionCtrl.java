@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.CopyOption;
@@ -11,11 +12,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalTime;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
@@ -53,6 +56,10 @@ import modelo.Sesion;
 import modelo.Usuario;
 
 public class ModificacionSesionCtrl implements Initializable{
+	/**
+	 * 
+	 */
+
 	private static IServidor servidor;
 	
 	public static String convocatoria_sesion = null;
@@ -145,6 +152,7 @@ public class ModificacionSesionCtrl implements Initializable{
 		conexion.establecerConexion();
 		proponentes =FXCollections.observableArrayList();
 		Sesion.llenarInformacion(conexion.getConnection(), proponentes);
+		System.out.println(proponentes);
 		cbx_proponente.setItems(proponentes);
 		conexion.cerrarConexion();
 		
@@ -154,10 +162,35 @@ public class ModificacionSesionCtrl implements Initializable{
 		System.out.println(convocatoria);
 		cbx_combocatoria.setItems(convocatoria);
 		conexion.cerrarConexion();
+
+		try {
+			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
-    
+    @FXML
+    void llenar_sesion(ActionEvent  event) throws RemoteException{
+    	
+
+			String a = cbx_combocatoria.getValue().getConvocatoria(); 
+	    	List<gad.manta.common.Sesion>lista_sesion=servidor.consultarSesion_Modificacion(a);
+	    
+		
+    	
+    	
+    	
+    }
+   
     public void bloquear() {
     	txt_convocatoria.setDisable(true);
     	cbx_tipoSes.setDisable(true);

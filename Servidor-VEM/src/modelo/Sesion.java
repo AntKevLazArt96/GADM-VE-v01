@@ -86,13 +86,9 @@ public class Sesion {
 		this.id_pdf = id_pdf;
 	}
 
-
-	
-	
-	public Sesion() {
-		
+	public String toString() {
+		return convocatoria;
 	}
-	
 	public Sesion(String convocatoria, String description, Date registro, Date intervencion,String hora) {
 		this.convocatoria=convocatoria;
 		this.description= description;
@@ -110,7 +106,7 @@ public class Sesion {
 	}
 
 	public Sesion(String convocatoria, String titulo) {
-		super();
+	
 		this.convocatoria=convocatoria;
 		this.description= titulo;
 	}

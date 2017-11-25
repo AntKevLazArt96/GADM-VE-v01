@@ -130,7 +130,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 			num_punto.setCellValueFactory(
 	                new PropertyValueFactory<>("numeroPunto"));
 	 
-	        TableColumn descripcion = new TableColumn("Descripción");
+	        TableColumn descripcion = new TableColumn("Descripciï¿½n");
 	        descripcion.setMinWidth(900);
 	        descripcion.setCellValueFactory(
 	                new PropertyValueFactory<>("tema"));
@@ -147,7 +147,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 			tabla_ordenDia.setItems(datos);
 	
 			/*List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
-			TableColumn punto = new TableColumn("Documentación perteneciente al punto");
+			TableColumn punto = new TableColumn("Documentaciï¿½n perteneciente al punto");
 			punto.setMinWidth(250);
 			punto.setCellValueFactory(
 	                new PropertyValueFactory<>("punto"));

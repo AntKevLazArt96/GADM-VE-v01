@@ -148,7 +148,7 @@
             <JFXComboBox fx:id="cbx_tipoSes" layoutX="254.0" layoutY="73.0" prefHeight="25.0" prefWidth="134.0" />
             <JFXDatePicker fx:id="date" editable="false" layoutX="404.0" layoutY="98.0" prefHeight="25.0" prefWidth="133.0" />
             <JFXTimePicker fx:id="time" editable="false" layoutX="544.0" layoutY="99.0" prefHeight="25.0" prefWidth="89.0" />
-            <JFXComboBox fx:id="cbx_combocatoria" layoutX="293.0" layoutY="29.0" prefHeight="25.0" prefWidth="177.0" />
+            <JFXComboBox fx:id="cbx_combocatoria" layoutX="293.0" layoutY="29.0" onAction="#llenar_sesion" prefHeight="25.0" prefWidth="177.0" />
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />

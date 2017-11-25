@@ -281,11 +281,45 @@ public class Servidor implements IServidor {
 			}
 		}
 
+	public List<Sesion>  consultarSesion_Modificacion(String convocatoria) throws RemoteException {
+		List<Sesion> listaSesion = new ArrayList<>();
+		try {
+			//para verificar si esta instalado el drive de postgressql
+			
+			try {
+				Class.forName("org.postgresql.Driver");
+				
+			}catch(ClassNotFoundException cnfe){
+				System.out.println("Drive no encontrado");
+				cnfe.printStackTrace();
+				
+			}
+			//conecci�n a la base de datos  
+			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select * from Sesion_VE where convocatoria_sesion='"+convocatoria+"';");
+			
+			while(resultado.next()) {
+				listaSesion.add(new Sesion(resultado.getString(1) , resultado.getString(2) , resultado.getDate(3), resultado.getDate(4), resultado.getString(5), resultado.getInt(6)));			
+				System.out.println(resultado.getString(1));
+			}
+			db.close();
+			
+			}catch(Exception e) {
+				System.out.println("Error: " + e.getMessage());
+				e.printStackTrace();
+				return null;
+			}
+		return listaSesion;
+		}
+
+
+	
 	@Override
 	public List<OrdenDia> consultarOrden() throws RemoteException {
 		 List<OrdenDia> lista_ordendia = new ArrayList<OrdenDia>();
-		    
-
 		try {
 			//para verificar si esta instalado el drive de postgressql
 			
