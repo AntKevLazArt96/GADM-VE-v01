@@ -65,6 +65,7 @@ CREATE TABLE acta_ve
 CREATE TABLE Sesion_VE (
                 convocatoria_sesion VARCHAR NOT NULL,
                 description_sesion VARCHAR NOT NULL,
+                tipo_sesion VARCHAR NOT NULL,
                 register_sesion DATE NOT NULL,
                 intervention_sesion DATE NOT NULL,
                 hour_sesion VARCHAR NOT NULL,
@@ -314,16 +315,16 @@ $BODY$
   COST 100;
 
 ----------SESION--------------
-create or replace function ingresar_sesion(varchar,varchar,date,date,varchar,integer)
+create or replace function ingresar_sesion(varchar,varchar,varchar,date,date,varchar,integer)
 returns void as 
 $$
 begin 
-	insert into Sesion_VE(convocatoria_sesion, description_sesion,register_sesion, intervention_sesion, hour_sesion,id_pdf) values
-				($1,$2,$3,$4,$5,$6);
+	insert into Sesion_VE(convocatoria_sesion, description_sesion,tipo_sesion,register_sesion, intervention_sesion, hour_sesion,id_pdf) values
+				($1,$2,$3,$4,$5,$6,$7);
 end;
 $$
 LANGUAGE plpgsql;
-
+select * from Sesion_VE
 
 --ingresar OD 
 create or replace function ingresar_orden_dia(varchar,integer,varchar,integer)

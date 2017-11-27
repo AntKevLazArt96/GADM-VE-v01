@@ -30,7 +30,13 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 
+import gad.manta.common.ActaPdf;
+import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
+import gad.manta.common.OrdenDia;
+import gad.manta.common.Pdf;
+import gad.manta.common.Sesion;
+import gad.manta.common.Usuario;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -50,12 +56,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import modelo.Conexion;
-import modelo.OrdenDia;
-import modelo.Pdf;
-import modelo.ActaPdf;
-import modelo.Sesion;
-import modelo.Usuario;
+
+
+
 
 public class NuevaSesionCtrl implements Initializable{
 	private static IServidor servidor;
@@ -188,10 +191,11 @@ public class NuevaSesionCtrl implements Initializable{
     	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
     	String horaIntervencion = time.getValue().toString();
     	String titulo = lbl1.getText()+" "+cbx_tipoSes.getValue()+lbl2.getText()+" "+lbl3.getText()+fechaCompleta+", A lAS "+horaIntervencion+" "+lbl4.getText();
+    	String tipo_sesion = cbx_tipoSes.getValue();
     	Date fechaIntervencion = Date.valueOf(date.getValue());
     	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
     	
-    	Sesion sesion = new Sesion(txtconvocatoria,titulo,fechaRegistro, fechaIntervencion , horaIntervencion,idActa );
+    	Sesion sesion = new Sesion(txtconvocatoria,titulo,tipo_sesion,fechaRegistro, fechaIntervencion , horaIntervencion,idActa );
     	conexion.establecerConexion();
     	convocatoria = sesion.guardarRegistro(conexion.getConnection());
     	System.out.println(convocatoria);
@@ -392,8 +396,8 @@ public class NuevaSesionCtrl implements Initializable{
 				try {
 					{
 						System.out.println(list_pdf.getItems().get(longitud_lista-1).toString());
-						ActaPdf pdf = new ActaPdf(idOrden,list_pdf.getItems().get(longitud_lista-1).toString());
-						pdf.guardarRegistro_pdf(conexion.getConnection());
+						Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).toString());
+						pdf.guardarRegistro_pdfs(conexion.getConnection());
 						longitud_lista--;
 					}
 				} catch (Exception e) {

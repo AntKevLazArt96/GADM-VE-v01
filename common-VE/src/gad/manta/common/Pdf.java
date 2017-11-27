@@ -1,28 +1,56 @@
-package modelo;
+package gad.manta.common;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-public class Pdf {
+public class Pdf implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6970918765794755720L;
 	private int id;
 	private int id_orden_dia;
 	private String nombre;
 	private String ruta_pdf;
+	private Byte pdf;
 	
 	
+	
+	public Pdf(int id) {
+		super();
+		this.id = id;
+	}
+	public Pdf(int id, int id_orden_dia, String ruta_pdf, byte pdf) {
+		super();
+		this.id = id;
+		this.id_orden_dia = id_orden_dia;
+		this.ruta_pdf = ruta_pdf;
+		this.pdf = pdf;
+	}
 	public Pdf(int id, int id_orden_dia, String ruta_pdf) {
 		this.id = id;
 		this.id_orden_dia = id_orden_dia;
 		this.ruta_pdf = ruta_pdf;
 	}
-	public Pdf(int id_orden_dia, String ruta_pdf) {
-		this.id_orden_dia = id_orden_dia;
-		this.ruta_pdf = ruta_pdf;
-	}
 
+
+	public Pdf(int id, String nombre) {
+		this.id = id;
+		this.nombre = nombre;
+	}
+	public Byte getPdf() {
+		return pdf;
+	}
+	public void setPdf(Byte pdf) {
+		this.pdf = pdf;
+	}
 	public int getId() {
 		return id;
 	}
@@ -54,8 +82,8 @@ public class Pdf {
 		this.nombre = nombre;
 	}
 
-	public int guardarRegistro_pdf(Connection connection) throws IOException {
-		String sql = "INSERT INTO pdf_ve(id_orden_dia,nombre,pdf) VALUES (?, ?, ?);";
+	public int guardarRegistro_pdfs(Connection connection) throws IOException {
+		String sql = "INSERT INTO pdf_ve(id_ordendia,nombre_pdf,archivo_pdf) VALUES (?, ?, ?);";
 		try {
 			File pdf = new File(ruta_pdf);
 			FileInputStream fis = new FileInputStream(pdf);
@@ -67,7 +95,7 @@ public class Pdf {
     		ps.close();
     		fis.close();
     		
-			return 1;
+    		return 1;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,5 +103,6 @@ public class Pdf {
 		}
 		
 	}
+	
 	
 	}

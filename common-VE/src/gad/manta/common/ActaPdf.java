@@ -1,22 +1,44 @@
-package modelo;
+package gad.manta.common;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class ActaPdf {
+public class ActaPdf implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1272722592629459843L;
 	private int id;
 	private String nombre;
 	private String ruta_pdf;
+	private byte[] pdf;
 	
+	
+
+
+	public byte[] getPdf() {
+		return pdf;
+	}
+
+	public void setPdf(byte[] pdf) {
+		this.pdf = pdf;
+	}
+
 	public ActaPdf() {
 		
 	}
 	
+	public ActaPdf(int id) {
+		super();
+		this.id = id;
+	}
+
 	public ActaPdf(int id, String ruta_pdf) {
 		this.id = id;
 		this.ruta_pdf = ruta_pdf;
@@ -25,6 +47,16 @@ public class ActaPdf {
 		this.nombre= nombre;
 		this.ruta_pdf = ruta_pdf;
 		
+	}
+	
+
+
+
+	public ActaPdf(int id, String nombre, byte[] pdf) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.pdf = pdf;
 	}
 
 	public int getId() {

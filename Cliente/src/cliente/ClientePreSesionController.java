@@ -22,6 +22,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import cliente.data;
+import gad.manta.common.ActaPdf;
 import gad.manta.common.Documentacion;
 import gad.manta.common.IServidor;
 import gad.manta.common.OrdenDia;
@@ -182,6 +183,7 @@ public class ClientePreSesionController implements Initializable  {
 			Image img = new Image(bis);
 			return img;
 		}
+		@SuppressWarnings("unchecked")
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 				try {
@@ -214,24 +216,27 @@ public class ClientePreSesionController implements Initializable  {
 			try {
 				
 				Sesion sesion = servidor.consultarSesion();
-				label_titulo.setText(sesion.getTitulo());
+				label_titulo.setText(sesion.getDescription());
 				label_convocatoria.setText(sesion.getConvocatoria());
+				data.id_pdf=sesion.getId_pdf();
 				
 				List<OrdenDia>lista_orden=servidor.consultarOrden();
+				@SuppressWarnings("rawtypes")
 				TableColumn num_punto = new TableColumn("No. Punto");
 				num_punto.setMinWidth(50);
 				num_punto.setCellValueFactory(
 		                new PropertyValueFactory<>("numeroPunto"));
 		 
-		        TableColumn descripcion = new TableColumn("Descripción");
+		        @SuppressWarnings("rawtypes")
+				TableColumn descripcion = new TableColumn("DescripciÃ³n");
 		        descripcion.setMinWidth(900);
 		        descripcion.setCellValueFactory(
 		                new PropertyValueFactory<>("tema"));
-		 
+		        @SuppressWarnings("rawtypes")
 		        TableColumn proponente = new TableColumn("Proponente");
 		        proponente.setMinWidth(300);
 		        proponente.setCellValueFactory(
-		                new PropertyValueFactory<>("proponente"));
+		                new PropertyValueFactory<>("proponente_nombre"));
 				ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
 						lista_orden
 						);
@@ -239,24 +244,29 @@ public class ClientePreSesionController implements Initializable  {
 				tabla_ordenDia.setItems(datos);
 		
 				List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
-				TableColumn punto = new TableColumn("Documentación perteneciente al punto");
+				@SuppressWarnings("rawtypes")
+				TableColumn punto = new TableColumn("DocumentaciÃ³n perteneciente al punto");
 				punto.setMinWidth(250);
 				punto.setCellValueFactory(
 		                new PropertyValueFactory<>("punto"));
-		 
+				@SuppressWarnings("rawtypes")
 		        TableColumn nombre = new TableColumn("Nombre");
-		        nombre.setMinWidth(400);
+		        nombre.setMinWidth(700);
+		        nombre.setResizable(true);
+		        
 		        nombre.setCellValueFactory(
 		                new PropertyValueFactory<>("nombre"));
-		 
+		        @SuppressWarnings("rawtypes")
 		        TableColumn pdf = new TableColumn("Pdf");
-		        pdf.setMinWidth(200);
+		        pdf.setMinWidth(500);
+		        pdf.setVisible(false);
 		        pdf.setCellValueFactory(
 		                new PropertyValueFactory<>("pdf"));
 				ObservableList<Documentacion> datos_pdf = FXCollections.observableArrayList(
 						lista_documentacion
 						);
-				table_documentacion.getColumns().addAll(punto,nombre,pdf		);
+				table_documentacion.getColumns().addAll(punto,nombre,pdf);
+				
 				table_documentacion.setItems(datos_pdf);
 		
 				
@@ -276,6 +286,31 @@ public class ClientePreSesionController implements Initializable  {
 		
 		@FXML
 	    void mostrar_pdf(ActionEvent event) {
+			Stage newStage = new Stage();
+			
+			AnchorPane pane;
+			try {
+				pane = (AnchorPane)FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+				Scene scene = new Scene(pane);
+		        
+		        //Pantalla completa
+		        Screen screen = Screen.getPrimary();
+				Rectangle2D bounds = screen.getVisualBounds();
+				
+				newStage.setX(bounds.getMinX());
+				newStage.setY(bounds.getMinY());
+				newStage.setWidth(bounds.getWidth());
+				newStage.setHeight(bounds.getHeight());
+		        
+		        newStage.setScene(scene);
+		        newStage.initStyle(StageStyle.UNDECORATED);
+		        newStage.show();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
 
 	    }
 		

@@ -22,7 +22,11 @@ import org.json.simple.parser.JSONParser;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 
+import gad.manta.common.Asistencia;
+import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
+import gad.manta.common.Quorum;
+import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -42,10 +46,15 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+<<<<<<< HEAD
 import modelo.Asistencia;
 import modelo.Conexion;
 import modelo.Quorum;
 import modelo.Sesion;
+=======
+
+
+>>>>>>> rama_christian
 
 public class QuorumCtrl implements Initializable {
 	private static IServidor servidor;
@@ -376,7 +385,7 @@ public class QuorumCtrl implements Initializable {
 										
 										if(lista.size()>=0) {
 											btn_finAsistencia.setDisable(false);
-											txtCumple.setText("Cumple con el mínimo de miembros para inicar la sesión");
+											txtCumple.setText("Cumple con el mï¿½nimo de miembros para inicar la sesiï¿½n");
 											
 										}
 									}
@@ -469,7 +478,7 @@ public class QuorumCtrl implements Initializable {
 		conexion = new Conexion();
 		lbl_nombre.setText(data.name);
 		cirlogin.setStroke(Color.SEAGREEN);
-		File f = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res\\concejal1.png");
+		File f = new File("C:\\Users\\chris\\Documents\\GitHub\\GADM-VE-v01\\Servidor-VEM\\res\\concejal1.png");
         Image im = new Image(f.toURI().toString());
         cirlogin.setFill(new ImagePattern(im));
         cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
