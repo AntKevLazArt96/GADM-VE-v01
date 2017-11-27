@@ -15,14 +15,9 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalTime;
-<<<<<<< HEAD
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
-=======
-//import java.sql.Date;
-//import java.util.Calendar;
->>>>>>> origin/anthony
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -61,15 +56,14 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 
 public class ModificacionSesionCtrl implements Initializable{
-<<<<<<< HEAD
+
 	/**
 	 * 
 	 */
 
 	private static IServidor servidor;
-=======
-	static IServidor servidor;
->>>>>>> origin/anthony
+
+
 	
 	public static String convocatoria_sesion = null;
 	public static Integer idOrden = 0;

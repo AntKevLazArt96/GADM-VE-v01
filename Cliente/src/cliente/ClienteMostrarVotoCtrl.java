@@ -1,4 +1,4 @@
-package cliente;
+package src.cliente;
 
 
 import java.io.DataInputStream;
@@ -106,9 +106,9 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                             	
                             	if(newMsg.getName().contains("APROBADO")) {
                             		Alert mensaje = new Alert(AlertType.INFORMATION);
-                            		mensaje.setTitle("Orden del día Aprobado");
-                            		mensaje.setContentText("LA orden del día fue aprobada ahora se procedera a mostrar ");
-                            		mensaje.setHeaderText("Orden del día Aprobado");
+                            		mensaje.setTitle("Orden del dï¿½a Aprobado");
+                            		mensaje.setContentText("LA orden del dï¿½a fue aprobada ahora se procedera a mostrar ");
+                            		mensaje.setHeaderText("Orden del dï¿½a Aprobado");
                             		mensaje.show();	
                             		
                             		System.out.println("estoy en el cliente y se cambio de pantalla en el servidor");

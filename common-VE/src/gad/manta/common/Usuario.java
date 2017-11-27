@@ -8,11 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-<<<<<<< HEAD
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
-=======
->>>>>>> origin/anthony
 
 
 public class Usuario implements Serializable {

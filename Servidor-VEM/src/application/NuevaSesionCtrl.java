@@ -31,15 +31,14 @@ import com.jfoenix.controls.JFXTimePicker;
 import gad.manta.common.ActaPdf;
 import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
-<<<<<<< HEAD
+
 import gad.manta.common.OrdenDia;
 import gad.manta.common.Pdf;
 import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-=======
->>>>>>> origin/anthony
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

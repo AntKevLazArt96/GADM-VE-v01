@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="lib"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/common-VE"/>
-	<classpathentry kind="src" path="res"/>
-	<classpathentry exported="true" kind="lib" path="lib/json_simple-1.1.jar"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="C:/librerias/fontawesomefx-8.6.jar"/>
-	<classpathentry kind="lib" path="C:/librerias/jfoenix.jar"/>
-	<classpathentry kind="lib" path="C:/librerias/pdf-renderer-1.0.5.jar"/>
-=======
+	<classpathentry kind="src" path=""/>
 	<classpathentry exported="true" kind="lib" path="C:/librerias/fontawesomefx-8.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/librerias/jfoenix.jar"/>
->>>>>>> origin/anthony
+	<classpathentry exported="true" kind="lib" path="C:/librerias/pdf-renderer-1.0.5.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

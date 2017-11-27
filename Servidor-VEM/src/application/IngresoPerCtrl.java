@@ -20,12 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-<<<<<<< HEAD
-import modelo.Conexion;
-import modelo.Usuario;
-=======
 
->>>>>>> rama_christian
 
 public class IngresoPerCtrl implements Initializable {
 

@@ -45,15 +45,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-<<<<<<< HEAD
 
-
-=======
-import modelo.Asistencia;
-import modelo.Conexion;
-import modelo.Quorum;
-import modelo.Sesion;
->>>>>>> origin/anthony
 
 public class RegistrarAsistenciaCtrl implements Initializable {
 	private static IServidor servidor;

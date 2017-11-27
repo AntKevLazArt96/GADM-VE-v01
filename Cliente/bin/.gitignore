@@ -1,5 +1,9 @@
-<<<<<<< HEAD
-=======
-/titulo.png
->>>>>>> origin/anthony
+/.classpath
+/.project
+/.settings/
+/build.fxbuild
 /cliente/
+/lib/
+/res/
+/src/
+/temp/

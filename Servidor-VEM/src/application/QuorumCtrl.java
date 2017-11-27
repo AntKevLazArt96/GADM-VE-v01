@@ -16,10 +16,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/anthony
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -50,18 +46,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> origin/anthony
-import modelo.Asistencia;
-import modelo.Conexion;
-import modelo.Quorum;
-import modelo.Sesion;
-=======
 
-
->>>>>>> rama_christian
 
 public class QuorumCtrl implements Initializable {
 	private static IServidor servidor;

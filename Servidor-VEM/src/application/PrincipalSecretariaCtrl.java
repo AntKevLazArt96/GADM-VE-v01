@@ -130,11 +130,8 @@ public class PrincipalSecretariaCtrl implements Initializable{
 			num_punto.setCellValueFactory(
 	                new PropertyValueFactory<>("numeroPunto"));
 	 
-<<<<<<< HEAD
+
 	        TableColumn descripcion = new TableColumn("Descripciï¿½n");
-=======
-	       TableColumn descripcion = new TableColumn("Descripción");
->>>>>>> origin/anthony
 	        descripcion.setMinWidth(900);
 	        descripcion.setCellValueFactory(
 	                new PropertyValueFactory<>("tema"));

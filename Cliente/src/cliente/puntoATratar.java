@@ -1,4 +1,4 @@
-package cliente;
+package src.cliente;
 
 public class puntoATratar {
 	public static String num_punto;

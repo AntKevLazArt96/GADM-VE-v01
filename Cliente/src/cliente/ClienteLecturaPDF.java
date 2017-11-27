@@ -1,4 +1,4 @@
-package cliente;
+package src.cliente;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.geom.Rectangle2D;

@@ -1,6 +1,13 @@
 package gad.manta.common;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javafx.collections.ObservableList;
 
 
 public class OrdenDia implements Serializable {
@@ -9,7 +16,6 @@ public class OrdenDia implements Serializable {
 	 */
 	private static final long serialVersionUID = -197902119814967784L;
 	private int id;
-	private String convocatoria;
 	private int numeroPunto;
 	private String tema;
 	private int proponente;
@@ -19,12 +25,7 @@ public class OrdenDia implements Serializable {
 	public int getProponente() {
 		return proponente;
 	}
-	public String getConvocatoria() {
-		return convocatoria;
-	}
-	public void setConvocatoria(String convocatoria) {
-		this.convocatoria = convocatoria;
-	}
+
 	public String getProponente_nombre() {
 		return proponente_nombre;
 	}
@@ -75,20 +76,11 @@ public class OrdenDia implements Serializable {
 		this.proponente = proponente;
 	}
 	
-<<<<<<< HEAD
 	public OrdenDia(int id,String convocatoria, int numeroPunto, String tema , int proponente) {
 		this.id= id;
 		this.convocatoria = convocatoria;
-=======
-	public OrdenDia(int numeroPunto, String tema , String proponente) {
 
->>>>>>> origin/anthony
-		this.numeroPunto= numeroPunto;
-		this.tema= tema;
-		this.proponente = proponente;
 	}
-	
-<<<<<<< HEAD
 	public OrdenDia(int numeroPunto, String tema, int proponente) {
 		super();
 		this.numeroPunto = numeroPunto;
@@ -100,6 +92,14 @@ public class OrdenDia implements Serializable {
 		this.numeroPunto = numeroPunto;
 		this.tema = tema;
 		this.proponente_nombre = proponente_nombre;
+	}
+
+	public OrdenDia(int id, int numeroPunto, String tema, int proponente) {
+		super();
+		this.id = id;
+		this.numeroPunto = numeroPunto;
+		this.tema = tema;
+		this.proponente = proponente;
 	}
 
 	public int guardarRegistro(Connection connection) {
@@ -139,15 +139,5 @@ public class OrdenDia implements Serializable {
 		} 
 	}
 	
-=======
-	public OrdenDia(int id,int numeroPunto, String tema , String proponente) {
-		this.id=id;
-		this.numeroPunto= numeroPunto;
-		this.tema= tema;
-		this.proponente = proponente;
-	}
-	
-	
-	
->>>>>>> origin/anthony
+
 }

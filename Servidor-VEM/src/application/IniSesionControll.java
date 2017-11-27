@@ -206,7 +206,7 @@ public class IniSesionControll implements Initializable {
 			//cargo el orden del dia en los labels
 			lbl_punto.setText(""+orden1.getNumeroPunto());
 			label_titulo.setText(orden1.getTema());
-			label_proponente.setText(orden1.getProponente());
+			label_proponente.setText(orden1.getProponente_nombre());
 			
 			@SuppressWarnings("rawtypes")
 			TableColumn num_punto = new TableColumn("#");
@@ -214,7 +214,7 @@ public class IniSesionControll implements Initializable {
 			num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 	 
 	        @SuppressWarnings("rawtypes")
-			TableColumn descripcion = new TableColumn("Descripción");
+			TableColumn descripcion = new TableColumn("Descripciï¿½n");
 	        descripcion.setMinWidth(900);
 	        descripcion.setCellValueFactory(
 	                new PropertyValueFactory<>("tema"));
@@ -230,7 +230,7 @@ public class IniSesionControll implements Initializable {
 			tabla_ordenDia.setItems(datos);
 			
 			/*List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
-			TableColumn punto = new TableColumn("Documentación perteneciente al punto");
+			TableColumn punto = new TableColumn("Documentaciï¿½n perteneciente al punto");
 			punto.setMinWidth(250);
 			punto.setCellValueFactory(
 	                new PropertyValueFactory<>("punto"));
@@ -272,7 +272,7 @@ public class IniSesionControll implements Initializable {
     }
 
     /**
-     * Método para poner en los textFields la tupla que selccionemos
+     * Mï¿½todo para poner en los textFields la tupla que selccionemos
      */
     @SuppressWarnings("unchecked")
 	private void ponerPersonaSeleccionada() {
@@ -283,12 +283,12 @@ public class IniSesionControll implements Initializable {
         	
         	puntoATratar.num_punto= String.valueOf(orden.getNumeroPunto());
         	puntoATratar.tema=orden.getTema();
-        	puntoATratar.proponente=orden.getProponente();
+        	puntoATratar.proponente=orden.getProponente_nombre();
         	
             // Pongo los textFields con los datos correspondientes
         	lbl_punto.setText(""+orden.getNumeroPunto());
         	label_titulo.setText(orden.getTema());
-            label_proponente.setText(orden.getProponente());
+            label_proponente.setText(orden.getProponente_nombre());
             //cargar la documentacion
             
             //socket para envio de los principales componentes al momento de dar click en el tableview
