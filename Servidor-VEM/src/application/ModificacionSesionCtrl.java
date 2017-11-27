@@ -32,7 +32,13 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 
+import gad.manta.common.ActaPdf;
+import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
+import gad.manta.common.OrdenDia;
+import gad.manta.common.Pdf;
+import gad.manta.common.Sesion;
+import gad.manta.common.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,11 +55,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import modelo.Conexion;
-import modelo.OrdenDia;
-import modelo.ActaPdf;
-import modelo.Sesion;
-import modelo.Usuario;
+
 
 public class ModificacionSesionCtrl implements Initializable{
 	/**
@@ -154,6 +156,7 @@ public class ModificacionSesionCtrl implements Initializable{
 		Sesion.llenarInformacion(conexion.getConnection(), proponentes);
 		System.out.println(proponentes);
 		cbx_proponente.setItems(proponentes);
+		cbx_proponente.setValue(proponentes.get(0));
 		conexion.cerrarConexion();
 		
 		conexion.establecerConexion();
@@ -161,6 +164,7 @@ public class ModificacionSesionCtrl implements Initializable{
 		Sesion.llenarInformacion_sesion(conexion.getConnection(), convocatoria);
 		System.out.println(convocatoria);
 		cbx_combocatoria.setItems(convocatoria);
+		
 		conexion.cerrarConexion();
 
 		try {
@@ -178,19 +182,91 @@ public class ModificacionSesionCtrl implements Initializable{
 		
 		
 	}
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     void llenar_sesion(ActionEvent  event) throws RemoteException{
     	
-
 			String a = cbx_combocatoria.getValue().getConvocatoria(); 
 	    	List<gad.manta.common.Sesion>lista_sesion=servidor.consultarSesion_Modificacion(a);
-	    
-		
-    	
-    	
-    	
+	    	cbx_tipoSes.setValue(lista_sesion.get(0).getTipo_sesion());
+	    	date.setValue(lista_sesion.get(0).getFechaIntervencion().toLocalDate());
+	    	time.setValue(LocalTime.parse(lista_sesion.get(0).getHoraIntervencion()));
+	    	
+	    	List<OrdenDia>lista_orden=servidor.consultarOrden_Modificacion(a);
+	    	
+	    	@SuppressWarnings("rawtypes")
+			TableColumn id_punto = new TableColumn("No. Punto");
+	    	id_punto.setMinWidth(50);
+	    	id_punto.setVisible(false);
+	    	id_punto.setCellValueFactory(
+	                new PropertyValueFactory<>("id"));
+			
+			@SuppressWarnings("rawtypes")
+			TableColumn num_punto = new TableColumn("No. Punto");
+			num_punto.setMinWidth(100);
+			num_punto.setCellValueFactory(
+	                new PropertyValueFactory<>("numeroPunto"));
+	        ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
+					lista_orden
+					);
+			
+			tabla.getColumns().addAll(id_punto,num_punto);
+			tabla.setItems(datos);
+			System.out.println(datos);
+			
+			
     }
+    @SuppressWarnings("unlikely-arg-type")
+	@FXML
+    public void mostrar_punto(MouseEvent  event){
    
+			List<OrdenDia> punto;
+			List<Pdf> pdf;
+			try {
+				punto = servidor.consultarPunto_Modificacion(tabla.getSelectionModel().selectedItemProperty().getValue().getId());
+				txt_descripcion.setText(punto.get(0).getTema());
+				PuntoOrden.setText(String.valueOf(punto.get(0).getNumeroPunto()));
+				int log= proponentes.size();
+				int bandera=0;
+				while(log>=1) {
+					if(punto.get(0).getProponente()==proponentes.get(bandera).getId()) {
+						cbx_proponente.setValue(proponentes.get(bandera));
+					}
+					log--;	
+					bandera++;
+				
+				}
+				pdf=servidor.consultarPDFS_Modificacion(tabla.getSelectionModel().selectedItemProperty().getValue().getId());
+				
+				int log_pdf=pdf.size();
+				System.out.println(log_pdf);
+				int bandera_2=0;
+				list_pdf.getItems().clear();
+				while(log_pdf>0) {	
+					list_pdf.getItems().add(pdf.get(bandera_2).getNombre());;
+					log_pdf--;
+					bandera++;
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+			
+				
+				
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+        	
+    }
+    
+    
     public void bloquear() {
     	txt_convocatoria.setDisable(true);
     	cbx_tipoSes.setDisable(true);
@@ -296,7 +372,7 @@ public class ModificacionSesionCtrl implements Initializable{
     			File fichero= new File(dbpath);
     			if(!fichero.exists()) {			
     				//agrega al lisview
-    				list_pdf.getItems().add(dbpath);
+    				//list_pdf.getItems().add(dbpath);
     				//copia el archivo al directorio
     				CopyOption[] opciones= new CopyOption[] {
         					StandardCopyOption.REPLACE_EXISTING,

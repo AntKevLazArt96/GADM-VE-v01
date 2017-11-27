@@ -29,7 +29,10 @@ import org.json.simple.parser.JSONParser;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 
+import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
+import gad.manta.common.Quorum;
+import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -49,11 +52,8 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import modelo.ActaPdf;
-import modelo.Asistencia;
-import modelo.Conexion;
-import modelo.Quorum;
-import modelo.Sesion;
+
+
 
 public class RegistrarAsistenciaCtrl implements Initializable {
 	private static IServidor servidor;
@@ -352,7 +352,7 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 										}
 										
 										if(lista.size()>=0) {
-											txtCumple.setText("Cumple con el mínimo de miembros para inicar la sesión");
+											txtCumple.setText("Cumple con el mï¿½nimo de miembros para inicar la sesiï¿½n");
 											
 										}
 									}

@@ -28,4 +28,8 @@ public interface IServidor extends Remote {
 	public List<OrdenDia> consultarOrden() throws RemoteException;
 	public List<Documentacion> mostrarDocumentacion() throws RemoteException;
 	public List<Sesion> consultarSesion_Modificacion(String convocatoria) throws RemoteException;
+	List<OrdenDia> consultarOrden_Modificacion(String convocatoria) throws RemoteException;
+	
+	List<OrdenDia> consultarPunto_Modificacion(int id_punto) throws RemoteException;
+	List<Pdf> consultarPDFS_Modificacion(int id_punto) throws RemoteException;
 }

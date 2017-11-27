@@ -10,6 +10,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import gad.manta.common.Conexion;
+import gad.manta.common.Imagen;
+import gad.manta.common.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,9 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import modelo.Conexion;
-import modelo.Imagen;
-import modelo.Usuario;
+
 
 public class IngresoPerCtrl implements Initializable {
 
