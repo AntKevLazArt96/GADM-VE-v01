@@ -1,4 +1,4 @@
-package src.cliente;
+package cliente;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -49,7 +49,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import src.cliente.data;
+import cliente.data;
 
 public class ClientePreSesionCtrl implements Initializable  {
 	
@@ -182,11 +182,9 @@ public class ClientePreSesionCtrl implements Initializable  {
 			Image img = new Image(bis);
 			return img;
 		}
-<<<<<<< HEAD:Cliente/src/cliente/ClientePreSesionController.java
-		@SuppressWarnings("unchecked")
-=======
+	 
+	 
 		@SuppressWarnings({ "rawtypes", "unchecked" })
->>>>>>> origin/anthony:Cliente/src/cliente/ClientePreSesionCtrl.java
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 				try {

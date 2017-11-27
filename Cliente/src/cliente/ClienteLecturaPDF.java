@@ -1,4 +1,4 @@
-package src.cliente;
+package cliente;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.geom.Rectangle2D;
@@ -31,7 +31,6 @@ import com.sun.pdfview.PagePanel;
 
 import gad.manta.common.ActaPdf;
 import gad.manta.common.IServidor;
-import gad.manta.common.Pdf;
 import gad.manta.common.Usuario;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;

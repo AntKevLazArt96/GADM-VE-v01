@@ -1,4 +1,4 @@
-package src.cliente;
+package cliente;
 	
 
 import javafx.application.Application;

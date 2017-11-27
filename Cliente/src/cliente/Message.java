@@ -1,4 +1,4 @@
-package src.cliente;
+package cliente;
 
 public class Message {
     private String name;

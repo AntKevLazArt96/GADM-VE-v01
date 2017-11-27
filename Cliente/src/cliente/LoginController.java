@@ -1,4 +1,4 @@
-package src.cliente;
+package cliente;
 
 import java.io.IOException;
 import java.net.URL;
@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import cliente.data;
 import gad.manta.common.IServidor;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

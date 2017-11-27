@@ -1,4 +1,4 @@
-package src.cliente;
+package cliente;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
