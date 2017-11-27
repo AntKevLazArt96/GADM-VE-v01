@@ -32,4 +32,5 @@ public interface IServidor extends Remote {
 	
 	List<OrdenDia> consultarPunto_Modificacion(int id_punto) throws RemoteException;
 	List<Pdf> consultarPDFS_Modificacion(int id_punto) throws RemoteException;
+	public ActaPdf acta_sesion(int id)throws RemoteException;
 }

@@ -22,6 +22,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import cliente.data;
+import gad.manta.common.ActaPdf;
 import gad.manta.common.Documentacion;
 import gad.manta.common.IServidor;
 import gad.manta.common.OrdenDia;
@@ -217,6 +218,7 @@ public class ClientePreSesionController implements Initializable  {
 				Sesion sesion = servidor.consultarSesion();
 				label_titulo.setText(sesion.getDescription());
 				label_convocatoria.setText(sesion.getConvocatoria());
+				data.id_pdf=sesion.getId_pdf();
 				
 				List<OrdenDia>lista_orden=servidor.consultarOrden();
 				@SuppressWarnings("rawtypes")

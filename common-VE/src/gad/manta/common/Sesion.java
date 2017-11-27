@@ -157,6 +157,14 @@ public class Sesion implements Serializable{
 		this.convocatoria=convocatoria;
 	}
 	
+	
+	public Sesion(String convocatoria, String description, int id_pdf) {
+		this.convocatoria = convocatoria;
+		this.description = description;
+		this.id_pdf = id_pdf;
+	}
+
+
 	public Sesion(String convocatoria, String description, String tipo_sesion, Date fechaRegistro,
 			Date fechaIntervencion, String horaIntervencion) {
 		this.convocatoria = convocatoria;

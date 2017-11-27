@@ -28,7 +28,7 @@
                   <Font name="System Bold" size="31.0" />
                </font>
             </Label>
-            <JFXButton layoutX="1161.0" layoutY="50.0" text=" " AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
+            <JFXButton fx:id="btn_voz" layoutX="1161.0" layoutY="50.0" text=" " AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
                <graphic>
                   <MaterialDesignIconView fill="WHITE" glyphName="TEXT_TO_SPEECH" size="60.0" text="" />
                </graphic>
@@ -39,19 +39,19 @@
                </font>
             </Label>
             <Circle fx:id="cirlogin" fill="WHITE" layoutX="1093.0" layoutY="57.0" radius="42.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="15.0" />
-            <Label layoutX="822.0" layoutY="31.0" text="Ing. Moises Mantuano" textFill="WHITE" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="31.0">
+            <Label fx:id="lbl_nombre" layoutX="822.0" layoutY="31.0" text="Ing. Moises Mantuano" textFill="WHITE" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="31.0">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Label layoutX="837.0" layoutY="58.0" text="Consejal name###" textFill="WHITE" AnchorPane.rightAnchor="295.0" AnchorPane.topAnchor="58.0">
+            <Label layoutX="809.0" layoutY="60.0" text="Consejal " textFill="WHITE" AnchorPane.rightAnchor="399.0" AnchorPane.topAnchor="60.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="590.0" prefWidth="335.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
+      <AnchorPane prefHeight="590.0" prefWidth="335.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="925.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="69.0" layoutY="43.0" text="Notas" textFill="#212121" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0">
@@ -64,10 +64,10 @@
             </Label>
             <TextArea layoutX="23.0" layoutY="71.0" prefHeight="405.0" prefWidth="290.0" wrapText="true" AnchorPane.bottomAnchor="113.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="72.0">
                <font>
-                  <Font size="20.0" />
+                  <Font size="14.0" />
                </font>
             </TextArea>
-            <JFXButton fx:id="btn_examinarActa" layoutX="49.0" layoutY="497.0" onAction="#onExaActa" prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: #00bcd4;" text="Guardar notas" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+            <JFXButton fx:id="guardarNotas" layoutX="49.0" layoutY="497.0" prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: #00bcd4;" text="Guardar notas" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -75,7 +75,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_examinarActa1" layoutX="44.0" layoutY="539.0" onAction="#onExaActa" prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: #00bcd4;" text="Regresar a la pantalla anterior" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
+            <JFXButton fx:id="regresar" layoutX="44.0" layoutY="539.0" onAction="#regresar" prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: #00bcd4;" text="Regresar a la pantalla anterior" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -93,7 +93,7 @@
             <DropShadow color="#a8a8a8" />
          </effect>
          <children>
-            <StackPane fx:id="leftAnchorPane" prefHeight="540.0" prefWidth="891.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <StackPane fx:id="leftAnchorPane" prefHeight="540.0" prefWidth="891.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <ScrollPane prefHeight="540.0" prefWidth="855.0">
                     <content>

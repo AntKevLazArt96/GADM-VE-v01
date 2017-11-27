@@ -324,7 +324,7 @@ begin
 end;
 $$
 LANGUAGE plpgsql;
-
+select * from Sesion_VE
 
 --ingresar OD 
 create or replace function ingresar_orden_dia(varchar,integer,varchar,integer)

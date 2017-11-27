@@ -2,28 +2,50 @@ package cliente;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.geom.Rectangle2D;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.RandomAccessFile;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
+import java.util.UUID;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import com.jfoenix.controls.JFXButton;
 import com.sun.pdfview.PDFFile;
 import com.sun.pdfview.PDFPage;
 import com.sun.pdfview.PagePanel;
+
+import gad.manta.common.ActaPdf;
+import gad.manta.common.IServidor;
+import gad.manta.common.Pdf;
+import gad.manta.common.Usuario;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
 public class ClienteLecturaPDF extends JFrame implements  Initializable {
 	/**
@@ -34,6 +56,14 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 	private int pagina;
 	private int paginas;
 	static java.awt.Image image;
+
+	private static IServidor servidor;
+	@FXML
+    private Circle cirlogin;
+	@FXML
+    private Label lbl_nombre;
+	@FXML
+    private JFXButton btn_voz;
 	
 	@FXML
     private JFXButton btn_anterior;
@@ -41,6 +71,11 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
     private JFXButton btn_siguiente;
     @FXML 
     private StackPane  leftAnchorPane;
+    @FXML
+    private JFXButton regresar;
+    
+    @FXML
+    private JFXButton guardarNotas;
     
     SwingNode swingNode = new SwingNode();
 	PagePanel panel = new PagePanel();
@@ -57,6 +92,13 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 	    }
 	 
 	 @FXML
+	 private void regresar(){
+		 Stage stage = (Stage) regresar.getScene().getWindow();
+		    // do what you have to do
+		    stage.close();
+	    }
+	 
+	 @FXML
 	 private  void atras(){
 		 	pagina -= 1;
 			if (pagina > paginas || pagina < 1) {
@@ -65,19 +107,69 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 			viewPage();
 	 }
 	 
-	  
+	 public Image convertirImg(byte[] bytes) throws IOException {
+			ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+			
+			Image img = new Image(bis);
+			return img;
+		}
+	 
+	 public String convertirPdf(byte[] bytes) throws IOException {
+			String tmpDir=System.getProperty("user.dir")+"\\temp\\";
+			String tmpFileName= UUID.randomUUID().toString();
+			if(!new File(tmpDir).exists()) {
+				if(!new File(tmpDir).mkdirs()) {
+					System.out.print("Imposibe crear directorio temporal");
+					return null;
+				}
+				
+			}
+			OutputStream out = new FileOutputStream(tmpDir+tmpFileName+".pdf");
+			out.write(bytes);
+			out.close();
+			System.out.print(tmpDir+tmpFileName);
+			File file= new File(tmpDir+tmpFileName+".pdf");
+			file.deleteOnExit();
+			
+			return file.getPath();
+		}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		
+		try {
+			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+		} catch (MalformedURLException | RemoteException | NotBoundException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+	
+	lbl_nombre.setText(data.name);
+	
+	try {
+		Usuario user = servidor.usuario(data.name);
+		Image im = convertirImg(user.getImg());
+        cirlogin.setFill(new ImagePattern(im));
+        cirlogin.setStroke(Color.SEAGREEN);
+        cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
+	
+	} catch (RemoteException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
 		
 		try
 		{
-			
-			
-			File file = new File("C:\\Users\\chris\\Desktop\\471App.pdf"); 
+		
+			ActaPdf acta_pdf= servidor.acta_sesion(data.id_pdf);
+			System.out.println(data.id_pdf);
 			// Ubicación del archivo pdf
-			RandomAccessFile raf = new RandomAccessFile(file, "r");
+			File  n = new File(convertirPdf(acta_pdf.getPdf()));
+			RandomAccessFile raf = new RandomAccessFile(n, "r");
 			FileChannel channel = raf.getChannel();
 			ByteBuffer buf = channel.map(FileChannel.MapMode.READ_ONLY,  0, channel.size());
 			pdffile = new PDFFile(buf);

@@ -116,7 +116,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TableView fx:id="table_documentacion" layoutX="676.0" layoutY="460.0" prefHeight="108.0" prefWidth="674.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="579.0" AnchorPane.topAnchor="460.0" />
+            <TableView fx:id="table_documentacion" layoutX="676.0" layoutY="437.0" prefHeight="141.0" prefWidth="674.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="579.0" AnchorPane.topAnchor="437.0" />
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />

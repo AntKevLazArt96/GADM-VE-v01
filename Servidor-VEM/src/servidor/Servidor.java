@@ -4,6 +4,7 @@ package servidor;
 
 import java.rmi.RemoteException;
 
+import gad.manta.common.ActaPdf;
 import gad.manta.common.Documentacion;
 import gad.manta.common.IServidor;
 import gad.manta.common.OrdenDia;
@@ -105,7 +106,28 @@ public class Servidor implements IServidor {
 		}
 		
 		
-	}	
+	}
+	@Override
+	public ActaPdf acta_sesion(int id)  {
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select * from acta_ve where id_pdf="+id+";");
+			resultado.next();
+			ActaPdf user = new ActaPdf(resultado.getInt(1),resultado.getString(2),resultado.getBytes(3));
+			db.close();
+			return user;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
 	
 	@Override
 	public List<Usuario> listaUsuarios() throws RemoteException {
@@ -267,10 +289,10 @@ public class Servidor implements IServidor {
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
-			ResultSet resultado = st.executeQuery("select convocatoria_sesion,description_sesion from Sesion_VE where intervention_sesion='"+annio+"-"+mes+"-"+dia+"';");
+			ResultSet resultado = st.executeQuery("select convocatoria_sesion,description_sesion ,id_pdf from Sesion_VE where intervention_sesion='"+annio+"-"+mes+"-"+dia+"';");
 			
 			resultado.next();
-			Sesion sesion = new Sesion(resultado.getString(1),resultado.getString(2));
+			Sesion sesion = new Sesion(resultado.getString(1),resultado.getString(2),resultado.getInt(3));
 			db.close();
 			
 			return sesion;	

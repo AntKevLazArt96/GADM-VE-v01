@@ -8,4 +8,5 @@ public class data {
     public static String titulo;
     public static String convocatoria;
     public static Image imagen;
+    public static int id_pdf;
 }

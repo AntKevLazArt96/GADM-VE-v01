@@ -23,6 +23,10 @@ public class Pdf implements Serializable{
 	
 	
 	
+	public Pdf(int id) {
+		super();
+		this.id = id;
+	}
 	public Pdf(int id, int id_orden_dia, String ruta_pdf, byte pdf) {
 		super();
 		this.id = id;
