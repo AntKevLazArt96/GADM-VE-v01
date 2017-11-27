@@ -31,6 +31,7 @@ import com.sun.pdfview.PagePanel;
 
 import gad.manta.common.ActaPdf;
 import gad.manta.common.IServidor;
+import gad.manta.common.Pdf;
 import gad.manta.common.Usuario;
 import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
@@ -114,7 +115,7 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 		}
 	 
 	 public String convertirPdf(byte[] bytes) throws IOException {
-			String tmpDir=System.getProperty("user.dir")+"\\temp\\";
+			String tmpDir=System.getProperty("user.dir")+"\\tmp\\";
 			String tmpFileName= UUID.randomUUID().toString();
 			if(!new File(tmpDir).exists()) {
 				if(!new File(tmpDir).mkdirs()) {
@@ -126,7 +127,6 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 			OutputStream out = new FileOutputStream(tmpDir+tmpFileName+".pdf");
 			out.write(bytes);
 			out.close();
-			System.out.print(tmpDir+tmpFileName);
 			File file= new File(tmpDir+tmpFileName+".pdf");
 			file.deleteOnExit();
 			
@@ -164,10 +164,22 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 		try
 		{
 		
-			ActaPdf acta_pdf= servidor.acta_sesion(data.id_pdf);
-			System.out.println(data.id_pdf);
+			
+			
+			File  n;
 			// Ubicación del archivo pdf
-			File  n = new File(convertirPdf(acta_pdf.getPdf()));
+			if(data.id_acta==0) {
+				
+				Pdf pdf = servidor.pdf_punto(data.id_pdf);
+				n = new File(convertirPdf(pdf.getPdf()));
+				
+			}else {
+				ActaPdf acta_pdf= servidor.acta_sesion(data.id_acta);
+				n = new File(convertirPdf(acta_pdf.getPdf()));
+			}
+			
+			
+			
 			RandomAccessFile raf = new RandomAccessFile(n, "r");
 			FileChannel channel = raf.getChannel();
 			ByteBuffer buf = channel.map(FileChannel.MapMode.READ_ONLY,  0, channel.size());

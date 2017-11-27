@@ -135,6 +135,27 @@ public class Servidor implements IServidor {
 		
 		
 	}
+	@Override
+	public Pdf pdf_punto(int id)  {
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select * from pdf_ve where id_pdf="+id+";");
+			resultado.next();
+			Pdf user = new Pdf(resultado.getInt(1),resultado.getInt(2),resultado.getString(3),resultado.getBytes(4));
+			db.close();
+			return user;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+	}
 	
 	@Override
 	public List<Usuario> listaUsuarios() throws RemoteException {
@@ -507,10 +528,11 @@ public class Servidor implements IServidor {
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
-			ResultSet resultado = st.executeQuery("select numpunto_ordendia, nombre_pdf,nombre_pdf from Sesion_VE as s	inner join OrdenDia_VE as od on s.convocatoria_sesion=od.convocatoria_sesion inner join Pdf_VE as p on p.id_ordendia=od.id_ordendia where s.intervention_sesion='"+annio+"-"+mes+"-"+dia+"';");
+			ResultSet resultado = st.executeQuery("select p.id_pdf,numpunto_ordendia, nombre_pdf from Sesion_VE as s	inner join OrdenDia_VE as od on s.convocatoria_sesion=od.convocatoria_sesion inner join Pdf_VE as p on p.id_ordendia=od.id_ordendia where s.intervention_sesion='"+annio+"-"+mes+"-"+dia+"';");
 			while (resultado.next()) {
 				
-			    lista_documentacion.add(new Documentacion(resultado.getInt(1),resultado.getString(2),resultado.getBytes(3)));
+			    lista_documentacion.add(new Documentacion(resultado.getInt(1),resultado.getInt(2),resultado.getString(3)));
+			    System.out.println(resultado.getInt(1));
 			}
 			db.close();
 			}catch(Exception e) {

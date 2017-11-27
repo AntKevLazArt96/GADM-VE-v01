@@ -24,6 +24,7 @@ import gad.manta.common.ActaPdf;
 import gad.manta.common.Documentacion;
 import gad.manta.common.IServidor;
 import gad.manta.common.OrdenDia;
+import gad.manta.common.Pdf;
 import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
 import javafx.application.Platform;
@@ -91,7 +92,7 @@ public class ClientePreSesionCtrl implements Initializable  {
     
     @FXML
     private JFXButton btn_pdf;
-	
+    Sesion sesion;
 	//inicializamos socket
 	 public ClientePreSesionCtrl() {
 	        try {
@@ -221,7 +222,7 @@ public class ClientePreSesionCtrl implements Initializable  {
 				Sesion sesion = servidor.consultarSesion();
 				label_titulo.setText(sesion.getDescription());
 				label_convocatoria.setText(sesion.getConvocatoria());
-				data.id_pdf=sesion.getId_pdf();
+				data.id_acta=sesion.getId_pdf();
 				
 				List<OrdenDia>lista_orden=servidor.consultarOrden();
 				@SuppressWarnings("rawtypes")
@@ -245,8 +246,15 @@ public class ClientePreSesionCtrl implements Initializable  {
 						);
 				tabla_ordenDia.getColumns().addAll(num_punto,descripcion,proponente);
 				tabla_ordenDia.setItems(datos);
-		
+				@SuppressWarnings("rawtypes")
 				List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
+				 @SuppressWarnings("rawtypes")
+			        TableColumn pdf = new TableColumn("id");
+			        pdf.setMinWidth(500);
+			        pdf.setVisible(false);
+			        pdf.setCellValueFactory(
+			                new PropertyValueFactory<>("id_pdf"));
+			        
 				@SuppressWarnings("rawtypes")
 				TableColumn punto = new TableColumn("Documentación perteneciente al punto");
 				punto.setMinWidth(250);
@@ -259,16 +267,11 @@ public class ClientePreSesionCtrl implements Initializable  {
 		        
 		        nombre.setCellValueFactory(
 		                new PropertyValueFactory<>("nombre"));
-		        @SuppressWarnings("rawtypes")
-		        TableColumn pdf = new TableColumn("Pdf");
-		        pdf.setMinWidth(500);
-		        pdf.setVisible(false);
-		        pdf.setCellValueFactory(
-		                new PropertyValueFactory<>("pdf"));
+		       
 				ObservableList<Documentacion> datos_pdf = FXCollections.observableArrayList(
 						lista_documentacion
 						);
-				table_documentacion.getColumns().addAll(punto,nombre,pdf);
+				table_documentacion.getColumns().addAll(pdf,punto,nombre);
 				
 				table_documentacion.setItems(datos_pdf);
 		
@@ -286,13 +289,48 @@ public class ClientePreSesionCtrl implements Initializable  {
 	    	
 	    	
 	    }
-		
 		@FXML
-	    void mostrar_pdf(ActionEvent event) {
+	    void mostrar_acta(ActionEvent event) {
+			
+			Stage newStage = new Stage();
+			AnchorPane pane;
+			try {
+				data.id_acta=sesion.getId_pdf();
+				pane = (AnchorPane)FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+				Scene scene = new Scene(pane);
+		        
+		        //Pantalla completa
+		        Screen screen = Screen.getPrimary();
+				Rectangle2D bounds = screen.getVisualBounds();
+				
+				newStage.setX(bounds.getMinX());
+				newStage.setY(bounds.getMinY());
+				newStage.setWidth(bounds.getWidth());
+				newStage.setHeight(bounds.getHeight());
+		        
+		        newStage.setScene(scene);
+		        newStage.initStyle(StageStyle.UNDECORATED);
+		        newStage.show();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+
+	    }
+		@FXML
+	    void mostrar_pdf(MouseEvent event) {
+			
 			Stage newStage = new Stage();
 			
 			AnchorPane pane;
 			try {
+				
+				data.id_acta=0;
+				data.id_pdf=table_documentacion.getSelectionModel().selectedItemProperty().get().getId_pdf();
+				System.out.println(data.id_pdf);
+				
 				pane = (AnchorPane)FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
 				Scene scene = new Scene(pane);
 		        

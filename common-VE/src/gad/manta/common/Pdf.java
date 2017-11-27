@@ -19,21 +19,29 @@ public class Pdf implements Serializable{
 	private int id_orden_dia;
 	private String nombre;
 	private String ruta_pdf;
-	private Byte pdf;
+	private byte[] pdf;
 	
 	
 	
+	public byte[] getPdf() {
+		return pdf;
+	}
+	public void setPdf(byte[] pdf) {
+		this.pdf = pdf;
+	}
 	public Pdf(int id) {
 		super();
 		this.id = id;
 	}
-	public Pdf(int id, int id_orden_dia, String ruta_pdf, byte pdf) {
+	
+	public Pdf(int id, int id_orden_dia, String nombre, byte[] pdf) {
 		super();
 		this.id = id;
 		this.id_orden_dia = id_orden_dia;
-		this.ruta_pdf = ruta_pdf;
+		this.nombre = nombre;
 		this.pdf = pdf;
 	}
+
 	public Pdf(int id, int id_orden_dia, String ruta_pdf) {
 		this.id = id;
 		this.id_orden_dia = id_orden_dia;
@@ -45,12 +53,7 @@ public class Pdf implements Serializable{
 		this.id = id;
 		this.nombre = nombre;
 	}
-	public Byte getPdf() {
-		return pdf;
-	}
-	public void setPdf(Byte pdf) {
-		this.pdf = pdf;
-	}
+	
 	public int getId() {
 		return id;
 	}
