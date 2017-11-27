@@ -1,6 +1,6 @@
 package cliente;
 
-public class Message {
+public class Mensage {
     private String name;
     private String message;
 

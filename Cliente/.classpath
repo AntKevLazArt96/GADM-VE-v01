@@ -4,8 +4,8 @@
 	<classpathentry exported="true" kind="lib" path="C:/librerias/fontawesomefx-8.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/librerias/jfoenix.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/librerias/pdf-renderer-1.0.5.jar"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/common-VE"/>
-	<classpathentry kind="lib" path="C:/librerias/json-simple-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/librerias/json-simple-1.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

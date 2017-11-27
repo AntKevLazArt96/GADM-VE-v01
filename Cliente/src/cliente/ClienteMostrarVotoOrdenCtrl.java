@@ -93,7 +93,7 @@ public class ClienteMostrarVotoOrdenCtrl implements Initializable {
                         String newMsgJson = dis.readUTF();
 
                         System.out.println("RE : " + newMsgJson);
-                        Message newMsg = new Message();
+                        Mensage newMsg = new Mensage();
 
                         Object obj = parser.parse(newMsgJson);
                         JSONObject msg = (JSONObject) obj;
