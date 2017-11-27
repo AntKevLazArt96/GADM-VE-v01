@@ -1,7 +1,4 @@
 package servidor;
-
-
-
 import java.rmi.RemoteException;
 
 import gad.manta.common.ActaPdf;
