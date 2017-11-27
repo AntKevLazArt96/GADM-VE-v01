@@ -357,10 +357,15 @@ end
 $$
 LANGUAGE plpgsql VOLATILE;
 
-select *from asistencia_concejales(1);
+select *from asistencia_concejales(3);
 select *from Sesion_VE;
 select *from User_VE;
-select convocatoria_sesion,description_sesion from Sesion_VE where intervention_sesion='20/11/2017';
+select convocatoria_sesion,description_sesion from Sesion_VE where intervention_sesion='23/11/2017';
+
+select *from OrdenDia_VE
+
+insert into OrdenDia_VE (convocatoria_sesion,numpunto_ordendia,descrip_ordendia,id_user)values
+('016-2017',2,'Conocimiento de la no se que cosa que paso ayer',2);
 
 --update User_VE set username_user='concejal2' where id_user = 3
 

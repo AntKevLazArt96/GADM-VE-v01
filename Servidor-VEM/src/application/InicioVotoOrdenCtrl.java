@@ -1,5 +1,6 @@
 package application;
 
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -187,7 +188,13 @@ public class InicioVotoOrdenCtrl implements Initializable {
       DataOutputStream dos;
       DataInputStream dis;
   	
-  	
+    //meotodo para convertir la la imagen
+      public Image convertirImg(byte[] bytes) throws IOException {
+  		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+  		
+  		Image img = new Image(bis);
+  		return img;
+  	}
   	//inicializamos socket
       public InicioVotoOrdenCtrl() {
   		
@@ -247,26 +254,30 @@ public class InicioVotoOrdenCtrl implements Initializable {
   									
   									
   									for (int i = 0; i < lista.size(); i++) {
-  	                            		img1.setVisible(true);
-  										user1.setVisible(true);
+  										img1.setVisible(true);
+  										img1.setImage(convertirImg(lista.get(i).getImg()));
+										user1.setVisible(true);
   										user1.setText(lista.get(0).getNombre());
   										status1.setText(lista.get(0).getVoto());
   										status1.setVisible(true);
   										if(lista.size()==2) {
-  											img2.setVisible(true);
-  											user2.setText(lista.get(1).getNombre());
+  		                            		img2.setImage(convertirImg(lista.get(i).getImg()));
+  		                            		img2.setVisible(true);
+  		                            		user2.setText(lista.get(1).getNombre());
   											user2.setVisible(true);
   											status2.setText(lista.get(1).getVoto());
   											status2.setVisible(true);
   										}
   										if(lista.size()==3) {
-  											img3.setVisible(true);
-  											user3.setText(lista.get(2).getNombre());
+  		                            		img3.setImage(convertirImg(lista.get(i).getImg()));
+  		                            		img3.setVisible(true);
+  		                            		user3.setText(lista.get(2).getNombre());
   											user3.setVisible(true);
   											status3.setText(lista.get(2).getVoto());
   											status3.setVisible(true);
   										}
   										if(lista.size()==4) {
+  											img4.setImage(convertirImg(lista.get(i).getImg()));
   											img4.setVisible(true);
   											user4.setText(lista.get(3).getNombre());
   											user4.setVisible(true);
@@ -274,13 +285,15 @@ public class InicioVotoOrdenCtrl implements Initializable {
   											status4.setVisible(true);
   										}
   										if(lista.size()==5) {
-  											img5.setVisible(true);
-  											user5.setText(lista.get(4).getNombre());
+  		                            		img5.setImage(convertirImg(lista.get(i).getImg()));
+  		                            		img5.setVisible(true);
+  		                            		user5.setText(lista.get(4).getNombre());
   											user5.setVisible(true);
   											status5.setText(lista.get(4).getVoto());
   											status5.setVisible(true);
   										}
   										if(lista.size()==6) {
+  											img6.setImage(convertirImg(lista.get(i).getImg()));
   											img6.setVisible(true);
   											user6.setText(lista.get(5).getNombre());
   											user6.setVisible(true);
@@ -288,6 +301,7 @@ public class InicioVotoOrdenCtrl implements Initializable {
   											status6.setVisible(true);
   										}
   										if(lista.size()==7) {
+  											img7.setImage(convertirImg(lista.get(i).getImg()));
   											img7.setVisible(true);
   											user7.setText(lista.get(6).getNombre());
   											user7.setVisible(true);
@@ -295,6 +309,7 @@ public class InicioVotoOrdenCtrl implements Initializable {
   											status7.setVisible(true);
   										}
   										if(lista.size()==8) {
+  											img8.setImage(convertirImg(lista.get(i).getImg()));
   											img8.setVisible(true);
   											user8.setText(lista.get(7).getNombre());
   											user8.setVisible(true);
@@ -302,6 +317,7 @@ public class InicioVotoOrdenCtrl implements Initializable {
   											status8.setVisible(true);
   										}
   										if(lista.size()==9) {
+  											img9.setImage(convertirImg(lista.get(i).getImg()));
   											img9.setVisible(true);
   											user9.setText(lista.get(8).getNombre());
   											user9.setVisible(true);
@@ -309,6 +325,7 @@ public class InicioVotoOrdenCtrl implements Initializable {
   											status9.setVisible(true);
   										}
   										if(lista.size()==10) {
+  											img10.setImage(convertirImg(lista.get(i).getImg()));
   											img10.setVisible(true);
   											user10.setText(lista.get(9).getNombre());
   											user10.setVisible(true);
@@ -316,6 +333,7 @@ public class InicioVotoOrdenCtrl implements Initializable {
   											status10.setVisible(true);
   										}
   										if(lista.size()==11) {
+  											img11.setImage(convertirImg(lista.get(i).getImg()));
   											img11.setVisible(true);
   											user11.setText(lista.get(10).getNombre());
   											user11.setVisible(true);
@@ -323,6 +341,7 @@ public class InicioVotoOrdenCtrl implements Initializable {
   											status11.setVisible(true);
   										}
   										if(lista.size()==12) {
+  											img12.setImage(convertirImg(lista.get(i).getImg()));
   											img12.setVisible(true);
   											user12.setText(lista.get(11).getNombre());
   											user12.setVisible(true);
@@ -343,7 +362,10 @@ public class InicioVotoOrdenCtrl implements Initializable {
   								} catch (RemoteException e) {
   									// TODO Auto-generated catch block
   									e.printStackTrace();
-  								}                       
+  								} catch (IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}                       
                               }
                           });
                                                   

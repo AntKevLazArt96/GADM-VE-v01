@@ -6,7 +6,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import Server.Server;
 import gad.manta.common.IServidor;
 import gad.manta.common.Utils;
 import javafx.application.Application;

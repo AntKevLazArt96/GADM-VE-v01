@@ -16,6 +16,10 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/anthony
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -47,6 +51,9 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/anthony
 import modelo.Asistencia;
 import modelo.Conexion;
 import modelo.Quorum;
@@ -222,7 +229,7 @@ public class QuorumCtrl implements Initializable {
             sock = new Socket(data.ip, data.port);
             dos = new DataOutputStream(sock.getOutputStream());
             dis = new DataInputStream(sock.getInputStream());
-
+            //Enviamos al sistema el nombre de la secretaria
             dos.writeUTF(data.name);
             System.out.println(data.name);
             /*
@@ -251,6 +258,7 @@ public class QuorumCtrl implements Initializable {
                             @Override
                             public void run() {
                             	try {
+                            		//lista en rmi
 									List<Usuario> lista = servidor.consultaQuorum();
 									
 									lblpresentes.setText(String.valueOf(lista.size()));
@@ -261,125 +269,126 @@ public class QuorumCtrl implements Initializable {
 									Asistencia asistencia;
 									for (int i = 0; i < lista.size(); i++) {
 										img1.setVisible(true);
-	                            		img1.setImage(convertirImg(lista.get(0).getImg()));
+	                            		img1.setImage(convertirImg(lista.get(i).getImg()));
 										user1.setVisible(true);
-										user1.setText(lista.get(0).getNombre());
-										status1.setText(lista.get(0).getStatus());
+										user1.setText(lista.get(i).getNombre());
+										status1.setText(lista.get(i).getStatus());
 										status1.setVisible(true);
-										asistencia = new Asistencia(lista.get(0).getId());
+										asistencia = new Asistencia(lista.get(i).getId());
 										asistencia.tomarAsistencia(conexion.getConnection());
 										
-										if(lista.size()==2) {
-											img2.setImage(convertirImg(lista.get(1).getImg()));
+										if(i==1) {
+											img2.setImage(convertirImg(lista.get(i).getImg()));
 											img2.setVisible(true);
-											user2.setText(lista.get(1).getNombre());
+											user2.setText(lista.get(i).getNombre());
 											user2.setVisible(true);
-											status2.setText(lista.get(1).getStatus());
+											status2.setText(lista.get(i).getStatus());
 											status2.setVisible(true);
 											asistencia = new Asistencia(lista.get(1).getId());
 											asistencia.tomarAsistencia(conexion.getConnection());
 											
 										}
-										if(lista.size()==3) {
-											img3.setImage(convertirImg(lista.get(2).getImg()));
+										
+										if(i==2) {
+											img3.setImage(convertirImg(lista.get(i).getImg()));
 											img3.setVisible(true);
-											user3.setText(lista.get(2).getNombre());
+											user3.setText(lista.get(i).getNombre());
 											user3.setVisible(true);
-											status3.setText(lista.get(2).getStatus());
+											status3.setText(lista.get(i).getStatus());
 											status3.setVisible(true);
 											asistencia = new Asistencia(lista.get(2).getId());
 											asistencia.tomarAsistencia(conexion.getConnection());
 											
 										}
-										if(lista.size()==4) {
-											img4.setImage(convertirImg(lista.get(3).getImg()));
+										if(i==3) {
+											img4.setImage(convertirImg(lista.get(i).getImg()));
 											img4.setVisible(true);
-											user4.setText(lista.get(3).getNombre());
+											user4.setText(lista.get(i).getNombre());
 											user4.setVisible(true);
-											status4.setText(lista.get(3).getStatus());
+											status4.setText(lista.get(i).getStatus());
 											status4.setVisible(true);
-											asistencia = new Asistencia(lista.get(3).getId());
+											asistencia = new Asistencia(lista.get(i).getId());
 											asistencia.tomarAsistencia(conexion.getConnection());
 											
 										}
-										if(lista.size()==5) {
-											img5.setImage(convertirImg(lista.get(4).getImg()));
+										if(i==4) {
+											img5.setImage(convertirImg(lista.get(i).getImg()));
 											img5.setVisible(true);
-											user5.setText(lista.get(4).getNombre());
+											user5.setText(lista.get(i).getNombre());
 											user5.setVisible(true);
-											status5.setText(lista.get(4).getStatus());
+											status5.setText(lista.get(i).getStatus());
 											status5.setVisible(true);
 											asistencia = new Asistencia(lista.get(4).getId());
 											asistencia.tomarAsistencia(conexion.getConnection());
 										}
-										if(lista.size()==6) {
-											img6.setImage(convertirImg(lista.get(5).getImg()));
+										if(i==5) {
+											img6.setImage(convertirImg(lista.get(i).getImg()));
 											img6.setVisible(true);
-											user6.setText(lista.get(5).getNombre());
+											user6.setText(lista.get(i).getNombre());
 											user6.setVisible(true);
-											status6.setText(lista.get(5).getStatus());
+											status6.setText(lista.get(i).getStatus());
 											status6.setVisible(true);
-											asistencia = new Asistencia(lista.get(5).getId());
+											asistencia = new Asistencia(lista.get(i).getId());
 											asistencia.tomarAsistencia(conexion.getConnection());
 										}
-										if(lista.size()==7) {
-											img7.setImage(convertirImg(lista.get(6).getImg()));
+										if(i==6) {
+											img7.setImage(convertirImg(lista.get(i).getImg()));
 											img7.setVisible(true);
-											user7.setText(lista.get(6).getNombre());
+											user7.setText(lista.get(i).getNombre());
 											user7.setVisible(true);
-											status7.setText(lista.get(6).getStatus());
+											status7.setText(lista.get(i).getStatus());
 											status7.setVisible(true);
-											asistencia = new Asistencia(lista.get(6).getId());
+											asistencia = new Asistencia(lista.get(i).getId());
 											asistencia.tomarAsistencia(conexion.getConnection());
 										}
-										if(lista.size()==8) {
-											img8.setImage(convertirImg(lista.get(7).getImg()));
+										if(i==7) {
+											img8.setImage(convertirImg(lista.get(i).getImg()));
 											img8.setVisible(true);
-											user8.setText(lista.get(7).getNombre());
+											user8.setText(lista.get(i).getNombre());
 											user8.setVisible(true);
-											status8.setText(lista.get(7).getStatus());
+											status8.setText(lista.get(i).getStatus());
 											status8.setVisible(true);
-											asistencia = new Asistencia(lista.get(7).getId());
+											asistencia = new Asistencia(lista.get(i).getId());
 											asistencia.tomarAsistencia(conexion.getConnection());
 										}
-										if(lista.size()==9) {
-											img9.setImage(convertirImg(lista.get(8).getImg()));
+										if(i==8) {
+											img9.setImage(convertirImg(lista.get(i).getImg()));
 											img9.setVisible(true);
-											user9.setText(lista.get(8).getNombre());
+											user9.setText(lista.get(i).getNombre());
 											user9.setVisible(true);
-											status9.setText(lista.get(8).getStatus());
+											status9.setText(lista.get(i).getStatus());
 											status9.setVisible(true);
-											asistencia = new Asistencia(lista.get(8).getId());
+											asistencia = new Asistencia(lista.get(i).getId());
 											asistencia.tomarAsistencia(conexion.getConnection());
 										}
-										if(lista.size()==10) {
-											img10.setImage(convertirImg(lista.get(9).getImg()));
+										if(i==9) {
+											img10.setImage(convertirImg(lista.get(i).getImg()));
 											img10.setVisible(true);
-											user10.setText(lista.get(9).getNombre());
+											user10.setText(lista.get(i).getNombre());
 											user10.setVisible(true);
-											status10.setText(lista.get(9).getStatus());
+											status10.setText(lista.get(i).getStatus());
 											status10.setVisible(true);
-											asistencia = new Asistencia(lista.get(9).getId());
+											asistencia = new Asistencia(lista.get(i).getId());
 											asistencia.tomarAsistencia(conexion.getConnection());
 										}
-										if(lista.size()==11) {
-											img11.setImage(convertirImg(lista.get(10).getImg()));
+										if(i==10) {
+											img11.setImage(convertirImg(lista.get(i).getImg()));
 											img11.setVisible(true);
-											user11.setText(lista.get(10).getNombre());
+											user11.setText(lista.get(i).getNombre());
 											user11.setVisible(true);
-											status11.setText(lista.get(10).getStatus());
+											status11.setText(lista.get(i).getStatus());
 											status11.setVisible(true);
-											asistencia = new Asistencia(lista.get(10).getId());
+											asistencia = new Asistencia(lista.get(i).getId());
 											asistencia.tomarAsistencia(conexion.getConnection());
 										}
-										if(lista.size()==12) {
-											img12.setImage(convertirImg(lista.get(11).getImg()));
+										if(i==11) {
+											img12.setImage(convertirImg(lista.get(i).getImg()));
 											img12.setVisible(true);
-											user12.setText(lista.get(11).getNombre());
+											user12.setText(lista.get(i).getNombre());
 											user12.setVisible(true);
-											estatus12.setText(lista.get(11).getStatus());
+											estatus12.setText(lista.get(i).getStatus());
 											estatus12.setVisible(true);
-											asistencia = new Asistencia(lista.get(11).getId());
+											asistencia = new Asistencia(lista.get(i).getId());
 											asistencia.tomarAsistencia(conexion.getConnection());
 										}
 										
@@ -454,6 +463,7 @@ public class QuorumCtrl implements Initializable {
 	    // do what you have to do
 	    stage.close();
     	System.out.println("finalizando asistencia");
+    	th.interrupt();
     	Stage newStage = new Stage();
 	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("RegistrarAsistencia.fxml"));
         Scene scene = new Scene(pane);   

@@ -28,9 +28,21 @@ public class Servidor implements IServidor {
 	  
   
     List<Usuario> listaUsuario = new ArrayList<>();
+    //votacion para aprobar el orden del dia propuesto
     List<Voto> listaVotantes = new ArrayList<>();
     List<Voto> listaVotoAprueba = new ArrayList<>();
     List<Voto> listaVotoRechaza = new ArrayList<>();
+    //votacion para aprobar cada punto de ser necesario
+    List<Voto> listaVotantesPunto = new ArrayList<>();
+    List<Voto> listaVotoAFavor = new ArrayList<>();
+    List<Voto> listaVotoEnContra = new ArrayList<>();
+    List<Voto> listaVotoSalvado = new ArrayList<>();
+    List<Voto> listaVotoBlanco = new ArrayList<>();
+    
+    
+    
+    
+    
     Calendar fecha = new GregorianCalendar();
     int annio = fecha.get(Calendar.YEAR);
     int mes = fecha.get(Calendar.MONTH)+1;
@@ -71,9 +83,7 @@ public class Servidor implements IServidor {
 		
 		//Para el Quorum
 		if(!username.equals("secretaria")) {
-			listaUsuario.add(new Usuario(id,usuario,"PRESENTE", img));
-			
-			
+			listaUsuario.add(new Usuario(id,usuario,"PRESENTE", img));	
 		}
 		System.out.println("el usuario se ha logueado correctamente");
 			
@@ -180,15 +190,15 @@ public class Servidor implements IServidor {
 	}
 	
 	@Override
-	public String addVoto(String usuario, String voto) throws RemoteException {
+	public String addVoto(String usuario, String voto,byte[] img) throws RemoteException {
 		// TODO Auto-generated method stub
 		if(voto.contains("APROBADO")) {
-			listaVotoAprueba.add(new Voto(usuario,voto));
+			listaVotoAprueba.add(new Voto(usuario,voto,img));
 		}
 		if(voto.contains("RECHAZADO")) {
-			listaVotoRechaza.add(new Voto(usuario,voto));
+			listaVotoRechaza.add(new Voto(usuario,voto,img));
 		}
-		listaVotantes.add(new Voto(usuario,voto));
+		listaVotantes.add(new Voto(usuario,voto,img));
 		
 		
 		return usuario;
@@ -506,15 +516,64 @@ public class Servidor implements IServidor {
 			    lista_documentacion.add(new Documentacion(resultado.getInt(1),resultado.getString(2),resultado.getBytes(3)));
 			}
 			db.close();
-				
-			
 			}catch(Exception e) {
 				System.out.println("Error: " + e.getMessage());
 				e.printStackTrace();
 			}
-		
 		return lista_documentacion;	
 		}
+	
+	
+	//Votaciones del orden del dia
+	@Override
+	public String addVotoPunto(String usuario, String voto, byte[] img) throws RemoteException {
+		// TODO Auto-generated method stub
+				if(voto.contains("FAVOR")) {
+					listaVotoAFavor.add(new Voto(usuario,voto,img));
+				}
+				if(voto.contains("CONTRA")) {
+					listaVotoEnContra.add(new Voto(usuario,voto,img));
+				}
+				if(voto.contains("SALVO")) {
+					listaVotoSalvado.add(new Voto(usuario,voto,img));
+				}
+				if(voto.contains("BLANCO")) {
+					listaVotoBlanco.add(new Voto(usuario,voto,img));
+				}
+				listaVotantesPunto.add(new Voto(usuario,voto,img));
+			
+				return usuario;
+	}
+
+	@Override
+	public List<Voto> votantesPunto() throws RemoteException {
+		// TODO Auto-generated method stub
+		return listaVotantesPunto;
+	}
+
+	@Override
+	public List<Voto> votosAFavor() throws RemoteException {
+		// TODO Auto-generated method stub
+		return listaVotoAFavor;
+	}
+
+	@Override
+	public List<Voto> votosEnContra() throws RemoteException {
+		// TODO Auto-generated method stub
+		return listaVotoEnContra;
+	}
+
+	@Override
+	public List<Voto> votosSalvados() throws RemoteException {
+		// TODO Auto-generated method stub
+		return listaVotoSalvado;
+	}
+
+	@Override
+	public List<Voto> votosBlanco() throws RemoteException {
+		// TODO Auto-generated method stub
+		return listaVotoBlanco;
+	}
 
 
 

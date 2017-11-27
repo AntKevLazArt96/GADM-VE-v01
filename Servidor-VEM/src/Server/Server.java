@@ -14,13 +14,12 @@ public class Server {
     public static DataOutputStream dos;
     DataInputStream dis;
     public ServerSocket servSock;
+    
     Server() {
-
     	System.out.println("Server in the 192.168.1.6:6666 " );
-
-        String name;
+        
+    	String name;
         Socket client;
-
         clients = new ArrayList<Client>();
 
         try {
@@ -37,8 +36,7 @@ public class Server {
                 
                 clients.add(user);
                 
-                
-                
+     
                 
                 String enter_message = "{ \"name\" : \"" + name + "\", \"status\" : \"PRESENTE" + "\"}";
                 System.out.println(enter_message);

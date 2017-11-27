@@ -68,7 +68,7 @@
       <AnchorPane layoutX="257.0" layoutY="151.0" prefHeight="543.0" prefWidth="868.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="110.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="51.0" layoutY="47.0" text="Convocatoria " textFill="#212121">
+            <Label layoutX="51.0" layoutY="47.0" text="Punto" textFill="#212121">
                <font>
                   <Font size="26.0" />
                </font>
@@ -81,7 +81,7 @@
                   <Font size="18.0" />
                </font>
             </JFXTextArea>
-            <Label fx:id="label_convocatoria2" layoutX="234.0" layoutY="47.0" text="000-0000" textFill="#212121">
+            <Label fx:id="label_convocatoria2" layoutX="151.0" layoutY="47.0" text="1" textFill="#212121">
                <font>
                   <Font size="26.0" />
                </font>

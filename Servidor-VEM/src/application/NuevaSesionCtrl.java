@@ -2,7 +2,6 @@ package application;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -17,7 +16,6 @@ import java.time.LocalTime;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -33,12 +31,15 @@ import com.jfoenix.controls.JFXTimePicker;
 import gad.manta.common.ActaPdf;
 import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
+<<<<<<< HEAD
 import gad.manta.common.OrdenDia;
 import gad.manta.common.Pdf;
 import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+=======
+>>>>>>> origin/anthony
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,7 +54,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -61,7 +61,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 
 public class NuevaSesionCtrl implements Initializable{
-	private static IServidor servidor;
+	static IServidor servidor;
 	
 	public static String convocatoria = "";
 	public static Integer idPdf = 0;
@@ -361,8 +361,9 @@ public class NuevaSesionCtrl implements Initializable{
     void mostrar_acta(MouseEvent  event) throws RemoteException{
     	
     	try {
-    		String acta="";
-    		acta=pdf_acta.getSelectionModel().selectedItemProperty().getValue();
+    		//String acta1;
+    		//acta1=
+    		pdf_acta.getSelectionModel().selectedItemProperty().getValue();
     		File path = new File (dbpath);
     	    Desktop.getDesktop().open(path);
     	}catch (IOException ex) {

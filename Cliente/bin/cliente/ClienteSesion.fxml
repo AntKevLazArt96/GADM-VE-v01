@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ClienteSesionController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ClienteSesionCtrl">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="113.0" prefWidth="1295.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -53,50 +54,53 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="227.0" layoutY="121.0" prefHeight="543.0" prefWidth="868.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="110.0">
+      <AnchorPane layoutX="214.0" layoutY="113.0" prefHeight="596.0" prefWidth="868.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="214.0" AnchorPane.rightAnchor="214.0" AnchorPane.topAnchor="110.0">
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="51.0" layoutY="47.0" text="PUNTO 1" textFill="#212121">
+            <Label layoutX="51.0" layoutY="58.0" text="PUNTO" textFill="#212121">
                <font>
                   <Font size="22.0" />
                </font>
                <graphic>
-                  <MaterialDesignIconView glyphName="LABEL" size="20.0" />
+                  <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <JFXTextArea editable="false" layoutX="50.0" layoutY="90.0" prefHeight="181.0" prefWidth="780.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="Lectura y aprobacion del Acta No. 011-2017, correspondiente a la sesion ordinaria del Consejo Municipal de Manta del dia lunes 20 de MARZO del 2017." AnchorPane.bottomAnchor="342.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="90.0">
+            <Label fx:id="lbl_punto" layoutX="152.0" layoutY="58.0" text="10" textFill="#212121">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="51.0" layoutY="99.0" prefHeight="109.0" prefWidth="780.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="Lectura y aprobacion del Acta Nggt">
                <font>
                   <Font size="18.0" />
-               </font></JFXTextArea>
-            <AnchorPane layoutX="56.0" layoutY="233.0" prefHeight="206.0" prefWidth="768.0" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="300.0">
-               <children>
-                  <Label layoutX="2.0" text="Documentacion" textFill="#212121" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <graphic>
-                        <MaterialDesignIconView fill="#212121" glyphName="BOOK_OPEN" size="20.0" />
-                     </graphic>
-                  </Label>
-                  <AnchorPane layoutX="12.0" layoutY="29.0" prefHeight="163.0" prefWidth="133.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="29.0">
-                     <children>
-                        <JFXButton layoutX="29.0" layoutY="26.0" prefHeight="99.0" prefWidth="95.0" style="-fx-background-color: #BDBDBD;" text=" " AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-                           <font>
-                              <Font size="1.0" />
-                           </font>
-                           <graphic>
-                              <MaterialDesignIconView fill="WHITE" glyphName="FILE_PDF" size="60" />
-                           </graphic>
-                        </JFXButton>
-                        <Label layoutX="25.0" layoutY="122.0" text="documento.pdf" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
+               </font>
+            </JFXTextArea>
+            <Label layoutX="51.0" layoutY="235.0" text="Proponente" textFill="#212121">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
+               </graphic>
+            </Label>
+            <Label fx:id="label_proponente" layoutX="208.0" layoutY="231.0" prefHeight="41.0" prefWidth="243.0" text="ING. ANTHONY LAZ ARTEAGA" textFill="#212121">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="51.0" layoutY="293.0" prefHeight="41.0" prefWidth="157.0" text="Documentación" textFill="#212121">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#212121" glyphName="BOOK_OPEN" size="20.0" />
+               </graphic>
+            </Label>
+            <TableView fx:id="table_documentacion" layoutX="51.0" layoutY="334.0" prefHeight="200.0" prefWidth="780.0" />
          </children>
-         <effect>
-            <DropShadow color="#a8a8a8" />
-         </effect>
       </AnchorPane>
       <AnchorPane layoutX="21.0" layoutY="683.0" prefHeight="35.0" prefWidth="1280.0" style="-fx-background-color: #0288d1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>

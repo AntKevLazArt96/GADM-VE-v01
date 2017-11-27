@@ -1,17 +1,11 @@
 package cliente;
 
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
-import java.rmi.Naming;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.util.ResourceBundle;
-
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -26,9 +20,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -38,43 +31,38 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class ClienteMostrarVotoCtrl implements Initializable {
+public class ClienteSesionCtrl implements Initializable {
+    @FXML
+    private JFXButton btn_voz;
 
-	@FXML
+    @FXML
     private Label label_convocatoria;
-	
-	@FXML
-    private Label label_convocatoria2;
-	@FXML
-    private JFXTextArea label_titulo;
-	
+    @FXML
+    private Label lbl_punto;
     @FXML
     private Circle cirlogin;
 
     @FXML
     private Label lbl_nombre;
-	
+    
     @FXML
-    private JFXButton verVoto;
+    private JFXTextArea label_titulo;
+
+    @FXML
+    private Label label_proponente;
+
+    @SuppressWarnings("rawtypes")
+	@FXML
+    private TableView table_documentacion;
     
-  //variable statica para rmi
-  	static IServidor servidor;
-  	
-  	//variables estaticas para socket
-  	public static Thread th;
-      Socket sock;
-      DataOutputStream dos;
-      DataInputStream dis;
+    public static Thread th;
+    Socket sock;
+    DataOutputStream dos;
+    DataInputStream dis;
     
-    public ClienteMostrarVotoCtrl() {
+  //inicializamos socket
+    public ClienteSesionCtrl() {
     	try {
-  			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
-  		} catch (MalformedURLException | RemoteException | NotBoundException e) {
-  			// TODO Auto-generated catch block
-  			e.printStackTrace();
-  		}
-    	
-        try {
 
             sock = new Socket(data.ip, data.port);
             dos = new DataOutputStream(sock.getOutputStream());
@@ -93,34 +81,47 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                         String newMsgJson = dis.readUTF();
 
                         System.out.println("RE : " + newMsgJson);
-                        Message newMsg = new Message();
-
+                       
                         Object obj = parser.parse(newMsgJson);
                         JSONObject msg = (JSONObject) obj;
-
-                        newMsg.setName((String) msg.get("name"));
-                        newMsg.setMessage((String) msg.get("message"));
+                        
+                        
+                        String punto =(String) msg.get("punto");
+                        String titulo = (String) msg.get("titulo");
+                        String proponente = (String) msg.get("proponente");
+                        //String documentacion = (String) msg.get("documento");
+                        String name =(String) msg.get("name");
+                        
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                            	
-                            	if(newMsg.getName().contains("APROBADO")) {
-                            		Alert mensaje = new Alert(AlertType.INFORMATION);
-                            		mensaje.setTitle("Orden del día Aprobado");
-                            		mensaje.setContentText("LA orden del día fue aprobada ahora se procedera a mostrar ");
-                            		mensaje.setHeaderText("Orden del día Aprobado");
-                            		mensaje.show();	
+                            	if(punto!=null) {
+                            		lbl_punto.setText(""+punto);
+                                	label_titulo.setText(titulo);
+                                    label_proponente.setText(proponente);
+                                    
+                                    puntoATratar.num_punto= punto;
+                            		puntoATratar.tema = titulo;
+                            		puntoATratar.proponente= proponente;
                             		
+                                    
+                            	}else {
+                            		lbl_punto.setText("Esperando...");
+                                	label_titulo.setText("Esperando...");
+                                    label_proponente.setText("Esperando...");
+                            	}
+                            	
+                            	if(name.equals("cambio de pantalla2")) {
                             		System.out.println("estoy en el cliente y se cambio de pantalla en el servidor");
-                            		Stage stage = (Stage) verVoto.getScene().getWindow();
+                            		//paso variables al voto
+                            		Stage stage = (Stage) lbl_punto.getScene().getWindow();
 								    // do what you have to do
 								    stage.close();
-                            		
-                            		Stage newStage = new Stage();
+								    Stage newStage = new Stage();
                             		
                             	    AnchorPane pane = null;
 									try {
-										pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteSesion.fxml"));
+										pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteVoto.fxml"));
 									} catch (IOException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
@@ -138,18 +139,20 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                             		newStage.setWidth(bounds.getWidth());
                             		newStage.setHeight(bounds.getHeight());
                                     
+                                    
                                     newStage.setScene(scene);
                                     newStage.initStyle(StageStyle.UNDECORATED);
                                     newStage.show();
-                            		
+                        		
                             	}
+                            
                             }
                         });
-                                                
                     }
                 } catch(Exception E) {
                     E.printStackTrace();
                 }
+
             });
 
             th.start();
@@ -157,50 +160,16 @@ public class ClienteMostrarVotoCtrl implements Initializable {
         } catch(IOException E) {
             E.printStackTrace();
         }
-
     }
     
-
     
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		//cargar header
-		
+	public void initialize(URL location, ResourceBundle resources) {
 		lbl_nombre.setText(data.name);
-		
-		
 		cirlogin.setFill(new ImagePattern(data.Imagen));
         cirlogin.setStroke(Color.SEAGREEN);
         cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
-        
-		label_titulo.setText(puntoATratar.tema);
 		label_convocatoria.setText(data.convocatoria);
-		label_convocatoria2.setText(puntoATratar.num_punto);
-		
-		
-		
-		if(data.voto.equals("FAVOR")) {
-			verVoto.setText("A FAVOR");	
-		}
-		if(data.voto.equals("RECHAZADO")) {
-			verVoto.setText("RECHAZADO");	
-			verVoto.setStyle("-fx-background-color: red;");
-		}
-		
-		try {
-			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
-		} catch (MalformedURLException | RemoteException | NotBoundException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		
-		
-	
-		
-		
-		
-		
-		
 	}
 
 }
