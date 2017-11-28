@@ -79,6 +79,9 @@ public class OrdenDia implements Serializable {
 	public OrdenDia(int id,String convocatoria, int numeroPunto, String tema , int proponente) {
 		this.id= id;
 		this.convocatoria = convocatoria;
+		this.numeroPunto = numeroPunto;
+		this.tema = tema;
+		this.proponente = proponente;
 
 	}
 	public OrdenDia(int numeroPunto, String tema, int proponente) {

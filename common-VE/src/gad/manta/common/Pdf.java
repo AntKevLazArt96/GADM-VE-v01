@@ -23,6 +23,7 @@ public class Pdf implements Serializable{
 	
 	
 	
+	
 	public byte[] getPdf() {
 		return pdf;
 	}
@@ -88,10 +89,10 @@ public class Pdf implements Serializable{
 	public int guardarRegistro_pdfs(Connection connection) throws IOException {
 		String sql = "INSERT INTO pdf_ve(id_ordendia,nombre_pdf,archivo_pdf) VALUES (?, ?, ?);";
 		try {
-			File pdf = new File(ruta_pdf);
+			File pdf = new File(nombre);
 			FileInputStream fis = new FileInputStream(pdf);
     		PreparedStatement ps = connection.prepareStatement(sql);
-    		ps.setInt(1,id_orden_dia);
+    		ps.setInt(1,id);
     		ps.setString(2, pdf.getName());
     		ps.setBinaryStream(3, fis, (int)pdf.length());
     		ps.executeUpdate();

@@ -92,7 +92,7 @@ public class ClientePreSesionCtrl implements Initializable  {
     
     @FXML
     private JFXButton btn_pdf;
-    Sesion sesion;
+    public Sesion sesion;
 	//inicializamos socket
 	 public ClientePreSesionCtrl() {
 	        try {
@@ -219,7 +219,7 @@ public class ClientePreSesionCtrl implements Initializable  {
 			
 			try {
 				
-				Sesion sesion = servidor.consultarSesion();
+				sesion = servidor.consultarSesion();
 				label_titulo.setText(sesion.getDescription());
 				label_convocatoria.setText(sesion.getConvocatoria());
 				data.id_acta=sesion.getId_pdf();

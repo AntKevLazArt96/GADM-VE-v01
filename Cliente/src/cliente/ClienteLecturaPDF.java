@@ -1,6 +1,5 @@
 package cliente;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import java.awt.geom.Rectangle2D;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -17,30 +16,29 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 import java.util.UUID;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import com.sun.pdfview.PDFFile;
 import com.sun.pdfview.PDFPage;
 import com.sun.pdfview.PagePanel;
 
 import gad.manta.common.ActaPdf;
+import gad.manta.common.Comentario;
+import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
 import gad.manta.common.Pdf;
 import gad.manta.common.Usuario;
 import javafx.embed.swing.SwingNode;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -56,7 +54,8 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 	private int pagina;
 	private int paginas;
 	static java.awt.Image image;
-
+	
+	private Conexion conexion;
 	private static IServidor servidor;
 	@FXML
     private Circle cirlogin;
@@ -77,9 +76,14 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
     @FXML
     private JFXButton guardarNotas;
     
+    @FXML
+    private JFXTextArea nota_pdf;
+    
+
+    
     SwingNode swingNode = new SwingNode();
 	PagePanel panel = new PagePanel();
-	
+	Usuario user;
 	
 	 @FXML
 	 private void siguiente(){
@@ -146,7 +150,7 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 	lbl_nombre.setText(data.name);
 	
 	try {
-		Usuario user = servidor.usuario(data.name);
+		 user = servidor.usuario(data.name);
 		Image im = convertirImg(user.getImg());
         cirlogin.setFill(new ImagePattern(im));
         cirlogin.setStroke(Color.SEAGREEN);
@@ -221,6 +225,17 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 
 	}
 	
-	
+	@FXML
+    private void guardar_comentario(ActionEvent  event) throws RemoteException, MalformedURLException, NotBoundException {
+		servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+	    
+			if(data.id_acta==0) {
+				servidor.add_nota_pdf(user.getId(),data.id_pdf,nota_pdf.getText());			
+		}else {
+			servidor.add_nota_acta(user.getId(),data.id_acta,nota_pdf.getText());
+		}
+		
+
+    } 
 
 }

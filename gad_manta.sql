@@ -159,6 +159,25 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
+CREATE TABLE public.notasActa_ve
+(
+  id_user integer NOT NULL,
+  id_acta integer NOT NULL,
+  descripcion_notas character varying NOT NULL,
+  CONSTRAINT acta_ve_notaspdf_ve_fk FOREIGN KEY (id_acta)
+      REFERENCES public.acta_ve (id_pdf) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT user_ve_notasacta_ve_fk FOREIGN KEY (id_user)
+      REFERENCES public.user_ve (id_user) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.notasActa_ve
+  OWNER TO postgres;
+--insert into notasActa_ve (id_user, id_acta, descripcion_notas)values(2,10,'sa');
+
 --drop function verificar_usuario(varchar, varchar);
 
 create or replace function verificar_usuario(in character varying,in character varying,out integer, out character varying,out bytea)
@@ -187,9 +206,9 @@ LANGUAGE plpgsql;
 select * from Img_VE;
 
 ---insertar usuarios
-insert into Img_VE(nombre_img,img)values('holi','holi');
+--insert into Img_VE(nombre_img,img)values('holi','holi');
 
-select ingresar_usuario('131560461','secretaria','LCDA. PATRICIA GONZÁLES LOPEZ','secretaria','1234',1);
+--select ingresar_usuario('131560461','secretaria','LCDA. PATRICIA GONZÁLES LOPEZ','secretaria','1234',1);
 --select ingresar_usuario('123456789','concejal','LCDA. VERONICA ABAD ARTEAGA','concejal1','1234','C://IMG/secretaria.png');
 --select ingresar_usuario('123456789','concejal','LCDA. LADY GARCÍA MEJIA','concejal2','1234','C://IMG/secretaria.png','V4443V2242');
 --select ingresar_usuario('123456789','concejal','SRA. ESTEFANIA MACIAS SUAREZ','concejal3','1234','C://IMG/secretaria.png','V4443V2242');
@@ -324,9 +343,9 @@ begin
 end;
 $$
 LANGUAGE plpgsql;
-select * from Sesion_VE
+select * from Sesion_VE;
 
---ingresar OD 
+--ingresar
 create or replace function ingresar_orden_dia(varchar,integer,varchar,integer)
 returns void as 
 $$
@@ -362,10 +381,10 @@ select *from Sesion_VE;
 select *from User_VE;
 select convocatoria_sesion,description_sesion from Sesion_VE where intervention_sesion='23/11/2017';
 
-select *from OrdenDia_VE
+select *from OrdenDia_VE;
 
-insert into OrdenDia_VE (convocatoria_sesion,numpunto_ordendia,descrip_ordendia,id_user)values
-('016-2017',2,'Conocimiento de la no se que cosa que paso ayer',2);
+--insert into OrdenDia_VE (convocatoria_sesion,numpunto_ordendia,descrip_ordendia,id_user)values
+--('016-2017',2,'Conocimiento de la no se que cosa que paso ayer',2);
 
 --update User_VE set username_user='concejal2' where id_user = 3
 

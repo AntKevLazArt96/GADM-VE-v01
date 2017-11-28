@@ -2,6 +2,7 @@ package servidor;
 import java.rmi.RemoteException;
 
 import gad.manta.common.ActaPdf;
+import gad.manta.common.Comentario;
 import gad.manta.common.Documentacion;
 import gad.manta.common.IServidor;
 import gad.manta.common.OrdenDia;
@@ -114,6 +115,46 @@ public class Servidor implements IServidor {
 		
 		
 	}
+
+	@Override
+	public void add_nota_pdf(int id_punto, int id_user, String nota)  {
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			//ejecucion y resultado de la consulta
+			st.executeUpdate("insert into notaspdf_ve (id_user, id_pdf, descripcion_notas)values("+id_punto+","+id_user+",'"+nota+"');");
+			db.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		
+		
+	}
+	@Override
+	public void add_nota_acta(int id_punto, int id_user, String nota)  {
+		Connection db;
+		try {
+			System.out.println(id_punto);
+			System.out.println(id_user);
+			System.out.println(nota);
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			//ejecucion y resultado de la consulta
+			st.executeUpdate("insert into notasActa_ve (id_user, id_acta, descripcion_notas)values("+id_punto+","+id_user+",'"+nota+"');");
+			db.close();
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+		}
+		
+		
+	}
+	
 	@Override
 	public ActaPdf acta_sesion(int id)  {
 		Connection db;
@@ -121,6 +162,7 @@ public class Servidor implements IServidor {
 			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
+			
 			ResultSet resultado = st.executeQuery("select * from acta_ve where id_pdf="+id+";");
 			resultado.next();
 			ActaPdf user = new ActaPdf(resultado.getInt(1),resultado.getString(2),resultado.getBytes(3));
@@ -318,7 +360,6 @@ public class Servidor implements IServidor {
 			
 			//ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select convocatoria_sesion,description_sesion ,id_pdf from Sesion_VE where intervention_sesion='"+annio+"-"+mes+"-"+dia+"';");
-			
 			resultado.next();
 			Sesion sesion = new Sesion(resultado.getString(1),resultado.getString(2),resultado.getInt(3));
 			db.close();
@@ -593,6 +634,7 @@ public class Servidor implements IServidor {
 		// TODO Auto-generated method stub
 		return listaVotoBlanco;
 	}
+
 
 
 
