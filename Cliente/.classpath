@@ -5,7 +5,7 @@
 	<classpathentry exported="true" kind="lib" path="C:/librerias/jfoenix.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/librerias/pdf-renderer-1.0.5.jar"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/common-VE"/>
-	<classpathentry exported="true" kind="lib" path="C:/librerias/json-simple-1.1.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="C:/librerias/json_simple-1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

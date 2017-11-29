@@ -634,7 +634,38 @@ public class Servidor implements IServidor {
 		// TODO Auto-generated method stub
 		return listaVotoBlanco;
 	}
-
+	
+	@Override
+	public String limpiarVoto() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+		try {
+			listaVotantesPunto.clear();
+			listaVotoAFavor.clear();
+			listaVotoEnContra.clear();
+			listaVotoSalvado.clear();
+			listaVotoSalvado.clear();
+			return "Se ha reiniciado los votos";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "Error: "+e.getMessage()+"y su causa es"+e.getCause();
+		}
+		
+	}
+	
+	@Override
+	public String limpiarVotoOrden() throws RemoteException {
+		// TODO Auto-generated method stub
+		try {
+			listaVotantes.clear();
+			listaVotoAprueba.clear();
+			listaVotoRechaza.clear();
+			return "Se ha reiniciado los votos";
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "Error: "+e.getMessage()+"y su causa es"+e.getCause();
+		}
+	}
 
 
 

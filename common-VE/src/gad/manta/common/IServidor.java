@@ -22,7 +22,9 @@ public interface IServidor extends Remote {
 	public List<Voto> votantes()throws RemoteException;
 	public List<Voto> votosAprobados()throws RemoteException;
 	public List<Voto> votosRechazados()throws RemoteException;
-	
+	//para limpiar o reiniciar los votos
+	public String limpiarVoto()throws RemoteException;
+		
 	//para crear la votacion de los puntos del orden del dia(punto) 
 	public String addVotoPunto(String usuario, String voto,byte[] img)throws RemoteException;
 	//para la lista de votos del orden del dia propuesto
@@ -31,6 +33,8 @@ public interface IServidor extends Remote {
 	public List<Voto> votosEnContra()throws RemoteException;
 	public List<Voto> votosSalvados()throws RemoteException;
 	public List<Voto> votosBlanco()throws RemoteException;
+	
+	public String limpiarVotoOrden()throws RemoteException;
 	
 	
 	public Sesion consultarSesion() throws RemoteException;

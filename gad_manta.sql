@@ -1,4 +1,4 @@
-﻿drop schema public cascade;
+drop schema public cascade;
 create schema public authorization postgres;
 set search_path to public;
 
@@ -176,6 +176,8 @@ WITH (
 );
 ALTER TABLE public.notasActa_ve
   OWNER TO postgres;
+  
+ 
 --insert into notasActa_ve (id_user, id_acta, descripcion_notas)values(2,10,'sa');
 
 --drop function verificar_usuario(varchar, varchar);
@@ -206,9 +208,9 @@ LANGUAGE plpgsql;
 select * from Img_VE;
 
 ---insertar usuarios
---insert into Img_VE(nombre_img,img)values('holi','holi');
+insert into Img_VE(nombre_img,img)values('holi','holi');
 
---select ingresar_usuario('131560461','secretaria','LCDA. PATRICIA GONZÁLES LOPEZ','secretaria','1234',1);
+select ingresar_usuario('131560461','secretaria','LCDA. PATRICIA GONZÁLES LOPEZ','secretaria','1234',1);
 --select ingresar_usuario('123456789','concejal','LCDA. VERONICA ABAD ARTEAGA','concejal1','1234','C://IMG/secretaria.png');
 --select ingresar_usuario('123456789','concejal','LCDA. LADY GARCÍA MEJIA','concejal2','1234','C://IMG/secretaria.png','V4443V2242');
 --select ingresar_usuario('123456789','concejal','SRA. ESTEFANIA MACIAS SUAREZ','concejal3','1234','C://IMG/secretaria.png','V4443V2242');

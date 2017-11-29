@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -49,6 +50,7 @@ import javafx.stage.StageStyle;
 
 
 public class QuorumCtrl implements Initializable {
+	volatile boolean ejecutar = true;
 	private static IServidor servidor;
 	private Conexion conexion;
 	
@@ -209,14 +211,15 @@ public class QuorumCtrl implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		try {
 
             sock = new Socket(data.ip, data.port);
+            
             dos = new DataOutputStream(sock.getOutputStream());
             dis = new DataInputStream(sock.getInputStream());
             //Enviamos al sistema el nombre de la secretaria
             dos.writeUTF(data.name);
-            System.out.println(data.name);
             /*
             * This Thread let the client recieve the message from the server for any time;
             */
@@ -225,10 +228,10 @@ public class QuorumCtrl implements Initializable {
 
                     JSONParser parser = new JSONParser();
 
-                    while(true) {
+                    while(ejecutar) {
                         String newMsgJson = dis.readUTF();
 
-                        System.out.println("RE : " + newMsgJson);
+                        System.out.println("RE desde el Quorum: " + newMsgJson);
                         Usuario newMsg = new Usuario();
                       
 
@@ -379,7 +382,7 @@ public class QuorumCtrl implements Initializable {
 										
 										if(lista.size()>=0) {
 											btn_finAsistencia.setDisable(false);
-											txtCumple.setText("Cumple con el mï¿½nimo de miembros para inicar la sesiï¿½n");
+											txtCumple.setText("Cumple con el mínimo de miembros para inicar la sesión");
 											
 										}
 									}
@@ -411,7 +414,7 @@ public class QuorumCtrl implements Initializable {
 		btn_finAsistencia.setVisible(true);
 		btnasistencia.setVisible(false);
 		Date fechaActual = new Date(Calendar.getInstance().getTime().getTime());
-		System.out.println(fechaActual);
+		//System.out.println(fechaActual);
 		
 		conexion.establecerConexion();
 		Quorum q = new Quorum(fechaActual);
@@ -421,16 +424,7 @@ public class QuorumCtrl implements Initializable {
 		s.addQuorum(conexion.getConnection());
 		conexion.cerrarConexion();
 		System.out.println("Se ha iniciado la asistencia");
-		
-		
-		//PENDIENTE AQUI SE TIENE Q INICAR EL LOGIN DE LOS CONCEJALES
-	}
-    
- 
-
-    @FXML
-    void finAsistencia(ActionEvent event) throws IOException {
-    	 //Inicializo la asistencia de hoy
+		 //Inicializo la asistencia de hoy
 		try {
 			List<Usuario> lista = servidor.listaUsuarios();
 			conexion.establecerConexion();
@@ -445,15 +439,21 @@ public class QuorumCtrl implements Initializable {
 			e.printStackTrace();
 		}
 		
-    	
-		Stage stage = (Stage) btn_finAsistencia.getScene().getWindow();
+		
+		//PENDIENTE AQUI SE TIENE Q INICAR EL LOGIN DE LOS CONCEJALES
+	}
+    
+ 
+
+    @FXML
+    void finAsistencia(ActionEvent event) throws IOException {
+    	Stage stage = (Stage) btn_finAsistencia.getScene().getWindow();
 	    // do what you have to do
 	    stage.close();
     	System.out.println("finalizando asistencia");
-    	th.interrupt();
     	
     	Stage newStage = new Stage();
-	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PrincipalSecretaria.fxml"));
+	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("RegistrarAsistencia.fxml"));
         Scene scene = new Scene(pane);   
         //Pantalla completa
         Screen screen = Screen.getPrimary();
@@ -465,8 +465,7 @@ public class QuorumCtrl implements Initializable {
         newStage.setScene(scene);
         newStage.initStyle(StageStyle.UNDECORATED);
         newStage.show();
-    	
- 	
+        ejecutar = false;
     }
 
 
@@ -476,7 +475,7 @@ public class QuorumCtrl implements Initializable {
 		conexion = new Conexion();
 		lbl_nombre.setText(data.name);
 		cirlogin.setStroke(Color.SEAGREEN);
-		File f = new File("C:\\Users\\chris\\Documents\\GitHub\\GADM-VE-v01\\Servidor-VEM\\res\\concejal1.png");
+		File f = new File("C:\\librerias\\concejal1.png");
         Image im = new Image(f.toURI().toString());
         cirlogin.setFill(new ImagePattern(im));
         cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));

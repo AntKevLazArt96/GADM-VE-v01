@@ -425,7 +425,7 @@ public class InicioVotoOrdenCtrl implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		lbl_nombre.setText(data.name);
 		
-		File f = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res\\concejal1.png");
+		File f = new File("C:\\librerias\\concejal1.png");
         Image im = new Image(f.toURI().toString());
         cirlogin.setFill(new ImagePattern(im));
         cirlogin.setStroke(Color.SEAGREEN);

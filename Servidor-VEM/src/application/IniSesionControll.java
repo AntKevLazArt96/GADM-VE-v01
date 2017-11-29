@@ -46,7 +46,7 @@ import javafx.stage.StageStyle;
 
 public class IniSesionControll implements Initializable {
 	int posicionPersonaEnTabla;
-	
+	volatile boolean ejecutar = true;
 
 	
 	private static IServidor servidor;
@@ -99,7 +99,7 @@ public class IniSesionControll implements Initializable {
 
                     JSONParser parser = new JSONParser();
 
-                    while(true) {
+                    while(ejecutar) {
                         String newMsgJson = dis.readUTF();
 
                         System.out.println("RE : " + newMsgJson);
@@ -134,11 +134,10 @@ public class IniSesionControll implements Initializable {
 
     @FXML
     void IniVotoAction(ActionEvent event) throws IOException {
-    	/*// get a handle to the stage
+    	// get a handle to the stage
 	    Stage actualStage = (Stage) btnIniVoto.getScene().getWindow();
 	    // do what you have to do
 	    actualStage.close();
-	    */
 	    Stage newStage = new Stage();
 	   AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("InicioVoto.fxml"));
         Scene scene = new Scene(pane);
@@ -156,6 +155,7 @@ public class IniSesionControll implements Initializable {
         newStage.setScene(scene);
         newStage.initStyle(StageStyle.UNDECORATED);
         newStage.show();
+        ejecutar=false;
         
     }
 
@@ -190,7 +190,7 @@ public class IniSesionControll implements Initializable {
 		lbl_nombre.setText(data.name);
 		label_convocatoria.setText(data.convocatoria_sesion);
 		
-		File f = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res\\concejal1.png");
+		File f = new File("C:\\librerias\\concejal1.png");
         Image im = new Image(f.toURI().toString());
         cirlogin.setFill(new ImagePattern(im));
         cirlogin.setStroke(Color.SEAGREEN);
@@ -214,7 +214,7 @@ public class IniSesionControll implements Initializable {
 			num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 	 
 	        @SuppressWarnings("rawtypes")
-			TableColumn descripcion = new TableColumn("Descripciï¿½n");
+			TableColumn descripcion = new TableColumn("Descripción");
 	        descripcion.setMinWidth(900);
 	        descripcion.setCellValueFactory(
 	                new PropertyValueFactory<>("tema"));
@@ -230,7 +230,7 @@ public class IniSesionControll implements Initializable {
 			tabla_ordenDia.setItems(datos);
 			
 			/*List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
-			TableColumn punto = new TableColumn("Documentaciï¿½n perteneciente al punto");
+			TableColumn punto = new TableColumn("Documentación perteneciente al punto");
 			punto.setMinWidth(250);
 			punto.setCellValueFactory(
 	                new PropertyValueFactory<>("punto"));
@@ -272,7 +272,7 @@ public class IniSesionControll implements Initializable {
     }
 
     /**
-     * Mï¿½todo para poner en los textFields la tupla que selccionemos
+     * Método para poner en los textFields la tupla que selccionemos
      */
     @SuppressWarnings("unchecked")
 	private void ponerPersonaSeleccionada() {
