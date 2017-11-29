@@ -14,4 +14,5 @@ public class data {
     public static Image Imagen;
     public static byte[] img;
     public static byte[] pdf;
+    
 }

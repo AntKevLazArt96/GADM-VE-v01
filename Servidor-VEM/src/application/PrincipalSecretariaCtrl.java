@@ -281,25 +281,11 @@ public class PrincipalSecretariaCtrl implements Initializable{
 				
 				table_documentacion.setItems(datos_pdf);
 		
-<<<<<<< HEAD
-		File f = new File("C:\\librerias\\concejal1.png");
-        Image im = new Image(f.toURI().toString());
-        cirlogin.setFill(new ImagePattern(im));
-        cirlogin.setStroke(Color.SEAGREEN);
-        cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
-        
-		try {
-			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
-			Sesion sesion = servidor.consultarSesion();
-			label_titulo.setText(sesion.getTitulo());
-			label_convocatoria.setText(sesion.getConvocatoria());
-=======
 				
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
->>>>>>> master
 			
 			
 		}
