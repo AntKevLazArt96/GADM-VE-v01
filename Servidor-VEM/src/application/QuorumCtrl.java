@@ -421,7 +421,16 @@ public class QuorumCtrl implements Initializable {
 		s.addQuorum(conexion.getConnection());
 		conexion.cerrarConexion();
 		System.out.println("Se ha iniciado la asistencia");
-		 //Inicializo la asistencia de hoy
+		
+		
+		//PENDIENTE AQUI SE TIENE Q INICAR EL LOGIN DE LOS CONCEJALES
+	}
+    
+ 
+
+    @FXML
+    void finAsistencia(ActionEvent event) throws IOException {
+    	 //Inicializo la asistencia de hoy
 		try {
 			List<Usuario> lista = servidor.listaUsuarios();
 			conexion.establecerConexion();
@@ -436,21 +445,15 @@ public class QuorumCtrl implements Initializable {
 			e.printStackTrace();
 		}
 		
-		
-		//PENDIENTE AQUI SE TIENE Q INICAR EL LOGIN DE LOS CONCEJALES
-	}
-    
- 
-
-    @FXML
-    void finAsistencia(ActionEvent event) throws IOException {
-    	Stage stage = (Stage) btn_finAsistencia.getScene().getWindow();
+    	
+		Stage stage = (Stage) btn_finAsistencia.getScene().getWindow();
 	    // do what you have to do
 	    stage.close();
     	System.out.println("finalizando asistencia");
     	th.interrupt();
+    	
     	Stage newStage = new Stage();
-	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("RegistrarAsistencia.fxml"));
+	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PrincipalSecretaria.fxml"));
         Scene scene = new Scene(pane);   
         //Pantalla completa
         Screen screen = Screen.getPrimary();
