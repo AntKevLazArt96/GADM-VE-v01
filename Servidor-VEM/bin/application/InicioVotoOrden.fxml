@@ -119,11 +119,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="ALERT_BOX" size="30" text="" />
                </graphic>
             </JFXButton>
-<<<<<<< HEAD
-            <JFXButton layoutX="50.0" layoutY="472.0" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #757575;" text="REINICIAR VOTOS" textFill="WHITE" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
-=======
             <JFXButton fx:id="btn_reVoto" layoutX="50.0" layoutY="472.0" onAction="#reiniciarVoto" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #757575;" text="REINICIAR VOTOS" textFill="WHITE" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
->>>>>>> anthony
                <font>
                   <Font size="14.0" />
                </font>

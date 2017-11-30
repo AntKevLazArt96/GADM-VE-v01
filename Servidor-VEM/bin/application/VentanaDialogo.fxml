@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<<<<<<< HEAD
-<?import com.jfoenix.controls.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
-
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <AnchorPane layoutX="14.0" layoutY="-44.0" prefHeight="19.0" prefWidth="450.0" style="-fx-background-color: #00BCD4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <Label layoutX="20.0" layoutY="36.0" text="Seguro de desa salir?">
-=======
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,27 +9,17 @@
    <children>
       <AnchorPane layoutX="14.0" layoutY="-44.0" prefHeight="19.0" prefWidth="450.0" style="-fx-background-color: #00BCD4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Label fx:id="lbl_header" layoutX="20.0" layoutY="36.0" text="Seguro de desa salir?">
->>>>>>> anthony
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-<<<<<<< HEAD
-      <Label layoutX="28.0" layoutY="65.0" text="Esta a punto de dar por finalizada la sesion actual esta seguro q desea salir?" wrapText="true" />
-      <JFXButton layoutX="236.0" layoutY="116.0" style="-fx-background-color: #03A9F4;" text="ACEPTAR" textFill="WHITE">
-=======
       <Label fx:id="lbl_cuerpo" layoutX="28.0" layoutY="65.0" text="Esta a punto de dar por finalizada la sesion actual esta seguro q desea salir?" wrapText="true" />
       <JFXButton fx:id="btn_aceptar" layoutX="341.0" layoutY="116.0" onAction="#onAceptar" style="-fx-background-color: #03A9F4;" text="ACEPTAR" textFill="WHITE">
->>>>>>> anthony
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-<<<<<<< HEAD
-      <JFXButton layoutX="328.0" layoutY="116.0" style="-fx-background-color: #BDBDBD;" text="CANCELAR" textFill="WHITE">
-=======
       <JFXButton fx:id="btn_cancelar" layoutX="235.0" layoutY="116.0" onAction="#onCancel" style="-fx-background-color: #BDBDBD;" text="CANCELAR" textFill="WHITE">
->>>>>>> anthony
          <font>
             <Font size="16.0" />
          </font>

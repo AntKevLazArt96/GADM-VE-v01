@@ -10,32 +10,16 @@ public class data {
     public static String voto;
     public static String convocatoria_sesion;
     public static int idquorum;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     
->>>>>>> anthony
-=======
-    
->>>>>>> anthony
     public static int id_acta;
     public static int id_pdf;
     public static Image Imagen;
     public static byte[] img;
     public static byte[] pdf;
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> anthony
     //datos para la ventana de dialogo
     public static String tipoMsgDial;
     public static String header;
     public static String cuerpo;
     
-<<<<<<< HEAD
->>>>>>> anthony
-=======
->>>>>>> anthony
 }

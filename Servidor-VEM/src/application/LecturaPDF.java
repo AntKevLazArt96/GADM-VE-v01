@@ -27,13 +27,6 @@ import com.sun.pdfview.PDFPage;
 import com.sun.pdfview.PagePanel;
 
 import gad.manta.common.ActaPdf;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import gad.manta.common.Comentario;
-=======
->>>>>>> anthony
-=======
->>>>>>> anthony
 import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
 import gad.manta.common.Pdf;
@@ -55,20 +48,10 @@ public class LecturaPDF extends JFrame implements  Initializable {
 	/**
 	 * 
 	 */
-<<<<<<< HEAD
-<<<<<<< HEAD
-	private static final long serialVersionUID = 6506395191970665089L;
-=======
-=======
->>>>>>> anthony
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 
 	 */
-<<<<<<< HEAD
->>>>>>> anthony
-=======
->>>>>>> anthony
 	private PDFFile pdffile;
 	private int pagina;
 	private int paginas;
@@ -168,32 +151,6 @@ public class LecturaPDF extends JFrame implements  Initializable {
 	
 	lbl_nombre.setText(data.name);
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-	try {
-		 user = servidor.usuario(data.name);
-		/*Image im = convertirImg(user.getImg());
-        cirlogin.setFill(new ImagePattern(im));
-        cirlogin.setStroke(Color.SEAGREEN);
-        cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));*/
-	
-	} catch (RemoteException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
-		
-		try
-		{
-		
-			
-			
-=======
-=======
->>>>>>> anthony
 	File f = new File("C:\\librerias\\concejal1.png");
 	Image im = new Image(f.toURI().toString());
 	cirlogin.setFill(new ImagePattern(im));
@@ -203,10 +160,6 @@ public class LecturaPDF extends JFrame implements  Initializable {
 		try
 		{
 		
-<<<<<<< HEAD
->>>>>>> anthony
-=======
->>>>>>> anthony
 			File  n;
 			// Ubicación del archivo pdf
 			if(data.id_acta==0) {
@@ -219,14 +172,6 @@ public class LecturaPDF extends JFrame implements  Initializable {
 				n = new File(convertirPdf(acta_pdf.getPdf()));
 			}
 			
-<<<<<<< HEAD
-<<<<<<< HEAD
-			
-			
-=======
->>>>>>> anthony
-=======
->>>>>>> anthony
 			RandomAccessFile raf = new RandomAccessFile(n, "r");
 			FileChannel channel = raf.getChannel();
 			ByteBuffer buf = channel.map(FileChannel.MapMode.READ_ONLY,  0, channel.size());
@@ -268,28 +213,6 @@ public class LecturaPDF extends JFrame implements  Initializable {
 
 	}
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
-	@FXML
-    private void guardar_comentario(ActionEvent  event) throws RemoteException, MalformedURLException, NotBoundException {
-		servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
-	    
-			if(data.id_acta==0) {
-				servidor.add_nota_pdf(user.getId(),data.id_pdf,nota_pdf.getText());			
-		}else {
-			System.out.println(user.getId());
-			System.out.println(data.id_acta);
-			System.out.println(nota_pdf.getText()+"8777777");
-			servidor.add_nota_acta(user.getId(),data.id_acta,nota_pdf.getText());
-		}
-		
 
-    } 
-=======
-
->>>>>>> anthony
-=======
-
->>>>>>> anthony
 
 }

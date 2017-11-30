@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<?import com.jfoenix.controls.JFXTextArea?>
-=======
->>>>>>> anthony
-=======
->>>>>>> anthony
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
@@ -22,100 +15,18 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LecturaPDF">
    <children>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <AnchorPane layoutX="57.0" layoutY="22.0" prefHeight="115.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <ImageView fitHeight="130.0" fitWidth="1280.0" layoutX="515.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-=======
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="113.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="130.0" fitWidth="1262.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
->>>>>>> anthony
-=======
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="113.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <ImageView fitHeight="130.0" fitWidth="1262.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
->>>>>>> anthony
                <image>
                   <Image url="@../../res/titulo.png" />
                </image>
             </ImageView>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <Label layoutX="79.0" layoutY="28.0" prefHeight="53.0" prefWidth="631.0" text="ACTA DE CONVOCATORIA" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font name="System Bold" size="31.0" />
-               </font>
-            </Label>
-            <JFXButton fx:id="btn_voz" layoutX="1161.0" layoutY="50.0" text=" " AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="20.0">
-=======
             <JFXButton fx:id="btn_voz" layoutX="1168.0" layoutY="23.0" text=" " AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="23.0">
->>>>>>> anthony
-=======
-            <JFXButton fx:id="btn_voz" layoutX="1168.0" layoutY="23.0" text=" " AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="23.0">
->>>>>>> anthony
                <graphic>
                   <MaterialDesignIconView fill="WHITE" glyphName="TEXT_TO_SPEECH" size="60.0" text="" />
                </graphic>
             </JFXButton>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <Label layoutX="59.0" layoutY="65.0" text="Lunes, 01 Enero 2017" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Circle fx:id="cirlogin" fill="WHITE" layoutX="1093.0" layoutY="57.0" radius="42.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="15.0" />
-            <Label fx:id="lbl_nombre" layoutX="822.0" layoutY="31.0" text="Ing. Moises Mantuano" textFill="WHITE" AnchorPane.rightAnchor="237.0" AnchorPane.topAnchor="31.0">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-            <Label layoutX="809.0" layoutY="60.0" text="Consejal " textFill="WHITE" AnchorPane.rightAnchor="399.0" AnchorPane.topAnchor="60.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="590.0" prefWidth="335.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="925.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
-         <children>
-            <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="69.0" layoutY="43.0" text="Notas" textFill="#212121" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="30.0">
-               <font>
-                  <Font size="22.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView glyphName="LABEL" size="20.0" />
-               </graphic>
-            </Label>
-            <JFXButton fx:id="guardarNotas" layoutX="49.0" layoutY="497.0" onAction="#guardar_comentario" prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: #00bcd4;" text="Guardar notas" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="regresar" layoutX="44.0" layoutY="539.0" onAction="#regresar" prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: #00bcd4;" text="Regresar a la pantalla anterior" textFill="WHITE" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
-               </graphic>
-            </JFXButton>
-            <JFXTextArea fx:id="nota_pdf" layoutX="14.0" layoutY="67.0" prefHeight="416.0" prefWidth="295.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-         </children>
-         <effect>
-            <DropShadow color="#a8a8a8" />
-         </effect>
-      </AnchorPane>
-      <AnchorPane layoutX="55.0" layoutY="110.0" prefHeight="590.0" prefWidth="880.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="110.0">
-=======
-=======
->>>>>>> anthony
             <Label layoutX="732.0" layoutY="60.0" text="Secretaria" textFill="WHITE" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="732.0" AnchorPane.topAnchor="60.0">
                <font>
                   <Font size="18.0" />
@@ -145,10 +56,6 @@
          </children>
       </AnchorPane>
       <AnchorPane layoutX="200.0" layoutY="122.0" prefHeight="590.0" prefWidth="880.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="122.0">
-<<<<<<< HEAD
->>>>>>> anthony
-=======
->>>>>>> anthony
          <effect>
             <DropShadow color="#a8a8a8" />
          </effect>
@@ -180,11 +87,6 @@
             </JFXButton>
          </children>
       </AnchorPane>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> anthony
       <JFXButton fx:id="regresar" layoutX="37.0" layoutY="132.0" onAction="#regresar" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="REGRESAR" textFill="WHITE" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="132.0">
          <font>
             <Font size="14.0" />
@@ -193,9 +95,5 @@
             <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
          </graphic>
       </JFXButton>
-<<<<<<< HEAD
->>>>>>> anthony
-=======
->>>>>>> anthony
    </children>
 </AnchorPane>

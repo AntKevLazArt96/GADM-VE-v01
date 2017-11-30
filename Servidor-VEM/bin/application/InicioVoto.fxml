@@ -94,11 +94,7 @@
                         <MaterialDesignIconView glyphName="CHECKBOX_BLANK_OUTLINE" size="30" />
                      </graphic>
                   </Label>
-<<<<<<< HEAD
-                  <Label layoutX="18.0" layoutY="151.0" text="SALVO VOTO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="171.0">
-=======
                   <Label layoutX="18.0" layoutY="151.0" text="SALVO VOTO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="165.0">
->>>>>>> anthony
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -106,14 +102,11 @@
                         <MaterialDesignIconView glyphName="CODE_STRING" size="30.0" />
                      </graphic>
                   </Label>
-<<<<<<< HEAD
-=======
                   <Label layoutX="25.0" layoutY="206.0" text="En Espera..." AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="215.0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
->>>>>>> anthony
                   <Label fx:id="lblAFavor" layoutX="230.0" layoutY="30.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="15.0">
                      <font>
                         <Font size="24.0" />
@@ -129,16 +122,12 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-<<<<<<< HEAD
-                  <Label fx:id="lblSalvoVoto" layoutX="225.0" layoutY="171.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="171.0">
-=======
                   <Label fx:id="lblSalvoVoto" layoutX="225.0" layoutY="171.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="165.0">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblEspera" layoutX="225.0" layoutY="206.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="215.0">
->>>>>>> anthony
                      <font>
                         <Font size="24.0" />
                      </font>

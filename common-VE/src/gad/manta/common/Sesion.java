@@ -23,13 +23,6 @@ public class Sesion implements Serializable{
 	private String horaIntervencion;
 	private int id_quorum;
 	private int id_pdf;
-<<<<<<< HEAD
-<<<<<<< HEAD
-	private String titulo;
-=======
->>>>>>> anthony
-=======
->>>>>>> anthony
 
 	public Sesion(String convocatoria, String description, String tipo_sesion, Date fechaRegistro,
 			Date fechaIntervencion, String horaIntervencion,int id_pdf) {
@@ -45,16 +38,6 @@ public class Sesion implements Serializable{
 	}
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	public String getTitulo() {
-		return titulo;
-	}
-
-=======
->>>>>>> anthony
-=======
->>>>>>> anthony
 
 	public String getTipo_sesion() {
 		return tipo_sesion;
@@ -66,17 +49,7 @@ public class Sesion implements Serializable{
 	}
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-=======
 
->>>>>>> anthony
-=======
-
->>>>>>> anthony
 
 
 	public String getConvocatoria() {
@@ -156,8 +129,6 @@ public class Sesion implements Serializable{
 		this.fechaRegistro=registro;
 		this.fechaIntervencion= intervencion;
 		this.horaIntervencion= hora;
-<<<<<<< HEAD
-<<<<<<< HEAD
 	}
 	public Sesion(String convocatoria, String description, Date registro, Date intervencion,String hora,  int idPdf) {
 		this.convocatoria=convocatoria;
@@ -167,23 +138,6 @@ public class Sesion implements Serializable{
 		this.horaIntervencion= hora;
 		this.id_pdf = idPdf;
 	}
-=======
-	}
-=======
-	}
->>>>>>> anthony
-	public Sesion(String convocatoria, String description, Date registro, Date intervencion,String hora,  int idPdf) {
-		this.convocatoria=convocatoria;
-		this.description= description;
-		this.fechaRegistro=registro;
-		this.fechaIntervencion= intervencion;
-		this.horaIntervencion= hora;
-		this.id_pdf = idPdf;
-	}
-<<<<<<< HEAD
->>>>>>> anthony
-=======
->>>>>>> anthony
 
 	public Sesion(String convocatoria, String titulo) {
 	
@@ -194,7 +148,6 @@ public class Sesion implements Serializable{
 	public Sesion(int id_quorum, String convocatoria) {
 		this.id_quorum=id_quorum;
 		this.convocatoria=convocatoria;
-<<<<<<< HEAD
 	}
 	
 	
@@ -202,110 +155,6 @@ public class Sesion implements Serializable{
 		this.convocatoria = convocatoria;
 		this.description = description;
 		this.id_pdf = id_pdf;
-<<<<<<< HEAD
-	}
-
-
-	public Sesion(String convocatoria, String description, String tipo_sesion, Date fechaRegistro,
-			Date fechaIntervencion, String horaIntervencion) {
-		this.convocatoria = convocatoria;
-		this.description = description;
-		this.tipo_sesion = tipo_sesion;
-		this.fechaRegistro = fechaRegistro;
-		this.fechaIntervencion = fechaIntervencion;
-		this.horaIntervencion = horaIntervencion;
-=======
->>>>>>> anthony
-	}
-
-
-
-	
-<<<<<<< HEAD
-
-	public String guardarRegistro(Connection connection) {
-		String sql = "select * from ingresar_sesion(?,?,?,?,?,?,?);";
-		try {
-			PreparedStatement instruccion = connection.prepareStatement(sql);
-			instruccion.setString(1, getConvocatoria());
-			instruccion.setString(2, getDescription());
-			instruccion.setString(3, getTipo_sesion());
-			instruccion.setDate(4, getFechaRegistro());
-			instruccion.setDate(5, getFechaIntervencion());
-			instruccion.setString(6, getHoraIntervencion());
-			instruccion.setInt(7, getId_pdf());
-			instruccion.execute();
-			
-			return getConvocatoria();
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-		
-	}
-	
-	public static void llenarInformacion_sesion(Connection connection, ObservableList<Sesion> sesio) {
-		try {
-			Statement statement = connection.createStatement();
-			ResultSet resultado = statement.executeQuery("select * from Sesion_VE");
-			while(resultado.next()) {
-				sesio.add(new Sesion(resultado.getString(1),resultado.getString(2),resultado.getString(3),resultado.getDate(4),resultado.getDate(5),resultado.getString(6)));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
-	public static void llenarInformacion(Connection connection, ObservableList<Usuario> users) {
-		try {
-			Statement statement = connection.createStatement();
-			ResultSet resultado = statement.executeQuery("select *from User_VE where position_user='concejal'");
-			while(resultado.next()) {
-				users.add(new Usuario(resultado.getInt(1),resultado.getString(2),resultado.getString(3),resultado.getString(4),resultado.getString(5),resultado.getString(6),resultado.getString(7),resultado.getString(8)));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
-	
-	public static String haySesionParaHoy(Connection connection,Date fechaIntervencion) {
-		try {
-			Statement statement = connection.createStatement();
-			ResultSet resultado = statement.executeQuery("select * from Sesion_VE where intervention_sesion='"+fechaIntervencion+"';");
-			if(resultado.next()) {
-				return  resultado.getString(1);
-			}else {
-				return "";
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return "";
-		} 
-		
-	}
-	public int addQuorum(Connection connection) {
-		String sql = "update Sesion_VE set id_quorum =? where convocatoria_sesion=?;";
-		try {
-			PreparedStatement instruccion = connection.prepareStatement(sql);
-			instruccion.setInt(1, id_quorum);
-			instruccion.setString(2, convocatoria);
-			
-			instruccion.execute();
-			
-			return 0;
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return 1;
-		}
-		
-=======
->>>>>>> anthony
 	}
 
 
@@ -320,27 +169,6 @@ public class Sesion implements Serializable{
 	}
 
 
-=======
-	
-	public Sesion(String convocatoria, String description, int id_pdf) {
-		this.convocatoria = convocatoria;
-		this.description = description;
-		this.id_pdf = id_pdf;
-	}
-
-
-	public Sesion(String convocatoria, String description, String tipo_sesion, Date fechaRegistro,
-			Date fechaIntervencion, String horaIntervencion) {
-		this.convocatoria = convocatoria;
-		this.description = description;
-		this.tipo_sesion = tipo_sesion;
-		this.fechaRegistro = fechaRegistro;
-		this.fechaIntervencion = fechaIntervencion;
-		this.horaIntervencion = horaIntervencion;
-	}
-
-
->>>>>>> anthony
 
 	
 
@@ -427,9 +255,5 @@ public class Sesion implements Serializable{
 		
 	}
 	
-<<<<<<< HEAD
-	
-=======
->>>>>>> anthony
 	
 }

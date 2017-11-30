@@ -20,11 +20,10 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
-import gad.manta.common.ActaPdf;
+import cliente.data;
 import gad.manta.common.Documentacion;
 import gad.manta.common.IServidor;
 import gad.manta.common.OrdenDia;
-import gad.manta.common.Pdf;
 import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
 import javafx.application.Platform;
@@ -50,7 +49,6 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import cliente.data;
 
 public class ClientePreSesionCtrl implements Initializable  {
 	volatile boolean ejecutar = true;
@@ -92,7 +90,7 @@ public class ClientePreSesionCtrl implements Initializable  {
     
     @FXML
     private JFXButton btn_pdf;
-    public Sesion sesion;
+	
 	//inicializamos socket
 	 public ClientePreSesionCtrl() {
 	        try {
@@ -186,13 +184,6 @@ public class ClientePreSesionCtrl implements Initializable  {
 			return img;
 		}
 	 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	 
-=======
->>>>>>> anthony
-=======
->>>>>>> anthony
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
@@ -230,21 +221,18 @@ public class ClientePreSesionCtrl implements Initializable  {
 				sesion = servidor.consultarSesion();
 				label_titulo.setText(sesion.getDescription());
 				label_convocatoria.setText(sesion.getConvocatoria());
-				data.id_acta=sesion.getId_pdf();
 				
 				List<OrdenDia>lista_orden=servidor.consultarOrden();
-				@SuppressWarnings("rawtypes")
 				TableColumn num_punto = new TableColumn("No. Punto");
 				num_punto.setMinWidth(50);
 				num_punto.setCellValueFactory(
 		                new PropertyValueFactory<>("numeroPunto"));
 		 
-		        @SuppressWarnings("rawtypes")
-				TableColumn descripcion = new TableColumn("DescripciÃ³n");
+		        TableColumn descripcion = new TableColumn("Descripción");
 		        descripcion.setMinWidth(900);
 		        descripcion.setCellValueFactory(
 		                new PropertyValueFactory<>("tema"));
-		        @SuppressWarnings("rawtypes")
+		 
 		        TableColumn proponente = new TableColumn("Proponente");
 		        proponente.setMinWidth(300);
 		        proponente.setCellValueFactory(
@@ -254,45 +242,23 @@ public class ClientePreSesionCtrl implements Initializable  {
 						);
 				tabla_ordenDia.getColumns().addAll(num_punto,descripcion,proponente);
 				tabla_ordenDia.setItems(datos);
-				@SuppressWarnings("rawtypes")
+		
 				List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
-				 @SuppressWarnings("rawtypes")
-			        TableColumn pdf = new TableColumn("id");
-			        pdf.setMinWidth(500);
-			        pdf.setVisible(false);
-			        pdf.setCellValueFactory(
-			                new PropertyValueFactory<>("id_pdf"));
-			        
-				@SuppressWarnings("rawtypes")
-				TableColumn punto = new TableColumn("DocumentaciÃ³n perteneciente al punto");
+				TableColumn punto = new TableColumn("Documentación perteneciente al punto");
 				punto.setMinWidth(250);
 				punto.setCellValueFactory(
 		                new PropertyValueFactory<>("punto"));
-				@SuppressWarnings("rawtypes")
+		 
 		        TableColumn nombre = new TableColumn("Nombre");
-		        nombre.setMinWidth(700);
-		        nombre.setResizable(true);
-		        
+		        nombre.setMinWidth(400);
 		        nombre.setCellValueFactory(
 		                new PropertyValueFactory<>("nombre"));
-<<<<<<< HEAD
-		       
-				ObservableList<Documentacion> datos_pdf = FXCollections.observableArrayList(
-						lista_documentacion
-						);
-				table_documentacion.getColumns().addAll(pdf,punto,nombre);
-				
-=======
 		 
 		  
 				ObservableList<Documentacion> datos_pdf = FXCollections.observableArrayList(
 						lista_documentacion
 						);
 				table_documentacion.getColumns().addAll(punto,nombre);
-<<<<<<< HEAD
->>>>>>> anthony
-=======
->>>>>>> anthony
 				table_documentacion.setItems(datos_pdf);
 		
 				
@@ -309,6 +275,7 @@ public class ClientePreSesionCtrl implements Initializable  {
 	    	
 	    	
 	    }
+		
 		@FXML
 	    void mostrar_acta(ActionEvent event) {
 			
