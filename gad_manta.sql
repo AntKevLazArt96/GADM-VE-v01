@@ -42,7 +42,8 @@ CREATE TABLE OrdenDia_VE (
                 no_ordenDia INTEGER,
                 blanco_ordenDia INTEGER,
                 salvo_ordenDia INTEGER,
-                estado_ordenDia VARCHAR,
+                estado_ordenDia VARCHAR,--por defecto null --- APROBADO, RECHADO, NOVOTO
+    			verifica_ordenDia VARCHAR,--por defecto se guarda por PENDIENTE,PROGRESO,TERMINADO
                 CONSTRAINT ordendia_ve_pk PRIMARY KEY (id_ordenDia)
 );
 
@@ -71,6 +72,7 @@ CREATE TABLE Sesion_VE (
                 hour_sesion VARCHAR NOT NULL,
                 id_quorum INTEGER,
                 id_pdf INTEGER NOT NULL,
+    			estado_sesion VARCHAR,
                 CONSTRAINT sesion_ve_pk PRIMARY KEY (convocatoria_sesion)
 );
 
@@ -159,22 +161,22 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-CREATE TABLE public.notasActa_ve
+CREATE TABLE notasActa_ve
 (
   id_user integer NOT NULL,
   id_acta integer NOT NULL,
   descripcion_notas character varying NOT NULL,
   CONSTRAINT acta_ve_notaspdf_ve_fk FOREIGN KEY (id_acta)
-      REFERENCES public.acta_ve (id_pdf) MATCH SIMPLE
+      REFERENCES acta_ve (id_pdf) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT user_ve_notasacta_ve_fk FOREIGN KEY (id_user)
-      REFERENCES public.user_ve (id_user) MATCH SIMPLE
+      REFERENCES user_ve (id_user) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE public.notasActa_ve
+ALTER TABLE notasActa_ve
   OWNER TO postgres;
   
  
