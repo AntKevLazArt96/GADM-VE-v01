@@ -28,7 +28,17 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 
+import gad.manta.common.ActaPdf;
+import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
+
+import gad.manta.common.OrdenDia;
+import gad.manta.common.Pdf;
+import gad.manta.common.Sesion;
+import gad.manta.common.Usuario;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -45,11 +55,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import modelo.Conexion;
-import modelo.OrdenDia;
-import modelo.ActaPdf;
-import modelo.Sesion;
-import modelo.Usuario;
+
+
+
 
 public class NuevaSesionCtrl implements Initializable{
 	static IServidor servidor;
@@ -58,7 +66,8 @@ public class NuevaSesionCtrl implements Initializable{
 	public static Integer idPdf = 0;
 	public static Integer idActa = 0;
 	public static Integer idOrden = 0;
-	public static String ruta_pdf = "";
+	public static String ruta_acta = "";
+	public static String nombre_acta = "";
 	ObservableList<String> tipoSesion = FXCollections.
 			observableArrayList("ORDINARIA","EXTRAORDINARIA");
 	
@@ -164,7 +173,9 @@ public class NuevaSesionCtrl implements Initializable{
     	btn_addSesion.setVisible(false);
     }
     public void limpiar() {
-    	PuntoOrden.setText(null);
+    	int punto=0;
+    	punto=(Integer.parseInt(PuntoOrden.getText())+1);
+    	PuntoOrden.setText(Integer.toString(punto));
     	txt_descripcion.setText(null);
     	cbx_proponente.setValue(null);
     	rutapdf="";
@@ -180,10 +191,23 @@ public class NuevaSesionCtrl implements Initializable{
     	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
     	String horaIntervencion = time.getValue().toString();
     	String titulo = lbl1.getText()+" "+cbx_tipoSes.getValue()+lbl2.getText()+" "+lbl3.getText()+fechaCompleta+", A lAS "+horaIntervencion+" "+lbl4.getText();
+    	String tipo_sesion = cbx_tipoSes.getValue();
     	Date fechaIntervencion = Date.valueOf(date.getValue());
     	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
     	
-    	Sesion sesion = new Sesion(txtconvocatoria,titulo,fechaRegistro, fechaIntervencion , horaIntervencion,idPdf );
+    	
+		try {
+			conexion.establecerConexion();
+			ActaPdf pdf = new ActaPdf(nombre_acta,ruta_acta);
+			idActa= pdf.guardarRegistro_pdf(conexion.getConnection());
+			conexion.cerrarConexion();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+    	
+		Sesion sesion = new Sesion(txtconvocatoria,titulo,tipo_sesion,fechaRegistro, fechaIntervencion , horaIntervencion,idActa );
     	conexion.establecerConexion();
     	convocatoria = sesion.guardarRegistro(conexion.getConnection());
     	System.out.println(convocatoria);
@@ -261,7 +285,7 @@ public class NuevaSesionCtrl implements Initializable{
     				folder.mkdir();	
     			}
     			File fichero= new File(dbpath);
-    			if(!fichero.exists()) {			
+    				
     				//agrega al lisview
     				list_pdf.getItems().add(dbpath);
     				//copia el archivo al directorio
@@ -270,14 +294,8 @@ public class NuevaSesionCtrl implements Initializable{
         					StandardCopyOption.COPY_ATTRIBUTES
         			};
         			Files.copy(FROM, TO,opciones);
-    			}else {
-    				System.out.println("Ya existe el fichero  "+ fichero.getName());
-    			}
     			
-    			conexion.establecerConexion();
-    			ActaPdf pdf = new ActaPdf(selectedf.getName(),dbpath);
-    			idActa= pdf.guardarRegistro_pdf(conexion.getConnection());
-        		conexion.cerrarConexion();
+    			
         	}
 		} catch (NullPointerException nl) {
 			nl.printStackTrace();
@@ -287,10 +305,10 @@ public class NuevaSesionCtrl implements Initializable{
 		}
     }
     
-    String dbpath="";
+    
     @FXML
     void onExaActa(ActionEvent event) throws IOException {
-    	
+    	String dbpath="";
     	try {
         	FileChooser fc = new FileChooser();
         	//fc.setInitialDirectory(new File(""));
@@ -310,8 +328,9 @@ public class NuevaSesionCtrl implements Initializable{
     				folder.mkdir();	
     			}
     			File fichero= new File(dbpath);
-    			if(!fichero.exists()) {			
+    				
     				//agrega al lisview
+					pdf_acta.getItems().clear();
     				pdf_acta.getItems().add(selectedf.getName());
     				//copia el archivo al directorio
     				CopyOption[] opciones= new CopyOption[] {
@@ -319,14 +338,9 @@ public class NuevaSesionCtrl implements Initializable{
         					StandardCopyOption.COPY_ATTRIBUTES
         			};
         			Files.copy(FROM, TO,opciones);
-    			}else {
-    				System.out.println("Ya existe el fichero  "+ fichero.getName());
-    			}
+        			ruta_acta = dbpath;
+        			nombre_acta= fichero.getPath();
     			
-    			conexion.establecerConexion();
-    			ActaPdf pdf = new ActaPdf(selectedf.getName(),dbpath);
-    			idPdf= pdf.guardarRegistro_pdf(conexion.getConnection());
-        		conexion.cerrarConexion();
         	}
 		} catch (NullPointerException nl) {
 			nl.printStackTrace();
@@ -352,10 +366,9 @@ public class NuevaSesionCtrl implements Initializable{
     void mostrar_acta(MouseEvent  event) throws RemoteException{
     	
     	try {
-    		//String acta1;
-    		//acta1=
-    		pdf_acta.getSelectionModel().selectedItemProperty().getValue();
-    		File path = new File (dbpath);
+    		String acta1;
+    		acta1=pdf_acta.getSelectionModel().selectedItemProperty().getValue();
+    		File path = new File (acta1);
     	    Desktop.getDesktop().open(path);
     	}catch (IOException ex) {
     	     ex.printStackTrace();
@@ -388,8 +401,8 @@ public class NuevaSesionCtrl implements Initializable{
 				try {
 					{
 						System.out.println(list_pdf.getItems().get(longitud_lista-1).toString());
-						ActaPdf pdf = new ActaPdf(idOrden,list_pdf.getItems().get(longitud_lista-1).toString());
-						pdf.guardarRegistro_pdf(conexion.getConnection());
+						Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).toString());
+						pdf.guardarRegistro_pdfs(conexion.getConnection());
 						longitud_lista--;
 					}
 				} catch (Exception e) {

@@ -3,6 +3,7 @@ package application;
 //import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.CopyOption;
@@ -10,11 +11,13 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalTime;
-//import java.sql.Date;
-//import java.util.Calendar;
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -27,7 +30,13 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 
+import gad.manta.common.ActaPdf;
+import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
+import gad.manta.common.OrdenDia;
+import gad.manta.common.Pdf;
+import gad.manta.common.Sesion;
+import gad.manta.common.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,14 +53,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import modelo.Conexion;
-import modelo.OrdenDia;
-import modelo.ActaPdf;
-import modelo.Sesion;
-import modelo.Usuario;
+
 
 public class ModificacionSesionCtrl implements Initializable{
-	static IServidor servidor;
+
+	/**
+	 * 
+	 */
+
+	private static IServidor servidor;
+
+
 	
 	public static String convocatoria_sesion = null;
 	public static Integer idOrden = 0;
@@ -143,7 +155,9 @@ public class ModificacionSesionCtrl implements Initializable{
 		conexion.establecerConexion();
 		proponentes =FXCollections.observableArrayList();
 		Sesion.llenarInformacion(conexion.getConnection(), proponentes);
+		System.out.println(proponentes);
 		cbx_proponente.setItems(proponentes);
+		cbx_proponente.setValue(proponentes.get(0));
 		conexion.cerrarConexion();
 		
 		conexion.establecerConexion();
@@ -151,10 +165,108 @@ public class ModificacionSesionCtrl implements Initializable{
 		Sesion.llenarInformacion_sesion(conexion.getConnection(), convocatoria);
 		System.out.println(convocatoria);
 		cbx_combocatoria.setItems(convocatoria);
+		
 		conexion.cerrarConexion();
+
+		try {
+			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
+    @SuppressWarnings("unchecked")
+	@FXML
+    void llenar_sesion(ActionEvent  event) throws RemoteException{
+    	
+			String a = cbx_combocatoria.getValue().getConvocatoria(); 
+	    	List<gad.manta.common.Sesion>lista_sesion=servidor.consultarSesion_Modificacion(a);
+	    	cbx_tipoSes.setValue(lista_sesion.get(0).getTipo_sesion());
+	    	date.setValue(lista_sesion.get(0).getFechaIntervencion().toLocalDate());
+	    	time.setValue(LocalTime.parse(lista_sesion.get(0).getHoraIntervencion()));
+	    	
+	    	List<OrdenDia>lista_orden=servidor.consultarOrden_Modificacion(a);
+	    	
+	    	@SuppressWarnings("rawtypes")
+			TableColumn id_punto = new TableColumn("No. Punto");
+	    	id_punto.setMinWidth(50);
+	    	id_punto.setVisible(false);
+	    	id_punto.setCellValueFactory(
+	                new PropertyValueFactory<>("id"));
+			
+			@SuppressWarnings("rawtypes")
+			TableColumn num_punto = new TableColumn("No. Punto");
+			num_punto.setMinWidth(100);
+			num_punto.setCellValueFactory(
+	                new PropertyValueFactory<>("numeroPunto"));
+	        ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
+					lista_orden
+					);
+			
+			tabla.getColumns().addAll(id_punto,num_punto);
+			tabla.setItems(datos);
+			System.out.println(datos);
+			
+			
+    }
+    @SuppressWarnings("unlikely-arg-type")
+	@FXML
+    public void mostrar_punto(MouseEvent  event){
+   
+			List<OrdenDia> punto;
+			List<Pdf> pdf;
+			try {
+				punto = servidor.consultarPunto_Modificacion(tabla.getSelectionModel().selectedItemProperty().getValue().getId());
+				txt_descripcion.setText(punto.get(0).getTema());
+				PuntoOrden.setText(String.valueOf(punto.get(0).getNumeroPunto()));
+				int log= proponentes.size();
+				int bandera=0;
+				while(log>=1) {
+					if(punto.get(0).getProponente()==proponentes.get(bandera).getId()) {
+						cbx_proponente.setValue(proponentes.get(bandera));
+					}
+					log--;	
+					bandera++;
+				
+				}
+				pdf=servidor.consultarPDFS_Modificacion(tabla.getSelectionModel().selectedItemProperty().getValue().getId());
+				
+				int log_pdf=pdf.size();
+				System.out.println(log_pdf);
+				int bandera_2=0;
+				list_pdf.getItems().clear();
+				while(log_pdf>0) {	
+					list_pdf.getItems().add(pdf.get(bandera_2).getNombre());;
+					log_pdf--;
+					bandera++;
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+			
+				
+				
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+        	
+    }
+    
     
     public void bloquear() {
     	txt_convocatoria.setDisable(true);
@@ -261,7 +373,7 @@ public class ModificacionSesionCtrl implements Initializable{
     			File fichero= new File(dbpath);
     			if(!fichero.exists()) {			
     				//agrega al lisview
-    				list_pdf.getItems().add(dbpath);
+    				//list_pdf.getItems().add(dbpath);
     				//copia el archivo al directorio
     				CopyOption[] opciones= new CopyOption[] {
         					StandardCopyOption.REPLACE_EXISTING,

@@ -51,14 +51,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ClientePreSesionCtrl implements Initializable  {
-	
+	volatile boolean ejecutar = true;
 	@FXML
     private Circle cirlogin;
 	@FXML
     private Label lbl_nombre;
 	@FXML
     private JFXButton btn_voz;
-	
+	Sesion sesion;
 	
 	@FXML
     private Label lblOrden;
@@ -108,11 +108,11 @@ public class ClientePreSesionCtrl implements Initializable  {
 
 	                    JSONParser parser = new JSONParser();
 
-	                    while(true) {
+	                    while(ejecutar) {
 	                        String newMsgJson = dis.readUTF();
 
 	                        System.out.println("RE : " + newMsgJson);
-	                        Message newMsg = new Message();
+	                        Mensage newMsg = new Mensage();
 
 	                        Object obj = parser.parse(newMsgJson);
 	                        JSONObject msg = (JSONObject) obj;
@@ -120,11 +120,12 @@ public class ClientePreSesionCtrl implements Initializable  {
 	                        newMsg.setName((String) msg.get("name"));
 	                        newMsg.setMessage((String) msg.get("status"));
 	                        Platform.runLater(new Runnable() {
-	                            @SuppressWarnings("deprecation")
-								@Override
+	                           @Override
 	                            public void run() {
-	                            	if(newMsg.getName().equals("cambio de pantalla")) {
+	                            	
+	                            	if(newMsg.getName()!= null && newMsg.getName()!= null && newMsg.getName().equals("cambio de pantalla")) {
 	                            		System.out.println("estoy en el cliente y se cambio de pantalla en el servidor");
+	                            		
 	                            		Stage stage = (Stage) label_punto.getScene().getWindow();
 									    // do what you have to do
 									    stage.close();
@@ -154,6 +155,7 @@ public class ClientePreSesionCtrl implements Initializable  {
 	                                    newStage.setScene(scene);
 	                                    newStage.initStyle(StageStyle.UNDECORATED);
 	                                    newStage.show();
+	                                    ejecutar = false;
 	                            		
 	                            		
 	                            		
@@ -181,6 +183,7 @@ public class ClientePreSesionCtrl implements Initializable  {
 			Image img = new Image(bis);
 			return img;
 		}
+	 
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
@@ -215,8 +218,8 @@ public class ClientePreSesionCtrl implements Initializable  {
 			
 			try {
 				
-				Sesion sesion = servidor.consultarSesion();
-				label_titulo.setText(sesion.getTitulo());
+				sesion = servidor.consultarSesion();
+				label_titulo.setText(sesion.getDescription());
 				label_convocatoria.setText(sesion.getConvocatoria());
 				
 				List<OrdenDia>lista_orden=servidor.consultarOrden();
@@ -233,7 +236,7 @@ public class ClientePreSesionCtrl implements Initializable  {
 		        TableColumn proponente = new TableColumn("Proponente");
 		        proponente.setMinWidth(300);
 		        proponente.setCellValueFactory(
-		                new PropertyValueFactory<>("proponente"));
+		                new PropertyValueFactory<>("proponente_nombre"));
 				ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
 						lista_orden
 						);
@@ -251,14 +254,11 @@ public class ClientePreSesionCtrl implements Initializable  {
 		        nombre.setCellValueFactory(
 		                new PropertyValueFactory<>("nombre"));
 		 
-		        TableColumn pdf = new TableColumn("Pdf");
-		        pdf.setMinWidth(200);
-		        pdf.setCellValueFactory(
-		                new PropertyValueFactory<>("pdf"));
+		  
 				ObservableList<Documentacion> datos_pdf = FXCollections.observableArrayList(
 						lista_documentacion
 						);
-				table_documentacion.getColumns().addAll(punto,nombre,pdf		);
+				table_documentacion.getColumns().addAll(punto,nombre);
 				table_documentacion.setItems(datos_pdf);
 		
 				
@@ -277,7 +277,68 @@ public class ClientePreSesionCtrl implements Initializable  {
 	    }
 		
 		@FXML
-	    void mostrar_pdf(ActionEvent event) {
+	    void mostrar_acta(ActionEvent event) {
+			
+			Stage newStage = new Stage();
+			AnchorPane pane;
+			try {
+				data.id_acta=sesion.getId_pdf();
+				pane = (AnchorPane)FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+				Scene scene = new Scene(pane);
+		        
+		        //Pantalla completa
+		        Screen screen = Screen.getPrimary();
+				Rectangle2D bounds = screen.getVisualBounds();
+				
+				newStage.setX(bounds.getMinX());
+				newStage.setY(bounds.getMinY());
+				newStage.setWidth(bounds.getWidth());
+				newStage.setHeight(bounds.getHeight());
+		        
+		        newStage.setScene(scene);
+		        newStage.initStyle(StageStyle.UNDECORATED);
+		        newStage.show();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
+
+	    }
+		@FXML
+	    void mostrar_pdf(MouseEvent event) {
+			
+			Stage newStage = new Stage();
+			
+			AnchorPane pane;
+			try {
+				
+				data.id_acta=0;
+				data.id_pdf=table_documentacion.getSelectionModel().selectedItemProperty().get().getId_pdf();
+				System.out.println(data.id_pdf);
+				
+				pane = (AnchorPane)FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+				Scene scene = new Scene(pane);
+		        
+		        //Pantalla completa
+		        Screen screen = Screen.getPrimary();
+				Rectangle2D bounds = screen.getVisualBounds();
+				
+				newStage.setX(bounds.getMinX());
+				newStage.setY(bounds.getMinY());
+				newStage.setWidth(bounds.getWidth());
+				newStage.setHeight(bounds.getHeight());
+		        
+		        newStage.setScene(scene);
+		        newStage.initStyle(StageStyle.UNDECORATED);
+		        newStage.show();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        
 
 	    }
 		

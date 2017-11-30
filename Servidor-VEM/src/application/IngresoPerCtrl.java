@@ -10,6 +10,9 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import gad.manta.common.Conexion;
+import gad.manta.common.Imagen;
+import gad.manta.common.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,9 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import modelo.Conexion;
-import modelo.Imagen;
-import modelo.Usuario;
+
 
 public class IngresoPerCtrl implements Initializable {
 
@@ -58,7 +59,7 @@ public class IngresoPerCtrl implements Initializable {
     void onBuscarFoto(ActionEvent event) {
     	try {
         	FileChooser fc = new FileChooser();
-        	fc.setInitialDirectory(new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res"));
+        	//fc.setInitialDirectory(new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res"));
         	fc.getExtensionFilters().addAll(new ExtensionFilter("PNG Files","*.png"));
         	File selectedf = fc.showOpenDialog(null);
         	if(selectedf!=null) {
@@ -125,7 +126,7 @@ public class IngresoPerCtrl implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		txt_nombre.setText("AB. JOSÉ PICO ARTEAGA");
+		txt_nombre.setText("AB. JOSï¿½ PICO ARTEAGA");
 		txt_cedula.setText("123456789");
 		txt_cargo.setText("concejal");
 		txt_username.setText("concejal1");
