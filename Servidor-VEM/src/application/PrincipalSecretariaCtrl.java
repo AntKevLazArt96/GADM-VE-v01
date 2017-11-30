@@ -93,11 +93,14 @@ public class PrincipalSecretariaCtrl implements Initializable{
     @FXML
     private JFXButton btn_pdf;
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Sesion sesion;
 	//inicializamos socket
 	 public PrincipalSecretariaCtrl() {
 	        try {
 =======
+=======
+>>>>>>> anthony
     
     @FXML
     private JFXButton btn_voz;
@@ -110,6 +113,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	
    
     public Sesion sesion;
+<<<<<<< HEAD
 >>>>>>> anthony
 
 	            
@@ -189,8 +193,118 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	                } catch(Exception E) {
 	                    E.printStackTrace();
 	                }
+=======
+>>>>>>> anthony
 
 	            });
+=======
+    @FXML
+    void modificar_sesion(ActionEvent event) {
+		
+		try {
+			Stage newStage = new Stage();
+			
+			AnchorPane pane;
+			
+			pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ModificacionSesion.fxml"));
+			Scene scene = new Scene(pane);
+	        
+	        //Pantalla completa
+	      /*  Screen screen = Screen.getPrimary();
+			Rectangle2D bounds = screen.getVisualBounds();
+			
+			newStage.setX(bounds.getMinX());
+			newStage.setY(bounds.getMinY());
+			newStage.setWidth(bounds.getWidth());
+			newStage.setHeight(bounds.getHeight());*/
+	        
+	        newStage.setScene(scene);
+	        newStage.initStyle(StageStyle.UNDECORATED);
+	        newStage.show();
+	        
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
+    }
+
+
+
+
+@FXML
+    void mostrar_acta(ActionEvent event) {
+		
+		Stage newStage = new Stage();
+		AnchorPane pane;
+		try {
+			data.id_acta=sesion.getId_pdf();
+			pane = (AnchorPane)FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+			Scene scene = new Scene(pane);
+	        
+	        //Pantalla completa
+	        Screen screen = Screen.getPrimary();
+			Rectangle2D bounds = screen.getVisualBounds();
+			
+			newStage.setX(bounds.getMinX());
+			newStage.setY(bounds.getMinY());
+			newStage.setWidth(bounds.getWidth());
+			newStage.setHeight(bounds.getHeight());
+	        
+	        newStage.setScene(scene);
+	        newStage.initStyle(StageStyle.UNDECORATED);
+	        newStage.show();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
+    }
+
+
+<<<<<<< HEAD
+
+@FXML
+    void mostrar_pdf(MouseEvent event) {
+		
+		Stage newStage = new Stage();
+		
+		AnchorPane pane;
+		try {
+			
+			data.id_acta=0;
+			data.id_pdf=table_documentacion.getSelectionModel().selectedItemProperty().get().getId_pdf();
+			System.out.println(data.id_pdf);
+			
+			pane = (AnchorPane)FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+			Scene scene = new Scene(pane);
+	        
+	        //Pantalla completa
+	        Screen screen = Screen.getPrimary();
+			Rectangle2D bounds = screen.getVisualBounds();
+			
+			newStage.setX(bounds.getMinX());
+			newStage.setY(bounds.getMinY());
+			newStage.setWidth(bounds.getWidth());
+			newStage.setHeight(bounds.getHeight());
+	        
+	        newStage.setScene(scene);
+	        newStage.initStyle(StageStyle.UNDECORATED);
+	        newStage.show();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
+    }
+>>>>>>> anthony
+
+	            th.start();
 =======
     @FXML
     void modificar_sesion(ActionEvent event) {
@@ -296,8 +410,6 @@ public class PrincipalSecretariaCtrl implements Initializable{
 
     }
 >>>>>>> anthony
-
-	            th.start();
 
 	        } catch(IOException E) {
 	            E.printStackTrace();
@@ -403,12 +515,15 @@ public class PrincipalSecretariaCtrl implements Initializable{
 				table_documentacion.setItems(datos_pdf);
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 				
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 =======
+=======
+>>>>>>> anthony
 		File f = new File("C:\\librerias\\concejal1.png");
         Image im = new Image(f.toURI().toString());
         cirlogin.setFill(new ImagePattern(im));
@@ -417,6 +532,9 @@ public class PrincipalSecretariaCtrl implements Initializable{
         
 		try {
 			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+<<<<<<< HEAD
+>>>>>>> anthony
+=======
 >>>>>>> anthony
 			
 			sesion = servidor.consultarSesion();
@@ -508,6 +626,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@FXML
     void mostrar_pdf(MouseEvent event) {
 		
@@ -573,6 +692,9 @@ public class PrincipalSecretariaCtrl implements Initializable{
 			e.printStackTrace();
 		}
         
+=======
+	
+>>>>>>> anthony
 =======
 	
 >>>>>>> anthony

@@ -187,7 +187,10 @@ public class ClientePreSesionCtrl implements Initializable  {
 		}
 	 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 
+=======
+>>>>>>> anthony
 =======
 >>>>>>> anthony
 		@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -286,6 +289,9 @@ public class ClientePreSesionCtrl implements Initializable  {
 						lista_documentacion
 						);
 				table_documentacion.getColumns().addAll(punto,nombre);
+<<<<<<< HEAD
+>>>>>>> anthony
+=======
 >>>>>>> anthony
 				table_documentacion.setItems(datos_pdf);
 		

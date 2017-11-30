@@ -24,7 +24,10 @@ public class Sesion implements Serializable{
 	private int id_quorum;
 	private int id_pdf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private String titulo;
+=======
+>>>>>>> anthony
 =======
 >>>>>>> anthony
 
@@ -43,10 +46,13 @@ public class Sesion implements Serializable{
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public String getTitulo() {
 		return titulo;
 	}
 
+=======
+>>>>>>> anthony
 =======
 >>>>>>> anthony
 
@@ -61,9 +67,13 @@ public class Sesion implements Serializable{
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+=======
+
+>>>>>>> anthony
 =======
 
 >>>>>>> anthony
@@ -147,6 +157,7 @@ public class Sesion implements Serializable{
 		this.fechaIntervencion= intervencion;
 		this.horaIntervencion= hora;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 	public Sesion(String convocatoria, String description, Date registro, Date intervencion,String hora,  int idPdf) {
 		this.convocatoria=convocatoria;
@@ -158,6 +169,9 @@ public class Sesion implements Serializable{
 	}
 =======
 	}
+=======
+	}
+>>>>>>> anthony
 	public Sesion(String convocatoria, String description, Date registro, Date intervencion,String hora,  int idPdf) {
 		this.convocatoria=convocatoria;
 		this.description= description;
@@ -166,6 +180,9 @@ public class Sesion implements Serializable{
 		this.horaIntervencion= hora;
 		this.id_pdf = idPdf;
 	}
+<<<<<<< HEAD
+>>>>>>> anthony
+=======
 >>>>>>> anthony
 
 	public Sesion(String convocatoria, String titulo) {
@@ -177,6 +194,7 @@ public class Sesion implements Serializable{
 	public Sesion(int id_quorum, String convocatoria) {
 		this.id_quorum=id_quorum;
 		this.convocatoria=convocatoria;
+<<<<<<< HEAD
 	}
 	
 	
@@ -196,11 +214,14 @@ public class Sesion implements Serializable{
 		this.fechaRegistro = fechaRegistro;
 		this.fechaIntervencion = fechaIntervencion;
 		this.horaIntervencion = horaIntervencion;
+=======
+>>>>>>> anthony
 	}
 
 
 
 	
+<<<<<<< HEAD
 
 	public String guardarRegistro(Connection connection) {
 		String sql = "select * from ingresar_sesion(?,?,?,?,?,?,?);";
@@ -299,6 +320,27 @@ public class Sesion implements Serializable{
 	}
 
 
+=======
+	
+	public Sesion(String convocatoria, String description, int id_pdf) {
+		this.convocatoria = convocatoria;
+		this.description = description;
+		this.id_pdf = id_pdf;
+	}
+
+
+	public Sesion(String convocatoria, String description, String tipo_sesion, Date fechaRegistro,
+			Date fechaIntervencion, String horaIntervencion) {
+		this.convocatoria = convocatoria;
+		this.description = description;
+		this.tipo_sesion = tipo_sesion;
+		this.fechaRegistro = fechaRegistro;
+		this.fechaIntervencion = fechaIntervencion;
+		this.horaIntervencion = horaIntervencion;
+	}
+
+
+>>>>>>> anthony
 
 	
 
@@ -385,6 +427,9 @@ public class Sesion implements Serializable{
 		
 	}
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> anthony
 	
 }

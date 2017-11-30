@@ -24,7 +24,11 @@ public interface IServidor extends Remote {
 	public List<Voto> votosRechazados()throws RemoteException;
 	//para limpiar o reiniciar los votos
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public String limpiarVotoOrden()throws RemoteException;
+=======
+	public String limpiarVoto()throws RemoteException;
+>>>>>>> anthony
 =======
 	public String limpiarVoto()throws RemoteException;
 >>>>>>> anthony
@@ -39,8 +43,12 @@ public interface IServidor extends Remote {
 	public List<Voto> votosBlanco()throws RemoteException;
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public String limpiarVoto()throws RemoteException;
 	
+=======
+	public String limpiarVotoOrden()throws RemoteException;
+>>>>>>> anthony
 =======
 	public String limpiarVotoOrden()throws RemoteException;
 >>>>>>> anthony

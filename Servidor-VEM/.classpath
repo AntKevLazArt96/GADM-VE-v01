@@ -6,6 +6,11 @@
 	<classpathentry kind="src" path="res"/>
 	<classpathentry kind="src" path="lib"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
+>>>>>>> anthony
 =======
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>

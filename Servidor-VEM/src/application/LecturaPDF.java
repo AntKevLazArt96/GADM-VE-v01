@@ -28,7 +28,10 @@ import com.sun.pdfview.PagePanel;
 
 import gad.manta.common.ActaPdf;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import gad.manta.common.Comentario;
+=======
+>>>>>>> anthony
 =======
 >>>>>>> anthony
 import gad.manta.common.Conexion;
@@ -53,12 +56,18 @@ public class LecturaPDF extends JFrame implements  Initializable {
 	 * 
 	 */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private static final long serialVersionUID = 6506395191970665089L;
 =======
+=======
+>>>>>>> anthony
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 
 	 */
+<<<<<<< HEAD
+>>>>>>> anthony
+=======
 >>>>>>> anthony
 	private PDFFile pdffile;
 	private int pagina;
@@ -160,6 +169,7 @@ public class LecturaPDF extends JFrame implements  Initializable {
 	lbl_nombre.setText(data.name);
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	try {
 		 user = servidor.usuario(data.name);
 		/*Image im = convertirImg(user.getImg());
@@ -182,6 +192,8 @@ public class LecturaPDF extends JFrame implements  Initializable {
 			
 			
 =======
+=======
+>>>>>>> anthony
 	File f = new File("C:\\librerias\\concejal1.png");
 	Image im = new Image(f.toURI().toString());
 	cirlogin.setFill(new ImagePattern(im));
@@ -191,6 +203,9 @@ public class LecturaPDF extends JFrame implements  Initializable {
 		try
 		{
 		
+<<<<<<< HEAD
+>>>>>>> anthony
+=======
 >>>>>>> anthony
 			File  n;
 			// Ubicación del archivo pdf
@@ -205,8 +220,11 @@ public class LecturaPDF extends JFrame implements  Initializable {
 			}
 			
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
 			
+=======
+>>>>>>> anthony
 =======
 >>>>>>> anthony
 			RandomAccessFile raf = new RandomAccessFile(n, "r");
@@ -251,6 +269,7 @@ public class LecturaPDF extends JFrame implements  Initializable {
 	}
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	@FXML
     private void guardar_comentario(ActionEvent  event) throws RemoteException, MalformedURLException, NotBoundException {
 		servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
@@ -266,6 +285,9 @@ public class LecturaPDF extends JFrame implements  Initializable {
 		
 
     } 
+=======
+
+>>>>>>> anthony
 =======
 
 >>>>>>> anthony

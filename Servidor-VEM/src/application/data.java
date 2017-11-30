@@ -11,6 +11,10 @@ public class data {
     public static String convocatoria_sesion;
     public static int idquorum;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    
+>>>>>>> anthony
 =======
     
 >>>>>>> anthony
@@ -21,11 +25,17 @@ public class data {
     public static byte[] pdf;
     
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> anthony
     //datos para la ventana de dialogo
     public static String tipoMsgDial;
     public static String header;
     public static String cuerpo;
     
+<<<<<<< HEAD
+>>>>>>> anthony
+=======
 >>>>>>> anthony
 }

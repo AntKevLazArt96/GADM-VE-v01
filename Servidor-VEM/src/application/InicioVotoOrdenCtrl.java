@@ -142,6 +142,7 @@ public class InicioVotoOrdenCtrl implements Initializable {
 
 	@FXML
 	private Label user7;
+<<<<<<< HEAD
 
 	@FXML
 	private Label status7;
@@ -208,6 +209,74 @@ public class InicioVotoOrdenCtrl implements Initializable {
 	// inicializamos socket
 	public InicioVotoOrdenCtrl() {
 
+=======
+
+	@FXML
+	private Label status7;
+
+	@FXML
+	private Label user8;
+
+	@FXML
+	private Label user9;
+
+	@FXML
+	private Label user10;
+
+	@FXML
+	private Label user11;
+
+	@FXML
+	private Label user12;
+
+	@FXML
+	private Label status8;
+
+	@FXML
+	private Label status9;
+
+	@FXML
+	private Label status11;
+
+	@FXML
+	private Label status10;
+
+	@FXML
+	private Label estatus12;
+
+	@FXML
+	private Label lblAprobado;
+
+	@FXML
+	private Label lblRechazado;
+
+	@FXML
+	private Label lblEspera;
+
+	// variables estaticas para socket
+	public static Thread th;
+	Socket sock;
+	DataOutputStream dos;
+	DataInputStream dis;
+	
+	
+	//Listas
+	List<Voto> lista;
+	List<Voto> aprueba;
+	List<Voto> rechaza;
+	
+	// meotodo para convertir la la imagen
+	public Image convertirImg(byte[] bytes) throws IOException {
+		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+
+		Image img = new Image(bis);
+		return img;
+	}
+
+	// inicializamos socket
+	public InicioVotoOrdenCtrl() {
+
+>>>>>>> anthony
 		try {
 			servidor = (IServidor) Naming.lookup("rmi://192.168.1.6/VotoE");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
@@ -539,6 +608,7 @@ public class InicioVotoOrdenCtrl implements Initializable {
 
                 JSONObject js = new JSONObject();
                 js.put("name", "REINICIAR");
+<<<<<<< HEAD
 
                 String json = js.toJSONString();
 
@@ -564,11 +634,39 @@ public class InicioVotoOrdenCtrl implements Initializable {
 	@FXML
 	void handleButtonAction(ActionEvent event) {
 
+=======
+
+                String json = js.toJSONString();
+
+
+                System.out.println("Se envio:"+json);
+
+                dos.writeUTF(json);
+
+            } catch(IOException E) {
+                E.printStackTrace();
+            }
+			
+			
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		btn_finVoto.setDisable(true);
+		btn_reVoto.setDisable(true);
+	}
+
+	@FXML
+	void handleButtonAction(ActionEvent event) {
+
+>>>>>>> anthony
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		lbl_nombre.setText(data.name);
+<<<<<<< HEAD
 <<<<<<< HEAD
 		
 		File f = new File("C:\\librerias\\concejal1.png");
@@ -580,6 +678,8 @@ public class InicioVotoOrdenCtrl implements Initializable {
         try {
 			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
 =======
+=======
+>>>>>>> anthony
 
 		File f = new File("C:\\librerias\\concejal1.png");
 		Image im = new Image(f.toURI().toString());
@@ -589,6 +689,9 @@ public class InicioVotoOrdenCtrl implements Initializable {
 
 		try {
 			servidor = (IServidor) Naming.lookup("rmi://192.168.1.6/VotoE");
+<<<<<<< HEAD
+>>>>>>> anthony
+=======
 >>>>>>> anthony
 			Sesion sesion = servidor.consultarSesion();
 			label_titulo.setText(sesion.getDescription());
