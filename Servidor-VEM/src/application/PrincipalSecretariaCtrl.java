@@ -70,6 +70,18 @@ public class PrincipalSecretariaCtrl implements Initializable{
     
     @FXML
     private JFXButton btn_pdf;
+    
+    @FXML
+    private JFXButton btn_voz;
+	@FXML
+    private JFXButton btn_modificar;
+	
+	@FXML
+    private Label lblOrden;
+
+	
+   
+    public Sesion sesion;
 
     @FXML
     void iniSesion(ActionEvent event) throws IOException, NotBoundException {   	    	    	    	    	
@@ -101,16 +113,115 @@ public class PrincipalSecretariaCtrl implements Initializable{
 
 
     @FXML
-       void mostrar_pdf(ActionEvent event) {
+    void modificar_sesion(ActionEvent event) {
+		
+		try {
+			Stage newStage = new Stage();
+			
+			AnchorPane pane;
+			
+			pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ModificacionSesion.fxml"));
+			Scene scene = new Scene(pane);
+	        
+	        //Pantalla completa
+	      /*  Screen screen = Screen.getPrimary();
+			Rectangle2D bounds = screen.getVisualBounds();
+			
+			newStage.setX(bounds.getMinX());
+			newStage.setY(bounds.getMinY());
+			newStage.setWidth(bounds.getWidth());
+			newStage.setHeight(bounds.getHeight());*/
+	        
+	        newStage.setScene(scene);
+	        newStage.initStyle(StageStyle.UNDECORATED);
+	        newStage.show();
+	        
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
 
-       }
+    }
+
+
+
+
+@FXML
+    void mostrar_acta(ActionEvent event) {
+		
+		Stage newStage = new Stage();
+		AnchorPane pane;
+		try {
+			data.id_acta=sesion.getId_pdf();
+			pane = (AnchorPane)FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+			Scene scene = new Scene(pane);
+	        
+	        //Pantalla completa
+	        Screen screen = Screen.getPrimary();
+			Rectangle2D bounds = screen.getVisualBounds();
+			
+			newStage.setX(bounds.getMinX());
+			newStage.setY(bounds.getMinY());
+			newStage.setWidth(bounds.getWidth());
+			newStage.setHeight(bounds.getHeight());
+	        
+	        newStage.setScene(scene);
+	        newStage.initStyle(StageStyle.UNDECORATED);
+	        newStage.show();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
+    }
+
+
+
+@FXML
+    void mostrar_pdf(MouseEvent event) {
+		
+		Stage newStage = new Stage();
+		
+		AnchorPane pane;
+		try {
+			
+			data.id_acta=0;
+			data.id_pdf=table_documentacion.getSelectionModel().selectedItemProperty().get().getId_pdf();
+			System.out.println(data.id_pdf);
+			
+			pane = (AnchorPane)FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+			Scene scene = new Scene(pane);
+	        
+	        //Pantalla completa
+	        Screen screen = Screen.getPrimary();
+			Rectangle2D bounds = screen.getVisualBounds();
+			
+			newStage.setX(bounds.getMinX());
+			newStage.setY(bounds.getMinY());
+			newStage.setWidth(bounds.getWidth());
+			newStage.setHeight(bounds.getHeight());
+	        
+	        newStage.setScene(scene);
+	        newStage.initStyle(StageStyle.UNDECORATED);
+	        newStage.show();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
+    }
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		lbl_nombre.setText(data.name);
 		
-		File f = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res\\concejal1.png");
+		File f = new File("C:\\librerias\\concejal1.png");
         Image im = new Image(f.toURI().toString());
         cirlogin.setFill(new ImagePattern(im));
         cirlogin.setStroke(Color.SEAGREEN);
@@ -118,10 +229,10 @@ public class PrincipalSecretariaCtrl implements Initializable{
         
 		try {
 			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
-			Sesion sesion = servidor.consultarSesion();
-			label_titulo.setText(sesion.getTitulo());
-			label_convocatoria.setText(sesion.getConvocatoria());
 			
+			sesion = servidor.consultarSesion();
+			label_titulo.setText(sesion.getDescription());
+			label_convocatoria.setText(sesion.getConvocatoria());
 			
 			List<OrdenDia>lista_orden=servidor.consultarOrden();
 			
@@ -138,7 +249,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	        TableColumn proponente = new TableColumn("Proponente");
 	        proponente.setMinWidth(300);
 	        proponente.setCellValueFactory(
-	                new PropertyValueFactory<>("proponente"));
+	                new PropertyValueFactory<>("proponente_nombre"));
 			ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
 					lista_orden
 					);
@@ -146,26 +257,30 @@ public class PrincipalSecretariaCtrl implements Initializable{
 			tabla_ordenDia.getColumns().addAll(num_punto,descripcion,proponente);
 			tabla_ordenDia.setItems(datos);
 	
-			/*List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
+			List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
+			    TableColumn pdf = new TableColumn("id");
+		        pdf.setMinWidth(500);
+		        pdf.setVisible(false);
+		        pdf.setCellValueFactory(
+		                new PropertyValueFactory<>("id_pdf"));
+		        
 			TableColumn punto = new TableColumn("Documentación perteneciente al punto");
 			punto.setMinWidth(250);
 			punto.setCellValueFactory(
 	                new PropertyValueFactory<>("punto"));
-	 
-	        TableColumn nombre = new TableColumn("Nombre");
-	        nombre.setMinWidth(400);
+			TableColumn nombre = new TableColumn("Nombre");
+	        nombre.setMinWidth(700);
+	        nombre.setResizable(true);
+	        
 	        nombre.setCellValueFactory(
 	                new PropertyValueFactory<>("nombre"));
-	 
-	        TableColumn pdf = new TableColumn("Pdf");
-	        pdf.setMinWidth(200);
-	        pdf.setCellValueFactory(
-	                new PropertyValueFactory<>("pdf"));
+	       
 			ObservableList<Documentacion> datos_pdf = FXCollections.observableArrayList(
 					lista_documentacion
 					);
-			table_documentacion.getColumns().addAll(punto,nombre,pdf);
-			table_documentacion.setItems(datos_pdf);*/
+			table_documentacion.getColumns().addAll(pdf,punto,nombre);
+			
+			table_documentacion.setItems(datos_pdf);
 	
 			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
@@ -175,11 +290,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	
 	}
 	
-	@FXML
-    void mostrar_documentacion(MouseEvent  event) throws RemoteException{
-    	System.out.println("Mostrando Documentos");
-    	
-    }
+	
 
 
 	@FXML 

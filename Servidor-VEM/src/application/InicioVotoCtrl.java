@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package application;
 
 import java.io.ByteArrayInputStream;
@@ -32,7 +27,10 @@ import gad.manta.common.Voto;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -41,11 +39,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 
 public class InicioVotoCtrl implements Initializable {
+	volatile boolean ejecutar = true;
 	private static IServidor servidor;
 	@FXML
     private Label label_convocatoria;
@@ -208,7 +209,8 @@ public class InicioVotoCtrl implements Initializable {
       Socket sock;
       DataOutputStream dos;
       DataInputStream dis;
-    
+     
+
       public InicioVotoCtrl() {
     		
     		try {
@@ -233,7 +235,7 @@ public class InicioVotoCtrl implements Initializable {
 
                         JSONParser parser = new JSONParser();
 
-                        while(true) {
+                        while(ejecutar) {
                             String newMsgJson = dis.readUTF();
 
                             System.out.println("RE : " + newMsgJson);
@@ -253,114 +255,129 @@ public class InicioVotoCtrl implements Initializable {
                                 	try {
                                 		//lista que devuelve todos los votantes con sus votos
     									List<Voto> lista = servidor.votantesPunto();
-    									
     									List<Voto> favor = servidor.votosAFavor();
     									List<Voto> contra = servidor.votosEnContra();
     									List<Voto> salvados = servidor.votosSalvados();
     									List<Voto> blanco = servidor.votosBlanco();
     									
+    									//lista que verifica el total de asistentes
+    									List<Usuario> quorum = servidor.consultaQuorum();
+      									
     									
     									lblAFavor.setText(String.valueOf(favor.size()));
     									lblEnContra.setText(String.valueOf(contra.size()));
     									lblSalvoVoto.setText(String.valueOf(salvados.size()));
     									lblBlanco.setText(String.valueOf(blanco.size()));
     								
-    									
-    									/*
+    									    									
     									lblEspera.setText(String.valueOf(quorum.size()-lista.size()));
-    									*/
     									
     									
     									for (int i = 0; i < lista.size(); i++) {
-    	                            		img1.setVisible(true);
-    										user1.setVisible(true);
-    										user1.setText(lista.get(0).getNombre());
-    										status1.setText(lista.get(0).getVoto());
-    										status1.setVisible(true);
-    										if(lista.size()==2) {
-    											img2.setVisible(true);
-    											user2.setText(lista.get(1).getNombre());
-    											user2.setVisible(true);
-    											status2.setText(lista.get(1).getVoto());
-    											status2.setVisible(true);
-    										}
-    										if(lista.size()==3) {
-    											img3.setVisible(true);
-    											user3.setText(lista.get(2).getNombre());
-    											user3.setVisible(true);
-    											status3.setText(lista.get(2).getVoto());
-    											status3.setVisible(true);
-    										}
-    										if(lista.size()==4) {
-    											img4.setVisible(true);
-    											user4.setText(lista.get(3).getNombre());
-    											user4.setVisible(true);
-    											status4.setText(lista.get(3).getVoto());
-    											status4.setVisible(true);
-    										}
-    										if(lista.size()==5) {
-    											img5.setVisible(true);
-    											user5.setText(lista.get(4).getNombre());
-    											user5.setVisible(true);
-    											status5.setText(lista.get(4).getVoto());
-    											status5.setVisible(true);
-    										}
-    										if(lista.size()==6) {
-    											img6.setVisible(true);
-    											user6.setText(lista.get(5).getNombre());
-    											user6.setVisible(true);
-    											status6.setText(lista.get(5).getVoto());
-    											status6.setVisible(true);
-    										}
-    										if(lista.size()==7) {
-    											img7.setVisible(true);
-    											user7.setText(lista.get(6).getNombre());
-    											user7.setVisible(true);
-    											status7.setText(lista.get(6).getVoto());
-    											status7.setVisible(true);
-    										}
-    										if(lista.size()==8) {
-    											img8.setVisible(true);
-    											user8.setText(lista.get(7).getNombre());
-    											user8.setVisible(true);
-    											status8.setText(lista.get(7).getVoto());
-    											status8.setVisible(true);
-    										}
-    										if(lista.size()==9) {
-    											img9.setVisible(true);
-    											user9.setText(lista.get(8).getNombre());
-    											user9.setVisible(true);
-    											status9.setText(lista.get(8).getVoto());
-    											status9.setVisible(true);
-    										}
-    										if(lista.size()==10) {
-    											img10.setVisible(true);
-    											user10.setText(lista.get(9).getNombre());
-    											user10.setVisible(true);
-    											status10.setText(lista.get(9).getVoto());
-    											status10.setVisible(true);
-    										}
-    										if(lista.size()==11) {
-    											img11.setVisible(true);
-    											user11.setText(lista.get(10).getNombre());
-    											user11.setVisible(true);
-    											status11.setText(lista.get(10).getVoto());
-    											status11.setVisible(true);
-    										}
-    										if(lista.size()==12) {
-    											img12.setVisible(true);
-    											user12.setText(lista.get(11).getNombre());
-    											user12.setVisible(true);
-    											estatus12.setText(lista.get(11).getVoto());
-    											estatus12.setVisible(true);
-    										}
     										
-    										/*if(lista.size()>=0) {
-    											btnIniVoto.setDisable(false);
-    											txtCumple.setText("Cumple con el mínimo de miembros para inicar la sesión");
-    											
-    										}*/
-    									}
+    										System.out.println(lista.get(i).getVoto());
+        									
+      										img1.setVisible(true);
+      										img1.setImage(convertirImg(lista.get(i).getImg()));
+    										user1.setVisible(true);
+      										user1.setText(lista.get(0).getNombre());
+      										status1.setText(lista.get(0).getVoto());
+      										status1.setVisible(true);
+      										if(lista.size()==2) {
+      		                            		img2.setImage(convertirImg(lista.get(i).getImg()));
+      		                            		img2.setVisible(true);
+      		                            		user2.setText(lista.get(1).getNombre());
+      											user2.setVisible(true);
+      											status2.setText(lista.get(1).getVoto());
+      											status2.setVisible(true);
+      										}
+      										if(lista.size()==3) {
+      		                            		img3.setImage(convertirImg(lista.get(i).getImg()));
+      		                            		img3.setVisible(true);
+      		                            		user3.setText(lista.get(2).getNombre());
+      											user3.setVisible(true);
+      											status3.setText(lista.get(2).getVoto());
+      											status3.setVisible(true);
+      										}
+      										if(lista.size()==4) {
+      											img4.setImage(convertirImg(lista.get(i).getImg()));
+      											img4.setVisible(true);
+      											user4.setText(lista.get(3).getNombre());
+      											user4.setVisible(true);
+      											status4.setText(lista.get(3).getVoto());
+      											status4.setVisible(true);
+      										}
+      										if(lista.size()==5) {
+      		                            		img5.setImage(convertirImg(lista.get(i).getImg()));
+      		                            		img5.setVisible(true);
+      		                            		user5.setText(lista.get(4).getNombre());
+      											user5.setVisible(true);
+      											status5.setText(lista.get(4).getVoto());
+      											status5.setVisible(true);
+      										}
+      										if(lista.size()==6) {
+      											img6.setImage(convertirImg(lista.get(i).getImg()));
+      											img6.setVisible(true);
+      											user6.setText(lista.get(5).getNombre());
+      											user6.setVisible(true);
+      											status6.setText(lista.get(5).getVoto());
+      											status6.setVisible(true);
+      										}
+      										if(lista.size()==7) {
+      											img7.setImage(convertirImg(lista.get(i).getImg()));
+      											img7.setVisible(true);
+      											user7.setText(lista.get(6).getNombre());
+      											user7.setVisible(true);
+      											status7.setText(lista.get(6).getVoto());
+      											status7.setVisible(true);
+      										}
+      										if(lista.size()==8) {
+      											img8.setImage(convertirImg(lista.get(i).getImg()));
+      											img8.setVisible(true);
+      											user8.setText(lista.get(7).getNombre());
+      											user8.setVisible(true);
+      											status8.setText(lista.get(7).getVoto());
+      											status8.setVisible(true);
+      										}
+      										if(lista.size()==9) {
+      											img9.setImage(convertirImg(lista.get(i).getImg()));
+      											img9.setVisible(true);
+      											user9.setText(lista.get(8).getNombre());
+      											user9.setVisible(true);
+      											status9.setText(lista.get(8).getVoto());
+      											status9.setVisible(true);
+      										}
+      										if(lista.size()==10) {
+      											img10.setImage(convertirImg(lista.get(i).getImg()));
+      											img10.setVisible(true);
+      											user10.setText(lista.get(9).getNombre());
+      											user10.setVisible(true);
+      											status10.setText(lista.get(9).getVoto());
+      											status10.setVisible(true);
+      										}
+      										if(lista.size()==11) {
+      											img11.setImage(convertirImg(lista.get(i).getImg()));
+      											img11.setVisible(true);
+      											user11.setText(lista.get(10).getNombre());
+      											user11.setVisible(true);
+      											status11.setText(lista.get(10).getVoto());
+      											status11.setVisible(true);
+      										}
+      										if(lista.size()==12) {
+      											img12.setImage(convertirImg(lista.get(i).getImg()));
+      											img12.setVisible(true);
+      											user12.setText(lista.get(11).getNombre());
+      											user12.setVisible(true);
+      											estatus12.setText(lista.get(11).getVoto());
+      											estatus12.setVisible(true);
+      										}
+      										
+      										/*if(lista.size()>=0) {
+      											btnIniVoto.setDisable(false);
+      											txtCumple.setText("Cumple con el mínimo de miembros para inicar la sesión");
+      											
+      										}*/
+      									}
     									
     									
     									
@@ -368,7 +385,10 @@ public class InicioVotoCtrl implements Initializable {
     								} catch (RemoteException e) {
     									// TODO Auto-generated catch block
     									e.printStackTrace();
-    								}                       
+    								} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}                       
                                 }
                             });
                                                     
@@ -386,10 +406,29 @@ public class InicioVotoCtrl implements Initializable {
 
     
     @FXML
-    void finVoto(ActionEvent event) {
-    	Stage stage = (Stage) btn_finVoto.getScene().getWindow();
+    void finVoto(ActionEvent event) throws IOException {
+    	// get a handle to the stage
+	    Stage actualStage = (Stage) btn_finVoto.getScene().getWindow();
 	    // do what you have to do
-	    stage.close();
+	    actualStage.close();
+	    Stage newStage = new Stage();
+	   AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("InicioSesion.fxml"));
+        Scene scene = new Scene(pane);
+        
+        //Pantalla completa
+        Screen screen = Screen.getPrimary();
+		Rectangle2D bounds = screen.getVisualBounds();
+
+		newStage.setX(bounds.getMinX());
+		newStage.setY(bounds.getMinY());
+		newStage.setWidth(bounds.getWidth());
+		newStage.setHeight(bounds.getHeight());
+        
+        
+        newStage.setScene(scene);
+        newStage.initStyle(StageStyle.UNDECORATED);
+        newStage.show();
+        ejecutar=false;
     }
     
     @FXML
@@ -411,7 +450,7 @@ public class InicioVotoCtrl implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		lbl_nombre.setText(data.name);
 		
-		File f = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res\\concejal1.png");
+		File f = new File("C:\\librerias\\concejal1.png");
         Image im = new Image(f.toURI().toString());
         cirlogin.setFill(new ImagePattern(im));
         cirlogin.setStroke(Color.SEAGREEN);

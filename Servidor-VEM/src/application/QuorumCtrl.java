@@ -23,7 +23,11 @@ import org.json.simple.parser.JSONParser;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 
+import gad.manta.common.Asistencia;
+import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
+import gad.manta.common.Quorum;
+import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -43,12 +47,10 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import modelo.Asistencia;
-import modelo.Conexion;
-import modelo.Quorum;
-import modelo.Sesion;
+
 
 public class QuorumCtrl implements Initializable {
+	volatile boolean ejecutar = true;
 	private static IServidor servidor;
 	private Conexion conexion;
 	
@@ -209,14 +211,15 @@ public class QuorumCtrl implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		try {
 
             sock = new Socket(data.ip, data.port);
+            
             dos = new DataOutputStream(sock.getOutputStream());
             dis = new DataInputStream(sock.getInputStream());
             //Enviamos al sistema el nombre de la secretaria
             dos.writeUTF(data.name);
-            System.out.println(data.name);
             /*
             * This Thread let the client recieve the message from the server for any time;
             */
@@ -225,10 +228,10 @@ public class QuorumCtrl implements Initializable {
 
                     JSONParser parser = new JSONParser();
 
-                    while(true) {
+                    while(ejecutar) {
                         String newMsgJson = dis.readUTF();
 
-                        System.out.println("RE : " + newMsgJson);
+                        System.out.println("RE desde el Quorum: " + newMsgJson);
                         Usuario newMsg = new Usuario();
                       
 
@@ -411,7 +414,7 @@ public class QuorumCtrl implements Initializable {
 		btn_finAsistencia.setVisible(true);
 		btnasistencia.setVisible(false);
 		Date fechaActual = new Date(Calendar.getInstance().getTime().getTime());
-		System.out.println(fechaActual);
+		//System.out.println(fechaActual);
 		
 		conexion.establecerConexion();
 		Quorum q = new Quorum(fechaActual);
@@ -448,7 +451,7 @@ public class QuorumCtrl implements Initializable {
 	    // do what you have to do
 	    stage.close();
     	System.out.println("finalizando asistencia");
-    	th.interrupt();
+    	
     	Stage newStage = new Stage();
 	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("RegistrarAsistencia.fxml"));
         Scene scene = new Scene(pane);   
@@ -462,8 +465,7 @@ public class QuorumCtrl implements Initializable {
         newStage.setScene(scene);
         newStage.initStyle(StageStyle.UNDECORATED);
         newStage.show();
-    	
- 	
+        ejecutar = false;
     }
 
 
@@ -473,7 +475,7 @@ public class QuorumCtrl implements Initializable {
 		conexion = new Conexion();
 		lbl_nombre.setText(data.name);
 		cirlogin.setStroke(Color.SEAGREEN);
-		File f = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res\\concejal1.png");
+		File f = new File("C:\\librerias\\concejal1.png");
         Image im = new Image(f.toURI().toString());
         cirlogin.setFill(new ImagePattern(im));
         cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));

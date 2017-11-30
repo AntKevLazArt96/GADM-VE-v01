@@ -21,7 +21,7 @@ public class MainServidor {
 			registry.rebind("VotoE", remote);
 			
 			System.out.println(registry.toString());
-			System.out.println("Servidor Liso, Preione enter para terminar");
+			System.out.println("Servidor iniciado, Preione enter para terminar");
 	        System.in.read();
 	        
 	        registry.unbind("VotoE");

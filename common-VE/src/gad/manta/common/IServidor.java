@@ -22,7 +22,9 @@ public interface IServidor extends Remote {
 	public List<Voto> votantes()throws RemoteException;
 	public List<Voto> votosAprobados()throws RemoteException;
 	public List<Voto> votosRechazados()throws RemoteException;
-	
+	//para limpiar o reiniciar los votos
+	public String limpiarVoto()throws RemoteException;
+		
 	//para crear la votacion de los puntos del orden del dia(punto) 
 	public String addVotoPunto(String usuario, String voto,byte[] img)throws RemoteException;
 	//para la lista de votos del orden del dia propuesto
@@ -32,8 +34,21 @@ public interface IServidor extends Remote {
 	public List<Voto> votosSalvados()throws RemoteException;
 	public List<Voto> votosBlanco()throws RemoteException;
 	
+	public String limpiarVotoOrden()throws RemoteException;
+	
 	
 	public Sesion consultarSesion() throws RemoteException;
 	public List<OrdenDia> consultarOrden() throws RemoteException;
 	public List<Documentacion> mostrarDocumentacion() throws RemoteException;
+	public List<Sesion> consultarSesion_Modificacion(String convocatoria) throws RemoteException;
+	public List<OrdenDia> consultarOrden_Modificacion(String convocatoria) throws RemoteException;
+	
+	List<OrdenDia> consultarPunto_Modificacion(int id_punto) throws RemoteException;
+	List<Pdf> consultarPDFS_Modificacion(int id_punto) throws RemoteException;
+	public ActaPdf acta_sesion(int id)throws RemoteException;
+	public Pdf pdf_punto(int id)throws RemoteException;
+	//public Comentario registrar_comentario(int id_user, int id_pdf, String nota)throws RemoteException;
+	public void add_nota_pdf(int id_punto, int id_user, String nota)throws RemoteException;
+	public void add_nota_acta(int id_punto, int id_user, String nota)throws RemoteException;
+	
 }

@@ -39,7 +39,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ClienteMostrarVotoOrdenCtrl implements Initializable {
-
+	volatile boolean ejecutar =true;
 	@FXML
     private Label label_convocatoria;
 	
@@ -89,11 +89,11 @@ public class ClienteMostrarVotoOrdenCtrl implements Initializable {
 
                     JSONParser parser = new JSONParser();
 
-                    while(true) {
+                    while(ejecutar) {
                         String newMsgJson = dis.readUTF();
 
                         System.out.println("RE : " + newMsgJson);
-                        Message newMsg = new Message();
+                        Mensage newMsg = new Mensage();
 
                         Object obj = parser.parse(newMsgJson);
                         JSONObject msg = (JSONObject) obj;
@@ -103,10 +103,7 @@ public class ClienteMostrarVotoOrdenCtrl implements Initializable {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                            	
-                            	
-                            	
-                            	if(newMsg.getName().contains("APROBADO")) {
+                            	if(newMsg.getName()!=null&&newMsg.getName().contains("APROBADO")) {
                             		Alert mensaje = new Alert(AlertType.INFORMATION);
                             		mensaje.setTitle("Orden del día Aprobado");
                             		mensaje.setContentText("LA orden del día fue aprobada ahora se procedera a mostrar ");
@@ -143,7 +140,39 @@ public class ClienteMostrarVotoOrdenCtrl implements Initializable {
                                     newStage.setScene(scene);
                                     newStage.initStyle(StageStyle.UNDECORATED);
                                     newStage.show();
+                                    ejecutar=false;
+                            	}
+                            	if(newMsg.getName().contains("REINICIAR")) {
+                            		Stage stage = (Stage) verVoto.getScene().getWindow();
+								    // do what you have to do
+								    stage.close();
                             		
+                            		Stage newStage = new Stage();
+                            		
+                            	    AnchorPane pane = null;
+									try {
+										pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteVotoOrden.fxml"));
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+									
+                                    Scene scene = new Scene(pane);
+                                    
+                                    //Pantalla completa
+                                    Screen screen = Screen.getPrimary();
+                            		Rectangle2D bounds = screen.getVisualBounds();
+
+                            		newStage.setX(bounds.getMinX());
+                            		newStage.setY(bounds.getMinY());
+                            		newStage.setWidth(bounds.getWidth());
+                            		newStage.setHeight(bounds.getHeight());
+                                    
+                                    newStage.setScene(scene);
+                                    newStage.initStyle(StageStyle.UNDECORATED);
+                                    newStage.show();
+                                    ejecutar=false;
                             	}
                             }
                         });

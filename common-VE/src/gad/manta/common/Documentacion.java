@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Documentacion implements Serializable {
 
 	private static final long serialVersionUID = -2406076527285660076L;
+	private int id_pdf;
 	private int punto;
 	private String nombre;
 	private byte[] pdf;
@@ -12,11 +13,28 @@ public class Documentacion implements Serializable {
 		// TODO Auto-generated constructor stub
 		
 	}
-	public Documentacion(int punto, String nombre, byte[] pdf) {
+	
+	
+	public Documentacion(int id_pdf, int punto, String nombre) {
+		this.id_pdf = id_pdf;
 		this.punto = punto;
 		this.nombre = nombre;
-		this.pdf = pdf;
 	}
+
+
+
+	public int getId_pdf() {
+		return id_pdf;
+	}
+
+
+
+	public void setId_pdf(int id_pdf) {
+		this.id_pdf = id_pdf;
+	}
+
+
+
 	public int getPunto() {
 		return punto;
 	}

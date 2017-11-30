@@ -80,7 +80,7 @@
                         <MaterialDesignIconView fill="#212121" glyphName="BOOK_OPEN" size="20.0" />
                      </graphic>
                   </Label>
-                  <JFXButton fx:id="btn_pdf" layoutX="91.0" layoutY="31.0" onAction="#mostrar_pdf" prefHeight="35.0" prefWidth="43.0" style="-fx-background-color: #BDBDBD;" text=" ">
+                  <JFXButton fx:id="btn_pdf" layoutX="91.0" layoutY="31.0" onAction="#mostrar_acta" prefHeight="35.0" prefWidth="43.0" style="-fx-background-color: #BDBDBD;" text=" ">
                      <font>
                         <Font size="1.0" />
                      </font>
@@ -116,7 +116,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TableView fx:id="table_documentacion" layoutX="891.0" layoutY="287.0" prefHeight="200.0" prefWidth="346.0" AnchorPane.bottomAnchor="106.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="287.0" />
+            <TableView fx:id="table_documentacion" layoutX="891.0" layoutY="287.0" onMouseClicked="#mostrar_pdf" prefHeight="200.0" prefWidth="346.0" AnchorPane.bottomAnchor="106.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="287.0" />
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />
