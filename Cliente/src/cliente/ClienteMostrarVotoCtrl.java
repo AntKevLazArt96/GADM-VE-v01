@@ -39,7 +39,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ClienteMostrarVotoCtrl implements Initializable {
-
+	volatile boolean ejecutar = true;
 	@FXML
     private Label label_convocatoria;
 	
@@ -89,7 +89,7 @@ public class ClienteMostrarVotoCtrl implements Initializable {
 
                     JSONParser parser = new JSONParser();
 
-                    while(true) {
+                    while(ejecutar) {
                         String newMsgJson = dis.readUTF();
 
                         System.out.println("RE : " + newMsgJson);
@@ -141,6 +141,7 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                                     newStage.setScene(scene);
                                     newStage.initStyle(StageStyle.UNDECORATED);
                                     newStage.show();
+                                    ejecutar=false;
                             		
                             	}
                             }

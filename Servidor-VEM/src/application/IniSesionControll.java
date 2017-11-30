@@ -202,7 +202,7 @@ public class IniSesionControll implements Initializable {
 			
 			
 			List<OrdenDia>lista_orden=servidor.consultarOrden();
-			OrdenDia orden1 = new OrdenDia(lista_orden.get(0).getId(),lista_orden.get(0).getNumeroPunto(),lista_orden.get(0).getTema(),lista_orden.get(0).getProponente());
+			OrdenDia orden1 = new OrdenDia(lista_orden.get(0).getId(),lista_orden.get(0).getNumeroPunto(),lista_orden.get(0).getTema(),lista_orden.get(0).getProponente_nombre());
 			//cargo el orden del dia en los labels
 			lbl_punto.setText(""+orden1.getNumeroPunto());
 			label_titulo.setText(orden1.getTema());

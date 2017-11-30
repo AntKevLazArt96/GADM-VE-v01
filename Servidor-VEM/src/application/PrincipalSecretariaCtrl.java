@@ -92,10 +92,25 @@ public class PrincipalSecretariaCtrl implements Initializable{
     
     @FXML
     private JFXButton btn_pdf;
+<<<<<<< HEAD
     public Sesion sesion;
 	//inicializamos socket
 	 public PrincipalSecretariaCtrl() {
 	        try {
+=======
+    
+    @FXML
+    private JFXButton btn_voz;
+	@FXML
+    private JFXButton btn_modificar;
+	
+	@FXML
+    private Label lblOrden;
+
+	
+   
+    public Sesion sesion;
+>>>>>>> anthony
 
 	            
 	    	    data.ip = "192.168.1.6";
@@ -116,6 +131,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 
 	                    JSONParser parser = new JSONParser();
 
+<<<<<<< HEAD
 	                    while(true) {
 	                        String newMsgJson = dis.readUTF();
 
@@ -175,6 +191,111 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	                }
 
 	            });
+=======
+    @FXML
+    void modificar_sesion(ActionEvent event) {
+		
+		try {
+			Stage newStage = new Stage();
+			
+			AnchorPane pane;
+			
+			pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ModificacionSesion.fxml"));
+			Scene scene = new Scene(pane);
+	        
+	        //Pantalla completa
+	      /*  Screen screen = Screen.getPrimary();
+			Rectangle2D bounds = screen.getVisualBounds();
+			
+			newStage.setX(bounds.getMinX());
+			newStage.setY(bounds.getMinY());
+			newStage.setWidth(bounds.getWidth());
+			newStage.setHeight(bounds.getHeight());*/
+	        
+	        newStage.setScene(scene);
+	        newStage.initStyle(StageStyle.UNDECORATED);
+	        newStage.show();
+	        
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
+    }
+
+
+
+
+@FXML
+    void mostrar_acta(ActionEvent event) {
+		
+		Stage newStage = new Stage();
+		AnchorPane pane;
+		try {
+			data.id_acta=sesion.getId_pdf();
+			pane = (AnchorPane)FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+			Scene scene = new Scene(pane);
+	        
+	        //Pantalla completa
+	        Screen screen = Screen.getPrimary();
+			Rectangle2D bounds = screen.getVisualBounds();
+			
+			newStage.setX(bounds.getMinX());
+			newStage.setY(bounds.getMinY());
+			newStage.setWidth(bounds.getWidth());
+			newStage.setHeight(bounds.getHeight());
+	        
+	        newStage.setScene(scene);
+	        newStage.initStyle(StageStyle.UNDECORATED);
+	        newStage.show();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
+    }
+
+
+
+@FXML
+    void mostrar_pdf(MouseEvent event) {
+		
+		Stage newStage = new Stage();
+		
+		AnchorPane pane;
+		try {
+			
+			data.id_acta=0;
+			data.id_pdf=table_documentacion.getSelectionModel().selectedItemProperty().get().getId_pdf();
+			System.out.println(data.id_pdf);
+			
+			pane = (AnchorPane)FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+			Scene scene = new Scene(pane);
+	        
+	        //Pantalla completa
+	        Screen screen = Screen.getPrimary();
+			Rectangle2D bounds = screen.getVisualBounds();
+			
+			newStage.setX(bounds.getMinX());
+			newStage.setY(bounds.getMinY());
+			newStage.setWidth(bounds.getWidth());
+			newStage.setHeight(bounds.getHeight());
+	        
+	        newStage.setScene(scene);
+	        newStage.initStyle(StageStyle.UNDECORATED);
+	        newStage.show();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
+    }
+>>>>>>> anthony
 
 	            th.start();
 
@@ -281,12 +402,26 @@ public class PrincipalSecretariaCtrl implements Initializable{
 				
 				table_documentacion.setItems(datos_pdf);
 		
+<<<<<<< HEAD
 				
 			} catch (RemoteException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+=======
+		File f = new File("C:\\librerias\\concejal1.png");
+        Image im = new Image(f.toURI().toString());
+        cirlogin.setFill(new ImagePattern(im));
+        cirlogin.setStroke(Color.SEAGREEN);
+        cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
+        
+		try {
+			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+>>>>>>> anthony
 			
+			sesion = servidor.consultarSesion();
+			label_titulo.setText(sesion.getDescription());
+			label_convocatoria.setText(sesion.getConvocatoria());
 			
 		}
 		
@@ -305,6 +440,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	        Screen screen = Screen.getPrimary();
 			Rectangle2D bounds = screen.getVisualBounds();
 			
+<<<<<<< HEAD
 			newStage.setX(bounds.getMinX());
 			newStage.setY(bounds.getMinY());
 			newStage.setWidth(bounds.getWidth());
@@ -313,6 +449,54 @@ public class PrincipalSecretariaCtrl implements Initializable{
 	        newStage.setScene(scene);
 	        newStage.initStyle(StageStyle.UNDECORATED);
 	        newStage.show();
+=======
+			TableColumn num_punto = new TableColumn("No. Punto");
+			num_punto.setMinWidth(50);
+			num_punto.setCellValueFactory(
+	                new PropertyValueFactory<>("numeroPunto"));
+	 
+	       TableColumn descripcion = new TableColumn("Descripción");
+	        descripcion.setMinWidth(900);
+	        descripcion.setCellValueFactory(
+	                new PropertyValueFactory<>("tema"));
+	 
+	        TableColumn proponente = new TableColumn("Proponente");
+	        proponente.setMinWidth(300);
+	        proponente.setCellValueFactory(
+	                new PropertyValueFactory<>("proponente_nombre"));
+			ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
+					lista_orden
+					);
+			
+			tabla_ordenDia.getColumns().addAll(num_punto,descripcion,proponente);
+			tabla_ordenDia.setItems(datos);
+	
+			List<Documentacion>lista_documentacion=servidor.mostrarDocumentacion();
+			    TableColumn pdf = new TableColumn("id");
+		        pdf.setMinWidth(500);
+		        pdf.setVisible(false);
+		        pdf.setCellValueFactory(
+		                new PropertyValueFactory<>("id_pdf"));
+		        
+			TableColumn punto = new TableColumn("Documentación perteneciente al punto");
+			punto.setMinWidth(250);
+			punto.setCellValueFactory(
+	                new PropertyValueFactory<>("punto"));
+			TableColumn nombre = new TableColumn("Nombre");
+	        nombre.setMinWidth(700);
+	        nombre.setResizable(true);
+	        
+	        nombre.setCellValueFactory(
+	                new PropertyValueFactory<>("nombre"));
+	       
+			ObservableList<Documentacion> datos_pdf = FXCollections.observableArrayList(
+					lista_documentacion
+					);
+			table_documentacion.getColumns().addAll(pdf,punto,nombre);
+			
+			table_documentacion.setItems(datos_pdf);
+	
+>>>>>>> anthony
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -323,6 +507,7 @@ public class PrincipalSecretariaCtrl implements Initializable{
     }
 	
 	
+<<<<<<< HEAD
 	@FXML
     void mostrar_pdf(MouseEvent event) {
 		
@@ -388,6 +573,9 @@ public class PrincipalSecretariaCtrl implements Initializable{
 			e.printStackTrace();
 		}
         
+=======
+	
+>>>>>>> anthony
 
     }
 	

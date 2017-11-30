@@ -116,7 +116,11 @@
                   <Font size="18.0" />
                </font>
             </Label>
+<<<<<<< HEAD
             <TableView fx:id="table_documentacion" layoutX="676.0" layoutY="437.0" onMouseClicked="#mostrar_pdf" prefHeight="141.0" prefWidth="674.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="579.0" AnchorPane.topAnchor="437.0" />
+=======
+            <TableView fx:id="table_documentacion" layoutX="891.0" layoutY="287.0" onMouseClicked="#mostrar_pdf" prefHeight="200.0" prefWidth="346.0" AnchorPane.bottomAnchor="106.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="287.0" />
+>>>>>>> anthony
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />

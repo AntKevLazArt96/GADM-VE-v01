@@ -32,6 +32,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ClienteSesionCtrl implements Initializable {
+	volatile boolean ejecutar =true;
     @FXML
     private JFXButton btn_voz;
 
@@ -77,7 +78,7 @@ public class ClienteSesionCtrl implements Initializable {
 
                     JSONParser parser = new JSONParser();
 
-                    while(true) {
+                    while(ejecutar) {
                         String newMsgJson = dis.readUTF();
 
                         System.out.println("RE : " + newMsgJson);
@@ -111,7 +112,7 @@ public class ClienteSesionCtrl implements Initializable {
                                     label_proponente.setText("Esperando...");
                             	}
                             	
-                            	if(name.equals("cambio de pantalla2")) {
+                            	if(name!= null &&name.equals("cambio de pantalla2")) {
                             		System.out.println("estoy en el cliente y se cambio de pantalla en el servidor");
                             		//paso variables al voto
                             		Stage stage = (Stage) lbl_punto.getScene().getWindow();
@@ -143,6 +144,7 @@ public class ClienteSesionCtrl implements Initializable {
                                     newStage.setScene(scene);
                                     newStage.initStyle(StageStyle.UNDECORATED);
                                     newStage.show();
+                                    ejecutar = false;
                         		
                             	}
                             

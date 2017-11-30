@@ -148,8 +148,8 @@ public class ClienteVotoOrdenCtrl implements Initializable {
 				
 			Sesion sesion = servidor.consultarSesion();
 			data.convocatoria=sesion.getConvocatoria();
-			data.titulo=sesion.getTitulo();
-			label_titulo.setText(sesion.getTitulo());
+			data.titulo=sesion.getDescription();
+			label_titulo.setText(sesion.getDescription());
 			label_convocatoria.setText(sesion.getConvocatoria());
 			label_convocatoria2.setText(sesion.getConvocatoria());
 		

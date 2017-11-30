@@ -53,14 +53,14 @@ import javafx.stage.StageStyle;
 import cliente.data;
 
 public class ClientePreSesionCtrl implements Initializable  {
-	
+	volatile boolean ejecutar = true;
 	@FXML
     private Circle cirlogin;
 	@FXML
     private Label lbl_nombre;
 	@FXML
     private JFXButton btn_voz;
-	
+	Sesion sesion;
 	
 	@FXML
     private Label lblOrden;
@@ -110,7 +110,7 @@ public class ClientePreSesionCtrl implements Initializable  {
 
 	                    JSONParser parser = new JSONParser();
 
-	                    while(true) {
+	                    while(ejecutar) {
 	                        String newMsgJson = dis.readUTF();
 
 	                        System.out.println("RE : " + newMsgJson);
@@ -122,11 +122,12 @@ public class ClientePreSesionCtrl implements Initializable  {
 	                        newMsg.setName((String) msg.get("name"));
 	                        newMsg.setMessage((String) msg.get("status"));
 	                        Platform.runLater(new Runnable() {
-	                            @SuppressWarnings("deprecation")
-								@Override
+	                           @Override
 	                            public void run() {
-	                            	if(newMsg.getName().equals("cambio de pantalla")) {
+	                            	
+	                            	if(newMsg.getName()!= null && newMsg.getName()!= null && newMsg.getName().equals("cambio de pantalla")) {
 	                            		System.out.println("estoy en el cliente y se cambio de pantalla en el servidor");
+	                            		
 	                            		Stage stage = (Stage) label_punto.getScene().getWindow();
 									    // do what you have to do
 									    stage.close();
@@ -156,6 +157,7 @@ public class ClientePreSesionCtrl implements Initializable  {
 	                                    newStage.setScene(scene);
 	                                    newStage.initStyle(StageStyle.UNDECORATED);
 	                                    newStage.show();
+	                                    ejecutar = false;
 	                            		
 	                            		
 	                            		
@@ -184,7 +186,10 @@ public class ClientePreSesionCtrl implements Initializable  {
 			return img;
 		}
 	 
+<<<<<<< HEAD
 	 
+=======
+>>>>>>> anthony
 		@SuppressWarnings({ "rawtypes", "unchecked" })
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
@@ -267,12 +272,21 @@ public class ClientePreSesionCtrl implements Initializable  {
 		        
 		        nombre.setCellValueFactory(
 		                new PropertyValueFactory<>("nombre"));
+<<<<<<< HEAD
 		       
 				ObservableList<Documentacion> datos_pdf = FXCollections.observableArrayList(
 						lista_documentacion
 						);
 				table_documentacion.getColumns().addAll(pdf,punto,nombre);
 				
+=======
+		 
+		  
+				ObservableList<Documentacion> datos_pdf = FXCollections.observableArrayList(
+						lista_documentacion
+						);
+				table_documentacion.getColumns().addAll(punto,nombre);
+>>>>>>> anthony
 				table_documentacion.setItems(datos_pdf);
 		
 				

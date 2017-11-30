@@ -27,7 +27,10 @@ import com.sun.pdfview.PDFPage;
 import com.sun.pdfview.PagePanel;
 
 import gad.manta.common.ActaPdf;
+<<<<<<< HEAD
 import gad.manta.common.Comentario;
+=======
+>>>>>>> anthony
 import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
 import gad.manta.common.Pdf;
@@ -49,7 +52,14 @@ public class LecturaPDF extends JFrame implements  Initializable {
 	/**
 	 * 
 	 */
+<<<<<<< HEAD
 	private static final long serialVersionUID = 6506395191970665089L;
+=======
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+>>>>>>> anthony
 	private PDFFile pdffile;
 	private int pagina;
 	private int paginas;
@@ -149,6 +159,7 @@ public class LecturaPDF extends JFrame implements  Initializable {
 	
 	lbl_nombre.setText(data.name);
 	
+<<<<<<< HEAD
 	try {
 		 user = servidor.usuario(data.name);
 		/*Image im = convertirImg(user.getImg());
@@ -170,6 +181,17 @@ public class LecturaPDF extends JFrame implements  Initializable {
 		
 			
 			
+=======
+	File f = new File("C:\\librerias\\concejal1.png");
+	Image im = new Image(f.toURI().toString());
+	cirlogin.setFill(new ImagePattern(im));
+	cirlogin.setStroke(Color.SEAGREEN);
+	cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
+	
+		try
+		{
+		
+>>>>>>> anthony
 			File  n;
 			// Ubicación del archivo pdf
 			if(data.id_acta==0) {
@@ -182,8 +204,11 @@ public class LecturaPDF extends JFrame implements  Initializable {
 				n = new File(convertirPdf(acta_pdf.getPdf()));
 			}
 			
+<<<<<<< HEAD
 			
 			
+=======
+>>>>>>> anthony
 			RandomAccessFile raf = new RandomAccessFile(n, "r");
 			FileChannel channel = raf.getChannel();
 			ByteBuffer buf = channel.map(FileChannel.MapMode.READ_ONLY,  0, channel.size());
@@ -225,6 +250,7 @@ public class LecturaPDF extends JFrame implements  Initializable {
 
 	}
 	
+<<<<<<< HEAD
 	@FXML
     private void guardar_comentario(ActionEvent  event) throws RemoteException, MalformedURLException, NotBoundException {
 		servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
@@ -240,5 +266,8 @@ public class LecturaPDF extends JFrame implements  Initializable {
 		
 
     } 
+=======
+
+>>>>>>> anthony
 
 }
