@@ -103,15 +103,7 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                            	
-                            	if(newMsg.getName().contains("APROBADO")) {
-                            		Alert mensaje = new Alert(AlertType.INFORMATION);
-                            		mensaje.setTitle("Orden del d�a Aprobado");
-                            		mensaje.setContentText("LA orden del d�a fue aprobada ahora se procedera a mostrar ");
-                            		mensaje.setHeaderText("Orden del d�a Aprobado");
-                            		mensaje.show();	
-                            		
-                            		System.out.println("estoy en el cliente y se cambio de pantalla en el servidor");
+                            	if(newMsg.getName()!= null && newMsg.getName().contains("REINICIAR")) {
                             		Stage stage = (Stage) verVoto.getScene().getWindow();
 								    // do what you have to do
 								    stage.close();
@@ -120,7 +112,7 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                             		
                             	    AnchorPane pane = null;
 									try {
-										pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteSesion.fxml"));
+										pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteVoto.fxml"));
 									} catch (IOException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
@@ -142,8 +134,8 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                                     newStage.initStyle(StageStyle.UNDECORATED);
                                     newStage.show();
                                     ejecutar=false;
-                            		
                             	}
+                            
                             }
                         });
                                                 

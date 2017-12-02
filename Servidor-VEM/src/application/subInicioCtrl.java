@@ -62,6 +62,8 @@ public class subInicioCtrl implements Initializable{
 			}else {
 				paneHaySesion.setVisible(false);
 				paneNoHaySesion.setVisible(true);
+				paneNoHaySesion.setLayoutY(141);
+				
 			}
 		conexion.cerrarConexion();
 		
@@ -95,8 +97,14 @@ public class subInicioCtrl implements Initializable{
     }
     
     @FXML
-    void onNuevaSesion(ActionEvent event) {
-
+    void onNuevaSesion(ActionEvent event) throws IOException {
+    	try {
+			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("NuevaSesion.fxml"));
+			panel.getChildren().setAll(pane);
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 	

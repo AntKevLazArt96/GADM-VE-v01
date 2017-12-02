@@ -41,6 +41,8 @@ public class Servidor implements IServidor {
     
     
     
+    
+    
     Calendar fecha = new GregorianCalendar();
     int annio = fecha.get(Calendar.YEAR);
     int mes = fecha.get(Calendar.MONTH)+1;
@@ -428,10 +430,10 @@ public class Servidor implements IServidor {
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
-			ResultSet resultado = st.executeQuery("select numpunto_ordendia,descrip_ordendia,us.name_user from Sesion_VE as s inner join OrdenDia_VE as od on s.convocatoria_sesion=od.convocatoria_sesion inner join User_VE as us on us.id_user=od.id_user where s.intervention_sesion='"+annio+"-"+mes+"-"+dia+"';");
+			ResultSet resultado = st.executeQuery("select id_ordenDia,numpunto_ordendia,descrip_ordendia,us.name_user from Sesion_VE as s inner join OrdenDia_VE as od on s.convocatoria_sesion=od.convocatoria_sesion inner join User_VE as us on us.id_user=od.id_user where s.intervention_sesion='"+annio+"-"+mes+"-"+dia+"';");
 			
 			while(resultado.next()) {
-				lista_ordendia.add(new OrdenDia(resultado.getInt(1),resultado.getString(2),resultado.getString(3)));	
+				lista_ordendia.add(new OrdenDia(resultado.getInt(1),resultado.getInt(2),resultado.getString(3),resultado.getString(4)));	
 			}
 			db.close();
 				
@@ -588,13 +590,17 @@ public class Servidor implements IServidor {
 	@Override
 	public String addVotoPunto(String usuario, String voto, byte[] img) throws RemoteException {
 		// TODO Auto-generated method stub
-				if(voto.contains("FAVOR")) {
+				if(voto.contains("PROPONENTE A FAVOR")) {
 					listaVotoAFavor.add(new Voto(usuario,voto,img));
 				}
-				if(voto.contains("CONTRA")) {
+				if(voto.contains("A FAVOR")) {
+					listaVotoAFavor.add(new Voto(usuario,voto,img));
+				}
+				
+				if(voto.contains("EN CONTRA")) {
 					listaVotoEnContra.add(new Voto(usuario,voto,img));
 				}
-				if(voto.contains("SALVO")) {
+				if(voto.contains("SALVO MI VOTO")) {
 					listaVotoSalvado.add(new Voto(usuario,voto,img));
 				}
 				if(voto.contains("BLANCO")) {
@@ -644,7 +650,7 @@ public class Servidor implements IServidor {
 			listaVotoAFavor.clear();
 			listaVotoEnContra.clear();
 			listaVotoSalvado.clear();
-			listaVotoSalvado.clear();
+			listaVotoBlanco.clear();
 			return "Se ha reiniciado los votos";
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -664,6 +670,28 @@ public class Servidor implements IServidor {
 		} catch (Exception e) {
 			// TODO: handle exception
 			return "Error: "+e.getMessage()+"y su causa es"+e.getCause();
+		}
+	}
+
+	@Override
+	public List<Pdf> consultarPdfsPunto(int id_ordendia) throws RemoteException {
+		List<Pdf> listaPdfsOrdenDia = new ArrayList<>();
+		try {
+			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			//ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select * from pdf_ve where id_ordendia="+id_ordendia+";");
+			while(resultado.next()){
+				Pdf pdf = new Pdf(resultado.getInt(1),resultado.getInt(2),resultado.getString(3),resultado.getBytes(4));
+				listaPdfsOrdenDia.add(pdf);
+			}
+			db.close();
+			return listaPdfsOrdenDia;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 	}
 

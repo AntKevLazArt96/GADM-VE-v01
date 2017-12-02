@@ -43,8 +43,10 @@ public interface IServidor extends Remote {
 	public List<Sesion> consultarSesion_Modificacion(String convocatoria) throws RemoteException;
 	public List<OrdenDia> consultarOrden_Modificacion(String convocatoria) throws RemoteException;
 	
-	List<OrdenDia> consultarPunto_Modificacion(int id_punto) throws RemoteException;
-	List<Pdf> consultarPDFS_Modificacion(int id_punto) throws RemoteException;
+	public List<Pdf> consultarPdfsPunto(int id_ordendia) throws RemoteException;
+	
+	public List<OrdenDia> consultarPunto_Modificacion(int id_punto) throws RemoteException;
+	public List<Pdf> consultarPDFS_Modificacion(int id_punto) throws RemoteException;
 	public ActaPdf acta_sesion(int id)throws RemoteException;
 	public Pdf pdf_punto(int id)throws RemoteException;
 	//public Comentario registrar_comentario(int id_user, int id_pdf, String nota)throws RemoteException;

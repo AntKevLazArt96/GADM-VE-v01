@@ -142,7 +142,7 @@ public class ClienteMostrarVotoOrdenCtrl implements Initializable {
                                     newStage.show();
                                     ejecutar=false;
                             	}
-                            	if(newMsg.getName().contains("REINICIAR")) {
+                            	if(newMsg.getName()!= null && newMsg.getName().contains("REINICIAR")) {
                             		Stage stage = (Stage) verVoto.getScene().getWindow();
 								    // do what you have to do
 								    stage.close();

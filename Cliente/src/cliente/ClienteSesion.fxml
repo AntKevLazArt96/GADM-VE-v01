@@ -99,7 +99,7 @@
                   <MaterialDesignIconView fill="#212121" glyphName="BOOK_OPEN" size="20.0" />
                </graphic>
             </Label>
-            <TableView fx:id="table_documentacion" layoutX="51.0" layoutY="334.0" prefHeight="200.0" prefWidth="780.0" />
+            <TableView fx:id="table_pdf" layoutX="51.0" layoutY="334.0" prefHeight="200.0" prefWidth="780.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="21.0" layoutY="683.0" prefHeight="35.0" prefWidth="1280.0" style="-fx-background-color: #0288d1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

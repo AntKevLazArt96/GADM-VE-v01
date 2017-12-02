@@ -3,8 +3,13 @@ package cliente;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.URL;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.json.simple.JSONObject;
@@ -14,14 +19,19 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 
 import gad.manta.common.IServidor;
+import gad.manta.common.Pdf;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -32,6 +42,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ClienteSesionCtrl implements Initializable {
+	private static IServidor servidor;
 	volatile boolean ejecutar =true;
     @FXML
     private JFXButton btn_voz;
@@ -52,9 +63,8 @@ public class ClienteSesionCtrl implements Initializable {
     @FXML
     private Label label_proponente;
 
-    @SuppressWarnings("rawtypes")
-	@FXML
-    private TableView table_documentacion;
+    @FXML
+    private TableView<Pdf> table_pdf;
     
     public static Thread th;
     Socket sock;
@@ -90,11 +100,12 @@ public class ClienteSesionCtrl implements Initializable {
                         String punto =(String) msg.get("punto");
                         String titulo = (String) msg.get("titulo");
                         String proponente = (String) msg.get("proponente");
-                        //String documentacion = (String) msg.get("documento");
+                        String id_pdf = (String) msg.get("id_pdf");
                         String name =(String) msg.get("name");
                         
                         Platform.runLater(new Runnable() {
-                            @Override
+                            @SuppressWarnings({ "rawtypes", "unchecked" })
+							@Override
                             public void run() {
                             	if(punto!=null) {
                             		lbl_punto.setText(""+punto);
@@ -104,8 +115,40 @@ public class ClienteSesionCtrl implements Initializable {
                                     puntoATratar.num_punto= punto;
                             		puntoATratar.tema = titulo;
                             		puntoATratar.proponente= proponente;
+                            		puntoATratar.id_pdf=Integer.valueOf(id_pdf);
                             		
+                            		try {
+                        				
+                        				
+                        				List<Pdf> lista_pdfs=servidor.consultarPdfsPunto(Integer.valueOf(id_pdf));
+                        				    TableColumn pdf = new TableColumn("id");
+                        			        pdf.setMinWidth(500);
+                        			        pdf.setVisible(false);
+                        			        pdf.setCellValueFactory(
+                        			                new PropertyValueFactory<>("id_pdf"));
+                        			        
+                        				
+                        				TableColumn nombre = new TableColumn("Nombre");
+                        		        nombre.setMinWidth(700);
+                        		        nombre.setResizable(true);
+                        		        nombre.setCellValueFactory(
+                        		                new PropertyValueFactory<>("nombre"));
+                        		        
+                        		       
+                        		       
+                        				ObservableList<Pdf> datos_pdf = FXCollections.observableArrayList(
+                        						lista_pdfs
+                        						);
+                        				table_pdf.getColumns().addAll(pdf,nombre);
+                        				
+                        				table_pdf.setItems(datos_pdf);
                                     
+                                    
+                                    } catch (RemoteException e) {
+                        				// TODO Auto-generated catch block
+                        				e.printStackTrace();
+                        			}
+                            		
                             	}else {
                             		lbl_punto.setText("Esperando...");
                                 	label_titulo.setText("Esperando...");
@@ -172,6 +215,12 @@ public class ClienteSesionCtrl implements Initializable {
         cirlogin.setStroke(Color.SEAGREEN);
         cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
 		label_convocatoria.setText(data.convocatoria);
+		try {
+			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
