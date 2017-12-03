@@ -30,5 +30,18 @@ public class panelConController {
 		}
 
     }
+    @FXML
+    void onModiUser(ActionEvent event) {
+    	try {
+    		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ModificacionPersonal.fxml"));
+			
+			panel.getChildren().setAll(pane);
+		    
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    }
 
 }

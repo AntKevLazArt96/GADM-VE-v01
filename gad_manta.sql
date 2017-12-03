@@ -1,4 +1,4 @@
-drop schema public cascade;
+﻿drop schema public cascade;
 create schema public authorization postgres;
 set search_path to public;
 
@@ -392,3 +392,4 @@ select *from OrdenDia_VE;
 
 --update User_VE set username_user='concejal2' where id_user = 3
 
+select img from Img_VE;

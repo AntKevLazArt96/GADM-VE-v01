@@ -1,6 +1,8 @@
 package application;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -61,11 +63,13 @@ public class ModificacionPerCtrl implements Initializable {
     @FXML
     private JFXButton btn_eliminar;
 
-    
+    @FXML
+    public AnchorPane panel;
     
     private Conexion conexion;
 
     int id_img=0;
+    int id_usuario=0;
     @FXML
     void onBuscarFoto(ActionEvent event) {
     	try {
@@ -80,16 +84,14 @@ public class ModificacionPerCtrl implements Initializable {
         		System.out.println(file+((int) (Math.random() * 10000) + 50)+"."+exten);
         		String ruta=file+((int) (Math.random() * 10000) + 50)+"."+exten;
         		
-        		conexion.establecerConexion();
-        		Imagen img = new Imagen(ruta,selectedf.getAbsolutePath().toString());        		
-        		id_img = img.guardarRegistro(conexion.getConnection());
         		
-        		InputStream is = img.consultarImg(id_img,conexion.getConnection());
-    			
+        		Imagen img = new Imagen(ruta,selectedf.getAbsolutePath().toString(),id_img);        		
+        		id_img = img.modificar_imagen();
+        		InputStream is = img.consultarImg(id_img);
         		Image imgn = new Image(is);
+        		System.out.println(imgn);
+        		System.out.println(id_img);	
     			lbl_foto.setImage(imgn);
-    			conexion.cerrarConexion();
-    			btn_eliminar.setVisible(true);
     			btn_examinar.setVisible(false);
         	}
 		} catch (NullPointerException nl) {
@@ -116,22 +118,14 @@ public class ModificacionPerCtrl implements Initializable {
     	try {
     		Connection db;
 			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
-			Statement st = db.createStatement();
-			ResultSet resultado1= st.executeQuery("select * from consulta_usuario_ced('"+txt_cedula.getText()+"');");
-			db.close();
-			conexion.establecerConexion();
+			//conexion.establecerConexion();
     		
     		if(txt_cedula.getLength()==0) {
     			txt_cedula.requestFocus();
     			mostrarMesaje("Falta ingresar el número de cédula");
     			
     		}else
-    			if(resultado1.next()) {
-        			txt_cedula.requestFocus();
-        			mostrarMesaje("El usuario con cédula "+txt_cedula.getText()+ " ya está registrado en el sistema");
-        			
-        		}else 
-            
+    		
         		if(txt_nombre.getLength()==0) {
         			txt_nombre.requestFocus();
         			mostrarMesaje("Falta ingresar el nombre del usuario");
@@ -152,23 +146,23 @@ public class ModificacionPerCtrl implements Initializable {
             					mostrarMesaje("Falta ingresar la foto del usuario");
             				}else {
             					
-            		  						
-                    			Usuario user = new Usuario(txt_cedula.getText(),txt_cargo.getText(),txt_nombre.getText(),txt_username.getText(),txt_password.getText(),id_img);
-                        		int resultado = user.guardarRegistro(conexion.getConnection());                       		
+            				
+                    			Usuario user = new Usuario(txt_cedula.getText(),txt_cargo.getText(),txt_nombre.getText(),txt_username.getText(),txt_password.getText(),id_img,"");
+                        		int resultado = user.actualizarRegistro(db);                       		
                         		
                         		if(resultado ==1) {
                         			//limpiar();
                         			imgBlanco();
-                        			mostrarMesaje("El usuario "+txt_nombre.getText()+" a sido ingresado correctamente");
+                        			mostrarMesaje("El usuario "+txt_nombre.getText()+" a sido modificado correctamente");
                         		}else{
-                        			mostrarMesaje("El usuario "+txt_nombre.getText()+" no se a podido agregar");
+                        			mostrarMesaje("El usuario "+txt_nombre.getText()+" no se a podido modificar");
                         		}
                         		
                     		}
     		
     		
-    		
-    		conexion.cerrarConexion();
+    		db.close();
+    		//conexion.cerrarConexion();
     		
     		
     		
@@ -199,13 +193,13 @@ public class ModificacionPerCtrl implements Initializable {
     }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		btn_eliminar.setText("");
-		btn_eliminar.setVisible(false);
+
+		
+		txt_cedula.setText("123456787");
 		
 	}
 	
 	private void imgBlanco() {
-		btn_eliminar.setVisible(false);
 		btn_examinar.setVisible(true);
 		InputStream is = new InputStream() {
 			
@@ -218,18 +212,7 @@ public class ModificacionPerCtrl implements Initializable {
 		lbl_foto.setImage(new Image(is));
 	}
 	
-	@FXML
-    void eliminarImg(ActionEvent event) {
-		conexion.establecerConexion();
-		Imagen img = new Imagen();
-		int resultado = img.eliminarImg(id_img,conexion.getConnection());
-		conexion.cerrarConexion();
-		if(resultado ==1) {
-			imgBlanco();
-		}else {
-			System.out.println("Error en la consulta");
-		}
-	}
+	
 	@FXML
 	void  validar_cedula(KeyEvent e) {
 		
@@ -283,16 +266,55 @@ public class ModificacionPerCtrl implements Initializable {
 		
 		
 	}
-	
-	void  validar_foto() {
+	@FXML
+	void  buscar_usuario() throws IOException {
 		
-		if(id_img !=0) {
-			System.out.println("flata foto");
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			ResultSet resultado= st.executeQuery("select * from consulta_usuario_ced('"+txt_cedula.getText()+"');");
+			
+			if(resultado.next()) {
+				id_usuario=resultado.getInt(1);
+				txt_cedula.setText(resultado.getString(2));
+				txt_cargo.setText(resultado.getString(3));
+				txt_nombre.setText(resultado.getString(4));
+				txt_username.setText(resultado.getString(5));
+				txt_password.setText(resultado.getString(6));
+				id_img=resultado.getInt(7);
+    			
+    		}else{
+    			mostrarMesaje("El usuario con cédula "+txt_cedula.getText()+ " no se ecuentra registrado en el sistema");
+    		}
+			
+			System.out.println(id_img);
+			ResultSet resultado2= st.executeQuery("select * from Img_VE where id_img="+id_img+";");
+			if(resultado2.next()) {
+				Image img = convertirImg(resultado2.getBytes(3));
+				lbl_foto.setImage(img);
+			}
+			
+			db.close();
+			
+			btn_examinar.setVisible(true);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		
 		
 	}
 	
+	 public Image convertirImg(byte[] bytes) throws IOException {
+			ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+			
+			Image img = new Image(bis);
+			return img;
+		}
+	 
 	@FXML
 	void  validar_cargo(KeyEvent e) {
 		
@@ -305,5 +327,44 @@ public class ModificacionPerCtrl implements Initializable {
 		}
 		
 		
+	}
+	@FXML
+	void  eliminar_usuario(ActionEvent e) {
+		
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			
+			ResultSet resultado1= st.executeQuery("select * from consulta_usuario_ced('"+txt_cedula.getText()+"');");
+    		if(resultado1.next()) {
+    			st.executeQuery("DELETE FROM public.user_ve WHERE user_ve.cedula_user='"+txt_cedula.getText()+"';");
+    			st.executeQuery("DELETE FROM public.img_ve WHERE id_img="+id_img+";");
+    			
+    			
+    			
+    		}else {
+    			mostrarMesaje("El usuario con cédula "+txt_cedula.getText()+ " no se ecuentra registrado en el sistema");
+    		}
+    		
+    		db.close();
+			
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+
+	}
+	@FXML
+	void  cerrar(ActionEvent e) {
+		try {
+			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PanelControl.fxml"));
+			panel.getChildren().setAll(pane);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 	}
 }

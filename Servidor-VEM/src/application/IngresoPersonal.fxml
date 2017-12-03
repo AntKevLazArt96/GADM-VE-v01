@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="980.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IngresoPerCtrl">
+<AnchorPane id="AnchorPane" fx:id="panel" prefHeight="720.0" prefWidth="980.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IngresoPerCtrl">
    <children>
       <AnchorPane layoutX="44.0" layoutY="80.0" prefHeight="584.0" prefWidth="968.0">
          <children>
@@ -103,7 +103,7 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="25" />
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="197.0" layoutY="498.0" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Cancelar" textFill="WHITE">
+            <JFXButton layoutX="197.0" layoutY="498.0" onAction="#cerrar" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Cancelar" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

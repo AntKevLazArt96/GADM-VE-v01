@@ -61,7 +61,8 @@ public class IngresoPerCtrl implements Initializable {
     @FXML
     private JFXButton btn_eliminar;
 
-    
+    @FXML
+    public AnchorPane panel;
     
     private Conexion conexion;
 
@@ -84,7 +85,7 @@ public class IngresoPerCtrl implements Initializable {
         		Imagen img = new Imagen(ruta,selectedf.getAbsolutePath().toString());        		
         		id_img = img.guardarRegistro(conexion.getConnection());
         		
-        		InputStream is = img.consultarImg(id_img,conexion.getConnection());
+        		InputStream is = img.consultarImg(id_img);
     			
         		Image imgn = new Image(is);
     			lbl_foto.setImage(imgn);
@@ -312,5 +313,17 @@ public class IngresoPerCtrl implements Initializable {
 		}
 		
 		
+	}
+	
+	@FXML
+	void  cerrar(ActionEvent e) {
+		try {
+			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PanelControl.fxml"));
+			panel.getChildren().setAll(pane);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 	}
 }

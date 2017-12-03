@@ -53,6 +53,15 @@ public class Usuario implements Serializable {
 		this.password=password;
 		this.id_img=id_img;
 	}
+	public Usuario(String cedula, String cargo,String nombre, String usuario, String password, int id_img, String codigoHuella ) {
+		this.cedula=cedula;
+		this.nombre=nombre;
+		this.cargo=cargo;
+		this.usuario=usuario;
+		this.password=password;
+		this.id_img=id_img;
+		this.codigoHuella=codigoHuella;
+	}
 	
 
 	public Usuario(int id, String nombre, byte[] img) {
@@ -158,6 +167,7 @@ public class Usuario implements Serializable {
 		} 
 	}
 	
+	
 	@Override
 	public String toString() {
 		return nombre;
@@ -172,6 +182,26 @@ public class Usuario implements Serializable {
 			instruccion.setString(4, getUsuario());
 			instruccion.setString(5,getPassword());
 			instruccion.setInt(6, getId_img());
+			instruccion.execute();
+			return 1;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}		
+	}
+	public int actualizarRegistro(Connection connection)  throws IOException {
+		String sql = "UPDATE user_ve SET cedula_user=?, position_user=?, name_user=?, username_user=?, password_user=?, id_img=?, cod_huella=? WHERE cedula_user='"+getCedula()+"';";
+		try {
+			PreparedStatement instruccion = connection.prepareStatement(sql);
+			instruccion.setString(1, getCedula());
+			instruccion.setString(2,getCargo() );
+			instruccion.setString(3,getNombre() );
+			instruccion.setString(4, getUsuario());
+			instruccion.setString(5,getPassword());
+			instruccion.setInt(6, getId_img());
+			instruccion.setString(7, getCodigoHuella());
 			instruccion.execute();
 			return 1;
 			
