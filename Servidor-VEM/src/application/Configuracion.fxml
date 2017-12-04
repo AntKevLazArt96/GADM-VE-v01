@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="panel" prefHeight="720.0" prefWidth="980.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModificacionPerCtrl">
+   <children>
+      <AnchorPane layoutX="44.0" layoutY="80.0" prefHeight="584.0" prefWidth="968.0">
+         <children>
+            <Label layoutX="4.0" layoutY="25.0" text="Nombre de la base de datos" AnchorPane.leftAnchor="20.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="ACCOUNT_BOX" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="txt_bd" layoutX="-1.0" layoutY="54.0" onKeyTyped="#validar_cedula" prefHeight="34.0" prefWidth="298.0" text="gad_voto" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="54.0">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+            <Label layoutX="507.0" layoutY="26.0" prefHeight="27.0" prefWidth="206.0" text="Direción IP RMI" AnchorPane.leftAnchor="520.0" AnchorPane.topAnchor="26.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="BORDER_COLOR" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="txt_ipRMI" layoutX="527.0" layoutY="55.0" onKeyTyped="#validar_nombre" prefHeight="34.0" prefWidth="298.0" text="192.168.1.6" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="55.0">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+            <Label layoutX="12.0" layoutY="135.0" text="Usuario de la base de datos" AnchorPane.leftAnchor="20.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView fill="#070707" glyphName="PERSON" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="txt_useDB" layoutX="22.0" layoutY="163.0" onKeyTyped="#validar_usuario" prefHeight="34.0" prefWidth="298.0" text="postgres" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="163.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="20.0" layoutY="229.0" text="Contraseña del usuario de la base de datos" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="229.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView fill="#070707" glyphName="LOCK" size="20" />
+               </graphic>
+            </Label>
+            <JFXPasswordField fx:id="txt_passDB" layoutX="30.0" layoutY="268.0" onKeyTyped="#validar_contraceña" prefHeight="39.0" prefWidth="298.0" text="1234" AnchorPane.leftAnchor="30.0" />
+            <JFXButton fx:id="btn_guardar" layoutX="393.0" layoutY="489.0" onAction="#onGuardar" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Guardar cambios" textFill="#f2eeee">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="25" />
+               </graphic>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="604.0" layoutY="486.0" onAction="#cerrar" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#e0f0f2" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" text="" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_eliminar" layoutX="179.0" layoutY="488.0" onAction="#eliminar_usuario" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Modificar" textFill="#f2eeee">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="25" />
+               </graphic>
+            </JFXButton>
+            <Label layoutX="511.0" layoutY="209.0" prefHeight="27.0" prefWidth="206.0" text="Direción IP SOCKET" AnchorPane.leftAnchor="520.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="BORDER_COLOR" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="txt_ipSocket" layoutX="548.0" layoutY="236.0" onKeyTyped="#validar_nombre" prefHeight="34.0" prefWidth="298.0" text="192.168.1.6" AnchorPane.leftAnchor="530.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="529.0" layoutY="109.0" prefHeight="27.0" prefWidth="206.0" text="Pueto RMI" AnchorPane.leftAnchor="540.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="BORDER_COLOR" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="txt_puertoRMI" layoutX="549.0" layoutY="138.0" onKeyTyped="#validar_nombre" prefHeight="34.0" prefWidth="298.0" text="1099" AnchorPane.leftAnchor="550.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="539.0" layoutY="293.0" prefHeight="27.0" prefWidth="206.0" text="Pueto SOCKET" AnchorPane.leftAnchor="540.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="BORDER_COLOR" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="txt_puertoSocket" layoutX="559.0" layoutY="323.0" onKeyTyped="#validar_nombre" prefHeight="34.0" prefWidth="298.0" text="6666" AnchorPane.leftAnchor="550.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="73.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="13.0" layoutY="19.0" text="Configuración del servidor" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="25.0">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView glyphName="FORMAT_ALIGN_JUSTIFY" size="30" />
+               </graphic>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
