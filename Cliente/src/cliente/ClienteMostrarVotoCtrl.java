@@ -103,7 +103,8 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                            	if(newMsg.getName()!= null && newMsg.getName().contains("REINICIAR")) {
+                            	//para reiniciar el voto a solo una persona &&newMsg.getMessage().equals(data.name)
+                            	if(newMsg.getName().equals("REINICIAR2")) {
                             		Stage stage = (Stage) verVoto.getScene().getWindow();
 								    // do what you have to do
 								    stage.close();
@@ -113,6 +114,75 @@ public class ClienteMostrarVotoCtrl implements Initializable {
                             	    AnchorPane pane = null;
 									try {
 										pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteVoto.fxml"));
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+									
+                                    Scene scene = new Scene(pane);
+                                    
+                                    //Pantalla completa
+                                    Screen screen = Screen.getPrimary();
+                            		Rectangle2D bounds = screen.getVisualBounds();
+
+                            		newStage.setX(bounds.getMinX());
+                            		newStage.setY(bounds.getMinY());
+                            		newStage.setWidth(bounds.getWidth());
+                            		newStage.setHeight(bounds.getHeight());
+                                    
+                                    newStage.setScene(scene);
+                                    newStage.initStyle(StageStyle.UNDECORATED);
+                                    newStage.show();
+                                    ejecutar=false;
+                            		
+                            	}
+                            	
+                            	
+                            	//para reiniciar todos los votos
+                            	if(newMsg.getName()!= null && newMsg.getName().equals("REINICIAR")) {
+                            		Stage stage = (Stage) verVoto.getScene().getWindow();
+								    // do what you have to do
+								    stage.close();
+                            		
+                            		Stage newStage = new Stage();
+                            		
+                            	    AnchorPane pane = null;
+									try {
+										pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteVoto.fxml"));
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+									
+                                    Scene scene = new Scene(pane);
+                                    
+                                    //Pantalla completa
+                                    Screen screen = Screen.getPrimary();
+                            		Rectangle2D bounds = screen.getVisualBounds();
+
+                            		newStage.setX(bounds.getMinX());
+                            		newStage.setY(bounds.getMinY());
+                            		newStage.setWidth(bounds.getWidth());
+                            		newStage.setHeight(bounds.getHeight());
+                                    
+                                    newStage.setScene(scene);
+                                    newStage.initStyle(StageStyle.UNDECORATED);
+                                    newStage.show();
+                                    ejecutar=false;
+                            	}
+                            	
+                            	if(newMsg.getName()!= null && newMsg.getName().equals("VOTO TERMINADO")) {
+                            		Stage stage = (Stage) verVoto.getScene().getWindow();
+								    // do what you have to do
+								    stage.close();
+                            		
+                            		Stage newStage = new Stage();
+                            		
+                            	    AnchorPane pane = null;
+									try {
+										pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteSesion.fxml"));
 									} catch (IOException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();

@@ -3,11 +3,11 @@ package application;
 import javafx.scene.image.Image;
 
 public class data {
-    public static String ip;
+	public static String ip;
     public static String name;
     public static int port;
     
-    public static String voto;
+    public static String voto="holi";
     public static String convocatoria_sesion;
     public static int idquorum;
     

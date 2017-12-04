@@ -42,8 +42,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ClienteSesionCtrl implements Initializable {
-	private static IServidor servidor;
-	volatile boolean ejecutar =true;
+	volatile static IServidor servidor;
+	private boolean ejecutar =true;
     @FXML
     private JFXButton btn_voz;
 
