@@ -261,12 +261,14 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 			
 			
 			for (int i = 0; i < lista.size(); i++) {
-				img1.setVisible(true);
-        		img1.setImage(convertirImg(lista.get(i).getImg()));
-				user1.setVisible(true);
-				user1.setText(lista.get(i).getNombre());
-				status1.setText(lista.get(i).getStatus());
-				status1.setVisible(true);
+				if(i==0) {
+					img1.setVisible(true);
+	        		img1.setImage(convertirImg(lista.get(i).getImg()));
+					user1.setVisible(true);
+					user1.setText(lista.get(i).getNombre());
+					status1.setText(lista.get(i).getStatus());
+					status1.setVisible(true);
+				}
 				
 				if(i==1) {
 					img2.setImage(convertirImg(lista.get(i).getImg()));

@@ -592,10 +592,12 @@ public class Servidor implements IServidor {
 		// TODO Auto-generated method stub
 				if(voto.contains("PROPONENTE A FAVOR")) {
 					listaVotoAFavor.add(new Voto(usuario,voto,img));
+				}else {
+					if(voto.contains("A FAVOR")) {
+						listaVotoAFavor.add(new Voto(usuario,voto,img));
+					}
 				}
-				if(voto.contains("A FAVOR")) {
-					listaVotoAFavor.add(new Voto(usuario,voto,img));
-				}
+				
 				
 				if(voto.contains("EN CONTRA")) {
 					listaVotoEnContra.add(new Voto(usuario,voto,img));
@@ -610,6 +612,35 @@ public class Servidor implements IServidor {
 			
 				return usuario;
 	}
+	
+	@SuppressWarnings("unlikely-arg-type")
+	@Override
+	public String reiniciarVoto(String user, String voto,int index) throws RemoteException {
+		
+		if(voto.contains("PROPONENTE A FAVOR")) {
+			listaVotoAFavor.remove(index);
+		}else {
+			if(voto.contains("A FAVOR")) {
+				listaVotoAFavor.remove(index);
+			}
+		}
+		
+		
+		if(voto.contains("EN CONTRA")) {
+			listaVotoEnContra.remove(index);
+		}
+		if(voto.contains("SALVO MI VOTO")) {
+			listaVotoSalvado.remove(index);
+		}
+		if(voto.contains("BLANCO")) {
+			listaVotoBlanco.remove(index);
+		}
+		listaVotantesPunto.remove(index);
+	
+		return "El usuario "+user+" ha sido borrado correctamente del registro";
+	}
+
+	
 
 	@Override
 	public List<Voto> votantesPunto() throws RemoteException {
@@ -695,6 +726,7 @@ public class Servidor implements IServidor {
 		}
 	}
 
+	
 
 
 	

@@ -72,8 +72,40 @@ public class ClienteVotoCtrl implements Initializable{
     }
 
     @FXML
-    void onContra(ActionEvent event) {
+    void onContra(ActionEvent event) throws IOException {
+    	// get a handle to the stage
+	    Stage actualStage = (Stage) btn_favor.getScene().getWindow();
+	    // do what you have to do
+	    actualStage.close();
+	    System.out.println("Se voto");
+	    
+	    
+	    Stage newStage = new Stage();
+		
+	    
+	    
+	    	String holi = servidor.addVotoPunto(data.name, "A FAVOR",data.img);
+		    data.voto="EN CONTRA";
+		    System.out.println(holi);
+	    
+	    
+	    
+	    
+	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClienteMostrarVoto.fxml"));
+        Scene scene = new Scene(pane);
+        
+        //Pantalla completa
+        Screen screen = Screen.getPrimary();
+		Rectangle2D bounds = screen.getVisualBounds();
 
+		newStage.setX(bounds.getMinX());
+		newStage.setY(bounds.getMinY());
+		newStage.setWidth(bounds.getWidth());
+		newStage.setHeight(bounds.getHeight());
+        
+        newStage.setScene(scene);
+        newStage.initStyle(StageStyle.UNDECORATED);
+        newStage.show();
     }
 
     @FXML
@@ -92,11 +124,11 @@ public class ClienteVotoCtrl implements Initializable{
 	    if(data.name.equals(puntoATratar.proponente)) {
 	    	String holi = servidor.addVotoPunto(data.name, "PROPONENTE A FAVOR",data.img);
 		    data.voto="FAVOR";
-		    System.out.println(holi);
+		    System.out.println("El proponente voto"+holi);
 	    }else{
 	    	String holi = servidor.addVotoPunto(data.name, "A FAVOR",data.img);
 		    data.voto="FAVOR";
-		    System.out.println(holi);
+		    System.out.println("Persona normal voto"+holi);
 	    }
 	    
 	    

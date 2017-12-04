@@ -33,6 +33,8 @@ public interface IServidor extends Remote {
 	public List<Voto> votosEnContra()throws RemoteException;
 	public List<Voto> votosSalvados()throws RemoteException;
 	public List<Voto> votosBlanco()throws RemoteException;
+	public String reiniciarVoto(String user, String voto,int index)throws RemoteException;
+	
 	
 	public String limpiarVotoOrden()throws RemoteException;
 	

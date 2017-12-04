@@ -70,113 +70,29 @@ public class InicioVotoCtrl implements Initializable {
 
     @FXML
     private AnchorPane panelvoz;
+    
+    //imagenes
     @FXML
-    private ImageView img2;
+    private ImageView img1,img2,img3,img4,img5,img6,img7,img8,img9,img10,img11,img12;
 
+    //nombre de usuarios
     @FXML
-    private ImageView img1;
+    private Label user1,user2,user3,user4,user5,user6,user7,user8,user9,user10,user11,user12;
+    
+    //Votacion de los usurios
+    
+    @FXML
+    private Label status1,status2,status3,status4,status5,status6,status7,status8,status9,status10,status11,estatus12;
+    
+    //botones de reiniciar el voto individual
+    
+    @FXML
+    private JFXButton btnRe1,btnRe2,btnRe3,btnRe4,btnRe5,btnRe6,btnRe7,btnRe8,btnRe9,btnRe10,btnRe11,btnRe12;
+    
+    
 
-    @FXML
-    private ImageView img3;
-
-    @FXML
-    private ImageView img4;
-
-    @FXML
-    private ImageView img5;
-
-    @FXML
-    private ImageView img6;
-
-    @FXML
-    private Label user1;
-
-    @FXML
-    private Label status1;
-
-    @FXML
-    private Label user2;
-
-    @FXML
-    private Label user3;
-
-    @FXML
-    private Label user4;
-
-    @FXML
-    private Label user5;
-
-    @FXML
-    private Label user6;
-
-    @FXML
-    private Label status3;
-
-    @FXML
-    private Label status5;
-
-    @FXML
-    private Label status6;
-
-    @FXML
-    private Label status2;
-
-    @FXML
-    private Label status4;
-
-    @FXML
-    private ImageView img8;
-
-    @FXML
-    private ImageView img7;
-
-    @FXML
-    private ImageView img9;
-
-    @FXML
-    private ImageView img10;
-
-    @FXML
-    private ImageView img11;
-
-    @FXML
-    private ImageView img12;
-
-    @FXML
-    private Label user7;
-
-    @FXML
-    private Label status7;
-
-    @FXML
-    private Label user8;
-
-    @FXML
-    private Label user9;
-
-    @FXML
-    private Label user10;
-
-    @FXML
-    private Label user11;
-
-    @FXML
-    private Label user12;
-
-    @FXML
-    private Label status8;
-
-    @FXML
-    private Label status9;
-
-    @FXML
-    private Label status11;
-
-    @FXML
-    private Label status10;
-
-    @FXML
-    private Label estatus12;
+    
+    
     @FXML
     private JFXTextArea label_titulo;
     
@@ -215,6 +131,7 @@ public class InicioVotoCtrl implements Initializable {
      
   //listas
       List<Voto> lista;
+      List<Voto> favor;
       
 
       public InicioVotoCtrl() {
@@ -261,7 +178,7 @@ public class InicioVotoCtrl implements Initializable {
                                 	try {
                                 		//lista que devuelve todos los votantes con sus votos
                                 		lista = servidor.votantesPunto();
-    									List<Voto> favor = servidor.votosAFavor();
+    									favor = servidor.votosAFavor();
     									List<Voto> contra = servidor.votosEnContra();
     									List<Voto> salvados = servidor.votosSalvados();
     									List<Voto> blanco = servidor.votosBlanco();
@@ -281,54 +198,7 @@ public class InicioVotoCtrl implements Initializable {
     									
     									//reiniciando los usuarios
     									if (lista.size() == 0) {
-    										img1.setVisible(false);
-    										img2.setVisible(false);
-    										img3.setVisible(false);
-    										img4.setVisible(false);
-    										img5.setVisible(false);
-    										img6.setVisible(false);
-    										img7.setVisible(false);
-    										img8.setVisible(false);
-    										img9.setVisible(false);
-    										img10.setVisible(false);
-    										img11.setVisible(false);
-    										img12.setVisible(false);
-    										user1.setVisible(false);
-    										user2.setVisible(false);
-    										user3.setVisible(false);
-    										user4.setVisible(false);
-    										user5.setVisible(false);
-    										user6.setVisible(false);
-    										user7.setVisible(false);
-    										user8.setVisible(false);
-    										user9.setVisible(false);
-    										user10.setVisible(false);
-    										user11.setVisible(false);
-    										user12.setVisible(false);
-    										status1.setVisible(false);
-    										status2.setVisible(false);
-    										status3.setVisible(false);
-    										status4.setVisible(false);
-    										status5.setVisible(false);
-    										status6.setVisible(false);
-    										status7.setVisible(false);
-    										status8.setVisible(false);
-    										status9.setVisible(false);
-    										status10.setVisible(false);
-    										status11.setVisible(false);
-    										estatus12.setVisible(false);
-    										status1.setStyle("-fx-text-fill: #4caf50;");
-    										status2.setStyle("-fx-text-fill: #4caf50;");
-    										status3.setStyle("-fx-text-fill: #4caf50;");
-    										status4.setStyle("-fx-text-fill: #4caf50;");
-    										status5.setStyle("-fx-text-fill: #4caf50;");
-    										status6.setStyle("-fx-text-fill: #4caf50;");
-    										status7.setStyle("-fx-text-fill: #4caf50;");
-    										status8.setStyle("-fx-text-fill: #4caf50;");
-    										status9.setStyle("-fx-text-fill: #4caf50;");
-    										status10.setStyle("-fx-text-fill: #4caf50;");
-    										status11.setStyle("-fx-text-fill: #4caf50;");
-    										estatus12.setStyle("-fx-text-fill: #4caf50;");
+    										limpiar();
     									}
     									
     									for (int i = 0; i < lista.size(); i++) {
@@ -339,6 +209,7 @@ public class InicioVotoCtrl implements Initializable {
     											user1.setText(lista.get(i).getNombre());
     											status1.setText(lista.get(i).getVoto());
     											status1.setVisible(true);
+    											btnRe1.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												status1.setStyle("-fx-text-fill: red;");
     											}
@@ -350,6 +221,7 @@ public class InicioVotoCtrl implements Initializable {
     											user2.setVisible(true);
     											status2.setText(lista.get(i).getVoto());
     											status2.setVisible(true);
+    											btnRe2.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												status2.setStyle("-fx-text-fill: red;");
     											}
@@ -361,6 +233,7 @@ public class InicioVotoCtrl implements Initializable {
     											user3.setVisible(true);
     											status3.setText(lista.get(i).getVoto());
     											status3.setVisible(true);
+    											btnRe3.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												status3.setStyle("-fx-text-fill: red;");
     											}
@@ -372,6 +245,7 @@ public class InicioVotoCtrl implements Initializable {
     											user4.setVisible(true);
     											status4.setText(lista.get(i).getVoto());
     											status4.setVisible(true);
+    											btnRe4.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												status4.setStyle("-fx-text-fill: red;");
     											}
@@ -383,6 +257,7 @@ public class InicioVotoCtrl implements Initializable {
     											user5.setVisible(true);
     											status5.setText(lista.get(i).getVoto());
     											status5.setVisible(true);
+    											btnRe5.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												status5.setStyle("-fx-text-fill: red;");
     											}
@@ -394,6 +269,7 @@ public class InicioVotoCtrl implements Initializable {
     											user6.setVisible(true);
     											status6.setText(lista.get(i).getVoto());
     											status6.setVisible(true);
+    											btnRe6.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												status6.setStyle("-fx-text-fill: red;");
     											}
@@ -405,6 +281,7 @@ public class InicioVotoCtrl implements Initializable {
     											user7.setVisible(true);
     											status7.setText(lista.get(i).getVoto());
     											status7.setVisible(true);
+    											btnRe7.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												status7.setStyle("-fx-text-fill: red;");
     											}
@@ -416,6 +293,7 @@ public class InicioVotoCtrl implements Initializable {
     											user8.setVisible(true);
     											status8.setText(lista.get(i).getVoto());
     											status8.setVisible(true);
+    											btnRe8.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												status8.setStyle("-fx-text-fill: red;");
     											}
@@ -427,6 +305,7 @@ public class InicioVotoCtrl implements Initializable {
     											user9.setVisible(true);
     											status9.setText(lista.get(i).getVoto());
     											status9.setVisible(true);
+    											btnRe9.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												status9.setStyle("-fx-text-fill: red;");
     											}
@@ -438,6 +317,7 @@ public class InicioVotoCtrl implements Initializable {
     											user10.setVisible(true);
     											status10.setText(lista.get(i).getVoto());
     											status10.setVisible(true);
+    											btnRe10.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												status10.setStyle("-fx-text-fill: red;");
     											}
@@ -449,6 +329,7 @@ public class InicioVotoCtrl implements Initializable {
     											user11.setVisible(true);
     											status11.setText(lista.get(i).getVoto());
     											status11.setVisible(true);
+    											btnRe11.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												status11.setStyle("-fx-text-fill: red;");
     											}
@@ -460,6 +341,7 @@ public class InicioVotoCtrl implements Initializable {
     											user12.setVisible(true);
     											estatus12.setText(lista.get(i).getVoto());
     											estatus12.setVisible(true);
+    											btnRe12.setVisible(true);
     											if(lista.get(i).getVoto().equals("RECHAZADO")) {
     												estatus12.setStyle("-fx-text-fill: red;");
     											}
@@ -498,31 +380,137 @@ public class InicioVotoCtrl implements Initializable {
 
         }
 
+      void limpiar () {
+    	  img1.setVisible(false);
+			img2.setVisible(false);
+			img3.setVisible(false);
+			img4.setVisible(false);
+			img5.setVisible(false);
+			img6.setVisible(false);
+			img7.setVisible(false);
+			img8.setVisible(false);
+			img9.setVisible(false);
+			img10.setVisible(false);
+			img11.setVisible(false);
+			img12.setVisible(false);
+			user1.setVisible(false);
+			user2.setVisible(false);
+			user3.setVisible(false);
+			user4.setVisible(false);
+			user5.setVisible(false);
+			user6.setVisible(false);
+			user7.setVisible(false);
+			user8.setVisible(false);
+			user9.setVisible(false);
+			user10.setVisible(false);
+			user11.setVisible(false);
+			user12.setVisible(false);
+			status1.setVisible(false);
+			status2.setVisible(false);
+			status3.setVisible(false);
+			status4.setVisible(false);
+			status5.setVisible(false);
+			status6.setVisible(false);
+			status7.setVisible(false);
+			status8.setVisible(false);
+			status9.setVisible(false);
+			status10.setVisible(false);
+			status11.setVisible(false);
+			estatus12.setVisible(false);
+			btnRe1.setVisible(false);
+			btnRe2.setVisible(false);
+			btnRe3.setVisible(false);
+			btnRe4.setVisible(false);
+			btnRe5.setVisible(false);
+			btnRe6.setVisible(false);
+			btnRe7.setVisible(false);
+			btnRe8.setVisible(false);
+			btnRe9.setVisible(false);
+			btnRe10.setVisible(false);
+			btnRe11.setVisible(false);
+			btnRe12.setVisible(false);
+			status1.setStyle("-fx-text-fill: #4caf50;");
+			status2.setStyle("-fx-text-fill: #4caf50;");
+			status3.setStyle("-fx-text-fill: #4caf50;");
+			status4.setStyle("-fx-text-fill: #4caf50;");
+			status5.setStyle("-fx-text-fill: #4caf50;");
+			status6.setStyle("-fx-text-fill: #4caf50;");
+			status7.setStyle("-fx-text-fill: #4caf50;");
+			status8.setStyle("-fx-text-fill: #4caf50;");
+			status9.setStyle("-fx-text-fill: #4caf50;");
+			status10.setStyle("-fx-text-fill: #4caf50;");
+			status11.setStyle("-fx-text-fill: #4caf50;");
+			estatus12.setStyle("-fx-text-fill: #4caf50;");
+      }
+      
     
     @FXML
     void finVoto(ActionEvent event) throws IOException {
-    	// get a handle to the stage
-	    Stage actualStage = (Stage) btn_finVoto.getScene().getWindow();
-	    // do what you have to do
-	    actualStage.close();
-	    Stage newStage = new Stage();
-	   AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("InicioSesion.fxml"));
-        Scene scene = new Scene(pane);
+    	
         
-        //Pantalla completa
-        Screen screen = Screen.getPrimary();
-		Rectangle2D bounds = screen.getVisualBounds();
+        try {
+			String message = servidor.limpiarVoto();
+			System.out.println(message);
+			data.header = "Votacion terminada";
+			data.cuerpo = message;
+			
+			//Limpiar las listas
+			lista.clear();
+			/*aprueba.clear();
+			rechaza.clear();
+			*/
+			// get a handle to the stage
+		    Stage actualStage = (Stage) btn_finVoto.getScene().getWindow();
+		    // do what you have to do
+		    actualStage.close();
+		    Stage newStage = new Stage();
+		   AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("InicioSesion.fxml"));
+	        Scene scene = new Scene(pane);
+	        
+	        //Pantalla completa
+	        Screen screen = Screen.getPrimary();
+			Rectangle2D bounds = screen.getVisualBounds();
 
-		newStage.setX(bounds.getMinX());
-		newStage.setY(bounds.getMinY());
-		newStage.setWidth(bounds.getWidth());
-		newStage.setHeight(bounds.getHeight());
+			newStage.setX(bounds.getMinX());
+			newStage.setY(bounds.getMinY());
+			newStage.setWidth(bounds.getWidth());
+			newStage.setHeight(bounds.getHeight());
+	        
+	        
+	        newStage.setScene(scene);
+	        newStage.initStyle(StageStyle.UNDECORATED);
+	        newStage.show();
+	        ejecutar=false;
+			
+			try {
+               
+                //String json = "{" + " 'name' : '" + data.name + "', 'message' : '" + msg + "'" + "}";
+
+                JSONObject js = new JSONObject();
+                js.put("name", "VOTO TERMINADO");
+
+                String json = js.toJSONString();
+
+
+                System.out.println("Se envio:"+json);
+
+                dos.writeUTF(json);
+
+            } catch(IOException E) {
+                E.printStackTrace();
+            }
+			
+			
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         
-        newStage.setScene(scene);
-        newStage.initStyle(StageStyle.UNDECORATED);
-        newStage.show();
-        ejecutar=false;
+        
+        
+        
     }
     
     @FXML
@@ -555,6 +543,14 @@ public class InicioVotoCtrl implements Initializable {
         lbl_proponente.setText(puntoATratar.proponente);
         btn_finVoto.setDisable(true);
 		btn_reVoto.setDisable(true);
+		
+		try {
+			servidor.limpiarVoto();
+			//Se inicio la votacion
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
     
     @FXML
@@ -606,5 +602,90 @@ public class InicioVotoCtrl implements Initializable {
 		btn_finVoto.setDisable(true);
 		btn_reVoto.setDisable(true);
 	}
+    
+    @FXML
+   	void re1(ActionEvent event) throws IOException {
+    	
+    	limpiar();
+    	System.out.println("riniciando xD");
+    	servidor.reiniciarVoto(user1.getText(), status1.getText(),0);
+    	
+    	try {
+            
+            //String json = "{" + " 'name' : '" + data.name + "', 'message' : '" + msg + "'" + "}";
+
+            JSONObject js = new JSONObject();
+            js.put("name", "REINICIAR2");
+            js.put("message", user1.getText());
+
+            String json = js.toJSONString();
+
+
+            System.out.println("Se envio:"+json);
+
+            dos.writeUTF(json);
+
+        } catch(IOException E) {
+            E.printStackTrace();
+        }
+    
+    }
+    @FXML
+   	void re2(ActionEvent event) throws IOException {
+    
+    
+    }
+    @FXML
+   	void re3(ActionEvent event) throws IOException {
+    
+    
+    }
+    @FXML
+   	void re4(ActionEvent event) throws IOException {
+    
+    
+    }
+    @FXML
+   	void re5(ActionEvent event) throws IOException {
+    
+    
+    }
+    @FXML
+   	void re6(ActionEvent event) throws IOException {
+    
+    
+    }
+    @FXML
+   	void re7(ActionEvent event) throws IOException {
+    
+    
+    }
+    @FXML
+   	void re8(ActionEvent event) throws IOException {
+    
+    
+    }
+    @FXML
+   	void re9(ActionEvent event) throws IOException {
+    
+    
+    }
+    @FXML
+   	void re10(ActionEvent event) throws IOException {
+    
+    
+    }
+    @FXML
+   	void re11(ActionEvent event) throws IOException {
+    
+    
+    }
+    
+    @FXML
+   	void re12(ActionEvent event) throws IOException {
+    
+    
+    }
+    
     
 }
