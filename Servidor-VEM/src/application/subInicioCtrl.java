@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
+import clases.data;
 import gad.manta.common.Conexion;
 import gad.manta.common.Sesion;
 import javafx.event.ActionEvent;
@@ -78,7 +79,7 @@ public class subInicioCtrl implements Initializable{
 	    
 	    Stage newStage = new Stage();
 		
-	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("Quorum.fxml"));
+	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PantallaPrincipal.fxml"));
         Scene scene = new Scene(pane);
         
         //Pantalla completa

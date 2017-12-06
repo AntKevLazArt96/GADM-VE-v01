@@ -12,50 +12,14 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.QuorumCtrl">
+<AnchorPane fx:id="panelQuorum" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.QuorumCtrl">
    <children>
-      <AnchorPane layoutX="119.0" layoutY="34.0" prefHeight="115.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <ImageView fitHeight="130.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="@../../res/titulo.png" />
-               </image>
-            </ImageView>
-            <JFXButton fx:id="btn_voz" layoutX="1166.0" layoutY="22.0" onAction="#handleButtonAction" text=" " AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="22.0">
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="TEXT_TO_SPEECH" size="60.0" text="" />
-               </graphic>
-            </JFXButton>
-            <Label layoutX="739.0" layoutY="61.0" text="Secretaria" textFill="WHITE" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="739.0" AnchorPane.topAnchor="61.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="lbl_nombre" layoutX="739.0" layoutY="33.0" prefHeight="27.0" prefWidth="295.0" text="LCDA. XIOMARA ARTEAGA RIVAS" textFill="WHITE" AnchorPane.bottomAnchor="57.0" AnchorPane.leftAnchor="739.0" AnchorPane.topAnchor="33.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Circle fx:id="cirlogin" fill="WHITE" layoutX="1088.0" layoutY="54.0" radius="52.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.rightAnchor="140.0" />
-            <Label text="Lunes, 01 Enero 2017" textFill="WHITE" AnchorPane.leftAnchor="59.0" AnchorPane.topAnchor="61.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label prefHeight="53.0" prefWidth="631.0" text="Quorum" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font name="System Bold" size="31.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="41.0" layoutY="90.0" prefHeight="544.0" prefWidth="312.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="110.0">
+      <AnchorPane layoutX="37.0" layoutY="21.0" prefHeight="544.0" prefWidth="312.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="21.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Label layoutX="27.0" layoutY="33.0" text="Resumen" textFill="#212121" AnchorPane.topAnchor="40.0">
+            <Label layoutX="27.0" layoutY="33.0" text="Quorum" textFill="#212121" AnchorPane.topAnchor="40.0">
                <font>
                   <Font size="22.0" />
                </font>
@@ -63,14 +27,6 @@
                   <MaterialDesignIconView glyphName="MENU" size="30" />
                </graphic>
             </Label>
-            <JFXButton fx:id="btn_finAsistencia" disable="true" layoutX="53.0" layoutY="442.0" onAction="#finAsistencia" prefHeight="47.0" prefWidth="206.0" style="-fx-background-color: #00bcd4;" text="FINALIZAR ASISTENCIA" textFill="WHITE" AnchorPane.leftAnchor="53.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="30" />
-               </graphic>
-            </JFXButton>
             <Label layoutX="67.0" layoutY="121.0" text="Miembros presentes">
                <font>
                   <Font size="14.0" />
@@ -102,7 +58,7 @@
                   <Font size="14.0" />
                </font>
             </JFXTextArea>
-            <JFXButton fx:id="btnasistencia" layoutX="58.0" layoutY="389.0" onAction="#IniAsistencia" prefHeight="47.0" prefWidth="206.0" style="-fx-background-color: #00bcd4;" text="INICIAR ASISTENCIA" textFill="WHITE">
+            <JFXButton fx:id="btnasistencia" layoutX="52.0" layoutY="388.0" onAction="#IniAsistencia" prefHeight="47.0" prefWidth="206.0" style="-fx-background-color: #00bcd4;" text="INICIAR ASISTENCIA" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -110,12 +66,20 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="PLAY" size="30" />
                </graphic>
             </JFXButton>
+            <JFXButton fx:id="btn_finAsistencia" disable="true" layoutX="53.0" layoutY="442.0" onAction="#finAsistencia" prefHeight="47.0" prefWidth="206.0" style="-fx-background-color: #00bcd4;" text="FINALIZAR ASISTENCIA" textFill="WHITE" AnchorPane.leftAnchor="53.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="30" />
+               </graphic>
+            </JFXButton>
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="386.0" layoutY="110.0" prefHeight="560.0" prefWidth="879.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="386.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="110.0">
+      <AnchorPane layoutX="376.0" layoutY="21.0" prefHeight="560.0" prefWidth="879.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="376.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="21.0">
          <children>
             <Label layoutX="51.0" layoutY="40.0" text="Lista de Miembros" textFill="#212121" AnchorPane.topAnchor="40.0">
                <font>
@@ -360,15 +324,6 @@
          <effect>
             <DropShadow color="#a8a8a8" />
          </effect>
-      </AnchorPane>
-      <AnchorPane layoutX="11.0" layoutY="673.0" prefHeight="29.0" prefWidth="1280.0" style="-fx-background-color: #0288d1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Label layoutX="56.0" layoutY="6.0" text="15:33" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
       </AnchorPane>
    </children>
 </AnchorPane>

@@ -25,10 +25,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.sun.pdfview.PDFFile;
 import com.sun.pdfview.PDFPage;
 import com.sun.pdfview.PagePanel;
-
 import gad.manta.common.ActaPdf;
-import gad.manta.common.Comentario;
-import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
 import gad.manta.common.Pdf;
 import gad.manta.common.Usuario;
@@ -45,17 +42,14 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+@SuppressWarnings("serial")
 public class ClienteLecturaPDF extends JFrame implements  Initializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6506395191970665089L;
+	
 	private PDFFile pdffile;
 	private int pagina;
 	private int paginas;
 	static java.awt.Image image;
 	
-	private Conexion conexion;
 	private static IServidor servidor;
 	@FXML
     private Circle cirlogin;

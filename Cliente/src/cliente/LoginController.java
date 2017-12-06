@@ -23,7 +23,7 @@ import javafx.stage.StageStyle;
 
 
 public class LoginController implements Initializable {
-	private static IServidor servidor;
+	public static IServidor servidor;
 
     
 	@FXML private JFXTextField txt_username;
@@ -60,7 +60,7 @@ public class LoginController implements Initializable {
         data.port = 6666;
 	    data.name = login;
 	    System.out.println(login);
-		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ClientePreSesion.fxml"));
+		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PantallaPrincipal.fxml"));
         Scene scene = new Scene(pane);
         
         //Pantalla completa
@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
 		newStage.setY(bounds.getMinY());
 		newStage.setWidth(bounds.getWidth());
 		newStage.setHeight(bounds.getHeight());
-        
+		
         newStage.setScene(scene);
         newStage.initStyle(StageStyle.UNDECORATED);
         newStage.show();

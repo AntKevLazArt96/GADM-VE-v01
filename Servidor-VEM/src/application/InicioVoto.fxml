@@ -12,52 +12,11 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InicioVotoCtrl">
+<AnchorPane id="AnchorPane" fx:id="panelInicioVoto" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InicioVotoCtrl">
    <children>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="113.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <ImageView fitHeight="130.0" fitWidth="1262.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="@../../res/titulo.png" />
-               </image>
-            </ImageView>
-            <JFXButton fx:id="btn_voz" layoutX="1168.0" layoutY="23.0" onAction="#handleButtonAction" text=" " AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="23.0">
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="TEXT_TO_SPEECH" size="60.0" text="" />
-               </graphic>
-            </JFXButton>
-            <Label layoutX="732.0" layoutY="60.0" text="Secretaria" textFill="WHITE" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="732.0" AnchorPane.topAnchor="60.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label text="Lunes, 01 Enero 2017" textFill="WHITE" AnchorPane.leftAnchor="59.0" AnchorPane.topAnchor="61.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Label prefHeight="53.0" prefWidth="203.0" text="Convocatoria" textFill="WHITE" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font name="System Bold" size="31.0" />
-               </font>
-            </Label>
-            <Label fx:id="label_convocatoria" layoutX="223.0" layoutY="20.0" prefHeight="53.0" prefWidth="150.0" textFill="WHITE" visible="false">
-               <font>
-                  <Font name="System Bold" size="31.0" />
-               </font>
-            </Label>
-            <Circle fx:id="cirlogin" fill="WHITE" layoutX="1105.0" layoutY="57.0" radius="52.0" stroke="WHITE" strokeType="INSIDE" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="123.0" AnchorPane.topAnchor="5.0" />
-            <Label fx:id="lbl_nombre" layoutX="732.0" layoutY="33.0" prefHeight="27.0" prefWidth="317.0" text="PAquita" textFill="WHITE" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="732.0" AnchorPane.topAnchor="33.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="51.0" layoutY="107.0" prefHeight="560.0" prefWidth="296.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="110.0">
+      <AnchorPane layoutX="51.0" layoutY="107.0" prefHeight="560.0" prefWidth="296.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="31.0" layoutY="33.0" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="58.0" layoutY="39.0" prefHeight="27.0" prefWidth="172.0" text="RESUMEN VOTOS" textFill="#212121" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="39.0">
@@ -155,7 +114,7 @@
             <DropShadow color="#a8a8a8" />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="392.0" layoutY="108.0" prefHeight="152.0" prefWidth="925.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="110.0">
+      <AnchorPane layoutX="392.0" layoutY="108.0" prefHeight="152.0" prefWidth="925.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="51.0" layoutY="58.0" text="PUNTO" textFill="#212121" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="30.0">
@@ -194,7 +153,7 @@
             <DropShadow color="#a8a8a8" />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutX="335.0" layoutY="274.0" prefHeight="426.0" prefWidth="925.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="274.0">
+      <AnchorPane layoutX="335.0" layoutY="274.0" prefHeight="426.0" prefWidth="925.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="163.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="51.0" layoutY="40.0" text="Lista de Miembros" textFill="#212121" AnchorPane.topAnchor="40.0">
@@ -537,78 +496,6 @@
                   </AnchorPane>
                </content>
             </ScrollPane>
-         </children>
-         <effect>
-            <DropShadow color="#a8a8a8" />
-         </effect>
-      </AnchorPane>
-      <AnchorPane id="panelvoz" fx:id="panelvoz" layoutX="876.0" layoutY="61.0" prefHeight="243.0" prefWidth="304.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 0.5em;" visible="false" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="70.0">
-         <children>
-            <GridPane layoutX="19.0" layoutY="29.0" prefHeight="221.0" prefWidth="285.0" AnchorPane.topAnchor="29.0">
-               <children>
-                  <Label text="NombreUser ApellidoUser" />
-                  <Label text="NombreUser ApellidoUser" GridPane.rowIndex="1" />
-                  <Label text="NombreUser ApellidoUser" GridPane.rowIndex="2" />
-                  <JFXButton style="-fx-background-color: #4CAF50;" text=" " GridPane.columnIndex="1">
-                     <font>
-                        <Font size="1.0" />
-                     </font>
-                     <graphic>
-                        <MaterialDesignIconView fill="WHITE" glyphName="CHECK" size="25" />
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton style="-fx-background-color: #F44336;" text=" " GridPane.columnIndex="2">
-                     <font>
-                        <Font size="1.0" />
-                     </font>
-                     <graphic>
-                        <MaterialDesignIconView fill="WHITE" glyphName="CLOSE" size="25" />
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton style="-fx-background-color: #4CAF50;" text=" " GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="1.0" />
-                     </font>
-                     <graphic>
-                        <MaterialDesignIconView fill="WHITE" glyphName="CHECK" size="25" />
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton style="-fx-background-color: #4CAF50;" text=" " GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="1.0" />
-                     </font>
-                     <graphic>
-                        <MaterialDesignIconView fill="WHITE" glyphName="CHECK" size="25" />
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton style="-fx-background-color: #F44336;" text=" " GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <font>
-                        <Font size="1.0" />
-                     </font>
-                     <graphic>
-                        <MaterialDesignIconView fill="WHITE" glyphName="CLOSE" size="25" />
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton style="-fx-background-color: #F44336;" text=" " GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="1.0" />
-                     </font>
-                     <graphic>
-                        <MaterialDesignIconView fill="WHITE" glyphName="CLOSE" size="25" />
-                     </graphic>
-                  </JFXButton>
-               </children>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.66668701171875" minWidth="10.0" prefWidth="166.6666259765625" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="156.0" minWidth="10.0" prefWidth="55.3333740234375" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="59.3333740234375" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="36.66667175292969" minHeight="10.0" prefHeight="36.66667175292969" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="36.66667175292969" minHeight="10.0" prefHeight="36.66667175292969" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="36.66667175292969" minHeight="10.0" prefHeight="36.66667175292969" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />

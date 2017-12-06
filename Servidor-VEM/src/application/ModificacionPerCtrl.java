@@ -17,6 +17,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import clases.data;
 import gad.manta.common.Conexion;
 import gad.manta.common.Imagen;
 import gad.manta.common.Usuario;
@@ -254,7 +255,7 @@ public class ModificacionPerCtrl implements Initializable {
 	}
 	
 	@FXML
-	void  validar_contraceÃ±a(KeyEvent e) {
+	void  validar_contraceña(KeyEvent e) {
 		
 		char car = e.getCharacter().charAt(0);
 		if(!(Character.isDigit(car) || Character.isLetter(car))) {

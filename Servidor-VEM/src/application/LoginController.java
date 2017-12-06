@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import clases.data;
 import gad.manta.common.IServidor;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,7 @@ import javafx.stage.StageStyle;
 
 
 public class LoginController implements Initializable {
-	private static IServidor servidor;
+	public static IServidor servidor;
 	   
 
     

@@ -602,10 +602,10 @@ public class Servidor implements IServidor {
 				if(voto.contains("EN CONTRA")) {
 					listaVotoEnContra.add(new Voto(usuario,voto,img));
 				}
-				if(voto.contains("SALVO MI VOTO")) {
+				if(voto.contains("VOTO SALVADO")) {
 					listaVotoSalvado.add(new Voto(usuario,voto,img));
 				}
-				if(voto.contains("BLANCO")) {
+				if(voto.contains("EN BLANCO")) {
 					listaVotoBlanco.add(new Voto(usuario,voto,img));
 				}
 				listaVotantesPunto.add(new Voto(usuario,voto,img));

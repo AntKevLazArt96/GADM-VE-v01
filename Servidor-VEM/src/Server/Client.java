@@ -39,7 +39,7 @@ public class Client {
                     Server.clients = Server.clients.stream()
                                 .filter(e -> {
                                     if(!(e == this)) {
-                                        String exit_message = "{ \"name\" : \"" + name + "\", \"status\" : \"DESCONECTADO" + "\"}";;
+                                        String exit_message = "{ \"name\" : \"" + name + "\", \"status\" : \"DESCONECTADO" + "\"}";
                                         System.out.println(exit_message);
                                         try {
                                             e.getDos().writeUTF(exit_message);

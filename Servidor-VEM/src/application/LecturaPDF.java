@@ -26,6 +26,7 @@ import com.sun.pdfview.PDFFile;
 import com.sun.pdfview.PDFPage;
 import com.sun.pdfview.PagePanel;
 
+import clases.data;
 import gad.manta.common.ActaPdf;
 import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
