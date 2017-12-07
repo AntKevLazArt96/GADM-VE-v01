@@ -349,13 +349,14 @@ $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
 
+
 ----------SESION--------------
 create or replace function ingresar_sesion(varchar,varchar,varchar,date,date,varchar,integer)
 returns void as 
 $$
 begin 
-	insert into Sesion_VE(convocatoria_sesion, description_sesion,tipo_sesion,register_sesion, intervention_sesion, hour_sesion,id_pdf) values
-				($1,$2,$3,$4,$5,$6,$7);
+	insert into Sesion_VE(convocatoria_sesion, description_sesion,tipo_sesion,register_sesion, intervention_sesion, hour_sesion,id_pdf,estado_sesion) values
+				($1,$2,$3,$4,$5,$6,$7,'PENDIENTE');
 end;
 $$
 LANGUAGE plpgsql;
@@ -399,8 +400,8 @@ select convocatoria_sesion,description_sesion from Sesion_VE where intervention_
 
 update OrdenDia_VE set si_ordendia=null, no_ordendia=null, blanco_ordendia=null, salvo_ordendia=null, estado_ordendia=null where id_ordendia=15;
 update OrdenDia_VE set si_ordendia=0, no_ordendia=0, blanco_ordendia=0, salvo_ordendia=0, estado_ordendia='APROBADO' where id_ordendia=15;
-
-select *from sesion_VE where estado_sesion=''
+select * from Sesion_VE where intervention_sesion='07/12/2017' and estado_sesion='PENDIENTE';
+select *from sesion_VE where estado_sesion='';
 --select *from OrdenDia_VE
 --select estado_ordendia from OrdenDia_VE where id_ordendia=16
 --select estado_ordendia from OrdenDia_VE where id_ordendia=15;
