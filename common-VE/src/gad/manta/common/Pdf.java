@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Pdf implements Serializable{
 	/**
@@ -86,6 +88,20 @@ public class Pdf implements Serializable{
 		this.nombre = nombre;
 	}
 
+	
+	public Pdf(int id, int id_orden_dia, String nombre, String ruta_pdf) {
+		super();
+		this.id = id;
+		this.id_orden_dia = id_orden_dia;
+		this.nombre = nombre;
+		this.ruta_pdf = ruta_pdf;
+	}
+	
+	public Pdf(String nombre, String ruta_pdf) {
+		super();
+		this.nombre = nombre;
+		this.ruta_pdf = ruta_pdf;
+	}
 	public int guardarRegistro_pdfs(Connection connection) throws IOException {
 		String sql = "INSERT INTO pdf_ve(id_ordendia,nombre_pdf,archivo_pdf) VALUES (?, ?, ?);";
 		try {
@@ -107,6 +123,62 @@ public class Pdf implements Serializable{
 		}
 		
 	}
+	public static List<Pdf> consultarPDFS_Modificacion(int id_punto) {
+		List<Pdf> lista_PDF = new ArrayList<Pdf>();
+		try {
+			// para verificar si esta instalado el drive de postgressql
+
+			try {
+				Class.forName("org.postgresql.Driver");
+
+			} catch (ClassNotFoundException cnfe) {
+				System.out.println("Drive no encontrado");
+				cnfe.printStackTrace();
+
+			}
+			//conecci�n a la base de datos  
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			Statement st = db.createStatement();
+			System.out.println(id_punto+" punto en metodo");
+			// ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select id_pdf,nombre_pdf from pdf_ve where id_ordendia=" + id_punto + ";");
+
+			while (resultado.next()) {
+				lista_PDF.add(new Pdf(resultado.getInt(1), resultado.getString(2)));
+			}
+			db.close();
+
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+			e.printStackTrace();
+		}
+
+		return lista_PDF;
+	}
+	
+	public static Pdf pdf_punto(int id) {
+		Connection db;
+		Pdf pdf = null;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			Statement st = db.createStatement();
+			// ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select * from pdf_ve where id_pdf=" + id + ";");
+			if(resultado.next()) {
+			 pdf= new Pdf(resultado.getInt(1), resultado.getInt(2), resultado.getString(3), resultado.getBytes(4));
+			}	
+			db.close();
+			return pdf;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+
+
+	}
+	
 	
 	
 	}

@@ -246,7 +246,7 @@ public class ModificacionSesionCtrl implements Initializable{
 				while(log_pdf>0) {	
 					list_pdf.getItems().add(pdf.get(bandera_2).getNombre());;
 					log_pdf--;
-					bandera++;
+					bandera_2++;
 				}
 				
 				

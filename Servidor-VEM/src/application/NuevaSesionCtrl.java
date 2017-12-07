@@ -2,7 +2,9 @@ package application;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.CopyOption;
@@ -17,6 +19,7 @@ import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 import javax.swing.JOptionPane;
 
@@ -85,7 +88,8 @@ public class NuevaSesionCtrl implements Initializable{
 	
 	@FXML
     private ObservableList<OrdenDia> listaOrden;
-	
+	@FXML
+    private ObservableList<Pdf> lista_pdf;
     @FXML
     private AnchorPane panel;
     @FXML
@@ -132,6 +136,12 @@ public class NuevaSesionCtrl implements Initializable{
     @FXML
     private TableColumn<OrdenDia,String> descripcion;
     
+    
+    @FXML
+    private TableColumn<OrdenDia,String> nombre_pdf;
+    @FXML
+    private TableColumn<OrdenDia,String> ruta_pdf;
+    
     @FXML
     private JFXButton btn_addSesion;
     
@@ -146,20 +156,22 @@ public class NuevaSesionCtrl implements Initializable{
     private JFXButton btn_addOrden;
     @FXML
     private JFXButton btn_modOrden;
-    
+    @FXML
+    private JFXButton btn_nuevo;
     @FXML
     private JFXButton btn_ver;
     @FXML
     private JFXButton btn_eli_lista_pdf;
     
     @FXML
-    private JFXListView<String> list_pdf;
+    private TableView<Pdf> list_pdf;
     
     @FXML
     private JFXListView<String> pdf_acta;
     
-    
-    @Override
+    private int contador=0;
+    @SuppressWarnings("unchecked")
+	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//date.setConverter(new LocalDateStringConverter(FormatStyle.FULL));
     	conexion = new Conexion();
@@ -176,8 +188,27 @@ public class NuevaSesionCtrl implements Initializable{
 		
 		conexion.cerrarConexion();
 		bloquear_control_pdf();
+		btn_modOrden.setDisable(true);
+
+    	btn_addOrden.setDisable(true);
+    
+		@SuppressWarnings("rawtypes")
+		TableColumn nombre = new TableColumn("Nombre");
+		nombre.setMinWidth(360);
+		nombre.setVisible(true);
+		nombre.setCellValueFactory(
+                new PropertyValueFactory<>("nombre"));
 		
+		@SuppressWarnings("rawtypes")
+		TableColumn ruta_pdf = new TableColumn("Ruta");
+		ruta_pdf.setMinWidth(80);
+		ruta_pdf.setVisible(false);
+		ruta_pdf.setCellValueFactory(
+                new PropertyValueFactory<>("ruta_pdf"));
 		
+
+        list_pdf.getColumns().addAll(nombre,ruta_pdf);
+        lista_pdf =FXCollections.observableArrayList();		
 	}
     
     public void bloquear() {
@@ -188,13 +219,14 @@ public class NuevaSesionCtrl implements Initializable{
     	btn_addSesion.setVisible(false);
     }
     public void limpiar() {
-    	int punto=0;
-    	punto=(Integer.parseInt(PuntoOrden.getText())+1);
-    	PuntoOrden.setText(Integer.toString(punto));
+    	PuntoOrden.setText(String.valueOf(data.num_punto));
     	txt_descripcion.setText(null);
     	cbx_proponente.setValue(null);
     	rutapdf="";
     	list_pdf.getItems().clear();
+    	btn_modOrden.setDisable(true);
+    	btn_addOrden.setDisable(true);
+    
     }
     
     public void bloquear_control_pdf() {
@@ -344,7 +376,8 @@ public class NuevaSesionCtrl implements Initializable{
     
 //variable global para guardar el path del pdf
     private static String rutapdf="";
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     void onExaAction(ActionEvent event) throws IOException {
     	
     	try {
@@ -366,9 +399,21 @@ public class NuevaSesionCtrl implements Initializable{
     				folder.mkdir();	
     			}
     			File fichero= new File(dbpath);
-    				
-    				//agrega al lisview
-    				list_pdf.getItems().add(dbpath);
+    			
+    			
+    			//lista_pdf.set(0,new Pdf(fichero.getName(),dbpath));
+    			lista_pdf.add(contador,new Pdf(fichero.getName(),dbpath));
+    			contador++;
+    			
+    		
+        		
+    	        ObservableList<Pdf> datos = FXCollections.observableArrayList(
+    	        		lista_pdf
+    					);
+    			
+    	        list_pdf.setItems(datos);
+        
+    			//agrega al lisview
     				//copia el archivo al directorio
     				CopyOption[] opciones= new CopyOption[] {
         					StandardCopyOption.REPLACE_EXISTING,
@@ -502,8 +547,8 @@ public class NuevaSesionCtrl implements Initializable{
         	while(longitud_lista>0)
 				try {
 					{
-						System.out.println(list_pdf.getItems().get(longitud_lista-1).toString());
-						Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).toString());
+						System.out.println(list_pdf.getItems().get(longitud_lista-1).getRuta_pdf());
+						Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).getRuta_pdf());
 						pdf.guardarRegistro_pdfs(conexion.getConnection());
 						longitud_lista--;
 					}
@@ -512,9 +557,10 @@ public class NuevaSesionCtrl implements Initializable{
 					e.printStackTrace();
 				}
         	conexion.cerrarConexion();
-        	
+
+        	data.num_punto=data.num_punto+1;
         	limpiar();
-        	
+        	contador=0;
         	List<OrdenDia> listaOrden =FXCollections.observableArrayList();
     		conexion.establecerConexion();
         	
@@ -556,7 +602,7 @@ public class NuevaSesionCtrl implements Initializable{
     public void mostrar_pdf(ActionEvent event) {
     	try {
     		String ruta="";
-        	ruta=list_pdf.getSelectionModel().selectedItemProperty().getValue();
+        	ruta=list_pdf.getSelectionModel().selectedItemProperty().getValue().getRuta_pdf();
     	    System.out.println(ruta);
         	File archivo = new File (ruta);
         	data.archivo_pff=archivo;
@@ -591,10 +637,20 @@ public class NuevaSesionCtrl implements Initializable{
     	bloquear_control_pdf();
     	
     }
+    
     @FXML
-    public void mostrar_punto(MouseEvent event) {
-    	
-    		System.out.println(tabla.getSelectionModel().selectedItemProperty().getValue().getId());
+    public void onNewOrden(ActionEvent event) {
+    	limpiar();
+
+    	btn_addOrden.setDisable(false);
+    
+    	}
+    
+    @SuppressWarnings("unchecked")
+	@FXML
+    public void mostrar_punto(MouseEvent event) throws IOException {
+    		btn_modOrden.setDisable(false);
+    		int id_punto=tabla.getSelectionModel().selectedItemProperty().getValue().getId();
     		txt_descripcion.setText(tabla.getSelectionModel().selectedItemProperty().getValue().getTema());
     		PuntoOrden.setText(String.valueOf(tabla.getSelectionModel().selectedItemProperty().getValue().getNumeroPunto()));
     		int id_pro= tabla.getSelectionModel().selectedItemProperty().getValue().getProponente();
@@ -608,6 +664,61 @@ public class NuevaSesionCtrl implements Initializable{
 				bandera++;
 			
 			}
+			
+			
+			List<Pdf> pdf;
+			System.out.println(id_punto+"  holaa");
+			
+			pdf=Pdf.consultarPDFS_Modificacion(id_punto);
+			System.out.println(pdf.size()+"  longitud");
+			list_pdf.getItems().clear();
+			lista_pdf.clear();
+			int log_pdf=pdf.size();
+			int bandera_2=0;
+			list_pdf.getItems().clear();
+			while(log_pdf>0) {	
+				Pdf pdf_file = Pdf.pdf_punto(pdf.get(bandera_2).getId());
+				File n = new File(convertirPdf(pdf_file.getPdf()));
+				lista_pdf.addAll(new Pdf(pdf_file.getNombre(),n.getPath()));		        
+				log_pdf--;
+				bandera_2++;
+			}
+			
+			ObservableList<Pdf> datos = FXCollections.observableArrayList(
+	        		lista_pdf
+					);
+			
+	        list_pdf.setItems(datos);
+	        
+			
+    
+	
     }
+    
+    public String convertirPdf(byte[] bytes) throws IOException {
+		String tmpDir=System.getProperty("user.dir")+"\\tmp\\";
+		String tmpFileName= UUID.randomUUID().toString();
+		if(!new File(tmpDir).exists()) {
+			if(!new File(tmpDir).mkdirs()) {
+				System.out.print("Imposibe crear directorio temporal");
+				return null;
+			}
+			
+		}
+		OutputStream out = new FileOutputStream(tmpDir+tmpFileName+".pdf");
+		out.write(bytes);
+		out.close();
+		File file= new File(tmpDir+tmpFileName+".pdf");
+		file.deleteOnExit();
+		
+		return file.getPath();
+	}
+    
+    
+    
+    
+    
+    
+    
 }
 

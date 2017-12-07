@@ -523,10 +523,9 @@ public class Servidor implements IServidor {
 			//conecci�n a la base de datos  
 			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
-
+			System.out.println(id_punto+" punto en metodo");
 			// ejecucion y resultado de la consulta
-			ResultSet resultado = st
-					.executeQuery("select id_pdf,nombre_pdf from pdf_ve where id_ordendia=" + id_punto + ";");
+			ResultSet resultado = st.executeQuery("select id_pdf,nombre_pdf from pdf_ve where id_ordendia=" + id_punto + ";");
 
 			while (resultado.next()) {
 				lista_PDF.add(new Pdf(resultado.getInt(1), resultado.getString(2)));
