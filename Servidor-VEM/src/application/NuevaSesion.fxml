@@ -11,7 +11,6 @@
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -30,12 +29,7 @@
                   <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
                </graphic>
             </Label>
-            <TableView fx:id="tabla" layoutX="17.0" layoutY="83.0" prefHeight="344.0" prefWidth="280.0" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0">
-               <columns>
-                  <TableColumn fx:id="punto" prefWidth="37.66666793823242" text="Punto" />
-                  <TableColumn fx:id="descripcion" prefWidth="241.33333206176758" text="Descripcion" />
-               </columns>
-            </TableView>
+            <TableView fx:id="tabla" layoutX="17.0" layoutY="83.0" onMouseClicked="#mostrar_punto" prefHeight="344.0" prefWidth="280.0" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0" />
             <JFXButton fx:id="btn_cancelar" layoutX="62.0" layoutY="429.0" onAction="#onFinAction" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="FINALIZAR" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
                <font>
                   <Font size="14.0" />

@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import javafx.collections.ObservableList;
 
@@ -137,7 +138,7 @@ public class OrdenDia implements Serializable {
 	}
 	
 	
-	public static void llenarInformacion(Connection connection, ObservableList<OrdenDia> orden, String convocatoria) {
+	public static void llenarInformacion(Connection connection, List<OrdenDia> orden, String convocatoria) {
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultado = statement.executeQuery("select *from OrdenDia_VE where convocatoria_sesion='"+convocatoria+"';");

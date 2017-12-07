@@ -15,6 +15,7 @@ import java.rmi.RemoteException;
 import java.time.LocalTime;
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -252,17 +253,7 @@ public class NuevaSesionCtrl implements Initializable{
     		mensaje.show();
     		bloquear();
     		
-    		listaOrden =FXCollections.observableArrayList();
-    		conexion.establecerConexion();
-        	
-    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,convocatoria);
-    		conexion.cerrarConexion();
-    		
-    		tabla.setItems(listaOrden);
-    		
-    		punto.setCellValueFactory(new PropertyValueFactory<OrdenDia, String>("numeroPunto"));
-    		descripcion.setCellValueFactory(new PropertyValueFactory<OrdenDia, String>("tema"));
-    		
+
     		
     	
     	}
@@ -323,7 +314,6 @@ public class NuevaSesionCtrl implements Initializable{
     		conexion.cerrarConexion();
     		
     		tabla.setItems(listaOrden);
-    		
     		punto.setCellValueFactory(new PropertyValueFactory<OrdenDia, String>("numeroPunto"));
     		descripcion.setCellValueFactory(new PropertyValueFactory<OrdenDia, String>("tema"));
     		
@@ -486,7 +476,8 @@ public class NuevaSesionCtrl implements Initializable{
     	
     }
     
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     void onAddOrden(ActionEvent event) throws IOException {
     	
     	System.out.println("La convocatoria es: "+convocatoria);
@@ -524,16 +515,37 @@ public class NuevaSesionCtrl implements Initializable{
         	
         	limpiar();
         	
-        	listaOrden =FXCollections.observableArrayList();
+        	List<OrdenDia> listaOrden =FXCollections.observableArrayList();
     		conexion.establecerConexion();
         	
     		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,convocatoria);
     		conexion.cerrarConexion();
     		
-    		tabla.setItems(listaOrden);
-
     		
-    		//punto.setCellValueFactory(new PropertyValueFactory<OrdenDia, String>("numeroPunto"));	
+    		
+    		@SuppressWarnings("rawtypes")
+			TableColumn id_punto = new TableColumn("No. Punto");
+	    	id_punto.setMinWidth(50);
+	    	id_punto.setVisible(false);
+	    	id_punto.setCellValueFactory(
+	                new PropertyValueFactory<>("id"));
+			
+			@SuppressWarnings("rawtypes")
+			TableColumn num_punto = new TableColumn("No. Punto");
+			num_punto.setMinWidth(80);
+			num_punto.setCellValueFactory(
+	                new PropertyValueFactory<>("numeroPunto"));
+			@SuppressWarnings("rawtypes")
+			TableColumn descrip = new TableColumn("Descripción");
+			descrip.setMinWidth(300);
+			descrip.setCellValueFactory(
+	                new PropertyValueFactory<>("tema"));
+	        ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
+	        		listaOrden
+					);
+			
+			tabla.getColumns().addAll(id_punto,num_punto,descrip);
+			tabla.setItems(datos);
     	}
     }
     
@@ -578,6 +590,24 @@ public class NuevaSesionCtrl implements Initializable{
     	list_pdf.getItems().remove(list_pdf.getSelectionModel().getSelectedIndex());
     	bloquear_control_pdf();
     	
+    }
+    @FXML
+    public void mostrar_punto(MouseEvent event) {
+    	
+    		System.out.println(tabla.getSelectionModel().selectedItemProperty().getValue().getId());
+    		txt_descripcion.setText(tabla.getSelectionModel().selectedItemProperty().getValue().getTema());
+    		PuntoOrden.setText(String.valueOf(tabla.getSelectionModel().selectedItemProperty().getValue().getNumeroPunto()));
+    		int id_pro= tabla.getSelectionModel().selectedItemProperty().getValue().getProponente();
+    		int log= proponentes.size();
+			int bandera=0;
+			while(log>=1) {
+				if(id_pro==proponentes.get(bandera).getId()) {
+					cbx_proponente.setValue(proponentes.get(bandera));
+				}
+				log--;	
+				bandera++;
+			
+			}
     }
 }
 
