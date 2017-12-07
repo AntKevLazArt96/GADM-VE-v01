@@ -211,6 +211,7 @@ public class ModificacionPerCtrl implements Initializable {
 				return 0;
 			}
 		};
+		id_img=0;
 		lbl_foto.setImage(new Image(is));
 	}
 	

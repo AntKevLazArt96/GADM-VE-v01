@@ -43,5 +43,18 @@ public class panelConController {
 		}
 
     }
+    @FXML
+    void onConfi(ActionEvent event) {
+    	try {
+    		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("Configuracion.fxml"));
+			
+			panel.getChildren().setAll(pane);
+		    
+    	} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+    }
 
 }

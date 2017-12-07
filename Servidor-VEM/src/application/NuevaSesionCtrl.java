@@ -136,7 +136,8 @@ public class NuevaSesionCtrl implements Initializable{
     private JFXButton btn_examinarActa;
     @FXML
     private JFXButton btn_addOrden;
-    
+    @FXML
+    private JFXButton btn_modOrden;
     @FXML
     private JFXListView<String> list_pdf;
     
@@ -151,7 +152,7 @@ public class NuevaSesionCtrl implements Initializable{
     	time.setValue(LocalTime.of(16, 00));
 		cbx_tipoSes.setValue("ORDINARIA");
 		cbx_tipoSes.setItems(tipoSesion);		
-		
+		PuntoOrden.setDisable(true);
 		conexion.establecerConexion();
 		proponentes =FXCollections.observableArrayList();
 		
@@ -248,6 +249,72 @@ public class NuevaSesionCtrl implements Initializable{
     	
     	
     }
+    @FXML
+    void onModSesion(ActionEvent event) throws MalformedURLException, RemoteException, NotBoundException {
+    	String txtconvocatoria = txt_convocatoria.getText();
+    	String [] meses = {"ENERO","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
+    	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
+    	String horaIntervencion = time.getValue().toString();
+    	String titulo = lbl1.getText()+" "+cbx_tipoSes.getValue()+lbl2.getText()+" "+lbl3.getText()+fechaCompleta+", A lAS "+horaIntervencion+" "+lbl4.getText();
+    	String tipo_sesion = cbx_tipoSes.getValue();
+    	Date fechaIntervencion = Date.valueOf(date.getValue());
+    	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
+    	
+    	
+		try {
+			conexion.establecerConexion();
+			ActaPdf pdf = new ActaPdf(nombre_acta,ruta_acta);
+			idActa= pdf.guardarRegistro_pdf(conexion.getConnection());
+			conexion.cerrarConexion();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+    	
+		Sesion sesion = new Sesion(txtconvocatoria,titulo,tipo_sesion,fechaRegistro, fechaIntervencion , horaIntervencion,idActa );
+    	conexion.establecerConexion();
+    	convocatoria = sesion.guardarRegistro(conexion.getConnection());
+    	System.out.println(convocatoria);
+    	conexion.cerrarConexion();
+    	
+    	if(convocatoria =="" ) {
+    		Alert mensaje = new Alert(AlertType.ERROR);
+    		mensaje.setTitle("Sesion Guardada");
+    		mensaje.setContentText("Hubo algun error");
+    		mensaje.setHeaderText("Sesion Guardada");
+    		mensaje.show();	
+    	}else {
+    		Alert mensaje = new Alert(AlertType.INFORMATION);
+    		mensaje.setTitle("Sesion Guardada");
+    		mensaje.setContentText("Ahora prodece a agregar la orden del dia "+convocatoria);
+    		mensaje.setHeaderText("Sesion Guardada");
+    		mensaje.show();
+    		bloquear();
+    		
+    		listaOrden =FXCollections.observableArrayList();
+    		conexion.establecerConexion();
+        	
+    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,convocatoria);
+    		conexion.cerrarConexion();
+    		
+    		tabla.setItems(listaOrden);
+    		
+    		punto.setCellValueFactory(new PropertyValueFactory<OrdenDia, String>("numeroPunto"));
+    		descripcion.setCellValueFactory(new PropertyValueFactory<OrdenDia, String>("tema"));
+    		
+    		
+    	
+    	}
+    	
+    	
+    	
+    
+    	
+    	
+    }
+    
+    
     @FXML
     void onFinAction(ActionEvent event) {
     	try {
