@@ -34,7 +34,8 @@ public interface IServidor extends Remote {
 	public List<Voto> votosSalvados()throws RemoteException;
 	public List<Voto> votosBlanco()throws RemoteException;
 	public String reiniciarVoto(String user, String voto,int index)throws RemoteException;
-	
+	public String verificarSiSeVoto(int id_ordendia)throws RemoteException;
+	public String guardarVotos(int id_ordendia,int si,int no,int blanco,int salvo)throws RemoteException;
 	
 	public String limpiarVotoOrden()throws RemoteException;
 	
@@ -43,6 +44,10 @@ public interface IServidor extends Remote {
 	public List<OrdenDia> consultarOrden() throws RemoteException;
 	public List<Documentacion> mostrarDocumentacion() throws RemoteException;
 	public List<Sesion> consultarSesion_Modificacion(String convocatoria) throws RemoteException;
+	
+	public String verificarSiTerminoSesion(String convocatoria) throws RemoteException;
+	public String TerminarSesion(String convocatoria) throws RemoteException;
+	
 	public List<OrdenDia> consultarOrden_Modificacion(String convocatoria) throws RemoteException;
 	
 	public List<Pdf> consultarPdfsPunto(int id_ordendia) throws RemoteException;

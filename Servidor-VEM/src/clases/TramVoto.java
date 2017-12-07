@@ -4,28 +4,22 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.List;
-
 import org.json.simple.JSONObject;
-
 import application.InicioVotoCtrl;
 import application.LoginController;
 import application.PantallaPrincipalCtrl;
-
 import gad.manta.common.Usuario;
 import gad.manta.common.Voto;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class TramVoto {
 
 	// Listas
 	List<Voto> lista;
 	List<Voto> favor;
+	List<Voto> contra ;
+	List<Voto> salvados;
+	List<Voto> blanco;
 
 	public static InicioVotoCtrl iv;
 
@@ -91,24 +85,31 @@ public class TramVoto {
 		iv.status11.setStyle("-fx-text-fill: #4caf50;");
 		iv.estatus12.setStyle("-fx-text-fill: #4caf50;");
 	}
-
+	
 	public void tramiteVoto() {
 		try {
 			// lista que devuelve todos los votantes con sus votos
 			lista = LoginController.servidor.votantesPunto();
 			favor = LoginController.servidor.votosAFavor();
-			List<Voto> contra = LoginController.servidor.votosEnContra();
-			List<Voto> salvados = LoginController.servidor.votosSalvados();
-			List<Voto> blanco = LoginController.servidor.votosBlanco();
-
+			contra = LoginController.servidor.votosEnContra();
+			salvados = LoginController.servidor.votosSalvados();
+			blanco = LoginController.servidor.votosBlanco();
+			 
+			
+			
 			// lista que verifica el total de asistentes
 			List<Usuario> quorum = LoginController.servidor.consultaQuorum();
 
+			VotoResumen.si =favor.size();
+			VotoResumen.no=contra.size();
+			VotoResumen.blanco=blanco.size();
+			VotoResumen.salvo=salvados.size();
+			
 			iv.lblAFavor.setText(String.valueOf(favor.size()));
 			iv.lblEnContra.setText(String.valueOf(contra.size()));
 			iv.lblSalvoVoto.setText(String.valueOf(salvados.size()));
 			iv.lblBlanco.setText(String.valueOf(blanco.size()));
-
+			
 			iv.lblEspera.setText(String.valueOf(quorum.size() - lista.size()));
 
 			// reiniciando los usuarios
@@ -125,8 +126,16 @@ public class TramVoto {
 					iv.status1.setText(lista.get(i).getVoto());
 					iv.status1.setVisible(true);
 					iv.btnRe1.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.status1.setStyle("-fx-text-fill: red;");
+					//cambiamos el color de acuerdo al voto
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.status1.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.status1.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.status1.setStyle("-fx-text-fill: black;");
 					}
 				}
 				if (i == 1) {
@@ -137,8 +146,15 @@ public class TramVoto {
 					iv.status2.setText(lista.get(i).getVoto());
 					iv.status2.setVisible(true);
 					iv.btnRe2.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.status2.setStyle("-fx-text-fill: red;");
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.status2.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.status2.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.status2.setStyle("-fx-text-fill: black;");
 					}
 				}
 				if (i == 2) {
@@ -149,8 +165,15 @@ public class TramVoto {
 					iv.status3.setText(lista.get(i).getVoto());
 					iv.status3.setVisible(true);
 					iv.btnRe3.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.status3.setStyle("-fx-text-fill: red;");
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.status3.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.status3.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.status3.setStyle("-fx-text-fill: black;");
 					}
 				}
 				if (i == 3) {
@@ -161,8 +184,15 @@ public class TramVoto {
 					iv.status4.setText(lista.get(i).getVoto());
 					iv.status4.setVisible(true);
 					iv.btnRe4.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.status4.setStyle("-fx-text-fill: red;");
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.status4.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.status4.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.status4.setStyle("-fx-text-fill: black;");
 					}
 				}
 				if (i == 4) {
@@ -173,8 +203,15 @@ public class TramVoto {
 					iv.status5.setText(lista.get(i).getVoto());
 					iv.status5.setVisible(true);
 					iv.btnRe5.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.status5.setStyle("-fx-text-fill: red;");
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.status5.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.status5.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.status5.setStyle("-fx-text-fill: black;");
 					}
 				}
 				if (i == 5) {
@@ -185,8 +222,15 @@ public class TramVoto {
 					iv.status6.setText(lista.get(i).getVoto());
 					iv.status6.setVisible(true);
 					iv.btnRe6.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.status6.setStyle("-fx-text-fill: red;");
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.status6.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.status6.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.status6.setStyle("-fx-text-fill: black;");
 					}
 				}
 				if (i == 6) {
@@ -197,8 +241,15 @@ public class TramVoto {
 					iv.status7.setText(lista.get(i).getVoto());
 					iv.status7.setVisible(true);
 					iv.btnRe7.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.status7.setStyle("-fx-text-fill: red;");
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.status7.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.status7.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.status7.setStyle("-fx-text-fill: black;");
 					}
 				}
 				if (i == 7) {
@@ -209,8 +260,15 @@ public class TramVoto {
 					iv.status8.setText(lista.get(i).getVoto());
 					iv.status8.setVisible(true);
 					iv.btnRe8.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.status8.setStyle("-fx-text-fill: red;");
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.status8.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.status8.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.status8.setStyle("-fx-text-fill: black;");
 					}
 				}
 				if (i == 8) {
@@ -221,8 +279,15 @@ public class TramVoto {
 					iv.status9.setText(lista.get(i).getVoto());
 					iv.status9.setVisible(true);
 					iv.btnRe9.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.status9.setStyle("-fx-text-fill: red;");
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.status9.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.status9.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.status9.setStyle("-fx-text-fill: black;");
 					}
 				}
 				if (i == 9) {
@@ -233,8 +298,15 @@ public class TramVoto {
 					iv.status10.setText(lista.get(i).getVoto());
 					iv.status10.setVisible(true);
 					iv.btnRe10.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.status10.setStyle("-fx-text-fill: red;");
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.status10.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.status10.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.status10.setStyle("-fx-text-fill: black;");
 					}
 				}
 				if (i == 10) {
@@ -245,8 +317,15 @@ public class TramVoto {
 					iv.status11.setText(lista.get(i).getVoto());
 					iv.status11.setVisible(true);
 					iv.btnRe11.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.status11.setStyle("-fx-text-fill: red;");
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.status11.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.status11.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.status11.setStyle("-fx-text-fill: black;");
 					}
 				}
 				if (i == 11) {
@@ -257,8 +336,15 @@ public class TramVoto {
 					iv.estatus12.setText(lista.get(i).getVoto());
 					iv.estatus12.setVisible(true);
 					iv.btnRe12.setVisible(true);
-					if (lista.get(i).getVoto().equals("RECHAZADO")) {
-						iv.estatus12.setStyle("-fx-text-fill: red;");
+					if (lista.get(i).getVoto().equals("EN CONTRA")) {
+						iv.estatus12.setStyle("-fx-text-fill: #F44336;");
+					}
+					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
+						iv.estatus12.setStyle("-fx-text-fill: #B2EBF2;");
+						
+					}
+					if (lista.get(i).getVoto().equals("EN BLANCO")) {
+						iv.estatus12.setStyle("-fx-text-fill: black;");
 					}
 				}
 
@@ -317,16 +403,16 @@ public class TramVoto {
 	
 	
 	@SuppressWarnings("unchecked")
-	public void reiniciarcontrol(String user1, String voto,int indice ) throws RemoteException {
+	public void reiniciarcontrol(String user, String voto,int indice ) throws RemoteException {
 		limpiar();
     	System.out.println("riniciando xD");
-    	LoginController.servidor.reiniciarVoto(user1,voto ,indice);
+    	LoginController.servidor.reiniciarVoto(user,voto ,indice);
     	
     	try {
     		
             JSONObject js = new JSONObject();
             js.put("name", "REINICIAR1VOTO");
-            js.put("message", iv.user1.getText());
+            js.put("message", user);
 
             String json = js.toJSONString();
 
@@ -398,6 +484,8 @@ public class TramVoto {
 		Image img = new Image(bis);
 		return img;
 	}
+	
+	
 
 	@SuppressWarnings("unchecked")
 	public void iniciarVotacion() {
@@ -420,4 +508,18 @@ public class TramVoto {
 		}
 
 	}
+	
+	public void guardarVotos(int id_ordendia) {
+		try {
+			System.out.println(VotoResumen.si);
+			String estado = LoginController.servidor.guardarVotos(id_ordendia, VotoResumen.si, VotoResumen.no, VotoResumen.blanco, VotoResumen.salvo);
+			//guardamos la variable estado
+			VotoResumen.estado=estado;
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
+	}
+	
 }

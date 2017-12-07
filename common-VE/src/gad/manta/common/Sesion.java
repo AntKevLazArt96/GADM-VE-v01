@@ -223,7 +223,7 @@ public class Sesion implements Serializable{
 	public static String haySesionParaHoy(Connection connection,Date fechaIntervencion) {
 		try {
 			Statement statement = connection.createStatement();
-			ResultSet resultado = statement.executeQuery("select * from Sesion_VE where intervention_sesion='"+fechaIntervencion+"';");
+			ResultSet resultado = statement.executeQuery("select * from Sesion_VE where intervention_sesion='"+fechaIntervencion+"' and estado_sesion=null;");
 			if(resultado.next()) {
 				return  resultado.getString(1);
 			}else {

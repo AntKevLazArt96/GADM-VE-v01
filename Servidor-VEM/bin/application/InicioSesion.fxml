@@ -74,7 +74,7 @@
                </graphic>
             </Label>
             <TableView fx:id="table_pdf" layoutX="51.0" layoutY="334.0" prefHeight="200.0" prefWidth="382.0" />
-            <JFXButton fx:id="btnIniVoto" layoutX="579.0" layoutY="501.0" onAction="#IniVotoAction" prefHeight="47.0" prefWidth="185.0" style="-fx-background-color: #00bcd4;" text="INICIAR VOTACIÓN" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="145.0">
+            <JFXButton fx:id="btnIniVoto" layoutX="477.0" layoutY="501.0" onAction="#IniVotoAction" prefHeight="47.0" prefWidth="185.0" style="-fx-background-color: #00bcd4;" text="INICIAR VOTACIÓN" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="206.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -82,11 +82,24 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="PLAY" size="30" />
                </graphic>
             </JFXButton>
-            <JFXButton layoutX="735.0" layoutY="501.0" prefHeight="47.0" prefWidth="95.0" style="-fx-background-color: #757575;" text="SIGUIENTE" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="38.0">
+            <JFXButton fx:id="btn_noVoto" layoutX="677.0" layoutY="501.0" onAction="#noVotarAction" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #757575;" text="CONTINUAR SIN VOTAR" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="14.0">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXButton>
+            <Label fx:id="lbl_estado" layoutX="595.0" layoutY="240.0" text="PUNTO TERMINADO" textFill="#4caf50">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="496.0" layoutY="237.0" text="Estado" textFill="#212121">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
+               </graphic>
+            </Label>
          </children>
       </AnchorPane>
    </children>

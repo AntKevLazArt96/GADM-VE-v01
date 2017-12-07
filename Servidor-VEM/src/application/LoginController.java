@@ -21,30 +21,30 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
 public class LoginController implements Initializable {
 	public static IServidor servidor;
-	   
-
-    
-	@FXML private JFXTextField txt_username;
-	@FXML private JFXPasswordField txt_password;
-	@FXML private javafx.scene.control.Button closeButton;
-	@FXML private javafx.scene.control.Button loginButton;
+	@FXML
+	private JFXTextField txt_username;
+	@FXML
+	private JFXPasswordField txt_password;
+	@FXML
+	private javafx.scene.control.Button closeButton;
+	@FXML
+	private javafx.scene.control.Button loginButton;
 
 	@FXML
-	private void closeButtonAction(){
-	    // get a handle to the stage
-	    Stage stage = (Stage) closeButton.getScene().getWindow();
-	    // do what you have to do
-	    stage.close();
-	}
-	
-	
-
-	@FXML
-	private void loginAction() throws IOException, NotBoundException{
+	private void closeButtonAction() {
 		// get a handle to the stage
+		Stage stage = (Stage) closeButton.getScene().getWindow();
+		// do what you have to do
+		stage.close();
+		System.exit(0);
+	}
+
+	@FXML
+	private void loginAction() throws IOException, NotBoundException {
+		// get a handle to the stage
+<<<<<<< HEAD
 	    Stage actualStage = (Stage) closeButton.getScene().getWindow();
 	    // do what you have to do
 	    actualStage.close();
@@ -67,31 +67,49 @@ public class LoginController implements Initializable {
 	        
 	        //Pantalla completa
 	        Screen screen = Screen.getPrimary();
+=======
+		Stage actualStage = (Stage) closeButton.getScene().getWindow();
+		// do what you have to do
+		actualStage.close();
+
+		servidor = (IServidor) Naming.lookup("rmi://192.168.1.6/VotoE");
+
+		Stage newStage = new Stage();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
+		String username = servidor.login(txt_username.getText(), txt_password.getText());
+
+		data.ip = "192.168.1.6";
+		data.port = 6666;
+		data.name = username;
+
+		if (username != null) {
+
+			AnchorPane pane = loader.load();
+			Scene scene = new Scene(pane);
+
+			// Pantalla completa
+			Screen screen = Screen.getPrimary();
+>>>>>>> anthony
 			Rectangle2D bounds = screen.getVisualBounds();
 
 			newStage.setX(bounds.getMinX());
 			newStage.setY(bounds.getMinY());
 			newStage.setWidth(bounds.getWidth());
 			newStage.setHeight(bounds.getHeight());
-	        
-	        
-	        newStage.setScene(scene);
-	        newStage.initStyle(StageStyle.UNDECORATED);
-	        newStage.show();
-	    }else {
-	    	System.out.println("Usuario incorrecto");
-	    }
+
+			newStage.setScene(scene);
+			newStage.initStyle(StageStyle.UNDECORATED);
+			newStage.show();
+		} else {
+			System.out.println("Usuario incorrecto");
+		}
 	}
-	
-
-
-
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		txt_username.setText("secretaria");
 		txt_password.setText("1234");
-		
-	}    
-    
+
+	}
+
 }

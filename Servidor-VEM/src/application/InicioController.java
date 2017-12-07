@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
+import clases.data;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,9 +40,9 @@ public class InicioController implements Initializable {
 
 
     
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	txt_username.setText(data.name);
     	try {
 			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("SubInicio.fxml"));
 			panel.getChildren().setAll(pane);
@@ -55,10 +56,7 @@ public class InicioController implements Initializable {
     	
     	
     }    
-    
-    public void setUsername(String text) {
-    	txt_username.setText(text);
-    }
+   
     
     @FXML
     void closeButtonAction(ActionEvent event) throws IOException {

@@ -23,6 +23,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -34,9 +36,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class PantallaPrincipalCtrl implements Initializable {
-	
+
 	@FXML
 	private JFXButton btn_voz;
 
@@ -51,7 +56,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 	@FXML
 	private AnchorPane contenedor;
-	
+
 	Sesion sesion;
 
 	// variables estaticas para socket
@@ -175,6 +180,53 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 								}
 
+								if (newMsg.getName().contains("NO SE VOTO")) {
+
+									try {
+										FXMLLoader loader = new FXMLLoader(
+												getClass().getResource("ClienteSesion.fxml"));
+										AnchorPane Presesion = (AnchorPane) loader.load();
+										contenedor.getChildren().setAll(Presesion);
+										// obtengo el controlador y se lo designo a la variable global c
+										c = loader.getController();
+
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+
+								}
+
+								if (newMsg.getName().contains("TERMINO LA SESION")) {
+
+									// logica para cerrar sesion
+									Stage actualStage = (Stage) contenedor.getScene().getWindow();
+									// do what you have to do
+									actualStage.close();
+
+									Stage newStage = new Stage();
+
+									try {
+										AnchorPane pane = (AnchorPane) FXMLLoader
+												.load(getClass().getResource("VentanaDialogo.fxml"));
+										Scene scene = new Scene(pane);
+
+										newStage.setScene(scene);
+										newStage.initStyle(StageStyle.UNDECORATED);
+										newStage.setOnCloseRequest(e -> {
+											// e.consume();
+											PantallaPrincipalCtrl.th2.stop();
+											System.exit(0);
+										});
+										newStage.show();
+
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+
+								}
+
 								if (newMsg.getName().contains("APROBADO")) {
 									Alert mensaje = new Alert(AlertType.INFORMATION);
 									mensaje.setTitle("Orden del d�a Aprobado");
@@ -256,8 +308,6 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 	}
 
-	
-
 	public Image convertirImg(byte[] bytes) throws IOException {
 		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
 
@@ -279,7 +329,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		
+
 		lbl_nombre.setText(data.name);
 
 		try {

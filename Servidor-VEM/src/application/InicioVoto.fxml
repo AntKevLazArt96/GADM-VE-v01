@@ -45,7 +45,7 @@
                         <MaterialDesignIconView fill="#dd0000" glyphName="CLOSE_BOX" size="30" />
                      </graphic>
                   </Label>
-                  <Label layoutX="18.0" layoutY="111.0" text="BLANCO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="115.0">
+                  <Label layoutX="18.0" layoutY="111.0" text="EN BLANCO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="115.0">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -53,9 +53,9 @@
                         <MaterialDesignIconView glyphName="CHECKBOX_BLANK_OUTLINE" size="30" />
                      </graphic>
                   </Label>
-                  <Label layoutX="18.0" layoutY="151.0" text="SALVO VOTO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="165.0">
+                  <Label layoutX="18.0" layoutY="168.0" text="VOTOS SALVADOS" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="168.0">
                      <font>
-                        <Font size="24.0" />
+                        <Font size="20.0" />
                      </font>
                      <graphic>
                         <MaterialDesignIconView glyphName="CODE_STRING" size="30.0" />

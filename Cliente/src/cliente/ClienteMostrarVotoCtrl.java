@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXTextArea;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 
 public class ClienteMostrarVotoCtrl implements Initializable {
 
@@ -28,20 +29,24 @@ public class ClienteMostrarVotoCtrl implements Initializable {
 
 		if (data.voto.equals("FAVOR")) {
 			verVoto.setText("A FAVOR");
+			verVoto.setStyle("-fx-background-color:  #4CAF50;");
+			 
 		}
 		if (data.voto.equals("CONTRA")) {
 			verVoto.setText("EN CONTRA");
-			verVoto.setStyle("-fx-background-color: red;");
+			verVoto.setStyle("-fx-background-color:  #F44336;");
 		}
 
 		if (data.voto.equals("SALVO")) {
 			verVoto.setText("VOTO SALVADO");
-			verVoto.setStyle("-fx-background-color: gray;");
+			verVoto.setTextFill(Color.BLACK);
+			verVoto.setStyle("-fx-background-color:  #B2EBF2;");
 		}
 
 		if (data.voto.equals("BLANCO")) {
 			verVoto.setText("EN BLANCO");
-			verVoto.setStyle("-fx-background-color: white;");
+			verVoto.setTextFill(Color.BLACK);
+			verVoto.setStyle("-fx-background-color:  #F5F5F5;");
 		}
 
 	}
