@@ -144,6 +144,12 @@ public class NuevaSesionCtrl implements Initializable{
     private JFXButton btn_addOrden;
     @FXML
     private JFXButton btn_modOrden;
+    
+    @FXML
+    private JFXButton btn_ver;
+    @FXML
+    private JFXButton btn_eli_lista_pdf;
+    
     @FXML
     private JFXListView<String> list_pdf;
     
@@ -167,7 +173,7 @@ public class NuevaSesionCtrl implements Initializable{
 		cbx_proponente.setItems(proponentes);
 		
 		conexion.cerrarConexion();
-		
+		bloquear_control_pdf();
 		
 		
 	}
@@ -189,7 +195,18 @@ public class NuevaSesionCtrl implements Initializable{
     	list_pdf.getItems().clear();
     }
     
-    
+    public void bloquear_control_pdf() {
+    	    btn_ver.setDisable(true);
+    	
+    	    btn_eli_lista_pdf.setDisable(true);
+    	    
+    }
+    public void desbloquear_control_pdf() {
+	    btn_ver.setDisable(false);
+	    
+	    btn_eli_lista_pdf.setDisable(false);	    
+}
+
     
     @FXML
     void onAddSesion(ActionEvent event) throws MalformedURLException, RemoteException, NotBoundException {
@@ -423,37 +440,10 @@ public class NuevaSesionCtrl implements Initializable{
 		}
     }
     @FXML
-    void mostrar_pdf(MouseEvent  event) throws RemoteException{
+    void activar_controles_pdf(MouseEvent  event) throws RemoteException{
     	
-    	try {
-    		String ruta="";
-        	ruta=list_pdf.getSelectionModel().selectedItemProperty().getValue();
-    	    System.out.println(ruta);
-        	File archivo = new File (ruta);
-        	data.archivo_pff=archivo;
-    		data.tipo_lectura=3;
-    		Stage newStage = new Stage();
-
-    		AnchorPane pane;
-    		pane = (AnchorPane) FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
-    		Scene scene = new Scene(pane);
-
-    		// Pantalla completa
-    		Screen screen = Screen.getPrimary();
-    		Rectangle2D bounds = screen.getVisualBounds();
-
-    		newStage.setX(bounds.getMinX());
-    		newStage.setY(bounds.getMinY());
-    		newStage.setWidth(bounds.getWidth());
-    		newStage.setHeight(bounds.getHeight());
-
-    		newStage.setScene(scene);
-    		newStage.initStyle(StageStyle.UNDECORATED);
-    		newStage.show();
-
-    	}catch (IOException ex) {
-    	     ex.printStackTrace();
-    	}
+    	desbloquear_control_pdf();
+    	
     }
     
     @FXML
@@ -548,6 +538,42 @@ public class NuevaSesionCtrl implements Initializable{
     @FXML
     public void onModOrden(ActionEvent event) {
     	
+    }@FXML
+    public void mostrar_pdf(ActionEvent event) {
+    	try {
+    		String ruta="";
+        	ruta=list_pdf.getSelectionModel().selectedItemProperty().getValue();
+    	    System.out.println(ruta);
+        	File archivo = new File (ruta);
+        	data.archivo_pff=archivo;
+    		data.tipo_lectura=3;
+    		Stage newStage = new Stage();
+
+    		AnchorPane pane;
+    		pane = (AnchorPane) FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+    		Scene scene = new Scene(pane);
+
+    		// Pantalla completa
+    		Screen screen = Screen.getPrimary();
+    		Rectangle2D bounds = screen.getVisualBounds();
+
+    		newStage.setX(bounds.getMinX());
+    		newStage.setY(bounds.getMinY());
+    		newStage.setWidth(bounds.getWidth());
+    		newStage.setHeight(bounds.getHeight());
+
+    		newStage.setScene(scene);
+    		newStage.initStyle(StageStyle.UNDECORATED);
+    		newStage.show();
+
+    	}catch (IOException ex) {
+    	     ex.printStackTrace();
+    	}
+    }
+
+    @FXML
+    public void eli_lista_pdf(ActionEvent event) {
+    	list_pdf.getSelectionModel().selectedItemProperty();
     }
 }
 
