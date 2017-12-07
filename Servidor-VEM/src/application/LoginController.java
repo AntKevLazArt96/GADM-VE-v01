@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import clases.data;
 import gad.manta.common.IServidor;
+import gad.manta.common.data_configuracion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -44,42 +45,16 @@ public class LoginController implements Initializable {
 	@FXML
 	private void loginAction() throws IOException, NotBoundException {
 		// get a handle to the stage
-<<<<<<< HEAD
-	    Stage actualStage = (Stage) closeButton.getScene().getWindow();
-	    // do what you have to do
-	    actualStage.close();
-	    
-	    servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
-	    
-	    Stage newStage = new Stage();
-	    FXMLLoader loader= new FXMLLoader(getClass().getResource("Inicio.fxml"));
-	    String username = servidor.login(txt_username.getText(),txt_password.getText());
 
-	    data.name = username;
-	    
-	    
-	    if(username!=null) {
-	    	
-		    AnchorPane pane = loader.load();
-	        Scene scene = new Scene(pane);
-	        InicioController inicio =(InicioController)loader.getController();
-	        inicio.setUsername(username);
-	        
-	        //Pantalla completa
-	        Screen screen = Screen.getPrimary();
-=======
 		Stage actualStage = (Stage) closeButton.getScene().getWindow();
 		// do what you have to do
 		actualStage.close();
-
-		servidor = (IServidor) Naming.lookup("rmi://192.168.1.6/VotoE");
+		
+		servidor = (IServidor)Naming.lookup("rmi://"+data_configuracion.ip_rmi+"/VotoE");
 
 		Stage newStage = new Stage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
 		String username = servidor.login(txt_username.getText(), txt_password.getText());
-
-		data.ip = "192.168.1.6";
-		data.port = 6666;
 		data.name = username;
 
 		if (username != null) {
@@ -89,7 +64,6 @@ public class LoginController implements Initializable {
 
 			// Pantalla completa
 			Screen screen = Screen.getPrimary();
->>>>>>> anthony
 			Rectangle2D bounds = screen.getVisualBounds();
 
 			newStage.setX(bounds.getMinX());

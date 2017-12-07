@@ -33,7 +33,7 @@ public class Main extends Application {
     		Utils.setCodeBase(IServidor.class);
 			
 			Servidor servidor = new Servidor();
-			IServidor remote = (IServidor)UnicastRemoteObject.exportObject(servidor, 8888);
+			IServidor remote = (IServidor)UnicastRemoteObject.exportObject(servidor, data_configuracion.puerto_rmi);
 			
 			Registry registry = LocateRegistry.createRegistry(1099);
 			registry.rebind("VotoE", remote);

@@ -32,6 +32,7 @@ import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
 import gad.manta.common.Pdf;
 import gad.manta.common.Usuario;
+import gad.manta.common.data_configuracion;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -144,7 +145,7 @@ public class LecturaPDF extends JFrame implements  Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		try {
-			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+			servidor = (IServidor)Naming.lookup("rmi://"+data_configuracion.ip_rmi+"/VotoE");
 		} catch (MalformedURLException | RemoteException | NotBoundException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();

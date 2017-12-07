@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.VentanaDialogoCtrl">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="-44.0" prefHeight="19.0" prefWidth="450.0" style="-fx-background-color: #00BCD4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Label fx:id="lbl_header" layoutX="20.0" layoutY="36.0" text="Se da por terminada la sesion actual">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_cuerpo" layoutX="28.0" layoutY="65.0" text="La sesion actual ha terminado por favor de click en aceptar para salir." wrapText="true" />
+      <JFXButton fx:id="btn_aceptar" layoutX="341.0" layoutY="116.0" onAction="#onAceptar" style="-fx-background-color: #03A9F4;" text="ACEPTAR" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

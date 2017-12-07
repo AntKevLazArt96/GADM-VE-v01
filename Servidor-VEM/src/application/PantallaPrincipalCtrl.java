@@ -6,11 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
-<<<<<<< HEAD
 import java.sql.DriverManager;
-=======
 import java.rmi.RemoteException;
->>>>>>> anthony
+
 import java.util.ResourceBundle;
 
 import org.json.simple.JSONObject;

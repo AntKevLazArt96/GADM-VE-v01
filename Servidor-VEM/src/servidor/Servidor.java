@@ -46,7 +46,6 @@ public class Servidor implements IServidor {
 	public String login(String username, String password) throws RemoteException {
 
 		try {
-<<<<<<< HEAD
 			Class.forName("org.postgresql.Driver");
 			
 		}catch(ClassNotFoundException cnfe){
@@ -54,6 +53,7 @@ public class Servidor implements IServidor {
 			cnfe.printStackTrace();
 			
 		}
+		try {
 		//conecci�n a la base de datos  
 		Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 		Statement st = db.createStatement();
@@ -78,41 +78,6 @@ public class Servidor implements IServidor {
 			
 		return usuario;
 		}catch(Exception e) {
-=======
-			// para verificar si esta instalado el drive de postgressql
-
-			try {
-				Class.forName("org.postgresql.Driver");
-
-			} catch (ClassNotFoundException cnfe) {
-				System.out.println("Drive no encontrado");
-				cnfe.printStackTrace();
-
-			}
-			// conecci�n a la base de datos
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
-			Statement st = db.createStatement();
-			int id;
-			String usuario = "";
-			byte[] img = null;
-			// ejecucion y resultado de la consulta
-			ResultSet resultado = st
-					.executeQuery("select *from verificar_usuario('" + username + "','" + password + "');");
-			resultado.next();
-			id = resultado.getInt(1);
-			usuario = resultado.getString(2);
-			img = resultado.getBytes(3);
-			db.close();
-
-			// Para el Quorum
-			if (!username.equals("secretaria")) {
-				listaUsuario.add(new Usuario(id, usuario, "PRESENTE", img));
-			}
-			System.out.println("el usuario se ha logueado correctamente");
-
-			return usuario;
-		} catch (Exception e) {
->>>>>>> anthony
 			System.out.println("Error: " + e.getMessage());
 			e.printStackTrace();
 			return null;
@@ -124,11 +89,7 @@ public class Servidor implements IServidor {
 	public Usuario usuario(String name) {
 		Connection db;
 		try {
-<<<<<<< HEAD
 			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from consulta_usuario_name('" + name + "');");
@@ -149,11 +110,7 @@ public class Servidor implements IServidor {
 	public void add_nota_pdf(int id_punto, int id_user, String nota) {
 		Connection db;
 		try {
-<<<<<<< HEAD
 			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			st.executeUpdate("insert into notaspdf_ve (id_user, id_pdf, descripcion_notas)values(" + id_punto + ","
@@ -174,11 +131,7 @@ public class Servidor implements IServidor {
 			System.out.println(id_punto);
 			System.out.println(id_user);
 			System.out.println(nota);
-<<<<<<< HEAD
 			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			st.executeUpdate("insert into notasActa_ve (id_user, id_acta, descripcion_notas)values(" + id_punto + ","
@@ -197,11 +150,7 @@ public class Servidor implements IServidor {
 	public ActaPdf acta_sesion(int id) {
 		Connection db;
 		try {
-<<<<<<< HEAD
 			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 
@@ -223,11 +172,7 @@ public class Servidor implements IServidor {
 	public Pdf pdf_punto(int id) {
 		Connection db;
 		try {
-<<<<<<< HEAD
 			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select * from pdf_ve where id_pdf=" + id + ";");
@@ -249,11 +194,7 @@ public class Servidor implements IServidor {
 		List<Usuario> listaUsuario = new ArrayList<>();
 		Connection db;
 		try {
-<<<<<<< HEAD
 			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from consulta_usuarios();");
@@ -276,11 +217,7 @@ public class Servidor implements IServidor {
 		List<Usuario> listaUsuario = new ArrayList<>();
 		Connection db;
 		try {
-<<<<<<< HEAD
 			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from asistencia_concejales(" + id_quorum + ");");
@@ -341,11 +278,7 @@ public class Servidor implements IServidor {
 		int idsesion = 0;
 		Connection db;
 		try {
-<<<<<<< HEAD
 			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -369,11 +302,7 @@ public class Servidor implements IServidor {
 		List<String> listausuario = new ArrayList<>();
 		Connection db;
 		try {
-<<<<<<< HEAD
 			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select name_user from User_VE;");
@@ -407,13 +336,8 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-<<<<<<< HEAD
 			//conecci�n a la base de datos  
 			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			// conecci�n a la base de datos
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -446,13 +370,8 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-<<<<<<< HEAD
 			//conecci�n a la base de datos  
 			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			// conecci�n a la base de datos
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -488,13 +407,8 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-<<<<<<< HEAD
 			//conecci�n a la base de datos  
 			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			// conecci�n a la base de datos
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -530,13 +444,8 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-<<<<<<< HEAD
 			//conecci�n a la base de datos  
 			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			// conecci�n a la base de datos
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -571,13 +480,8 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-<<<<<<< HEAD
 			//conecci�n a la base de datos  
 			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			// conecci�n a la base de datos
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -611,13 +515,8 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-<<<<<<< HEAD
 			//conecci�n a la base de datos  
 			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			// conecci�n a la base de datos
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -652,13 +551,8 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-<<<<<<< HEAD
 			//conecci�n a la base de datos  
 			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			// conecci�n a la base de datos
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -797,11 +691,8 @@ public class Servidor implements IServidor {
 	public List<Pdf> consultarPdfsPunto(int id_ordendia) throws RemoteException {
 		List<Pdf> listaPdfsOrdenDia = new ArrayList<>();
 		try {
-<<<<<<< HEAD
 			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
->>>>>>> anthony
+
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select * from pdf_ve where id_ordendia=" + id_ordendia + ";");
@@ -845,7 +736,7 @@ public class Servidor implements IServidor {
 
 			}
 			// conecci�n a la base de datos
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 
 			PreparedStatement instruccion = db.prepareStatement(
 					"update OrdenDia_VE set si_ordendia=?, no_ordendia=?, blanco_ordendia=?, salvo_ordendia=?, estado_ordendia=?, verifica_ordendia='TERMINADO' where id_ordendia=?;");
@@ -870,7 +761,7 @@ public class Servidor implements IServidor {
 	@Override
 	public String verificarSiSeVoto(int id_ordendia) throws RemoteException {
 		try {
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select verifica_ordendia from OrdenDia_VE where id_ordendia="+id_ordendia+";");
@@ -888,7 +779,7 @@ public class Servidor implements IServidor {
 	@Override
 	public String verificarSiTerminoSesion(String convocatoria) throws RemoteException {
 		try {
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select verifica_ordendia from OrdenDia_VE where convocatoria_sesion='"+convocatoria+"' group by verifica_ordendia;");
@@ -917,7 +808,7 @@ public class Servidor implements IServidor {
 	@Override
 	public String TerminarSesion(String convocatoria) throws RemoteException {
 		try {
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			PreparedStatement instruccion = db.prepareStatement("update Sesion_VE set estado_sesion='TERMINADO' where convocatoria_sesion=?;");
 			instruccion.setString(1, convocatoria);
 			instruccion.execute();
