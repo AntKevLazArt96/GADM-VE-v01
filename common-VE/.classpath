@@ -2,5 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/fontawesomefx-8.6.jar"/>
+	<classpathentry kind="lib" path="lib/jfoenix.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

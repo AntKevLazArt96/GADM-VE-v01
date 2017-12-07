@@ -9,6 +9,7 @@ import gad.manta.common.OrdenDia;
 import gad.manta.common.Pdf;
 import gad.manta.common.Usuario;
 import gad.manta.common.Voto;
+import gad.manta.common.data_configuracion;
 import gad.manta.common.Sesion;
 //import modelo.Sesion;
 
@@ -66,7 +67,7 @@ public class Servidor implements IServidor {
 			
 		}
 		//conecci�n a la base de datos  
-		Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+		Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 		Statement st = db.createStatement();
 		int id;
 		String usuario="";
@@ -100,7 +101,7 @@ public class Servidor implements IServidor {
 	public Usuario usuario(String name)  {
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from consulta_usuario_name('"+name+"');");
@@ -122,7 +123,7 @@ public class Servidor implements IServidor {
 	public void add_nota_pdf(int id_punto, int id_user, String nota)  {
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			st.executeUpdate("insert into notaspdf_ve (id_user, id_pdf, descripcion_notas)values("+id_punto+","+id_user+",'"+nota+"');");
@@ -142,7 +143,7 @@ public class Servidor implements IServidor {
 			System.out.println(id_punto);
 			System.out.println(id_user);
 			System.out.println(nota);
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			st.executeUpdate("insert into notasActa_ve (id_user, id_acta, descripcion_notas)values("+id_punto+","+id_user+",'"+nota+"');");
@@ -161,7 +162,7 @@ public class Servidor implements IServidor {
 	public ActaPdf acta_sesion(int id)  {
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			
@@ -183,7 +184,7 @@ public class Servidor implements IServidor {
 	public Pdf pdf_punto(int id)  {
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select * from pdf_ve where id_pdf="+id+";");
@@ -206,7 +207,7 @@ public class Servidor implements IServidor {
 		List<Usuario> listaUsuario = new ArrayList<>();
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from consulta_usuarios();");
@@ -229,7 +230,7 @@ public class Servidor implements IServidor {
 		List<Usuario> listaUsuario = new ArrayList<>();
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from asistencia_concejales("+id_quorum+");");
@@ -295,7 +296,7 @@ public class Servidor implements IServidor {
 		int idsesion=0;
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
@@ -319,7 +320,7 @@ public class Servidor implements IServidor {
 		List<String> listausuario = new ArrayList<>();
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select name_user from User_VE;");
@@ -357,7 +358,7 @@ public class Servidor implements IServidor {
 				
 			}
 			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
@@ -389,7 +390,7 @@ public class Servidor implements IServidor {
 				
 			}
 			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
@@ -426,7 +427,7 @@ public class Servidor implements IServidor {
 				
 			}
 			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
@@ -461,7 +462,7 @@ public class Servidor implements IServidor {
 				
 			}
 			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
@@ -497,7 +498,7 @@ public class Servidor implements IServidor {
 				
 			}
 			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
@@ -531,7 +532,7 @@ public class Servidor implements IServidor {
 				
 			}
 			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
@@ -567,7 +568,7 @@ public class Servidor implements IServidor {
 				
 			}
 			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			
 			//ejecucion y resultado de la consulta
@@ -708,7 +709,7 @@ public class Servidor implements IServidor {
 	public List<Pdf> consultarPdfsPunto(int id_ordendia) throws RemoteException {
 		List<Pdf> listaPdfsOrdenDia = new ArrayList<>();
 		try {
-			Connection db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			//ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select * from pdf_ve where id_ordendia="+id_ordendia+";");

@@ -2,11 +2,7 @@ package clases;
 
 import javafx.scene.image.Image;
 
-public class data {
-	public static String ip;
-    public static String name;
-    public static int port;
-    
+public class data {    
     public static String voto="holi";
     public static String convocatoria_sesion;
     public static int idquorum;
@@ -16,7 +12,7 @@ public class data {
     public static Image Imagen;
     public static byte[] img;
     public static byte[] pdf;
-    
+    public static String name;
     //datos para la ventana de dialogo
     public static String tipoMsgDial;
     public static String header;

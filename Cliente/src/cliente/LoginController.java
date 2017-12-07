@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -11,6 +16,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import cliente.data;
 import gad.manta.common.IServidor;
+import gad.manta.common.data_configuracion;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -56,8 +62,7 @@ public class LoginController implements Initializable {
 	    String login = servidor.login(txt_username.getText(),txt_password.getText());
 	    
 	    System.out.println("Clicked");
-        data.ip = "192.168.1.6";
-        data.port = 6666;
+        
 	    data.name = login;
 	    System.out.println(login);
 		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PantallaPrincipal.fxml"));
@@ -76,9 +81,28 @@ public class LoginController implements Initializable {
         newStage.initStyle(StageStyle.UNDECORATED);
         newStage.show();
 	}
-	
+public static void configuraciones() {
+		
+		try {
+			Connection db;
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			ResultSet resultado= st.executeQuery("select * from configuracion_ve where id_confi=1;");
+			resultado.next();
+
+			//socket
+			data_configuracion.ip=resultado.getString(3);
+			data_configuracion.port=resultado.getInt(5);
+			System.out.println(data_configuracion.ip);
+			db.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+}
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	configuraciones();
     	txt_username.setText("concejal1");
 		txt_password.setText("1234");
     }    

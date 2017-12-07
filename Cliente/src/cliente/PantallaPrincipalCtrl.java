@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXButton;
 import gad.manta.common.Pdf;
 import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
+import gad.manta.common.data_configuracion;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,8 +66,8 @@ public class PantallaPrincipalCtrl implements Initializable {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public PantallaPrincipalCtrl() {
 		try {
-
-			sock = new Socket(data.ip, data.port);
+			System.out.println(data_configuracion.ip);
+			sock = new Socket(data_configuracion.ip, data_configuracion.port);
 			dos = new DataOutputStream(sock.getOutputStream());
 			dis = new DataInputStream(sock.getInputStream());
 

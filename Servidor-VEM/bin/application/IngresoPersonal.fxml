@@ -61,7 +61,7 @@
                   <MaterialIconView fill="#070707" glyphName="LOCK" size="20" />
                </graphic>
             </Label>
-            <JFXPasswordField fx:id="txt_password" layoutX="20.0" layoutY="399.0" onKeyTyped="#validar_contraceña" prefHeight="39.0" prefWidth="298.0" />
+            <JFXPasswordField fx:id="txt_password" layoutX="20.0" layoutY="399.0" onKeyTyped="#validar_contracena" prefHeight="39.0" prefWidth="298.0" />
             <Label layoutX="484.0" layoutY="25.0" text="Cargo" AnchorPane.leftAnchor="484.0">
                <font>
                   <Font size="18.0" />

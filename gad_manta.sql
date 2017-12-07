@@ -83,14 +83,26 @@ CREATE TABLE NotasPdf_VE (
                 descripcion_notas VARCHAR NOT NULL
 );
 
-
 CREATE TABLE Asistencia_VE (
                 id_user INTEGER NOT NULL,
                 id_quorum INTEGER NOT NULL,
                 estado_asistencia VARCHAR NOT NULL
 );
+CREATE TABLE configuracion_VE (
+                id_confi integer primary key not null,
+                ipRmi_confi varchar not null,
+                ipSocket_confi varchar not null,
+                puertoRmi_confi integer not null,
+                puertoSocket_confi integer not null,
+		nombreBD_confi varchar not null,
+		userDB_confi varchar not null,
+		passBD_confi varchar not null
+                );
 
+INSERT INTO configuracion_VE(id_confi,ipRmi_confi,ipSocket_confi,puertoRmi_confi,puertoSocket_confi,nombreBD_confi,userDB_confi,passBD_confi) 
+ VALUES(1,'192.168.1.6','192.168.1.6',1099,6666,'gad_voto','postgres','1234');
 
+select * from configuracion_VE where id_confi=1;
 ALTER TABLE User_VE ADD CONSTRAINT img_ve_user_ve_fk
 FOREIGN KEY (id_img)
 REFERENCES Img_VE (id_img)

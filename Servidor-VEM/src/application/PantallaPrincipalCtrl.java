@@ -6,8 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
-
-
+import java.sql.DriverManager;
 import java.util.ResourceBundle;
 
 import org.json.simple.JSONObject;
@@ -22,6 +21,7 @@ import clases.data;
 import gad.manta.common.Conexion;
 import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
+import gad.manta.common.data_configuracion;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,9 +53,9 @@ public class PantallaPrincipalCtrl implements Initializable {
 	public PantallaPrincipalCtrl() {
 
 		try {
-
+		
 			// Iniciamos el servicio socket
-			sock = new Socket(data.ip, data.port);
+			sock = new Socket(data_configuracion.ip, data_configuracion.port);
 			dos = new DataOutputStream(sock.getOutputStream());
 			dis = new DataInputStream(sock.getInputStream());
 			// Enviamos al sistema el nombre de la secretaria

@@ -21,6 +21,7 @@ import clases.data;
 import gad.manta.common.Conexion;
 import gad.manta.common.Imagen;
 import gad.manta.common.Usuario;
+import gad.manta.common.data_configuracion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -118,7 +119,7 @@ public class ModificacionPerCtrl implements Initializable {
     	
     	try {
     		Connection db;
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+    		db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			//conexion.establecerConexion();
     		
     		if(txt_cedula.getLength()==0) {
@@ -255,7 +256,7 @@ public class ModificacionPerCtrl implements Initializable {
 	}
 	
 	@FXML
-	void  validar_contraceña(KeyEvent e) {
+	void  validar_contracena(KeyEvent e) {
 		
 		char car = e.getCharacter().charAt(0);
 		if(!(Character.isDigit(car) || Character.isLetter(car))) {
@@ -272,7 +273,7 @@ public class ModificacionPerCtrl implements Initializable {
 		
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			ResultSet resultado= st.executeQuery("select * from consulta_usuario_ced('"+txt_cedula.getText()+"');");
 			
@@ -334,7 +335,7 @@ public class ModificacionPerCtrl implements Initializable {
 		
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			
 			ResultSet resultado1= st.executeQuery("select * from consulta_usuario_ced('"+txt_cedula.getText()+"');");

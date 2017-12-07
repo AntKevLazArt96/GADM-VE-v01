@@ -5,9 +5,15 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import gad.manta.common.IServidor;
 import gad.manta.common.Utils;
+import gad.manta.common.data_configuracion;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -23,6 +29,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		
 		try {
+			
     		Utils.setCodeBase(IServidor.class);
 			
 			Servidor servidor = new Servidor();
@@ -60,7 +67,39 @@ public class Main extends Application {
 		}
 	}
 	
+	public static void configuraciones() {
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			ResultSet resultado= st.executeQuery("select * from configuracion_ve where id_confi=1;");
+			resultado.next();
+			//rmi
+			data_configuracion.ip_rmi=resultado.getString(2);
+			data_configuracion.puerto_rmi=resultado.getInt(4);
+			
+			//bd
+			data_configuracion.nombre_bd=resultado.getString(6);
+			
+			data_configuracion.usu_db=resultado.getString(7);
+			
+			data_configuracion.conta_usu=resultado.getString(8);
+			
+			//socket
+			data_configuracion.ip=resultado.getString(3);
+			data_configuracion.port=resultado.getInt(5);
+			db.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 	public static void main(String[] args) {
-				launch(args);
+		configuraciones();		
+		launch(args);
+				
+			
+				
 	}
 }
