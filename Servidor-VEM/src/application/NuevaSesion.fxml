@@ -30,13 +30,21 @@
                   <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
                </graphic>
             </Label>
-            <TableView fx:id="tabla" layoutX="17.0" layoutY="83.0" prefHeight="397.0" prefWidth="280.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0">
+            <TableView fx:id="tabla" layoutX="17.0" layoutY="83.0" prefHeight="357.0" prefWidth="280.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="80.0">
                <columns>
                   <TableColumn fx:id="punto" prefWidth="37.66666793823242" text="Punto" />
                   <TableColumn fx:id="descripcion" prefWidth="241.33333206176758" text="Descripcion" />
                   <TableColumn fx:id="id_punto" prefWidth="75.0" text="Identificardor" />
                </columns>
             </TableView>
+            <JFXButton fx:id="btn_cancelar" layoutX="67.0" layoutY="441.0" onAction="#onFinAction" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="FINALIZAR" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" />
+               </graphic>
+            </JFXButton>
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />
@@ -82,15 +90,7 @@
                   <MaterialIconView glyphName="ATTACH_FILE" size="20" text="" />
                </graphic>
             </Label>
-            <JFXButton fx:id="btn_cancelar" layoutX="455.0" layoutY="413.0" onAction="#onFinAction" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="FINALIZAR" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btn_examinar" layoutX="381.0" layoutY="202.0" onAction="#onExaAction" prefHeight="35.0" prefWidth="260.0" style="-fx-background-color: #00bcd4;" text="AGREGAR DOCUMENTACIÓN" textFill="WHITE">
+            <JFXButton fx:id="btn_examinar" layoutX="381.0" layoutY="202.0" onAction="#onExaAction" prefHeight="35.0" prefWidth="260.0" style="-fx-background-color: #00bcd4;" text="AGREGAR DOCUMENTACIÓN" textFill="WHITE" AnchorPane.rightAnchor="25.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -98,7 +98,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_addOrden" layoutX="257.0" layoutY="414.0" onAction="#onAddOrden" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="AGREGAR PUNTO" textFill="WHITE">
+            <JFXButton fx:id="btn_addOrden" layoutX="257.0" layoutY="414.0" onAction="#onAddOrden" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="MODIFICAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="41.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -124,7 +124,31 @@
                </graphic>
             </Label>
             <JFXTextField fx:id="PuntoOrden" alignment="CENTER" layoutX="563.0" layoutY="81.0" prefHeight="25.0" prefWidth="78.0" text="1" />
-            <JFXListView fx:id="list_pdf" layoutX="44.0" layoutY="254.0" onMouseClicked="#mostrar_pdf" prefHeight="92.0" prefWidth="600.0" />
+            <JFXListView fx:id="list_pdf" layoutX="44.0" layoutY="254.0" onMouseClicked="#mostrar_pdf" prefHeight="92.0" prefWidth="456.0" />
+            <JFXButton fx:id="btn_addOrden1" layoutX="475.0" layoutY="418.0" onAction="#onAddOrden" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="AGREGAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="41.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_ver" layoutX="510.0" layoutY="262.0" onAction="#mostrar_pdf" prefHeight="35.0" prefWidth="133.0" style="-fx-background-color: #00bcd4;" text="VER" textFill="WHITE" AnchorPane.rightAnchor="25.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_eli_lista_pdf" layoutX="509.0" layoutY="305.0" onAction="#eli_lista_pdf" prefHeight="35.0" prefWidth="134.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR" textFill="WHITE" AnchorPane.rightAnchor="25.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
+               </graphic>
+            </JFXButton>
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />
