@@ -24,7 +24,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class IniSesionControll implements Initializable {
 	int posicionPersonaEnTabla;
@@ -34,7 +33,7 @@ public class IniSesionControll implements Initializable {
 	private Label label_proponente;
 
 	@FXML
-	private Label lbl_punto;
+	private Label lbl_punto, lbl_estado;
 	@FXML
 	private TableView<OrdenDia> tabla_ordenDia;
 
@@ -44,7 +43,7 @@ public class IniSesionControll implements Initializable {
 	private TableView<Pdf> table_pdf;
 
 	@FXML
-	private JFXButton btnIniVoto, btn_fin;
+	private JFXButton btnIniVoto, btn_noVoto;
 
 	@FXML
 	private AnchorPane panel_inicioSesion;
@@ -63,12 +62,29 @@ public class IniSesionControll implements Initializable {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@FXML
-	void finAction(ActionEvent event) {
-		// get a handle to the stage
-		Stage stage = (Stage) btn_fin.getScene().getWindow();
-		// do what you have to do
-		stage.close();
+	void noVotarAction(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("InicioSesion.fxml"));
+		AnchorPane quorum = (AnchorPane) loader.load();
+		panel_inicioSesion.getChildren().setAll(quorum);
+		TramVoto t = new TramVoto();
+		t.guardarVotos(puntoATratar.id_ordendia);
+		
+		try {
+			
+			JSONObject js = new JSONObject();
+			js.put("name", "NO SE VOTO");
+
+			String json = js.toJSONString();
+
+			System.out.println("Se envio:" + json);
+
+			PantallaPrincipalCtrl.dos.writeUTF(json);
+
+		} catch (IOException E) {
+			E.printStackTrace();
+		}
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -104,6 +120,10 @@ public class IniSesionControll implements Initializable {
 			tabla_ordenDia.getColumns().addAll(id, num_punto, descripcion, proponente);
 			tabla_ordenDia.setItems(datos);
 
+			btnIniVoto.setDisable(true);
+			btn_noVoto.setDisable(true);
+			lbl_estado.setText("Seleccione el punto a tratar");
+
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -123,61 +143,30 @@ public class IniSesionControll implements Initializable {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void ponerPersonaSeleccionada() {
+	private void ponerPersonaSeleccionada() throws RemoteException {
+
 		final OrdenDia orden = getTablaPersonasSeleccionada();
 		posicionPersonaEnTabla = datos.indexOf(orden);
-
-		if (orden != null) {
-
-			puntoATratar.num_punto = String.valueOf(orden.getNumeroPunto());
-			puntoATratar.tema = orden.getTema();
-			puntoATratar.proponente = orden.getProponente_nombre();
-
-			// Pongo los textFields con los datos correspondientes
+		
+		String estado = LoginController.servidor.verificarSiSeVoto(orden.getId());
+		if (estado != null) {
+			///Mensaje de Alerta
+			btnIniVoto.setDisable(true);
+			btn_noVoto.setDisable(true);
+			System.out.println("YA SE TRATO ESTE PUNTO");
 			lbl_punto.setText("" + orden.getNumeroPunto());
 			label_titulo.setText(orden.getTema());
 			label_proponente.setText(orden.getProponente_nombre());
-			// cargar la documentacion
-			System.out.println("El id de la orden del dia es" + orden.getId());
+			lbl_estado.setText(estado);
+			
 			try {
-
-				List<Pdf> lista_pdfs = LoginController.servidor.consultarPdfsPunto(orden.getId());
-				TableColumn pdf = new TableColumn("id");
-				pdf.setMinWidth(500);
-				pdf.setVisible(false);
-				pdf.setCellValueFactory(new PropertyValueFactory<>("id_pdf"));
-
-				TableColumn nombre = new TableColumn("Nombre");
-				nombre.setMinWidth(700);
-				nombre.setResizable(true);
-				nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-
-				ObservableList<Pdf> datos_pdf = FXCollections.observableArrayList(lista_pdfs);
-				table_pdf.getColumns().addAll(pdf, nombre);
-
-				table_pdf.setItems(datos_pdf);
-
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			// socket para envio de los principales componentes al momento de dar click en
-			// el tableview
-			try {
-				String titulo = label_titulo.getText();
-				String punto = lbl_punto.getText();
-				String proponente = label_proponente.getText();
-				String id_pdf = String.valueOf(orden.getId());
-				// String json = "{" + " 'name' : '" + data.name + "', 'message' : '" + msg +
-				// "'" + "}";
-
+				
 				JSONObject js = new JSONObject();
 				js.put("name", "InicioSesion");
-				js.put("titulo", titulo);
-				js.put("punto", punto);
-				js.put("proponente", proponente);
-				js.put("id_pdf", id_pdf);
+				js.put("titulo", "Esperando..");
+				js.put("punto", "Esperando..");
+				js.put("proponente", "Esperando..");
+				js.put("id_pdf", "0");
 
 				String json = js.toJSONString();
 
@@ -188,11 +177,80 @@ public class IniSesionControll implements Initializable {
 			} catch (IOException E) {
 				E.printStackTrace();
 			}
+			
+			
+		} else {
+			if (orden != null) {
+				btnIniVoto.setDisable(false);
+				btn_noVoto.setDisable(false);
+				lbl_estado.setText("EN PROGRESO");
+				puntoATratar.id_ordendia = orden.getId();
+				puntoATratar.num_punto = String.valueOf(orden.getNumeroPunto());
+				puntoATratar.tema = orden.getTema();
+				puntoATratar.proponente = orden.getProponente_nombre();
+
+				// Pongo los textFields con los datos correspondientes
+				lbl_punto.setText("" + orden.getNumeroPunto());
+				label_titulo.setText(orden.getTema());
+				label_proponente.setText(orden.getProponente_nombre());
+				// cargar la documentacion
+				System.out.println("El id de la orden del dia es" + orden.getId());
+				try {
+
+					List<Pdf> lista_pdfs = LoginController.servidor.consultarPdfsPunto(orden.getId());
+					TableColumn pdf = new TableColumn("id");
+					pdf.setMinWidth(500);
+					pdf.setVisible(false);
+					pdf.setCellValueFactory(new PropertyValueFactory<>("id_pdf"));
+
+					TableColumn nombre = new TableColumn("Nombre");
+					nombre.setMinWidth(700);
+					nombre.setResizable(true);
+					nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+
+					ObservableList<Pdf> datos_pdf = FXCollections.observableArrayList(lista_pdfs);
+					table_pdf.getColumns().addAll(pdf, nombre);
+
+					table_pdf.setItems(datos_pdf);
+
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				// socket para envio de los principales componentes al momento de dar click en
+				// el tableview
+				try {
+					String titulo = label_titulo.getText();
+					String punto = lbl_punto.getText();
+					String proponente = label_proponente.getText();
+					String id_pdf = String.valueOf(orden.getId());
+					// String json = "{" + " 'name' : '" + data.name + "', 'message' : '" + msg +
+					// "'" + "}";
+
+					JSONObject js = new JSONObject();
+					js.put("name", "InicioSesion");
+					js.put("titulo", titulo);
+					js.put("punto", punto);
+					js.put("proponente", proponente);
+					js.put("id_pdf", id_pdf);
+
+					String json = js.toJSONString();
+
+					System.out.println("Se envio:" + json);
+
+					PantallaPrincipalCtrl.dos.writeUTF(json);
+
+				} catch (IOException E) {
+					E.printStackTrace();
+				}
+			}
 		}
+
 	}
 
 	@FXML
-	void prueba(MouseEvent event) {
+	void prueba(MouseEvent event) throws RemoteException {
 		ponerPersonaSeleccionada();
 
 	}

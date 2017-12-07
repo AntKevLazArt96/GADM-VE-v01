@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="panelInicioVoto" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.InicioVotoCtrl">
+<AnchorPane id="AnchorPane" fx:id="panelInicioVoto" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.RegistrarVotoCtrl">
    <children>
       <AnchorPane layoutX="51.0" layoutY="107.0" prefHeight="560.0" prefWidth="296.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -61,7 +61,7 @@
                         <MaterialDesignIconView glyphName="CODE_STRING" size="30.0" />
                      </graphic>
                   </Label>
-                  <Label layoutX="25.0" layoutY="206.0" text="En Espera..." AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="215.0">
+                  <Label layoutX="25.0" layoutY="206.0" text="ESTADO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="215.0">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -86,27 +86,19 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblEspera" layoutX="225.0" layoutY="206.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="215.0">
+                  <Label fx:id="lbl_estado" layoutX="130.0" layoutY="219.0" text="APROBADO" textFill="#4caf50">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <JFXButton fx:id="btn_finVoto" layoutX="80.0" layoutY="361.0" onAction="#finVoto" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #0097a7;" text="TERMINAR VOTACION" textFill="WHITE" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <JFXButton fx:id="btn_finVoto" layoutX="50.0" layoutY="411.0" onAction="#finVoto" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #0097a7;" text="CERRAR VENTANA" textFill="WHITE" AnchorPane.bottomAnchor="131.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                <font>
                   <Font size="14.0" />
                </font>
                <graphic>
                   <MaterialDesignIconView fill="WHITE" glyphName="ALERT_BOX" size="30" text="" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btn_reVoto" layoutX="50.0" layoutY="472.0" onAction="#reiniciarVoto" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #757575;" text="REINICIAR VOTACION" textFill="WHITE" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="30" />
                </graphic>
             </JFXButton>
          </children>
@@ -276,54 +268,6 @@
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <JFXButton fx:id="btnRe1" onAction="#re1" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3">
-                                       <font>
-                                          <Font size="1.0" />
-                                       </font>
-                                       <graphic>
-                                          <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" />
-                                       </graphic>
-                                    </JFXButton>
-                                    <JFXButton fx:id="btnRe2" onAction="#re2" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                       <font>
-                                          <Font size="1.0" />
-                                       </font>
-                                       <graphic>
-                                          <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" />
-                                       </graphic>
-                                    </JFXButton>
-                                    <JFXButton fx:id="btnRe3" onAction="#re3" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                       <font>
-                                          <Font size="1.0" />
-                                       </font>
-                                       <graphic>
-                                          <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" />
-                                       </graphic>
-                                    </JFXButton>
-                                    <JFXButton fx:id="btnRe4" onAction="#re4" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                       <font>
-                                          <Font size="1.0" />
-                                       </font>
-                                       <graphic>
-                                          <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" text="" />
-                                       </graphic>
-                                    </JFXButton>
-                                    <JFXButton fx:id="btnRe5" onAction="#re5" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3" GridPane.rowIndex="4">
-                                       <font>
-                                          <Font size="1.0" />
-                                       </font>
-                                       <graphic>
-                                          <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" />
-                                       </graphic>
-                                    </JFXButton>
-                                    <JFXButton fx:id="btnRe6" onAction="#re6" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3" GridPane.rowIndex="5">
-                                       <font>
-                                          <Font size="1.0" />
-                                       </font>
-                                       <graphic>
-                                          <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" />
-                                       </graphic>
-                                    </JFXButton>
                                  </children>
                               </GridPane>
                            </children>
@@ -424,54 +368,6 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </Label>
-                                          <JFXButton fx:id="btnRe7" onAction="#re7" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3">
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                             <graphic>
-                                                <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" />
-                                             </graphic>
-                                          </JFXButton>
-                                          <JFXButton fx:id="btnRe8" onAction="#re8" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                             <graphic>
-                                                <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" />
-                                             </graphic>
-                                          </JFXButton>
-                                          <JFXButton fx:id="btnRe9" onAction="#re9" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                             <graphic>
-                                                <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" />
-                                             </graphic>
-                                          </JFXButton>
-                                          <JFXButton fx:id="btnRe10" onAction="#re10" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                             <graphic>
-                                                <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" text="" />
-                                             </graphic>
-                                          </JFXButton>
-                                          <JFXButton fx:id="btnRe11" onAction="#re11" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3" GridPane.rowIndex="4">
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                             <graphic>
-                                                <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" />
-                                             </graphic>
-                                          </JFXButton>
-                                          <JFXButton fx:id="btnRe12" onAction="#re12" style="-fx-background-color: #757575;" text=" " GridPane.columnIndex="3" GridPane.rowIndex="5">
-                                             <font>
-                                                <Font size="1.0" />
-                                             </font>
-                                             <graphic>
-                                                <MaterialDesignIconView fill="WHITE" glyphName="BACKUP_RESTORE" size="20" />
-                                             </graphic>
-                                          </JFXButton>
                                        </children>
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.33331298828125" minWidth="10.0" prefWidth="67.0" />

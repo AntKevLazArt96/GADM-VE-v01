@@ -55,7 +55,7 @@ public class subInicioCtrl implements Initializable{
 		
 		conexion.establecerConexion();
 			String resultado = Sesion.haySesionParaHoy(conexion.getConnection(), fechaActual);
-			
+			System.out.println("El resultado es "+resultado);
 			if(resultado != "") {
 				data.convocatoria_sesion=resultado;
 				paneHaySesion.setVisible(true);

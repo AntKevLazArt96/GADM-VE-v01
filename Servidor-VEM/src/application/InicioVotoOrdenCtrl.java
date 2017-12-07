@@ -58,9 +58,7 @@ public class InicioVotoOrdenCtrl implements Initializable {
 		if (Integer.valueOf(lblAprobado.getText()) >= 1) {
 			// para guardar los votos de la sesion aprobada
 			data.voto = "APROBADO";
-
 			try {
-
 				JSONObject js = new JSONObject();
 				js.put("name", "APROBADO");
 

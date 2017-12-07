@@ -1,4 +1,4 @@
-﻿drop schema public cascade;
+drop schema public cascade;
 create schema public authorization postgres;
 set search_path to public;
 
@@ -385,10 +385,20 @@ select *from Sesion_VE;
 select *from User_VE;
 select convocatoria_sesion,description_sesion from Sesion_VE where intervention_sesion='23/11/2017';
 
-select *from OrdenDia_VE;
+update OrdenDia_VE set si_ordendia=null, no_ordendia=null, blanco_ordendia=null, salvo_ordendia=null, estado_ordendia=null where id_ordendia=15;
+update OrdenDia_VE set si_ordendia=0, no_ordendia=0, blanco_ordendia=0, salvo_ordendia=0, estado_ordendia='APROBADO' where id_ordendia=15;
+
+select *from sesion_VE where estado_sesion=''
+--select *from OrdenDia_VE
+--select estado_ordendia from OrdenDia_VE where id_ordendia=16
+--select estado_ordendia from OrdenDia_VE where id_ordendia=15;
+--select * from OrdenDia_VE where convocatoria_sesion='090-2017';
+--select estado_ordendia from OrdenDia_VE where convocatoria_sesion='090-2017' group by estado_ordendia;
+
+
 
 --insert into OrdenDia_VE (convocatoria_sesion,numpunto_ordendia,descrip_ordendia,id_user)values
---('016-2017',2,'Conocimiento de la no se que cosa que paso ayer',2);
+--('090-2017',6,'Conocimiento de la no se que cosa que paso ayer',2);
 
 --update User_VE set username_user='concejal2' where id_user = 3
 

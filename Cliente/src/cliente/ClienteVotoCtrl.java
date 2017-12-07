@@ -64,7 +64,7 @@ public class ClienteVotoCtrl implements Initializable {
 
 	@FXML
 	void onBlanco(ActionEvent event) throws IOException {
-		LoginController.servidor.addVoto(data.name, "EN BLANCO", data.img);
+		LoginController.servidor.addVotoPunto(data.name, "EN BLANCO", data.img);
 		data.voto = "BLANCO";
 		seVoto();
 	}
@@ -93,7 +93,7 @@ public class ClienteVotoCtrl implements Initializable {
 
 	@FXML
 	void onSalvo(ActionEvent event) throws NotBoundException, IOException {
-		LoginController.servidor.addVoto(data.name, "VOTO SALVADO", data.img);
+		LoginController.servidor.addVotoPunto(data.name, "VOTO SALVADO", data.img);
 		data.voto = "SALVO";
 		seVoto();
 	}

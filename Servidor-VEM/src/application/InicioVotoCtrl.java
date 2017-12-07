@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import clases.TramVoto;
+import clases.VotoResumen;
 import clases.data;
 import clases.puntoATratar;
 import javafx.event.ActionEvent;
@@ -77,18 +78,18 @@ public class InicioVotoCtrl implements Initializable {
 	void finVoto(ActionEvent event) throws IOException {
 
 		try {
-			String message = LoginController.servidor.limpiarVoto();
-			System.out.println(message);
-			data.header = "Votacion terminada";
-			data.cuerpo = message;
-
+			//guardamos los votos al finalizar
+			TramVoto t = new TramVoto();
+			t.guardarVotos(puntoATratar.id_ordendia);
+			
+			
 			try {
 
 				// String json = "{" + " 'name' : '" + data.name + "', 'message' : '" + msg +
 				// "'" + "}";
 
 				JSONObject js = new JSONObject();
-				js.put("name", "VOTO TERMINADO");
+				js.put("name", "REGISTRAR VOTO");
 
 				String json = js.toJSONString();
 
@@ -99,8 +100,8 @@ public class InicioVotoCtrl implements Initializable {
 			} catch (IOException E) {
 				E.printStackTrace();
 			}
-
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("InicioSesion.fxml"));
+			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("RegistrarVoto.fxml"));
 			AnchorPane quorum = (AnchorPane) loader.load();
 			panelInicioVoto.getChildren().setAll(quorum);
 

@@ -6,8 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
-
-
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import org.json.simple.JSONObject;
@@ -27,6 +26,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -34,6 +35,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class PantallaPrincipalCtrl implements Initializable {
 	public static Thread th1;
@@ -95,7 +99,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 										TramVotoOrden tvo = new TramVotoOrden();
 										tvo.tramiteVotoOrden();
 									}
-									
+
 									if (tramite.equals("voto")) {
 										System.out.println("Se inicio el Tramite Voto");
 										TramVoto tv = new TramVoto();
@@ -142,8 +146,63 @@ public class PantallaPrincipalCtrl implements Initializable {
 	private JFXButton btn_fin;
 
 	// Acciones para esta clase
+	@SuppressWarnings("unchecked")
 	@FXML
-	void finAction(ActionEvent event) {
+	void finAction(ActionEvent event) throws IOException {
+		try {
+			String estado = LoginController.servidor.verificarSiTerminoSesion(sesion.getConvocatoria());
+			System.out.println("El estado es" + estado);
+			if (estado.equals("TERMINADO")) {
+				LoginController.servidor.TerminarSesion(sesion.getConvocatoria());
+				System.out.println("se termino la sesion");
+
+				try {
+
+					JSONObject js = new JSONObject();
+					js.put("name", "TERMINO LA SESION");
+
+					String json = js.toJSONString();
+
+					System.out.println("Se envio:" + json);
+
+					PantallaPrincipalCtrl.dos.writeUTF(json);
+
+				} catch (IOException E) {
+					E.printStackTrace();
+				}
+
+				// logica para cerrar sesion
+				Stage actualStage = (Stage) btn_fin.getScene().getWindow();
+				// do what you have to do
+				actualStage.close();
+
+				Stage newStage = new Stage();
+				AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("Inicio.fxml"));
+				Scene scene = new Scene(pane);
+				// Pantalla completa
+				Screen screen = Screen.getPrimary();
+				Rectangle2D bounds = screen.getVisualBounds();
+
+				newStage.setX(bounds.getMinX());
+				newStage.setY(bounds.getMinY());
+				newStage.setWidth(bounds.getWidth());
+				newStage.setHeight(bounds.getHeight());
+				newStage.setOnCloseRequest(e -> {
+					// e.consume();
+					PantallaPrincipalCtrl.th1.stop();
+				});
+				newStage.setScene(scene);
+				newStage.initStyle(StageStyle.UNDECORATED);
+				newStage.show();
+
+			} else {
+				System.out.println("No HA TERMINADO");
+			}
+
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
