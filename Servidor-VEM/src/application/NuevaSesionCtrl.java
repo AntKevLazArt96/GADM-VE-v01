@@ -156,12 +156,16 @@ public class NuevaSesionCtrl implements Initializable{
     private JFXButton btn_addOrden;
     @FXML
     private JFXButton btn_modOrden;
-    @FXML
+      @FXML
+    private JFXButton btn_modSesion;
+      @FXML
     private JFXButton btn_nuevo;
     @FXML
     private JFXButton btn_ver;
     @FXML
     private JFXButton btn_eli_lista_pdf;
+    @FXML
+    private JFXButton btn_ActSesion;
     
     @FXML
     private TableView<Pdf> list_pdf;
@@ -189,9 +193,10 @@ public class NuevaSesionCtrl implements Initializable{
 		conexion.cerrarConexion();
 		bloquear_control_pdf();
 		btn_modOrden.setDisable(true);
-
+		btn_modSesion.setDisable(true);
     	btn_addOrden.setDisable(true);
-    
+    	btn_ActSesion.setVisible(false);
+    	btn_modSesion.setVisible(false);
 		@SuppressWarnings("rawtypes")
 		TableColumn nombre = new TableColumn("Nombre");
 		nombre.setMinWidth(360);
@@ -217,6 +222,15 @@ public class NuevaSesionCtrl implements Initializable{
     	date.setDisable(true);
     	time.setDisable(true);
     	btn_addSesion.setVisible(false);
+    	btn_examinarActa.setDisable(true);
+    }
+    public void activar() {
+    	txt_convocatoria.setDisable(false);
+    	cbx_tipoSes.setDisable(false);
+    	date.setDisable(false);
+    	time.setDisable(false);
+    	btn_examinarActa.setDisable(false);
+    	btn_modSesion.setDisable(false);
     }
     public void limpiar() {
     	PuntoOrden.setText(String.valueOf(data.num_punto));
@@ -243,52 +257,56 @@ public class NuevaSesionCtrl implements Initializable{
 
     
     @FXML
-    void onAddSesion(ActionEvent event) throws MalformedURLException, RemoteException, NotBoundException {
-    	String txtconvocatoria = txt_convocatoria.getText();
-    	String [] meses = {"ENERO","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
-    	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
-    	String horaIntervencion = time.getValue().toString();
-    	String titulo = lbl1.getText()+" "+cbx_tipoSes.getValue()+lbl2.getText()+" "+lbl3.getText()+fechaCompleta+", A lAS "+horaIntervencion+" "+lbl4.getText();
-    	String tipo_sesion = cbx_tipoSes.getValue();
-    	Date fechaIntervencion = Date.valueOf(date.getValue());
-    	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
-    	
-    	
-		try {
-			conexion.establecerConexion();
+    void onAddSesion(ActionEvent event) throws NotBoundException, IOException {
+ 
+		if(txt_convocatoria.getLength()==0) {
+			mostrarMesaje("Falta ingresar la convocatoria");
+		}else if(date.getValue()==null) {
+			mostrarMesaje("Falta selecionar la fecha de intervención");
+		}else if(pdf_acta.getItems().size()==0){
+			mostrarMesaje("Falta agregar el acta de la sesión");
+		}else {
+			
+			String txtconvocatoria = txt_convocatoria.getText();
+	    	String [] meses = {"ENERO","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
+	    	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
+	    	String horaIntervencion = time.getValue().toString();
+	    	String titulo = lbl1.getText()+" "+cbx_tipoSes.getValue()+lbl2.getText()+" "+lbl3.getText()+fechaCompleta+", A lAS "+horaIntervencion+" "+lbl4.getText();
+	    	String tipo_sesion = cbx_tipoSes.getValue();
+	    	Date fechaIntervencion = Date.valueOf(date.getValue());
+	    	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
+	    	
+	    	
+	    	conexion.establecerConexion();
 			ActaPdf pdf = new ActaPdf(nombre_acta,ruta_acta);
 			idActa= pdf.guardarRegistro_pdf(conexion.getConnection());
-			conexion.cerrarConexion();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			conexion.cerrarConexion(); 
+			
+			Sesion sesion = new Sesion(txtconvocatoria,titulo,tipo_sesion,fechaRegistro, fechaIntervencion , horaIntervencion,idActa );
+	    	conexion.establecerConexion();
+	    	convocatoria = sesion.guardarRegistro(conexion.getConnection());
+	    	System.out.println(convocatoria);
+	    	conexion.cerrarConexion();
+	    	
+			
+	    	if(convocatoria =="" ) {
+	    		
+	    		mostrarMesaje("No se pudo registrar la sesión");
+	    	}else {
+	    		btn_modSesion.setDisable(false);
+	        	btn_ActSesion.setVisible(true);
+	        	btn_modSesion.setVisible(true);
+	    		mostrarMesaje("Ahora prodece a agregar la orden del dia "+convocatoria);
+	    		bloquear();
+	    	
+	    	}	
+
+			
+				
+			
 		}
 		
     	
-		Sesion sesion = new Sesion(txtconvocatoria,titulo,tipo_sesion,fechaRegistro, fechaIntervencion , horaIntervencion,idActa );
-    	conexion.establecerConexion();
-    	convocatoria = sesion.guardarRegistro(conexion.getConnection());
-    	System.out.println(convocatoria);
-    	conexion.cerrarConexion();
-    	
-    	if(convocatoria =="" ) {
-    		Alert mensaje = new Alert(AlertType.ERROR);
-    		mensaje.setTitle("Sesion Guardada");
-    		mensaje.setContentText("Hubo algun error");
-    		mensaje.setHeaderText("Sesion Guardada");
-    		mensaje.show();	
-    	}else {
-    		Alert mensaje = new Alert(AlertType.INFORMATION);
-    		mensaje.setTitle("Sesion Guardada");
-    		mensaje.setContentText("Ahora prodece a agregar la orden del dia "+convocatoria);
-    		mensaje.setHeaderText("Sesion Guardada");
-    		mensaje.show();
-    		bloquear();
-    		
-
-    		
-    	
-    	}
     	
     	
     	
@@ -297,67 +315,49 @@ public class NuevaSesionCtrl implements Initializable{
     	
     }
     @FXML
-    void onModSesion(ActionEvent event) throws MalformedURLException, RemoteException, NotBoundException {
-    	String txtconvocatoria = txt_convocatoria.getText();
-    	String [] meses = {"ENERO","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
-    	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
-    	String horaIntervencion = time.getValue().toString();
-    	String titulo = lbl1.getText()+" "+cbx_tipoSes.getValue()+lbl2.getText()+" "+lbl3.getText()+fechaCompleta+", A lAS "+horaIntervencion+" "+lbl4.getText();
-    	String tipo_sesion = cbx_tipoSes.getValue();
-    	Date fechaIntervencion = Date.valueOf(date.getValue());
-    	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
-    	
-    	
-		try {
-			conexion.establecerConexion();
+    void onModSesion(ActionEvent event) throws NotBoundException, IOException {
+
+		if(txt_convocatoria.getLength()==0) {
+			mostrarMesaje("Falta ingresar la convocatoria");
+		}else if(date.getValue()==null) {
+			mostrarMesaje("Falta selecionar la fecha de intervención");
+		}else if(pdf_acta.getItems().size()==0){
+			mostrarMesaje("Falta agregar el acta de la sesión");
+		}else {
+			
+			String txtconvocatoria = txt_convocatoria.getText();
+	    	String [] meses = {"ENERO","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
+	    	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
+	    	String horaIntervencion = time.getValue().toString();
+	    	String titulo = lbl1.getText()+" "+cbx_tipoSes.getValue()+lbl2.getText()+" "+lbl3.getText()+fechaCompleta+", A lAS "+horaIntervencion+" "+lbl4.getText();
+	    	String tipo_sesion = cbx_tipoSes.getValue();
+	    	Date fechaIntervencion = Date.valueOf(date.getValue());
+	    	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
+	    	
+	    	
+	    	conexion.establecerConexion();
 			ActaPdf pdf = new ActaPdf(nombre_acta,ruta_acta);
 			idActa= pdf.guardarRegistro_pdf(conexion.getConnection());
-			conexion.cerrarConexion();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-    	
-		Sesion sesion = new Sesion(txtconvocatoria,titulo,tipo_sesion,fechaRegistro, fechaIntervencion , horaIntervencion,idActa );
-    	conexion.establecerConexion();
-    	convocatoria = sesion.guardarRegistro(conexion.getConnection());
-    	System.out.println(convocatoria);
-    	conexion.cerrarConexion();
-    	
-    	if(convocatoria =="" ) {
-    		Alert mensaje = new Alert(AlertType.ERROR);
-    		mensaje.setTitle("Sesion Guardada");
-    		mensaje.setContentText("Hubo algun error");
-    		mensaje.setHeaderText("Sesion Guardada");
-    		mensaje.show();	
-    	}else {
-    		Alert mensaje = new Alert(AlertType.INFORMATION);
-    		mensaje.setTitle("Sesion Guardada");
-    		mensaje.setContentText("Ahora prodece a agregar la orden del dia "+convocatoria);
-    		mensaje.setHeaderText("Sesion Guardada");
-    		mensaje.show();
-    		bloquear();
-    		
-    		listaOrden =FXCollections.observableArrayList();
-    		conexion.establecerConexion();
-        	
-    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,convocatoria);
-    		conexion.cerrarConexion();
-    		
-    		tabla.setItems(listaOrden);
-    		punto.setCellValueFactory(new PropertyValueFactory<OrdenDia, String>("numeroPunto"));
-    		descripcion.setCellValueFactory(new PropertyValueFactory<OrdenDia, String>("tema"));
-    		
-    		
-    	
-    	}
-    	
-    	
-    	
-    
-    	
-    	
+			conexion.cerrarConexion(); 
+			
+			Sesion sesion = new Sesion(txtconvocatoria,titulo,tipo_sesion,fechaRegistro, fechaIntervencion , horaIntervencion,idActa );
+	    	conexion.establecerConexion();
+	    	convocatoria = sesion.guardarRegistro(conexion.getConnection());
+	    	System.out.println(convocatoria);
+	    	conexion.cerrarConexion();
+	    	
+			
+	    	if(convocatoria =="" ) {
+	    		
+	    		mostrarMesaje("No se pudo registrar la sesión");
+	    	}else {
+	    		btn_modSesion.setDisable(false);
+	    		mostrarMesaje("Ahora prodece a agregar la orden del dia "+convocatoria);
+	    		bloquear();
+	    	
+	    	}	
+
+		}    
     }
     
     
@@ -527,7 +527,7 @@ public class NuevaSesionCtrl implements Initializable{
     	
     	System.out.println("La convocatoria es: "+convocatoria);
     	if(convocatoria=="") {
-    		JOptionPane.showMessageDialog(null, "Primero Tienes que agregar la sesion");
+    		mostrarMesaje("Primero tiene que agregar la sesión");
     	}else {
     		System.out.println(PuntoOrden.getText());
     		System.out.println(txt_descripcion.getText());
@@ -535,31 +535,54 @@ public class NuevaSesionCtrl implements Initializable{
     		System.out.println(cbx_proponente.getValue().getId());
     		System.out.println(convocatoria);
     		
-    		OrdenDia orden = new OrdenDia(convocatoria,Integer.valueOf(PuntoOrden.getText()), txt_descripcion.getText(), cbx_proponente.getValue().getId());
-        	conexion.establecerConexion();
-        	idOrden=orden.guardarRegistro(conexion.getConnection());
-        	
-        	
-        	conexion.establecerConexion();
-        	int longitud_lista=0;
+    		int longitud_lista=0;
         	longitud_lista=list_pdf.getItems().size();
-        
-        	while(longitud_lista>0)
-				try {
-					{
-						System.out.println(list_pdf.getItems().get(longitud_lista-1).getRuta_pdf());
-						Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).getRuta_pdf());
-						pdf.guardarRegistro_pdfs(conexion.getConnection());
-						longitud_lista--;
-					}
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-        	conexion.cerrarConexion();
+        	
+    		
+    		if(txt_descripcion.getLength()==0) {
+        		mostrarMesaje("Falta ingresar la descripción del punto");
+        	}else if( cbx_proponente.getValue().getId()==0) {
+        		mostrarMesaje("Falta selecionar el Proponente del punto");
+        	}else {
+        		
+        		if(longitud_lista==0) {
+            		mostrarMesaje("No se a agredado documentación "
+            				+ "para el punto "+PuntoOrden.getText()+"");
+            	}
+        		if(data.documentacion==0) {
+        			
+        			OrdenDia orden = new OrdenDia(convocatoria,Integer.valueOf(PuntoOrden.getText()), txt_descripcion.getText(), cbx_proponente.getValue().getId());
+                	conexion.establecerConexion();
+                	idOrden=orden.guardarRegistro(conexion.getConnection());
+                	conexion.cerrarConexion();
+                	
+                	
+                	conexion.establecerConexion();
+                	
+                	while(longitud_lista>0)
+        				try {
+        					{
+        						System.out.println(list_pdf.getItems().get(longitud_lista-1).getRuta_pdf());
+        						Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).getRuta_pdf());
+        						pdf.guardarRegistro_pdfs(conexion.getConnection());
+        						longitud_lista--;
+        					}
+        				} catch (Exception e) {
+        					// TODO Auto-generated catch block
+        					e.printStackTrace();
+        				}
+                	conexion.cerrarConexion();
 
-        	data.num_punto=data.num_punto+1;
-        	limpiar();
+                	data.num_punto=data.num_punto+1;
+                	limpiar();
+                	
+        		}
+        		
+        	}
+
+    		
+        	
+        	
         	contador=0;
         	List<OrdenDia> listaOrden =FXCollections.observableArrayList();
     		conexion.establecerConexion();
@@ -645,7 +668,13 @@ public class NuevaSesionCtrl implements Initializable{
     	btn_addOrden.setDisable(false);
     
     	}
-    
+    @FXML
+    public void onActSesion(ActionEvent event) {
+    	
+    	activar();
+    	btn_ActSesion.setVisible(false);
+    	
+    	}
     @SuppressWarnings("unchecked")
 	@FXML
     public void mostrar_punto(MouseEvent event) throws IOException {
@@ -717,6 +746,27 @@ public class NuevaSesionCtrl implements Initializable{
     
     
     
+    
+    	
+    public void mostrarMesaje(String subtitulo) {
+		
+		try {
+			data.header = "Aviso";
+			data.cuerpo = subtitulo;
+			
+			Stage newStage = new Stage();
+			AnchorPane pane;
+			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("VentanaDialogo.fxml"));
+			Scene scene = new Scene(pane);
+			newStage.setScene(scene);
+			newStage.initStyle(StageStyle.UNDECORATED);
+			newStage.show();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
     
     
     

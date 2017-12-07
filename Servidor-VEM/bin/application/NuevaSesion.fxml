@@ -166,7 +166,7 @@
                   <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
                </graphic>
             </Label>
-            <JFXButton fx:id="btn_addSesion" layoutX="815.0" layoutY="62.0" onAction="#onAddSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="GUARDAR SESIÓN" textFill="WHITE">
+            <JFXButton fx:id="btn_addSesion" layoutX="809.0" layoutY="35.0" onAction="#onAddSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="AGREGAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="15.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -206,6 +206,22 @@
                </font>
                <graphic>
                   <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_ActSesion" layoutX="819.0" layoutY="76.0" onAction="#onActSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="MODIFICAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="15.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_modSesion" layoutX="816.0" layoutY="117.0" onAction="#onModSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="GUARDAR CAMBIOS" textFill="WHITE" AnchorPane.rightAnchor="15.0">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
                </graphic>
             </JFXButton>
          </children>

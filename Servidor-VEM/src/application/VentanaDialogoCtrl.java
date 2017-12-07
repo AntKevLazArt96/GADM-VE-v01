@@ -29,14 +29,18 @@ public class VentanaDialogoCtrl implements Initializable{
 
     @FXML
     void onAceptar(ActionEvent event) throws IOException {
+    	data.documentacion=0;
     	Stage stage = (Stage) btn_aceptar.getScene().getWindow();
 		// do what you have to do
 		stage.close();
+		
+		
 
     }
 
     @FXML
     void onCancel(ActionEvent event) {
+    	data.documentacion=1;
     	Stage stage = (Stage) btn_aceptar.getScene().getWindow();
 		// do what you have to do
 		stage.close();
