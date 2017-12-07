@@ -28,6 +28,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 
+import clases.data;
 import gad.manta.common.ActaPdf;
 import gad.manta.common.Conexion;
 import gad.manta.common.IServidor;
@@ -45,6 +46,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
@@ -54,6 +57,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 
@@ -422,8 +428,29 @@ public class NuevaSesionCtrl implements Initializable{
     	try {
     		String ruta="";
         	ruta=list_pdf.getSelectionModel().selectedItemProperty().getValue();
-    	    File path = new File (ruta);
-    	    Desktop.getDesktop().open(path);
+    	    System.out.println(ruta);
+        	File archivo = new File (ruta);
+        	data.archivo_pff=archivo;
+    		data.tipo_lectura=3;
+    		Stage newStage = new Stage();
+
+    		AnchorPane pane;
+    		pane = (AnchorPane) FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+    		Scene scene = new Scene(pane);
+
+    		// Pantalla completa
+    		Screen screen = Screen.getPrimary();
+    		Rectangle2D bounds = screen.getVisualBounds();
+
+    		newStage.setX(bounds.getMinX());
+    		newStage.setY(bounds.getMinY());
+    		newStage.setWidth(bounds.getWidth());
+    		newStage.setHeight(bounds.getHeight());
+
+    		newStage.setScene(scene);
+    		newStage.initStyle(StageStyle.UNDECORATED);
+    		newStage.show();
+
     	}catch (IOException ex) {
     	     ex.printStackTrace();
     	}
@@ -433,13 +460,39 @@ public class NuevaSesionCtrl implements Initializable{
     void mostrar_acta(MouseEvent  event) throws RemoteException{
     	
     	try {
-    		String acta1;
-    		acta1=pdf_acta.getSelectionModel().selectedItemProperty().getValue();
-    		File path = new File (acta1);
-    	    Desktop.getDesktop().open(path);
+    		
+    		System.out.println(ruta_acta);
+    		File archivo = new File (ruta_acta);
+    		data.archivo_pff=archivo;
+    		data.tipo_lectura=3;
+    		Stage newStage = new Stage();
+
+    		AnchorPane pane;
+    		pane = (AnchorPane) FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+    		Scene scene = new Scene(pane);
+
+    		// Pantalla completa
+    		Screen screen = Screen.getPrimary();
+    		Rectangle2D bounds = screen.getVisualBounds();
+
+    		newStage.setX(bounds.getMinX());
+    		newStage.setY(bounds.getMinY());
+    		newStage.setWidth(bounds.getWidth());
+    		newStage.setHeight(bounds.getHeight());
+
+    		newStage.setScene(scene);
+    		newStage.initStyle(StageStyle.UNDECORATED);
+    		newStage.show();
+
+    		
+    		
     	}catch (IOException ex) {
     	     ex.printStackTrace();
     	}
+    	
+    	
+
+    	
     }
     
     @FXML
@@ -492,6 +545,9 @@ public class NuevaSesionCtrl implements Initializable{
     	}
     }
     
-    
+    @FXML
+    public void onModOrden(ActionEvent event) {
+    	
+    }
 }
 

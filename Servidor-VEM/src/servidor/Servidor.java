@@ -171,21 +171,26 @@ public class Servidor implements IServidor {
 	@Override
 	public Pdf pdf_punto(int id) {
 		Connection db;
+		Pdf user = null;
 		try {
 			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select * from pdf_ve where id_pdf=" + id + ";");
-			resultado.next();
-			Pdf user = new Pdf(resultado.getInt(1), resultado.getInt(2), resultado.getString(3), resultado.getBytes(4));
+			if(resultado.next()) {
+			 user= new Pdf(resultado.getInt(1), resultado.getInt(2), resultado.getString(3), resultado.getBytes(4));
+			
+
+			}
+			
 			db.close();
 			return user;
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}
+
 
 	}
 

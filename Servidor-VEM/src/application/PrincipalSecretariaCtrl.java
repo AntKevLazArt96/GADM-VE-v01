@@ -110,6 +110,8 @@ public class PrincipalSecretariaCtrl implements Initializable {
 		Stage newStage = new Stage();
 		AnchorPane pane;
 		try {
+			data.tipo_lectura=1;
+			
 			data.id_acta = sesion.getId_pdf();
 			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
 			Scene scene = new Scene(pane);
@@ -143,6 +145,7 @@ public class PrincipalSecretariaCtrl implements Initializable {
 		try {
 
 			data.id_acta = 0;
+			data.tipo_lectura=2;
 			data.id_pdf = table_documentacion.getSelectionModel().selectedItemProperty().get().getId_pdf();
 			System.out.println(data.id_pdf);
 
@@ -184,7 +187,7 @@ public class PrincipalSecretariaCtrl implements Initializable {
 			num_punto.setMinWidth(50);
 			num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 
-			TableColumn descripcion = new TableColumn("Descripción");
+			TableColumn descripcion = new TableColumn("Descripciï¿½n");
 			descripcion.setMinWidth(900);
 			descripcion.setCellValueFactory(new PropertyValueFactory<>("tema"));
 
@@ -202,7 +205,7 @@ public class PrincipalSecretariaCtrl implements Initializable {
 			pdf.setVisible(false);
 			pdf.setCellValueFactory(new PropertyValueFactory<>("id_pdf"));
 
-			TableColumn punto = new TableColumn("Documentación perteneciente al punto");
+			TableColumn punto = new TableColumn("Documentaciï¿½n perteneciente al punto");
 			punto.setMinWidth(250);
 			punto.setCellValueFactory(new PropertyValueFactory<>("punto"));
 			TableColumn nombre = new TableColumn("Nombre");

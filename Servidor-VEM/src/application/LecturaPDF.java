@@ -162,16 +162,18 @@ public class LecturaPDF extends JFrame implements  Initializable {
 		try
 		{
 		
-			File  n;
+			File  n = null;
 			// Ubicación del archivo pdf
-			if(data.id_acta==0) {
+			if(data.tipo_lectura==2) {
 				
 				Pdf pdf = servidor.pdf_punto(data.id_pdf);
 				n = new File(convertirPdf(pdf.getPdf()));
 				
-			}else {
+			}else if(data.tipo_lectura==1) {
 				ActaPdf acta_pdf= servidor.acta_sesion(data.id_acta);
 				n = new File(convertirPdf(acta_pdf.getPdf()));
+			}else if(data.tipo_lectura==3) {
+				n = data.archivo_pff;
 			}
 			
 			RandomAccessFile raf = new RandomAccessFile(n, "r");
@@ -215,6 +217,5 @@ public class LecturaPDF extends JFrame implements  Initializable {
 
 	}
 	
-
 
 }

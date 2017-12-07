@@ -1,5 +1,7 @@
 package clases;
 
+import java.io.File;
+
 import javafx.scene.image.Image;
 
 public class data {    
@@ -17,5 +19,6 @@ public class data {
     public static String tipoMsgDial;
     public static String header;
     public static String cuerpo;
-    
+    public static File archivo_pff;
+    public static int tipo_lectura;
 }
