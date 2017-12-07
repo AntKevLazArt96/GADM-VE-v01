@@ -2,6 +2,7 @@ package application;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -15,7 +16,13 @@ import java.nio.file.StandardCopyOption;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.time.LocalTime;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -41,6 +48,7 @@ import gad.manta.common.OrdenDia;
 import gad.manta.common.Pdf;
 import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
+import gad.manta.common.data_configuracion;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
@@ -174,6 +182,9 @@ public class NuevaSesionCtrl implements Initializable{
     private JFXListView<String> pdf_acta;
     
     private int contador=0;
+    
+	private String conv="";
+	private int id_punto_od;
     @SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -183,6 +194,10 @@ public class NuevaSesionCtrl implements Initializable{
 		cbx_tipoSes.setValue("ORDINARIA");
 		cbx_tipoSes.setItems(tipoSesion);		
 		PuntoOrden.setDisable(true);
+    	txt_descripcion.setDisable(true);
+    	cbx_proponente.setDisable(true);
+    	btn_examinar.setDisable(true);
+
 		conexion.establecerConexion();
 		proponentes =FXCollections.observableArrayList();
 		
@@ -240,6 +255,7 @@ public class NuevaSesionCtrl implements Initializable{
     	list_pdf.getItems().clear();
     	btn_modOrden.setDisable(true);
     	btn_addOrden.setDisable(true);
+    	
     
     }
     
@@ -257,9 +273,16 @@ public class NuevaSesionCtrl implements Initializable{
 
     
     @FXML
-    void onAddSesion(ActionEvent event) throws NotBoundException, IOException {
- 
-		if(txt_convocatoria.getLength()==0) {
+    void onAddSesion(ActionEvent event) throws NotBoundException, IOException, SQLException {
+    	
+    	Connection db;
+    	db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+		Statement st = db.createStatement();
+		ResultSet resultado= st.executeQuery("SELECT convocatoria_sesion  FROM public.sesion_ve where convocatoria_sesion='"+txt_convocatoria.getText()+"';");	
+		db.close();
+		if(resultado.next()) {
+			mostrarMesaje("La convocatoria "+txt_convocatoria.getText()+", ya se encuantra agregada en el sistema");
+		}else if(txt_convocatoria.getLength()==0) {
 			mostrarMesaje("Falta ingresar la convocatoria");
 		}else if(date.getValue()==null) {
 			mostrarMesaje("Falta selecionar la fecha de intervención");
@@ -315,7 +338,7 @@ public class NuevaSesionCtrl implements Initializable{
     	
     }
     @FXML
-    void onModSesion(ActionEvent event) throws NotBoundException, IOException {
+    void onModSesion(ActionEvent event) throws NotBoundException, IOException, SQLException {
 
 		if(txt_convocatoria.getLength()==0) {
 			mostrarMesaje("Falta ingresar la convocatoria");
@@ -333,8 +356,43 @@ public class NuevaSesionCtrl implements Initializable{
 	    	String tipo_sesion = cbx_tipoSes.getValue();
 	    	Date fechaIntervencion = Date.valueOf(date.getValue());
 	    	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
+
+	    	Connection db;
+			String sql =" UPDATE public.sesion_ve SET convocatoria_sesion='"+txtconvocatoria+"', description_sesion='"+titulo+"', tipo_sesion='"+tipo_sesion+"', register_sesion='"+fechaRegistro+"',"
+					+ " intervention_sesion='"+fechaIntervencion+"', hour_sesion='"+horaIntervencion+"' WHERE convocatoria_sesion='"+convocatoria+"';";
+			
+			String sql2 = "UPDATE public.acta_ve SET nombre_pdf=?, archivo_pdf=? WHERE id_pdf="+idActa+";";
+		
+			
+			try {
+				db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+				PreparedStatement instruccion = db.prepareStatement(sql);
+				
+				File pdf = new File(ruta_acta);
+				FileInputStream fis = new FileInputStream(pdf);
+		    	PreparedStatement ps = db.prepareStatement(sql2);
+		    	
+		    	ps.setString(1, nombre_acta);
+		    	ps.setBinaryStream(2, fis, (int)pdf.length());
+		    	ps.execute();
+		    	fis.close();
+		    	
+				if(!(instruccion.execute()&& ps.execute())) {
+					mostrarMesaje("La convocatoria a sido atualizada");
+				}else{
+					mostrarMesaje("No se a podido actualizar la convocatoria");
+				};
+				db.close();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				//e1.printStackTrace();
+				mostrarMesaje("Ya existe una convocatoria "+txtconvocatoria+", en el sistema");
+			}	
+
+				    	
 	    	
 	    	
+	    	/*
 	    	conexion.establecerConexion();
 			ActaPdf pdf = new ActaPdf(nombre_acta,ruta_acta);
 			idActa= pdf.guardarRegistro_pdf(conexion.getConnection());
@@ -347,7 +405,7 @@ public class NuevaSesionCtrl implements Initializable{
 	    	conexion.cerrarConexion();
 	    	
 			
-	    	if(convocatoria =="" ) {
+	    	if(resultado.next()) {
 	    		
 	    		mostrarMesaje("No se pudo registrar la sesión");
 	    	}else {
@@ -356,7 +414,7 @@ public class NuevaSesionCtrl implements Initializable{
 	    		bloquear();
 	    	
 	    	}	
-
+*/
 		}    
     }
     
@@ -465,7 +523,7 @@ public class NuevaSesionCtrl implements Initializable{
         			};
         			Files.copy(FROM, TO,opciones);
         			ruta_acta = dbpath;
-        			nombre_acta= fichero.getPath();
+        			nombre_acta= fichero.getName();
     			
         	}
 		} catch (NullPointerException nl) {
@@ -618,10 +676,115 @@ public class NuevaSesionCtrl implements Initializable{
     	}
     }
     
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     public void onModOrden(ActionEvent event) {
-    	
-    }@FXML
+
+    		int longitud_lista=0;
+        	longitud_lista=list_pdf.getItems().size();
+        			
+    		if(txt_descripcion.getLength()==0) {
+        		mostrarMesaje("Falta ingresar la descripción del punto");
+        	}else if( cbx_proponente.getValue().getId()==0) {
+        		mostrarMesaje("Falta selecionar el Proponente del punto");
+        	}else {
+        		
+        		if(longitud_lista==0) {
+            		mostrarMesaje("No se a agredado documentación "
+            				+ "para el punto "+PuntoOrden.getText()+"");
+            	}
+        		if(data.documentacion==0) {
+        			
+        			
+        			Connection db;
+        			String sql ="UPDATE public.ordendia_ve SET  convocatoria_sesion='"+txt_convocatoria.getText()+"', numpunto_ordendia="+Integer.valueOf(PuntoOrden.getText())+", descrip_ordendia='"+txt_descripcion.getText()+"', id_user="+cbx_proponente.getValue().getId()+" WHERE id_ordendia="+id_punto_od+";";
+        			//String sql2 = "UPDATE public.acta_ve SET nombre_pdf=?, archivo_pdf=? WHERE id_pdf="+idActa+";";
+        		
+        			
+        			try {
+        				db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+        				PreparedStatement instruccion = db.prepareStatement(sql);
+        				
+        				
+        				if(!(instruccion.execute())) {
+        					mostrarMesaje("El punto a sido atualizada");
+        				}else{
+        					mostrarMesaje("No se a podido actualizar el punto");
+        				};
+        				db.close();
+        			} catch (SQLException e1) {
+        				// TODO Auto-generated catch block
+        				e1.printStackTrace();
+        				//mostrarMesaje("Ya existe una convocatoria "+txtconvocatoria+", en el sistema");
+        			}	
+
+        			
+        			
+        	/*
+                	
+                	conexion.establecerConexion();
+                	
+                	while(longitud_lista>0)
+        				try {
+        					{
+        						System.out.println(list_pdf.getItems().get(longitud_lista-1).getRuta_pdf());
+        						Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).getRuta_pdf());
+        						pdf.guardarRegistro_pdfs(conexion.getConnection());
+        						longitud_lista--;
+        					}
+        				} catch (Exception e) {
+        					// TODO Auto-generated catch block
+        					e.printStackTrace();
+        				}
+                	conexion.cerrarConexion();
+
+                	data.num_punto=data.num_punto+1;*/
+                	limpiar();
+                	PuntoOrden.setDisable(false);
+                	
+        		}
+        		
+        	}
+
+    		
+        	
+        	
+        	contador=0;
+        	List<OrdenDia> listaOrden =FXCollections.observableArrayList();
+    		conexion.establecerConexion();
+        	
+    		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,convocatoria);
+    		conexion.cerrarConexion();
+    		
+    		
+    		
+    		@SuppressWarnings("rawtypes")
+			TableColumn id_punto = new TableColumn("No. Punto");
+	    	id_punto.setMinWidth(50);
+	    	id_punto.setVisible(false);
+	    	id_punto.setCellValueFactory(
+	                new PropertyValueFactory<>("id"));
+			
+			@SuppressWarnings("rawtypes")
+			TableColumn num_punto = new TableColumn("No. Punto");
+			num_punto.setMinWidth(80);
+			num_punto.setCellValueFactory(
+	                new PropertyValueFactory<>("numeroPunto"));
+			@SuppressWarnings("rawtypes")
+			TableColumn descrip = new TableColumn("Descripción");
+			descrip.setMinWidth(300);
+			descrip.setCellValueFactory(
+	                new PropertyValueFactory<>("tema"));
+	        ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
+	        		listaOrden
+					);
+			
+			tabla.getColumns().addAll(id_punto,num_punto,descrip);
+			tabla.setItems(datos);
+
+
+    }
+    @FXML
     public void mostrar_pdf(ActionEvent event) {
     	try {
     		String ruta="";
@@ -664,9 +827,11 @@ public class NuevaSesionCtrl implements Initializable{
     @FXML
     public void onNewOrden(ActionEvent event) {
     	limpiar();
-
     	btn_addOrden.setDisable(false);
-    
+    	PuntoOrden.setDisable(false);
+    	txt_descripcion.setDisable(false);
+    	cbx_proponente.setDisable(false);
+    	btn_examinar.setDisable(false);
     	}
     @FXML
     public void onActSesion(ActionEvent event) {
@@ -679,7 +844,8 @@ public class NuevaSesionCtrl implements Initializable{
 	@FXML
     public void mostrar_punto(MouseEvent event) throws IOException {
     		btn_modOrden.setDisable(false);
-    		int id_punto=tabla.getSelectionModel().selectedItemProperty().getValue().getId();
+    		btn_nuevo.setDisable(true);
+    		id_punto_od=tabla.getSelectionModel().selectedItemProperty().getValue().getId();
     		txt_descripcion.setText(tabla.getSelectionModel().selectedItemProperty().getValue().getTema());
     		PuntoOrden.setText(String.valueOf(tabla.getSelectionModel().selectedItemProperty().getValue().getNumeroPunto()));
     		int id_pro= tabla.getSelectionModel().selectedItemProperty().getValue().getProponente();
@@ -698,7 +864,7 @@ public class NuevaSesionCtrl implements Initializable{
 			List<Pdf> pdf;
 			System.out.println(id_punto+"  holaa");
 			
-			pdf=Pdf.consultarPDFS_Modificacion(id_punto);
+			pdf=Pdf.consultarPDFS_Modificacion(id_punto_od);
 			System.out.println(pdf.size()+"  longitud");
 			list_pdf.getItems().clear();
 			lista_pdf.clear();
@@ -753,7 +919,6 @@ public class NuevaSesionCtrl implements Initializable{
 		try {
 			data.header = "Aviso";
 			data.cuerpo = subtitulo;
-			
 			Stage newStage = new Stage();
 			AnchorPane pane;
 			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("VentanaDialogo.fxml"));
