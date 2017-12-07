@@ -77,7 +77,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 
 
-public class NuevaSesionCtrl implements Initializable{
+public class ModificacionSesionCtrl2 implements Initializable{
 	static IServidor servidor;
 	
 	public static String convocatoria = "";
@@ -153,8 +153,7 @@ public class NuevaSesionCtrl implements Initializable{
     @FXML
     private JFXButton btn_addSesion;
     
-    @FXML
-    private JFXButton btn_elimSesion;
+
     @FXML
     private JFXButton btn_cancelar;
     @FXML
@@ -167,8 +166,6 @@ public class NuevaSesionCtrl implements Initializable{
     private JFXButton btn_modOrden;
       @FXML
     private JFXButton btn_modSesion;
-      @FXML
-    private JFXButton btn_elimOrden;
       @FXML
     private JFXButton btn_nuevo;
     @FXML
@@ -200,7 +197,7 @@ public class NuevaSesionCtrl implements Initializable{
     	txt_descripcion.setDisable(true);
     	cbx_proponente.setDisable(true);
     	btn_examinar.setDisable(true);
-    	list_pdf.setDisable(true);
+
 		conexion.establecerConexion();
 		proponentes =FXCollections.observableArrayList();
 		
@@ -213,11 +210,8 @@ public class NuevaSesionCtrl implements Initializable{
 		btn_modOrden.setDisable(true);
 		btn_modSesion.setDisable(true);
     	btn_addOrden.setDisable(true);
-    	btn_elimOrden.setDisable(true);
     	btn_ActSesion.setVisible(false);
     	btn_modSesion.setVisible(false);
-    	btn_elimSesion.setVisible(false);
-    	
 		@SuppressWarnings("rawtypes")
 		TableColumn nombre = new TableColumn("Nombre");
 		nombre.setMinWidth(360);
@@ -235,10 +229,7 @@ public class NuevaSesionCtrl implements Initializable{
 
         list_pdf.getColumns().addAll(nombre,ruta_pdf);
         lista_pdf =FXCollections.observableArrayList();		
-
-    
-    
-    }
+	}
     
     public void bloquear() {
     	txt_convocatoria.setDisable(true);
@@ -255,8 +246,6 @@ public class NuevaSesionCtrl implements Initializable{
     	time.setDisable(false);
     	btn_examinarActa.setDisable(false);
     	btn_modSesion.setDisable(false);
-    	
-    	
     }
     public void limpiar() {
     	PuntoOrden.setText(String.valueOf(data.num_punto));
@@ -264,18 +253,10 @@ public class NuevaSesionCtrl implements Initializable{
     	cbx_proponente.setValue(null);
     	rutapdf="";
     	list_pdf.getItems().clear();
-    	lista_pdf.clear();
     	btn_modOrden.setDisable(true);
-    	
+    	btn_addOrden.setDisable(true);
     	
     
-    }
-    
-    public void limpiar_sesion(){
-
-		txt_convocatoria.setText(null);
-    	date.setValue(null);
-    	pdf_acta.getItems().clear();
     }
     
     public void bloquear_control_pdf() {
@@ -338,7 +319,6 @@ public class NuevaSesionCtrl implements Initializable{
 	    		btn_modSesion.setDisable(false);
 	        	btn_ActSesion.setVisible(true);
 	        	btn_modSesion.setVisible(true);
-	        	btn_elimSesion.setVisible(true);
 	    		mostrarMesaje("Ahora prodece a agregar la orden del dia "+convocatoria);
 	    		bloquear();
 	    	
@@ -399,11 +379,6 @@ public class NuevaSesionCtrl implements Initializable{
 		    	
 				if(!(instruccion.execute()&& ps.execute())) {
 					mostrarMesaje("La convocatoria a sido atualizada");
-					btn_modSesion.setDisable(false);
-		        	btn_ActSesion.setVisible(true);
-		        	btn_modSesion.setVisible(true);
-		        	btn_elimSesion.setVisible(true);
-		        	bloquear();
 				}else{
 					mostrarMesaje("No se a podido actualizar la convocatoria");
 				};
@@ -417,6 +392,29 @@ public class NuevaSesionCtrl implements Initializable{
 				    	
 	    	
 	    	
+	    	/*
+	    	conexion.establecerConexion();
+			ActaPdf pdf = new ActaPdf(nombre_acta,ruta_acta);
+			idActa= pdf.guardarRegistro_pdf(conexion.getConnection());
+			conexion.cerrarConexion(); 
+			
+			Sesion sesion = new Sesion(txtconvocatoria,titulo,tipo_sesion,fechaRegistro, fechaIntervencion , horaIntervencion,idActa );
+	    	conexion.establecerConexion();
+	    	convocatoria = sesion.guardarRegistro(conexion.getConnection());
+	    	System.out.println(convocatoria);
+	    	conexion.cerrarConexion();
+	    	
+			
+	    	if(resultado.next()) {
+	    		
+	    		mostrarMesaje("No se pudo registrar la sesión");
+	    	}else {
+	    		btn_modSesion.setDisable(false);
+	    		mostrarMesaje("Ahora prodece a agregar la orden del dia "+convocatoria);
+	    		bloquear();
+	    	
+	    	}	
+*/
 		}    
     }
     
@@ -642,7 +640,7 @@ public class NuevaSesionCtrl implements Initializable{
     		
         	
         	
-        	
+        	contador=0;
         	List<OrdenDia> listaOrden =FXCollections.observableArrayList();
     		conexion.establecerConexion();
         	
@@ -735,7 +733,26 @@ public class NuevaSesionCtrl implements Initializable{
         			}	
 
         			
+        			
+        	/*
+                	
+                	conexion.establecerConexion();
+                	
+                	while(longitud_lista>0)
+        				try {
+        					{
+        						System.out.println(list_pdf.getItems().get(longitud_lista-1).getRuta_pdf());
+        						Pdf pdf = new Pdf(idOrden,list_pdf.getItems().get(longitud_lista-1).getRuta_pdf());
+        						pdf.guardarRegistro_pdfs(conexion.getConnection());
+        						longitud_lista--;
+        					}
+        				} catch (Exception e) {
+        					// TODO Auto-generated catch block
+        					e.printStackTrace();
+        				}
+                	conexion.cerrarConexion();
 
+                	data.num_punto=data.num_punto+1;*/
                 	limpiar();
                 	PuntoOrden.setDisable(true);
                 	
@@ -824,131 +841,27 @@ public class NuevaSesionCtrl implements Initializable{
     
     @FXML
     public void onNewOrden(ActionEvent event) {
-    	
+    	limpiar();
     	btn_addOrden.setDisable(false);
     	PuntoOrden.setDisable(true);
     	txt_descripcion.setDisable(false);
     	cbx_proponente.setDisable(false);
     	btn_examinar.setDisable(false);
-    	btn_elimOrden.setDisable(true);
-    	list_pdf.setDisable(false);
-    	
     	}
     @FXML
     public void onActSesion(ActionEvent event) {
     	
     	activar();
-    	btn_elimSesion.setVisible(false);
     	btn_ActSesion.setVisible(false);
     	
-    	}
-    @FXML
-    public void onElimSesion(ActionEvent event) throws SQLException {
-    	Connection db;
-    	db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-		Statement st = db.createStatement();
-		ResultSet resultado= st.executeQuery("SELECT id_pdf  FROM public.sesion_ve where convocatoria_sesion='"+txt_convocatoria.getText()+"';");	
-		
-		if(resultado.next()) {
-			
-			String sql ="DELETE FROM public.acta_ve WHERE id_pdf="+resultado.getInt(1)+";";
-			PreparedStatement instruccion = db.prepareStatement(sql);
-			if(!instruccion.execute()) {
-				mostrarMesaje("La sesión"+txt_convocatoria.getText()+" a sido eliminada correctamemte");			
-				data.num_punto=0;
-				limpiar();
-				activar();
-				limpiar_sesion();
-				
-				btn_ActSesion.setVisible(false);
-		    	btn_modSesion.setVisible(false);
-		    	btn_elimSesion.setVisible(false);
-		    	btn_addSesion.setVisible(true);
-		    	
-			}else {
-				mostrarMesaje("Hubo un error al eliminar sesión"+txt_convocatoria.getText()+"");
-			}
-		}
-		db.close();
-		
-		
-    }
-    @SuppressWarnings("unchecked")
-	@FXML
-    public void onElimOrden(ActionEvent event) {
-    
-    	Connection db;
-		String sql ="DELETE FROM public.ordendia_ve WHERE id_ordendia="+id_punto_od+";";
-		String sql2 = "DELETE FROM public.pdf_ve WHERE id_ordendia="+id_punto_od+";";
-	
-		
-		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-			PreparedStatement instruccion = db.prepareStatement(sql);
-			PreparedStatement instruccion2 = db.prepareStatement(sql2);
-        	
-			if(!(instruccion.execute()&&instruccion2.execute())) {
-				mostrarMesaje("El punto a sido eliminado correctamemte");
-			}else{
-				mostrarMesaje("No se a podido eliminar el el punto");
-			};
-			db.close();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-			//mostrarMesaje("Ya existe una convocatoria "+txtconvocatoria+", en el sistema");
-			mostrarMesaje("No se a podido eliminar el el punto");
-		}	
-
-		
-    	btn_ActSesion.setVisible(false);
-    	List<OrdenDia> listaOrden =FXCollections.observableArrayList();
-		conexion.establecerConexion();
-    	
-		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden,convocatoria);
-		conexion.cerrarConexion();
-		
-		
-		
-		@SuppressWarnings("rawtypes")
-		TableColumn id_punto = new TableColumn("No. Punto");
-    	id_punto.setMinWidth(50);
-    	id_punto.setVisible(false);
-    	id_punto.setCellValueFactory(
-                new PropertyValueFactory<>("id"));
-		
-		@SuppressWarnings("rawtypes")
-		TableColumn num_punto = new TableColumn("No. Punto");
-		num_punto.setMinWidth(80);
-		num_punto.setCellValueFactory(
-                new PropertyValueFactory<>("numeroPunto"));
-		@SuppressWarnings("rawtypes")
-		TableColumn descrip = new TableColumn("Descripción");
-		descrip.setMinWidth(300);
-		descrip.setCellValueFactory(
-                new PropertyValueFactory<>("tema"));
-        ObservableList<OrdenDia> datos = FXCollections.observableArrayList(
-        		listaOrden
-				);
-		
-		tabla.getColumns().addAll(id_punto,num_punto,descrip);
-		tabla.setItems(datos);
-		limpiar();
-	
     	}
     @SuppressWarnings("unchecked")
 	@FXML
     public void mostrar_punto(MouseEvent event) throws IOException {
     		btn_modOrden.setDisable(false);
     		btn_nuevo.setDisable(false);
-    		btn_elimOrden.setDisable(false);
     		PuntoOrden.setDisable(false);
     		btn_addOrden.setDisable(true);
-        	PuntoOrden.setDisable(true);
-        	txt_descripcion.setDisable(false);
-        	cbx_proponente.setDisable(false);
-        	btn_examinar.setDisable(false);
-        	
     		id_punto_od=tabla.getSelectionModel().selectedItemProperty().getValue().getId();
     		txt_descripcion.setText(tabla.getSelectionModel().selectedItemProperty().getValue().getTema());
     		PuntoOrden.setText(String.valueOf(tabla.getSelectionModel().selectedItemProperty().getValue().getNumeroPunto()));

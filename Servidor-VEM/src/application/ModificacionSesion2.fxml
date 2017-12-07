@@ -91,13 +91,13 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_elimOrden" layoutX="261.0" layoutY="445.0" onAction="#onElimOrden" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="320.0">
+            <JFXButton fx:id="btn_modOrden" layoutX="261.0" layoutY="445.0" onAction="#onModOrden" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="MODIFICAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
                </graphic>
-               <font>
-                  <Font size="11.0" />
-               </font>
             </JFXButton>
             <Label layoutX="32.0" layoutY="386.0" text="Proponente">
                <font>
@@ -133,26 +133,18 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_addOrden" layoutX="509.0" layoutY="396.0" onAction="#onAddOrden" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="GUARDAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0">
+            <JFXButton fx:id="btn_addOrden" layoutX="465.0" layoutY="396.0" onAction="#onAddOrden" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="GUARDAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
                </graphic>
-               <font>
-                  <Font size="11.0" />
-               </font>
             </JFXButton>
             <TableView fx:id="list_pdf" layoutX="37.0" layoutY="230.0" onMouseClicked="#activar_controles_pdf" prefHeight="140.0" prefWidth="359.0" />
-            <JFXButton fx:id="btn_nuevo" layoutX="55.0" layoutY="445.0" onAction="#onNewOrden" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="NUEVO PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="470.0">
+            <JFXButton fx:id="btn_nuevo" layoutX="55.0" layoutY="445.0" onAction="#onNewOrden" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="NUEVO PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
                <font>
-                  <Font size="11.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btn_modOrden" layoutX="205.0" layoutY="442.0" onAction="#onModOrden" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="MODIFICAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="170.0">
-               <font>
-                  <Font size="11.0" />
+                  <Font size="14.0" />
                </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
@@ -174,7 +166,7 @@
                   <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
                </graphic>
             </Label>
-            <JFXButton fx:id="btn_addSesion" layoutX="809.0" layoutY="35.0" onAction="#onAddSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="AGREGAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0">
+            <JFXButton fx:id="btn_addSesion" layoutX="809.0" layoutY="35.0" onAction="#onAddSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="AGREGAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="15.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -227,14 +219,6 @@
             <JFXButton fx:id="btn_modSesion" layoutX="816.0" layoutY="117.0" onAction="#onModSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="GUARDAR CAMBIOS" textFill="WHITE" AnchorPane.rightAnchor="15.0">
                <font>
                   <Font size="13.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btn_elimSesion" layoutX="819.0" layoutY="45.0" onAction="#onElimSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0">
-               <font>
-                  <Font size="14.0" />
                </font>
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />

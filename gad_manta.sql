@@ -1,4 +1,4 @@
-drop schema public cascade;
+﻿drop schema public cascade;
 create schema public authorization postgres;
 set search_path to public;
 
@@ -117,6 +117,8 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 NOT DEFERRABLE;
 
+
+
 ALTER TABLE Asistencia_VE ADD CONSTRAINT quorum_ve_asistencia_ve_fk
 FOREIGN KEY (id_quorum)
 REFERENCES Quorum_VE (id_quorum)
@@ -145,6 +147,10 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 NOT DEFERRABLE;
 
+
+
+
+
 ALTER TABLE Pdf_VE ADD CONSTRAINT ordendia_ve_pdf_ve_fk
 FOREIGN KEY (id_ordenDia)
 REFERENCES OrdenDia_VE (id_ordenDia)
@@ -166,11 +172,17 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 NOT DEFERRABLE;
 
+ALTER TABLE public.sesion_ve
+  ADD CONSTRAINT session_ve_acta FOREIGN KEY (id_pdf)
+      REFERENCES public.acta_ve (id_pdf) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE;
+
+
 ALTER TABLE OrdenDia_VE ADD CONSTRAINT sesion_ve_ordendia_ve_fk
 FOREIGN KEY (convocatoria_sesion)
 REFERENCES Sesion_VE (convocatoria_sesion)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+ON DELETE CASCADE
+ON UPDATE CASCADE
 NOT DEFERRABLE;
 
 CREATE TABLE notasActa_ve
