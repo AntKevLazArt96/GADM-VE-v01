@@ -124,7 +124,8 @@ public class NuevaSesionCtrl implements Initializable{
     
     @FXML
     private TableView<OrdenDia> tabla;
-    
+    @FXML
+    private TableColumn<OrdenDia,String> id_punto;
     @FXML
     private TableColumn<OrdenDia,String> punto;
     @FXML
@@ -530,8 +531,9 @@ public class NuevaSesionCtrl implements Initializable{
     		conexion.cerrarConexion();
     		
     		tabla.setItems(listaOrden);
+
     		
-    		punto.setCellValueFactory(new PropertyValueFactory<OrdenDia, String>("numeroPunto"));	
+    		//punto.setCellValueFactory(new PropertyValueFactory<OrdenDia, String>("numeroPunto"));	
     	}
     }
     
@@ -565,7 +567,7 @@ public class NuevaSesionCtrl implements Initializable{
     		newStage.setScene(scene);
     		newStage.initStyle(StageStyle.UNDECORATED);
     		newStage.show();
-
+    		//bloquear_control_pdf();
     	}catch (IOException ex) {
     	     ex.printStackTrace();
     	}
@@ -573,7 +575,9 @@ public class NuevaSesionCtrl implements Initializable{
 
     @FXML
     public void eli_lista_pdf(ActionEvent event) {
-    	list_pdf.getSelectionModel().selectedItemProperty();
+    	list_pdf.getItems().remove(list_pdf.getSelectionModel().getSelectedIndex());
+    	bloquear_control_pdf();
+    	
     }
 }
 
