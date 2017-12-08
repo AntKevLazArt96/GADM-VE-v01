@@ -307,8 +307,9 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 		try {
 			sesion = LoginController.servidor.consultarSesion();
+			data.convocatoria_sesion=sesion.getConvocatoria();
 			label_convocatoria.setText(sesion.getConvocatoria());
-
+			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Quorum.fxml"));
 			AnchorPane quorum = (AnchorPane) loader.load();
 			contenido.getChildren().setAll(quorum);

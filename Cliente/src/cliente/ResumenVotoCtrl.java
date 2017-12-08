@@ -1,4 +1,4 @@
-package application;
+package cliente;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -6,28 +6,16 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.List;
 import java.util.ResourceBundle;
-import org.json.simple.JSONObject;
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
-import clases.TramVoto;
-import clases.VotoResumen;
-import clases.data;
-import clases.puntoATratar;
-import gad.manta.common.Usuario;
 import gad.manta.common.Voto;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-public class RegistrarVotoCtrl implements Initializable {
-
-	@FXML
-	public JFXButton btn_finVoto;
+public class ResumenVotoCtrl implements Initializable {
 
 	@FXML
 	public AnchorPane panelInicioVoto;
@@ -72,44 +60,6 @@ public class RegistrarVotoCtrl implements Initializable {
 	@FXML
 	public Label lbl_estado;
 
-	@SuppressWarnings("unchecked")
-	@FXML
-	void finVoto(ActionEvent event) throws IOException {
-
-		try {
-			
-			 String message = LoginController.servidor.limpiarVoto();
-			 System.out.println(message); data.header = "Votacion terminada"; data.cuerpo
-			 = message;
-			 
-			try {
-
-				// String json = "{" + " 'name' : '" + data.name + "', 'message' : '" + msg +
-				// "'" + "}";
-
-				JSONObject js = new JSONObject();
-				js.put("name", "VOTO TERMINADO");
-
-				String json = js.toJSONString();
-
-				System.out.println("Se envio:" + json);
-
-				PantallaPrincipalCtrl.dos.writeUTF(json);
-
-			} catch (IOException E) {
-				E.printStackTrace();
-			}
-
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("InicioSesion.fxml"));
-			AnchorPane quorum = (AnchorPane) loader.load();
-			panelInicioVoto.getChildren().setAll(quorum);
-
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 
 	// meotodo para convertir la la imagen
 	public Image convertirImg(byte[] bytes) throws IOException {
@@ -169,32 +119,12 @@ public class RegistrarVotoCtrl implements Initializable {
 		status11.setStyle("-fx-text-fill: #4caf50;");
 		estatus12.setStyle("-fx-text-fill: #4caf50;");
 	}
-
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		try {
-
-			// String json = "{" + " 'name' : '" + data.name + "', 'message' : '" + msg +
-			// "'" + "}";
-
-			JSONObject js = new JSONObject();
-			js.put("name", "VOTO RESUMEN");
-
-			String json = js.toJSONString();
-
-			System.out.println("Se envio:" + json);
-
-			PantallaPrincipalCtrl.dos.writeUTF(json);
-
-		} catch (IOException E) {
-			E.printStackTrace();
-		}
-
 		label_titulo.setText(puntoATratar.tema);
 		lbl_punto.setText(puntoATratar.num_punto);
 		lbl_proponente.setText(puntoATratar.proponente);
-		btn_finVoto.setDisable(true);
 		limpiar();
 		List<Voto> lista;
 		List<Voto> favor;
@@ -208,7 +138,7 @@ public class RegistrarVotoCtrl implements Initializable {
 			contra = LoginController.servidor.votosEnContra();
 			salvados = LoginController.servidor.votosSalvados();
 			blanco = LoginController.servidor.votosBlanco();
-
+			System.out.println(lista.size());
 			lblAFavor.setText(String.valueOf(favor.size()));
 			lblEnContra.setText(String.valueOf(contra.size()));
 			lblSalvoVoto.setText(String.valueOf(salvados.size()));
@@ -445,9 +375,7 @@ public class RegistrarVotoCtrl implements Initializable {
 					}
 				}
 
-				if (lista.size() >= 0) {
-					btn_finVoto.setDisable(false);
-				}
+				
 
 			}
 
@@ -458,13 +386,13 @@ public class RegistrarVotoCtrl implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		try {
 			LoginController.servidor.limpiarVoto();
-			VotoResumen.si = 0;
-			VotoResumen.no = 0;
-			VotoResumen.blanco = 0;
-			VotoResumen.salvo = 0;
+			/*VotoResumen.si=0;
+			VotoResumen.no=0;
+			VotoResumen.blanco=0;
+			VotoResumen.salvo=0;*/
 			// Se inicio la votacion
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

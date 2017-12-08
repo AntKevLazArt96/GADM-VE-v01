@@ -27,7 +27,7 @@ public class Sesion implements Serializable {
 	private String estado_sesion;
 
 	public Sesion(String convocatoria, String description, String tipo_sesion, Date fechaRegistro,
-			Date fechaIntervencion, String horaIntervencion, int id_pdf) {
+			Date fechaIntervencion, String horaIntervencion, int quorum, int id_pdf) {
 		super();
 		this.convocatoria = convocatoria;
 		this.description = description;
@@ -35,6 +35,7 @@ public class Sesion implements Serializable {
 		this.fechaRegistro = fechaRegistro;
 		this.fechaIntervencion = fechaIntervencion;
 		this.horaIntervencion = horaIntervencion;
+		this.id_quorum=quorum;
 		this.id_pdf = id_pdf;
 
 	}
@@ -238,17 +239,19 @@ public class Sesion implements Serializable {
 		String sql = "update Sesion_VE set id_quorum =? where convocatoria_sesion=?;";
 		try {
 			PreparedStatement instruccion = connection.prepareStatement(sql);
-			instruccion.setInt(1, id_quorum);
-			instruccion.setString(2, convocatoria);
+			System.out.println(getId_quorum());
+			instruccion.setInt(1, getId_quorum());
+			System.out.println("la convocatoria es"+getConvocatoria());
+			instruccion.setString(2, getConvocatoria());
 
 			instruccion.execute();
 
-			return 0;
+			return 1;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 1;
+			return 0;
 		}
 
 	}

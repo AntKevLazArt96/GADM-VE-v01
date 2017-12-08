@@ -813,7 +813,8 @@ public class ModificacionSesionCtrl implements Initializable{
     public void onElimSesion(ActionEvent event) throws SQLException {
     	Connection db;
     	db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-		Statement st = db.createStatement();
+    	
+    	Statement st = db.createStatement();
 		ResultSet resultado= st.executeQuery("SELECT id_pdf  FROM public.sesion_ve where convocatoria_sesion='"+cbx_convocatoria.getValue().getConvocatoria()+"';");	
 		
 		if(resultado.next()) {
@@ -826,6 +827,13 @@ public class ModificacionSesionCtrl implements Initializable{
 				limpiar();
 				activar();
 				limpiar_sesion();
+				
+				try {
+					PreparedStatement in = db.prepareStatement("Delete from quorum_ve where id_quorum="+id_quorum);
+			    	in.execute();
+				} catch (Exception e) {
+					e.getMessage();
+				}
 				
 				btn_ActSesion.setVisible(false);
 		    	btn_modSesion.setVisible(false);
@@ -845,6 +853,9 @@ public class ModificacionSesionCtrl implements Initializable{
 		
 		
     }
+    
+    
+    
     @SuppressWarnings("unchecked")
 	@FXML
     public void onElimOrden(ActionEvent event) {
@@ -987,7 +998,7 @@ public class ModificacionSesionCtrl implements Initializable{
 		return file.getPath();
 	}
     
-    
+    static int id_quorum;
     
     
     @SuppressWarnings("unchecked")
@@ -998,6 +1009,9 @@ public class ModificacionSesionCtrl implements Initializable{
 
 			String a = cbx_convocatoria.getValue().getConvocatoria(); 
 	    	lista_sesion=servidor.consultarSesion_Modificacion(a);
+	    	
+	    	id_quorum = lista_sesion.get(0).getId_quorum();
+	    	System.out.println("el idquorum es: "+id_quorum);
 	    	cbx_tipoSes.setValue(lista_sesion.get(0).getTipo_sesion());
 	    	date.setValue(lista_sesion.get(0).getFechaIntervencion().toLocalDate());
 	    	time.setValue(LocalTime.parse(lista_sesion.get(0).getHoraIntervencion()));

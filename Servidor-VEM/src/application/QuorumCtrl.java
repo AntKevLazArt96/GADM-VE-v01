@@ -76,9 +76,10 @@ public class QuorumCtrl implements Initializable {
 		conexion.establecerConexion();
 		Quorum q = new Quorum(fechaActual);
 		data.idquorum = q.guardarRegistro(conexion.getConnection());
-
+		System.out.println(data.convocatoria_sesion);
 		Sesion s = new Sesion(data.idquorum, data.convocatoria_sesion);
-		s.addQuorum(conexion.getConnection());
+		int d = s.addQuorum(conexion.getConnection());
+		System.out.println(d);
 		conexion.cerrarConexion();
 		System.out.println("Se ha iniciado la asistencia");
 		// Inicializo la asistencia de hoy
@@ -124,7 +125,7 @@ public class QuorumCtrl implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-
+		
 		
 
 	}

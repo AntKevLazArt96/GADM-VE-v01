@@ -89,7 +89,7 @@ public class InicioVotoCtrl implements Initializable {
 				// "'" + "}";
 
 				JSONObject js = new JSONObject();
-				js.put("name", "REGISTRAR VOTO");
+				js.put("name", "VOTO RESUMEN");
 
 				String json = js.toJSONString();
 

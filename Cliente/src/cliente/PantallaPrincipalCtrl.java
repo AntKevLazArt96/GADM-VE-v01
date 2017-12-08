@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import org.json.simple.JSONObject;
@@ -46,7 +48,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 	private JFXButton btn_voz;
 
 	@FXML
-	private Label label_convocatoria;
+	private Label label_convocatoria,lbl_fecha;
 
 	@FXML
 	private Circle cirlogin;
@@ -151,7 +153,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 									}
 								}
 
-								if (newMsg.getName().equals("REINICIAR1VOTO")) {
+								if (newMsg.getName().equals("REINICIAR1VOTO")&&newMsg.getMessage().equals(data.name)) {
 									try {
 										FXMLLoader loader = new FXMLLoader(getClass().getResource("ClienteVoto.fxml"));
 										AnchorPane Presesion = (AnchorPane) loader.load();
@@ -179,6 +181,24 @@ public class PantallaPrincipalCtrl implements Initializable {
 									}
 
 								}
+								
+								if (newMsg.getName().contains("VOTO RESUMEN")) {
+
+									try {
+										FXMLLoader loader = new FXMLLoader(
+												getClass().getResource("ResumenVoto.fxml"));
+										AnchorPane Presesion = (AnchorPane) loader.load();
+										contenedor.getChildren().setAll(Presesion);
+										// obtengo el controlador y se lo designo a la variable global c
+										//c = loader.getController();
+
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+
+								}
+								
 
 								if (newMsg.getName().contains("NO SE VOTO")) {
 
@@ -336,6 +356,37 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		Date d= new Date();
+		List<String> dias = new ArrayList<>();
+		dias.add("Domingo");
+		dias.add("Lunes");
+		dias.add("Martes");
+		dias.add("Miercoles");
+		dias.add("Jueves");
+		dias.add("Viernes");
+		dias.add("Sabado");
+		
+		List<String> meses = new ArrayList<>();
+		meses.add("Enero");
+		meses.add("Febrero");
+		meses.add("Marzo");
+		meses.add("Abril");
+		meses.add("Mayo");
+		meses.add("Junio");
+		meses.add("Julio");
+		meses.add("Agosto");
+		meses.add("Septiembre");
+		meses.add("Octubre");
+		meses.add("Noviembre");
+		meses.add("Diciembre");
+		
+		String dia = dias.get(d.getDay());
+		String mes = meses.get(d.getMonth());
+	
+		//cargamos la fecha actual
+		lbl_fecha.setText(dia+", 08 de "+mes+" del "+(d.getYear()+1900));
+		
 		try {
 			sesion = LoginController.servidor.consultarSesion();
 			label_convocatoria.setText(sesion.getConvocatoria());

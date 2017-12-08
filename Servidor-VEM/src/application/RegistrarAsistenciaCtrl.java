@@ -217,6 +217,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user1.setText(lista.get(i).getNombre());
 					status1.setText(lista.get(i).getStatus());
 					status1.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						status1.setStyle("-fx-text-fill: #F44336;");
+					}
 				}
 
 				if (i == 1) {
@@ -226,6 +229,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user2.setVisible(true);
 					status2.setText(lista.get(i).getStatus());
 					status2.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						status2.setStyle("-fx-text-fill: #F44336;");
+					}
 
 				}
 
@@ -236,6 +242,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user3.setVisible(true);
 					status3.setText(lista.get(i).getStatus());
 					status3.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						status3.setStyle("-fx-text-fill: #F44336;");
+					}
 
 				}
 				if (i == 3) {
@@ -245,6 +254,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user4.setVisible(true);
 					status4.setText(lista.get(i).getStatus());
 					status4.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						status4.setStyle("-fx-text-fill: #F44336;");
+					}
 
 				}
 				if (i == 4) {
@@ -254,6 +266,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user5.setVisible(true);
 					status5.setText(lista.get(i).getStatus());
 					status5.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						status5.setStyle("-fx-text-fill: #F44336;");
+					}
 				}
 				if (i == 5) {
 					img6.setImage(convertirImg(lista.get(i).getImg()));
@@ -262,6 +277,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user6.setVisible(true);
 					status6.setText(lista.get(i).getStatus());
 					status6.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						status6.setStyle("-fx-text-fill: #F44336;");
+					}
 				}
 				if (i == 6) {
 					img7.setImage(convertirImg(lista.get(i).getImg()));
@@ -270,6 +288,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user7.setVisible(true);
 					status7.setText(lista.get(i).getStatus());
 					status7.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						status7.setStyle("-fx-text-fill: #F44336;");
+					}
 				}
 				if (i == 7) {
 					img8.setImage(convertirImg(lista.get(i).getImg()));
@@ -278,6 +299,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user8.setVisible(true);
 					status8.setText(lista.get(i).getStatus());
 					status8.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						status8.setStyle("-fx-text-fill: #F44336;");
+					}
 				}
 				if (i == 8) {
 					img9.setImage(convertirImg(lista.get(i).getImg()));
@@ -286,6 +310,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user9.setVisible(true);
 					status9.setText(lista.get(i).getStatus());
 					status9.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						status9.setStyle("-fx-text-fill: #F44336;");
+					}
 				}
 				if (i == 9) {
 					img10.setImage(convertirImg(lista.get(i).getImg()));
@@ -294,6 +321,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user10.setVisible(true);
 					status10.setText(lista.get(i).getStatus());
 					status10.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						status10.setStyle("-fx-text-fill: #F44336;");
+					}
 				}
 				if (i == 10) {
 					img11.setImage(convertirImg(lista.get(i).getImg()));
@@ -302,6 +332,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user11.setVisible(true);
 					status11.setText(lista.get(i).getStatus());
 					status11.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						status11.setStyle("-fx-text-fill: #F44336;");
+					}
 				}
 				if (i == 11) {
 					img12.setImage(convertirImg(lista.get(i).getImg()));
@@ -310,6 +343,9 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 					user12.setVisible(true);
 					estatus12.setText(lista.get(i).getStatus());
 					estatus12.setVisible(true);
+					if (lista.get(i).getStatus().equals("AUSENTE")) {
+						estatus12.setStyle("-fx-text-fill: #F44336;");
+					}
 				}
 
 				if (lista.size() >= 0) {

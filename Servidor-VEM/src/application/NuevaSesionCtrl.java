@@ -326,7 +326,7 @@ public class NuevaSesionCtrl implements Initializable{
 			idActa= pdf.guardarRegistro_pdf(conexion.getConnection());
 			conexion.cerrarConexion(); 
 			
-			Sesion sesion = new Sesion(txtconvocatoria,titulo,tipo_sesion,fechaRegistro, fechaIntervencion , horaIntervencion,idActa );
+			Sesion sesion = new Sesion(txtconvocatoria,titulo,tipo_sesion,fechaRegistro, fechaIntervencion , horaIntervencion,0,idActa );
 	    	conexion.establecerConexion();
 	    	convocatoria = sesion.guardarRegistro(conexion.getConnection());
 	    	System.out.println(convocatoria);

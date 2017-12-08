@@ -412,7 +412,7 @@ public class TramVoto {
     		
             JSONObject js = new JSONObject();
             js.put("name", "REINICIAR1VOTO");
-            js.put("message", user);
+            js.put("status", user);
 
             String json = js.toJSONString();
 

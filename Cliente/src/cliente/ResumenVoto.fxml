@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="panelInicioVoto" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cliente.ResumenVotoCtrl">
+   <children>
+      <AnchorPane layoutX="51.0" layoutY="107.0" prefHeight="560.0" prefWidth="296.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane layoutX="31.0" layoutY="33.0" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="58.0" layoutY="39.0" prefHeight="27.0" prefWidth="172.0" text="RESUMEN VOTOS" textFill="#212121" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="66.0" AnchorPane.topAnchor="39.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView glyphName="POCKET" size="18.0" />
+               </graphic>
+            </Label>
+            <AnchorPane layoutX="54.0" layoutY="129.0" prefHeight="221.0" prefWidth="268.0" AnchorPane.bottomAnchor="239.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <Label layoutX="19.0" layoutY="31.0" text="A FAVOR" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="#00c91b" glyphName="CHECKBOX_MARKED" size="30" />
+                     </graphic>
+                  </Label>
+                  <Label layoutX="19.0" layoutY="72.0" text="EN CONTRA" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="65.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="#dd0000" glyphName="CLOSE_BOX" size="30" />
+                     </graphic>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="111.0" text="EN BLANCO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="115.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="CHECKBOX_BLANK_OUTLINE" size="30" />
+                     </graphic>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="168.0" text="VOTOS SALVADOS" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="168.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView glyphName="CODE_STRING" size="30.0" />
+                     </graphic>
+                  </Label>
+                  <Label layoutX="25.0" layoutY="206.0" text="ESTADO" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="215.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblAFavor" layoutX="230.0" layoutY="30.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblEnContra" layoutX="230.0" layoutY="70.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="65.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblBlanco" layoutX="228.0" layoutY="109.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="115.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblSalvoVoto" layoutX="225.0" layoutY="171.0" text="0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="165.0">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbl_estado" layoutX="130.0" layoutY="219.0" text="eeeee" textFill="#4caf50">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="392.0" layoutY="108.0" prefHeight="152.0" prefWidth="925.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="51.0" layoutY="58.0" text="PUNTO" textFill="#212121" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="30.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
+               </graphic>
+            </Label>
+            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="25.0" layoutY="70.0" prefHeight="59.0" prefWidth="885.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="Lectura y apro" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextArea>
+            <Label fx:id="lbl_punto" layoutX="129.0" layoutY="30.0" text="1" textFill="#212121">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label layoutX="535.0" layoutY="30.0" text="Proponente" textFill="#212121">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView glyphName="ACCOUNT_MULTIPLE" size="30" />
+               </graphic>
+            </Label>
+            <Label fx:id="lbl_proponente" layoutX="702.0" layoutY="30.0" text="Ab. Jose" textFill="#212121">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="335.0" layoutY="274.0" prefHeight="426.0" prefWidth="925.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="335.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="163.0">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="51.0" layoutY="40.0" text="Lista de Miembros" textFill="#212121" AnchorPane.topAnchor="40.0">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView glyphName="ACCOUNT_MULTIPLE" size="30" />
+               </graphic>
+            </Label>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
+               <content>
+                  <AnchorPane prefHeight="602.0" prefWidth="884.0">
+                     <children>
+                        <AnchorPane prefHeight="470.0" prefWidth="437.0" AnchorPane.leftAnchor="0.0">
+                           <children>
+                              <GridPane layoutX="3.0" layoutY="10.0" prefHeight="450.0" prefWidth="415.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="-18.0" AnchorPane.topAnchor="10.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.33331298828125" minWidth="10.0" prefWidth="69.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="205.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="192.0" minWidth="10.0" prefWidth="175.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="23.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="75.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <ImageView fx:id="img2" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                                       <image>
+                                          <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="img1" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="img3" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                                       <image>
+                                          <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="img4" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                                       <image>
+                                          <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="img5" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                                       <image>
+                                          <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                       </image>
+                                    </ImageView>
+                                    <ImageView fx:id="img6" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+                                       <image>
+                                          <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="user1" prefHeight="20.0" prefWidth="229.0" text="LIC. EDUARDO VELÁSQUEZ GARCÍA" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="user2" prefHeight="20.0" prefWidth="219.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="user3" prefHeight="20.0" prefWidth="210.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="user4" prefHeight="20.0" prefWidth="216.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="user5" prefHeight="20.0" prefWidth="233.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="user6" prefHeight="20.0" prefWidth="212.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="status1" prefHeight="27.0" prefWidth="162.0" text="PROPONENTE A FAVOR" textFill="#4caf50" GridPane.columnIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="status2" prefHeight="27.0" prefWidth="124.0" text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="status3" prefHeight="27.0" prefWidth="131.0" text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="status5" prefHeight="27.0" prefWidth="154.0" text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="status6" prefHeight="27.0" prefWidth="142.0" text="Ausente" textFill="#d32f2f" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="status4" prefHeight="27.0" prefWidth="138.0" text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="512.0" prefHeight="470.0" prefWidth="400.0" AnchorPane.rightAnchor="-67.0">
+                           <children>
+                              <AnchorPane layoutX="14.0" prefHeight="470.0" prefWidth="479.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <GridPane layoutY="9.0" prefHeight="449.0" prefWidth="488.0" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="9.0">
+                                       <children>
+                                          <ImageView fx:id="img8" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                                             <image>
+                                                <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="img7" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="img9" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                                             <image>
+                                                <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="img10" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                                             <image>
+                                                <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="img11" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
+                                             <image>
+                                                <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="img12" fitHeight="74.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="5">
+                                             <image>
+                                                <Image url="@../../res/customer_person_people_woman_you_1627.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="status7" prefHeight="27.0" prefWidth="226.0" text="PROPONENTE A FAVOR" textAlignment="JUSTIFY" textFill="#4caf50" wrapText="true" GridPane.columnIndex="2">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="user7" prefHeight="20.0" prefWidth="245.0" text="LIC. EDUARDO VELÁSQUEZ GARCÍA" GridPane.columnIndex="1">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="user8" prefHeight="20.0" prefWidth="186.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="user9" prefHeight="20.0" prefWidth="193.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="user10" prefHeight="20.0" prefWidth="196.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="user11" prefHeight="20.0" prefWidth="187.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="user12" prefHeight="20.0" prefWidth="196.0" text="Nombre Apellido Usuario" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="status8" prefHeight="27.0" prefWidth="102.0" text="Ausente" textFill="#d32f2f" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="status9" prefHeight="27.0" prefWidth="100.0" text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="status11" text="Presente" textFill="#4caf50" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="status10" prefHeight="27.0" prefWidth="122.0" text="Ausente" textFill="#d32f2f" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="estatus12" text="Ausente" textFill="#d32f2f" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.33331298828125" minWidth="10.0" prefWidth="67.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="10.0" prefWidth="230.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="0.0" prefWidth="161.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="176.0" minWidth="0.0" prefWidth="30.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>
