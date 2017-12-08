@@ -3,11 +3,14 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
+import clases.DataSesion;
 import clases.data;
 import gad.manta.common.Conexion;
 import gad.manta.common.Sesion;
@@ -17,97 +20,133 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+public class subInicioCtrl implements Initializable {
 
-public class subInicioCtrl implements Initializable{
-	
 	private Conexion conexion;
-	
-	//private Servidor servidor;
+
+	// private Servidor servidor;
 	@FXML
-    private AnchorPane panel;
+	private AnchorPane panel;
+	
+	@FXML
+    private ScrollPane scrollPane;
 
-    @FXML
-    private AnchorPane paneHaySesion;
+	/*
+	 * @FXML private AnchorPane paneHaySesion,panelSesiones;
+	 */
+	@FXML
+	private AnchorPane panelSesiones;
 
-    @FXML
-    private JFXButton btn_inicio;
+	@FXML
+	private JFXButton btn_inicio;
 
-    @FXML
-    private JFXButton btn_ver;
+	@FXML
+	private JFXButton btn_ver;
 
-    @FXML
-    private AnchorPane paneNoHaySesion;
+	@FXML
+	private AnchorPane paneNoHaySesion;
 
-    @FXML
-    private JFXButton btn_nuevaSesion;
-    
-    @Override
+	@FXML
+	private JFXButton btn_nuevaSesion;
+	
+	public PanelSesionCtrl panelSesion;
+
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		conexion = new Conexion();
-    	
+
 		Date fechaActual = new Date(Calendar.getInstance().getTime().getTime());
-		
-		
+
 		conexion.establecerConexion();
-			String resultado = Sesion.haySesionParaHoy(conexion.getConnection(), fechaActual);
-			System.out.println("El resultado es "+resultado);
-			if(resultado.equals("PENDIENTE")) {
-				data.convocatoria_sesion=resultado;
-				paneHaySesion.setVisible(true);
-				paneNoHaySesion.setVisible(false);
-			}else {
-				paneHaySesion.setVisible(false);
-				paneNoHaySesion.setVisible(true);
-				paneNoHaySesion.setLayoutY(141);
+		List<Sesion> sesion = new ArrayList<>();
+		String resultado = Sesion.haySesionParaHoy(conexion.getConnection(), fechaActual, sesion);
+
+		System.out.println(resultado);
+		if (resultado.equals("PENDIENTE")) {
+			scrollPane.setVisible(true);
+			paneNoHaySesion.setVisible(false);
+			data.convocatoria_sesion = resultado;
+			
+			int contador = 150;
+			
+			for (int i = 0; i < sesion.size(); i++) {
+				System.out.println(i);
+				DataSesion.convocatoria=sesion.get(i).getConvocatoria();
+				DataSesion.description=sesion.get(i).getDescription();
+				DataSesion.fechaIntervencion=sesion.get(i).getFechaIntervencion();
+				DataSesion.estado_sesion=sesion.get(i).getEstado_sesion();
+				DataSesion.tipo_sesion=sesion.get(i).getTipo_sesion();
+				try {
+					
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("PanelSesion.fxml"));
+					AnchorPane pane = (AnchorPane) loader.load();
+					panelSesiones.getChildren().add(pane);
+					panelSesion = loader.getController();
+					
+					System.out.println("panel" + i + "en la posision " + ((i*125)+20));
+					panelSesion.panelInicioVoto.setLayoutY((i*150)+20);
+					panelSesion.panelInicioVoto.setLayoutX(12);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				
+				contador=i*150;
 			}
+			
+			
+
+		} else {
+			scrollPane.setVisible(false);
+			paneNoHaySesion.setVisible(true);
+			paneNoHaySesion.setLayoutX(100);
+			paneNoHaySesion.setLayoutY(130);
+
+		}
 		conexion.cerrarConexion();
-		
+
 	}
-    
-    
-    @FXML
-    void iniciarAction(ActionEvent event) throws IOException {
-    	Stage actualStage = (Stage) btn_inicio.getScene().getWindow();
-	    // do what you have to do
-	    actualStage.close();
-	    
-	    Stage newStage = new Stage();
-		
-	    AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PantallaPrincipal.fxml"));
-        Scene scene = new Scene(pane);
-        
-        //Pantalla completa
-        Screen screen = Screen.getPrimary();
+
+	@FXML
+	void iniciarAction(ActionEvent event) throws IOException {
+		Stage actualStage = (Stage) btn_inicio.getScene().getWindow();
+		// do what you have to do
+		actualStage.close();
+
+		Stage newStage = new Stage();
+
+		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("PantallaPrincipal.fxml"));
+		Scene scene = new Scene(pane);
+
+		// Pantalla completa
+		Screen screen = Screen.getPrimary();
 		Rectangle2D bounds = screen.getVisualBounds();
 
 		newStage.setX(bounds.getMinX());
 		newStage.setY(bounds.getMinY());
 		newStage.setWidth(bounds.getWidth());
 		newStage.setHeight(bounds.getHeight());
-        
-        
-        newStage.setScene(scene);
-        newStage.initStyle(StageStyle.UNDECORATED);
-        newStage.show();
-    }
-    
-    @FXML
-    void onNuevaSesion(ActionEvent event) throws IOException {
-    	try {
-			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("NuevaSesion.fxml"));
+
+		newStage.setScene(scene);
+		newStage.initStyle(StageStyle.UNDECORATED);
+		newStage.show();
+	}
+
+	@FXML
+	void onNuevaSesion(ActionEvent event) throws IOException {
+		try {
+			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("NuevaSesion.fxml"));
 			panel.getChildren().setAll(pane);
-    	} catch (IOException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
-
-	
+	}
 
 }

@@ -6,9 +6,10 @@ import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
-import java.sql.DriverManager;
 import java.rmi.RemoteException;
-
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.json.simple.JSONObject;
@@ -16,10 +17,12 @@ import org.json.simple.parser.JSONParser;
 
 import com.jfoenix.controls.JFXButton;
 
+import clases.Message;
 import clases.TramQuorum;
 import clases.TramVoto;
 import clases.TramVotoOrden;
 import clases.data;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import gad.manta.common.Conexion;
 import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
@@ -35,6 +38,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -78,18 +82,56 @@ public class PantallaPrincipalCtrl implements Initializable {
 					while (true) {
 						String newMsgJson = dis.readUTF();
 
-						Usuario newMsg = new Usuario();
+						Message newMsg = new Message();
 
 						Object obj = parser.parse(newMsgJson);
 						JSONObject msg = (JSONObject) obj;
 
-						newMsg.setNombre((String) msg.get("name"));
-						newMsg.setStatus((String) msg.get("message"));
+						newMsg.setName((String) msg.get("name"));
+						newMsg.setMessage((String) msg.get("message"));
 
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-
+								if(newMsg.getName().equals("PEDIR PALABRA")) {
+									System.out.println("Se ha pedido la palabra");
+									try {
+										List<Usuario> user = LoginController.servidor.listaPalabraPedida();
+										System.out.println(user.get(0).getNombre());
+										final Label label1 = new Label("holi "+user.get(0).getNombre());
+										
+										final JFXButton button = new JFXButton();
+										final MaterialDesignIconView icono = new MaterialDesignIconView();
+										icono.setGlyphName("CHECK");
+										icono.setSize("25");
+										button.setStyle("-fx-background-color: #4CAF50");
+										icono.getParent();
+										
+										/*gridPane.addRow(0, label1);
+										gridPane.addColumn(1, button);*/
+										
+										gridPane.addRow(1, label1);
+										/*gridPane.addRow(2, label3);
+										gridPane.addRow(3, label4);
+										gridPane.addRow(4, label5);
+										gridPane.addRow(5, label6);
+										gridPane.addRow(6, label7);
+										gridPane.addRow(7, label8);
+										gridPane.addRow(8, label9);
+										gridPane.addRow(9, label10);
+										gridPane.addRow(10, label11);
+										//gridPane.add(button,0,0 );*/
+										
+										
+									} catch (RemoteException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+									
+									
+									
+								}
+								
 								if (tramite != null) {
 									if (tramite.equals("quorum")) {
 										System.out.println("Se inicio el Tramite quorum");
@@ -137,7 +179,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 	private Circle cirlogin;
 
 	@FXML
-	private Label lbl_nombre;
+	private Label lbl_nombre,lbl_fecha;
 
 	@FXML
 	private AnchorPane panelvoz;
@@ -148,6 +190,10 @@ public class PantallaPrincipalCtrl implements Initializable {
 	@FXML
 	private JFXButton btn_fin;
 
+	@FXML
+    private GridPane gridPane;
+	
+	
 	// Acciones para esta clase
 	@SuppressWarnings("unchecked")
 	@FXML
@@ -211,12 +257,47 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 	@FXML
 	void handleButtonAction(ActionEvent event) {
-
+		
+		
+		
+		
+		
+		
 	}
 
 	// se ejecuta cada vez que se inicia el programa
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		Date d= new Date();
+		List<String> dias = new ArrayList<>();
+		dias.add("Domingo");
+		dias.add("Lunes");
+		dias.add("Martes");
+		dias.add("Miercoles");
+		dias.add("Jueves");
+		dias.add("Viernes");
+		dias.add("Sabado");
+		
+		List<String> meses = new ArrayList<>();
+		meses.add("Enero");
+		meses.add("Febrero");
+		meses.add("Marzo");
+		meses.add("Abril");
+		meses.add("Mayo");
+		meses.add("Junio");
+		meses.add("Julio");
+		meses.add("Agosto");
+		meses.add("Septiembre");
+		meses.add("Octubre");
+		meses.add("Noviembre");
+		meses.add("Diciembre");
+		
+		String dia = dias.get(d.getDay());
+		String mes = meses.get(d.getMonth());
+	
+		//cargamos la fecha actual
+		lbl_fecha.setText(dia+", 08 de "+mes+" del "+(d.getYear()+1900));
 		lbl_nombre.setText(data.name);
 		cirlogin.setStroke(Color.SEAGREEN);
 		File f = new File("C:\\librerias\\concejal1.png");
@@ -239,7 +320,9 @@ public class PantallaPrincipalCtrl implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		
+		
 	}
 
 }

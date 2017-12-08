@@ -62,4 +62,9 @@ public interface IServidor extends Remote {
 	public void add_nota_pdf(int id_punto, int id_user, String nota)throws RemoteException;
 	public void add_nota_acta(int id_punto, int id_user, String nota)throws RemoteException;
 	
+	//Pedir la Palabra
+	public String pedirPalabra(int id, String user)throws RemoteException;
+	public List<Usuario> listaPalabraPedida()throws RemoteException;
+
+	
 }

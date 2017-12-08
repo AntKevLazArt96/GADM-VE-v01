@@ -316,8 +316,22 @@ public class PantallaPrincipalCtrl implements Initializable {
 	}
 
 	@FXML
-	void pedirPalabra(ActionEvent event) {
+	void pedirPalabra(ActionEvent event) throws RemoteException {
+		String result = LoginController.servidor.pedirPalabra(data.id_user, data.name);
+		System.out.println(result);
+		try {
 
+			JSONObject js = new JSONObject();
+			js.put("name", "PEDIR PALABRA");
+
+			String json = js.toJSONString();
+
+			System.out.println("Se envio:" + json);
+			PantallaPrincipalCtrl.dos.writeUTF(json);
+
+		} catch (IOException E) {
+			E.printStackTrace();
+		}
 	}
 
 	@Override
@@ -334,6 +348,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 		try {
 			Usuario user = LoginController.servidor.usuario(data.name);
+			data.id_user =user.getId();
 			data.img = user.getImg();
 			Image im = convertirImg(data.img);
 			data.Imagen = im;

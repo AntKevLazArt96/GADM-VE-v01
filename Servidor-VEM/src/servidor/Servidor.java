@@ -37,6 +37,8 @@ public class Servidor implements IServidor {
 	List<Voto> listaVotoEnContra = new ArrayList<>();
 	List<Voto> listaVotoSalvado = new ArrayList<>();
 	List<Voto> listaVotoBlanco = new ArrayList<>();
+	
+	List<Usuario> listaPedirPalabra = new ArrayList<>();
 
 	Calendar fecha = new GregorianCalendar();
 	int annio = fecha.get(Calendar.YEAR);
@@ -847,6 +849,18 @@ public class Servidor implements IServidor {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public String pedirPalabra(int id, String usuario) throws RemoteException {
+		listaPedirPalabra.add(new Usuario(id,usuario));
+		return "El usuario "+usuario+" ha pedido la palabra";
+	}
+
+	@Override
+	public List<Usuario> listaPalabraPedida() throws RemoteException {
+		// TODO Auto-generated method stub
+		return listaPedirPalabra;
 	}
 
 }

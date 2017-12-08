@@ -28,6 +28,10 @@ public class Usuario implements Serializable {
 	private int id_img;
 	private String codigoHuella;
 	
+	public Usuario() {
+		super();	
+	}
+	
 	public Usuario(int id, String nombre,String status,byte[] img) {
 		this.id=id;
 		this.nombre= nombre;
@@ -70,8 +74,9 @@ public class Usuario implements Serializable {
 		this.img= img;
 	}
 
-	public Usuario() {
-		super();
+	public Usuario(int id, String usuario) {
+		this.id=id;
+		this.usuario=usuario;
 	}
 
 	public int getId() {

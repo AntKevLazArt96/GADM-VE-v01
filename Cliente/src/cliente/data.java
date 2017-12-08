@@ -3,6 +3,7 @@ package cliente;
 import javafx.scene.image.Image;
 
 public class data {
+	public static int id_user;
     public static String name;
     public static String voto;
     public static String titulo;
