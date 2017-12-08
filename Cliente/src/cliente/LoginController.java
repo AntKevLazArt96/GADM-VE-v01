@@ -1,9 +1,11 @@
 package cliente;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,6 +17,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import cliente.data;
+import gad.manta.common.Config;
 import gad.manta.common.IServidor;
 import gad.manta.common.data_configuracion;
 import javafx.fxml.FXML;
@@ -55,7 +58,7 @@ public class LoginController implements Initializable {
 	    // do what you have to do
 	    actualStage.close();
 	    
-	    servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+	    
 	    
 	    Stage newStage = new Stage();
 		
@@ -82,26 +85,24 @@ public class LoginController implements Initializable {
         newStage.show();
 	}
 public static void configuraciones() {
-		
-		try {
-			Connection db;
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
-			Statement st = db.createStatement();
-			ResultSet resultado= st.executeQuery("select * from configuracion_ve where id_confi=1;");
-			resultado.next();
-
-			//socket
-			data_configuracion.ip=resultado.getString(3);
-			data_configuracion.port=resultado.getInt(5);
-			System.out.println(data_configuracion.ip);
-			db.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	try {
+		Config config = servidor.obtenerConfiguracion();
+		data_configuracion.ip=config.getIp_s();
+		data_configuracion.port=config.getPort_s();
+		System.out.println(data_configuracion.ip);
+	} catch (RemoteException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	try {
+			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
+		} catch (MalformedURLException | RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	configuraciones();
     	txt_username.setText("concejal1");
 		txt_password.setText("1234");
