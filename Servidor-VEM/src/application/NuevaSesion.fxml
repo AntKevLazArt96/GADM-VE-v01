@@ -20,7 +20,7 @@
    <children>
       <AnchorPane layoutX="12.0" layoutY="225.0" prefHeight="462.0" prefWidth="308.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="225.0">
          <children>
-            <AnchorPane layoutY="2.0" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0" />
+            <AnchorPane layoutY="2.0" prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="24.0" layoutY="42.0" prefHeight="27.0" prefWidth="166.0" text="ORDEN DEL DIA" textFill="#212121" AnchorPane.bottomAnchor="421.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="42.0">
                <font>
                   <Font size="18.0" />
@@ -51,7 +51,7 @@
             <MaterialDesignIconView glyphName="FORMAT_ALIGN_JUSTIFY" size="30" />
          </graphic>
       </Label>
-      <AnchorPane layoutX="336.0" layoutY="225.0" prefHeight="485.0" prefWidth="668.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="225.0">
+      <AnchorPane layoutX="336.0" layoutY="225.0" prefHeight="485.0" prefWidth="668.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="336.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="225.0">
          <children>
             <AnchorPane prefHeight="25.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Label layoutX="35.0" layoutY="31.0" prefHeight="27.0" prefWidth="115.0" text="DETALLE" textFill="#212121" AnchorPane.bottomAnchor="432.0" AnchorPane.leftAnchor="35.0" AnchorPane.topAnchor="31.0">
@@ -83,7 +83,7 @@
                   <MaterialIconView glyphName="ATTACH_FILE" size="20" text="" />
                </graphic>
             </Label>
-            <JFXButton fx:id="btn_examinar" layoutX="403.0" layoutY="222.0" onAction="#onExaAction" prefHeight="35.0" prefWidth="260.0" style="-fx-background-color: #00bcd4;" text="AGREGAR DOCUMENTACIÓN" textFill="WHITE" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="222.0">
+            <JFXButton fx:id="btn_examinar" layoutX="403.0" layoutY="222.0" onAction="#onExaAction" prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: #00bcd4;" text="AGREGAR DOCUMENTACIÓN" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="222.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -108,7 +108,7 @@
                </graphic>
             </Label>
             <JFXComboBox fx:id="cbx_proponente" layoutX="218.0" layoutY="387.0" prefHeight="25.0" prefWidth="419.0" />
-            <Label layoutX="459.0" layoutY="32.0" text="Punto No.">
+            <Label layoutX="459.0" layoutY="32.0" text="Punto No." AnchorPane.rightAnchor="105.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -116,8 +116,8 @@
                   <MaterialIconView glyphName="DESCRIPTION" size="20" />
                </graphic>
             </Label>
-            <JFXTextField fx:id="PuntoOrden" alignment="CENTER" layoutX="558.0" layoutY="34.0" onKeyTyped="#validar_punto" prefHeight="25.0" prefWidth="78.0" text="1" />
-            <JFXButton fx:id="btn_eli_lista_pdf" layoutX="511.0" layoutY="351.0" onAction="#eli_lista_pdf" prefHeight="35.0" prefWidth="149.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR " textFill="WHITE" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="330.0">
+            <JFXTextField fx:id="PuntoOrden" alignment="CENTER" layoutX="558.0" layoutY="34.0" onKeyTyped="#validar_punto" prefHeight="25.0" prefWidth="78.0" text="1" AnchorPane.rightAnchor="32.0" />
+            <JFXButton fx:id="btn_eli_lista_pdf" layoutX="511.0" layoutY="351.0" onAction="#eli_lista_pdf" prefHeight="35.0" prefWidth="149.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR " textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="330.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -125,7 +125,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="CLOSE" size="25" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_ver" layoutX="511.0" layoutY="271.0" onAction="#mostrar_pdf" prefHeight="35.0" prefWidth="152.0" style="-fx-background-color: #00bcd4;" text="VER" textFill="WHITE" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="290.0">
+            <JFXButton fx:id="btn_ver" layoutX="511.0" layoutY="271.0" onAction="#mostrar_pdf" prefHeight="35.0" prefWidth="152.0" style="-fx-background-color: #00bcd4;" text="VER" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="290.0">
                <font>
                   <Font size="14.0" />
                </font>
