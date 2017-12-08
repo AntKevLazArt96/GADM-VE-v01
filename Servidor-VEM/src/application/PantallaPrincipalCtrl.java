@@ -257,10 +257,17 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 	@FXML
 	void handleButtonAction(ActionEvent event) {
-		
-		
-		
-		
+		if(event.getSource()==btn_voz) {
+    		
+    		if(panelvoz.visibleProperty().getValue()==true)
+    		{
+    			panelvoz.setVisible(false);
+    		}
+    		else {
+    			panelvoz.setVisible(true);
+    		}
+    		
+    	}
 		
 		
 	}
@@ -268,7 +275,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 	// se ejecuta cada vez que se inicia el programa
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		panelvoz.setVisible(false);
 		Date d= new Date();
 		List<String> dias = new ArrayList<>();
 		dias.add("Domingo");
