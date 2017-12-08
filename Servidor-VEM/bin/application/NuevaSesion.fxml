@@ -174,14 +174,6 @@
                   <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
                </graphic>
             </Label>
-            <JFXButton fx:id="btn_addSesion" layoutX="809.0" layoutY="35.0" onAction="#onAddSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="AGREGAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
-               </graphic>
-            </JFXButton>
             <Label layoutX="18.0" layoutY="28.0" prefHeight="27.0" prefWidth="166.0" text="CONVOCATORIA" textFill="#212121">
                <font>
                   <Font size="18.0" />
@@ -233,6 +225,14 @@
                </graphic>
             </JFXButton>
             <JFXButton fx:id="btn_elimSesion" layoutX="819.0" layoutY="45.0" onAction="#onElimSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_addSesion" layoutX="847.0" layoutY="35.0" onAction="#onAddSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="AGREGAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="35.0">
                <font>
                   <Font size="14.0" />
                </font>

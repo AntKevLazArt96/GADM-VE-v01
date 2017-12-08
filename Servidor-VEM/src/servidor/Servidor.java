@@ -385,8 +385,8 @@ public class Servidor implements IServidor {
 
 			while (resultado.next()) {
 				listaSesion.add(new Sesion(resultado.getString(1), resultado.getString(2), resultado.getString(3),
-						resultado.getDate(4), resultado.getDate(5), resultado.getString(6), resultado.getInt(7)));
-				System.out.println(resultado.getString(1));
+						resultado.getDate(4), resultado.getDate(5), resultado.getString(6), resultado.getInt(8)));
+				
 			}
 			db.close();
 

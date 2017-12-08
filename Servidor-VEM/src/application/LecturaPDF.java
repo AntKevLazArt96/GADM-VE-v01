@@ -123,7 +123,7 @@ public class LecturaPDF extends JFrame implements  Initializable {
 		}
 	 
 	 public String convertirPdf(byte[] bytes) throws IOException {
-			String tmpDir=System.getProperty("user.dir")+"\\tmp\\";
+			String tmpDir=System.getProperty("java.io.tmpdir")+"\\tmp\\";
 			String tmpFileName= UUID.randomUUID().toString();
 			if(!new File(tmpDir).exists()) {
 				if(!new File(tmpDir).mkdirs()) {

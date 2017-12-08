@@ -66,6 +66,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -204,6 +205,7 @@ public class NuevaSesionCtrl implements Initializable{
 		conexion.establecerConexion();
 		proponentes =FXCollections.observableArrayList();
 		
+		System.out.println( System.getProperty("java.io.tmpdir"));
 		Sesion.llenarInformacion(conexion.getConnection(), proponentes);
 
 		cbx_proponente.setItems(proponentes);
@@ -706,7 +708,13 @@ public class NuevaSesionCtrl implements Initializable{
         				db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
         				PreparedStatement instruccion = db.prepareStatement(sql);
         				PreparedStatement instruccion2 = db.prepareStatement(sql2);
-                    	
+        				if(!(instruccion.execute())&&!(instruccion2.execute())){
+        					mostrarMesaje("El punto a sido atualizada");
+        				}else{
+        					mostrarMesaje("No se a podido actualizar el punto");
+        				};
+        				
+        				
                     	while(longitud_lista>0)
             					{
             						
@@ -722,11 +730,7 @@ public class NuevaSesionCtrl implements Initializable{
             						longitud_lista--;
             					}
             	        				
-        				if(!(instruccion.execute()&&instruccion2.execute())) {
-        					mostrarMesaje("El punto a sido atualizada");
-        				}else{
-        					mostrarMesaje("No se a podido actualizar el punto");
-        				};
+                    	
         				db.close();
         			} catch (SQLException e1) {
         				// TODO Auto-generated catch block
@@ -995,7 +999,7 @@ public class NuevaSesionCtrl implements Initializable{
     }
     
     public String convertirPdf(byte[] bytes) throws IOException {
-		String tmpDir=System.getProperty("user.dir")+"\\tmp\\";
+		String tmpDir=System.getProperty("java.io.tmpdir")+"\\tmp\\";
 		String tmpFileName= UUID.randomUUID().toString();
 		if(!new File(tmpDir).exists()) {
 			if(!new File(tmpDir).mkdirs()) {
@@ -1038,6 +1042,14 @@ public class NuevaSesionCtrl implements Initializable{
     }
     
     
-    
+    @FXML
+	void  validar_punto(KeyEvent e) {
+		
+		char car = e.getCharacter().charAt(0);
+		if(!Character.isDigit(car)) {
+			e.consume();
+		}
+			
+	}
 }
 

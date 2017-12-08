@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -112,4 +113,33 @@ public class ActaPdf implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
+	
+	
+
+	public static ActaPdf pdf_acta(int id) {
+		Connection db;
+		ActaPdf actaPdf = null;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			Statement st = db.createStatement();
+			// ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select * from acta_ve where id_pdf=" + id + ";");
+			if(resultado.next()) {
+				actaPdf= new ActaPdf(resultado.getInt(1), resultado.getString(2), resultado.getBytes(3));
+		    	
+			}	
+			db.close();
+			
+			return actaPdf;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+
+
+	}
+	
 	}
