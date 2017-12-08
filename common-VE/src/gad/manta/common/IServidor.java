@@ -37,6 +37,8 @@ public interface IServidor extends Remote {
 	public String verificarSiSeVoto(int id_ordendia)throws RemoteException;
 	public String guardarVotos(int id_ordendia,int si,int no,int blanco,int salvo)throws RemoteException;
 	
+	public Config obtenerConfiguracion()throws RemoteException;
+	
 	public String limpiarVotoOrden()throws RemoteException;
 	
 	

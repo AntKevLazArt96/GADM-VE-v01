@@ -65,8 +65,9 @@ public class QuorumCtrl implements Initializable {
 	public JFXButton btn_finAsistencia;
 
 	@FXML
-	void IniAsistencia(ActionEvent event) {
-		
+	void IniAsistencia(ActionEvent event) throws IOException {
+		//para abrir el ejecutable en los clientes
+		Runtime.getRuntime().exec("cmd /c start java -jar C:\\Cliente.jar");
 		btn_finAsistencia.setVisible(true);
 		btnasistencia.setVisible(false);
 		Date fechaActual = new Date(Calendar.getInstance().getTime().getTime());

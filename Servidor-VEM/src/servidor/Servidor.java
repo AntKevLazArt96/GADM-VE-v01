@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import gad.manta.common.ActaPdf;
 import gad.manta.common.Comentario;
+import gad.manta.common.Config;
 import gad.manta.common.Documentacion;
 import gad.manta.common.IServidor;
 import gad.manta.common.OrdenDia;
@@ -820,6 +821,27 @@ public class Servidor implements IServidor {
 			return "TERMINADO";
 			
 		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Config obtenerConfiguracion() throws RemoteException {
+		try {
+			Connection db;
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			Statement st = db.createStatement();
+			ResultSet resultado= st.executeQuery("select * from configuracion_ve where id_confi=1;");
+			resultado.next();
+			
+			Config config = new Config(resultado.getString(3), resultado.getInt(5));
+			//socket
+			db.close();
+			return config;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
