@@ -116,7 +116,7 @@
                   <MaterialIconView glyphName="DESCRIPTION" size="20" />
                </graphic>
             </Label>
-            <JFXTextField fx:id="PuntoOrden" alignment="CENTER" layoutX="558.0" layoutY="34.0" prefHeight="25.0" prefWidth="78.0" text="1" />
+            <JFXTextField fx:id="PuntoOrden" alignment="CENTER" layoutX="558.0" layoutY="34.0" onKeyTyped="#validar_punto" prefHeight="25.0" prefWidth="78.0" text="1" />
             <JFXButton fx:id="btn_eli_lista_pdf" layoutX="511.0" layoutY="351.0" onAction="#eli_lista_pdf" prefHeight="35.0" prefWidth="149.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR " textFill="WHITE" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="330.0">
                <font>
                   <Font size="14.0" />

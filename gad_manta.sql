@@ -176,8 +176,7 @@ ALTER TABLE public.sesion_ve
   ADD CONSTRAINT session_ve_acta FOREIGN KEY (id_pdf)
       REFERENCES public.acta_ve (id_pdf) MATCH SIMPLE
       ON UPDATE CASCADE ON DELETE CASCADE;
-
-
+      
 ALTER TABLE OrdenDia_VE ADD CONSTRAINT sesion_ve_ordendia_ve_fk
 FOREIGN KEY (convocatoria_sesion)
 REFERENCES Sesion_VE (convocatoria_sesion)

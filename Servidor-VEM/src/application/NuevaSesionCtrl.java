@@ -836,7 +836,7 @@ public class NuevaSesionCtrl implements Initializable{
     	btn_examinar.setDisable(false);
     	btn_elimOrden.setDisable(true);
     	list_pdf.setDisable(false);
-    	
+    	PuntoOrden.setText(String.valueOf(data.num_punto));
     	}
     @FXML
     public void onActSesion(ActionEvent event) {
