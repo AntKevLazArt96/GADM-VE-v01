@@ -21,7 +21,7 @@
                   <MaterialDesignIconView glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="86.0" layoutY="80.0" prefHeight="90.0" prefWidth="717.0" text="SESION ORDINARIA DEL CONCEJO DEL GOBIERNO AUTONOMO DESCENTRALIZADO MUNICIPAL DEL CANTON MANTA, CORRESPONDE AL DIA LUNES 10 DE ABRIL DEL 2017, A LAS 16H00. EN EL SALON DE ACTOS DEL GADMC-MANTA" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="100.0">
+            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="86.0" layoutY="80.0" prefHeight="90.0" prefWidth="717.0" unFocusColor="#00bcd4" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="100.0">
                <font>
                   <Font size="18.0" />
                </font>

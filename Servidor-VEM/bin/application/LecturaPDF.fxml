@@ -69,31 +69,27 @@
                   </ScrollPane>
                </children>
             </StackPane>
-            <JFXButton fx:id="btn_anterior" layoutX="22.0" layoutY="533.0" onAction="#atras" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="Anterior Página" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0">
+            <JFXButton fx:id="btn_anterior" layoutX="20.0" layoutY="546.0" onAction="#atras" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="Anterior Página" textFill="WHITE" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="20.0">
                <font>
                   <Font size="14.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_LEFT" glyphStyle="FLOPPY_ALT" size="30" wrappingWidth="17.714285850524902" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_siguiente" layoutX="692.0" layoutY="532.0" onAction="#siguiente" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="Siguiente Página" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0">
+            <JFXButton fx:id="btn_siguiente" layoutX="682.0" layoutY="544.0" onAction="#siguiente" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="Siguiente Página" textFill="WHITE" AnchorPane.bottomAnchor="6.0" AnchorPane.rightAnchor="20.0">
                <font>
                   <Font size="14.0" />
                </font>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
-               </graphic>
             </JFXButton>
+            <FontAwesomeIconView fill="WHITE" glyphName="ANGLE_RIGHT" glyphStyle="FLOPPY_ALT" layoutX="823.0" layoutY="576.0" size="30" textAlignment="CENTER" wrappingWidth="28.714285850524902" />
          </children>
       </AnchorPane>
-      <JFXButton fx:id="regresar" layoutX="37.0" layoutY="132.0" onAction="#regresar" prefHeight="35.0" prefWidth="125.0" style="-fx-background-color: #00bcd4;" text="REGRESAR" textFill="WHITE" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="132.0">
+      <JFXButton fx:id="regresar" layoutX="37.0" layoutY="132.0" onAction="#regresar" prefHeight="40.0" prefWidth="150.0" style="-fx-background-color: #00bcd4;" text="REGRESAR" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="132.0">
          <font>
             <Font size="14.0" />
          </font>
-         <graphic>
-            <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
-         </graphic>
       </JFXButton>
+      <MaterialDesignIconView fill="WHITE" glyphName="ARROW_LEFT_BOLD" layoutX="45.0" layoutY="163.0" size="30" />
    </children>
 </AnchorPane>
