@@ -93,7 +93,7 @@
             </JFXButton>
             <JFXButton fx:id="btn_elimOrden" layoutX="261.0" layoutY="445.0" onAction="#onElimOrden" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="320.0">
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" glyphStyle="FLOPPY_ALT" size="20" />
                </graphic>
                <font>
                   <Font size="11.0" />
@@ -122,7 +122,7 @@
                   <Font size="14.0" />
                </font>
                <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
+                  <MaterialDesignIconView fill="WHITE" glyphName="CLOSE" size="25" />
                </graphic>
             </JFXButton>
             <JFXButton fx:id="btn_ver" layoutX="511.0" layoutY="271.0" onAction="#mostrar_pdf" prefHeight="35.0" prefWidth="152.0" style="-fx-background-color: #00bcd4;" text="VER" textFill="WHITE" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="290.0">
@@ -130,12 +130,12 @@
                   <Font size="14.0" />
                </font>
                <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="20" />
                </graphic>
             </JFXButton>
             <JFXButton fx:id="btn_addOrden" layoutX="509.0" layoutY="396.0" onAction="#onAddOrden" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="GUARDAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0">
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="20" />
                </graphic>
                <font>
                   <Font size="11.0" />
@@ -155,7 +155,7 @@
                   <Font size="11.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" glyphStyle="FLOPPY_ALT" size="20" />
                </graphic>
             </JFXButton>
          </children>
@@ -213,7 +213,7 @@
                   <Font size="13.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" size="20" />
                </graphic>
             </JFXButton>
             <JFXButton fx:id="btn_modSesion" layoutX="816.0" layoutY="117.0" onAction="#onModSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="GUARDAR CAMBIOS" textFill="WHITE" AnchorPane.rightAnchor="15.0">
@@ -237,7 +237,7 @@
                   <Font size="14.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
                </graphic>
             </JFXButton>
          </children>
