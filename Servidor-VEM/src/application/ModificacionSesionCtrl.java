@@ -247,7 +247,7 @@ public class ModificacionSesionCtrl implements Initializable{
 		num_punto.setCellValueFactory(
                 new PropertyValueFactory<>("numeroPunto"));
 		@SuppressWarnings("rawtypes")
-		TableColumn descrip = new TableColumn("Descripción");
+		TableColumn descrip = new TableColumn("DescripciÃ³n");
 		descrip.setMinWidth(300);
 		descrip.setCellValueFactory(
                 new PropertyValueFactory<>("tema"));
@@ -321,16 +321,16 @@ public class ModificacionSesionCtrl implements Initializable{
 		if(cbx_convocatoria.getValue().getConvocatoria()==null) {
 			mostrarMesaje("Falta ingresar la convocatoria");
 		}else if(date.getValue()==null) {
-			mostrarMesaje("Falta selecionar la fecha de intervención");
+			mostrarMesaje("Falta selecionar la fecha de intervenciÃ³n");
 		}else if(pdf_acta.getItems().size()==0){
-			mostrarMesaje("Falta agregar el acta de la sesión");
+			mostrarMesaje("Falta agregar el acta de la sesiÃ³n");
 		}else {
 			
 			String txtconvocatoria = cbx_convocatoria.getValue().getConvocatoria();
 	    	String [] meses = {"ENERO","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
 	    	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
 	    	String horaIntervencion = time.getValue().toString();
-	    	String titulo = "SESIÓN "+cbx_tipoSes.getValue()+" DEL CONCEJO DEL GOBIERNO AUTÓNOMO DESCENTRALIZADO MUNICIPAL DEL CANTÓN MANTA, CORRESPONDIENTE AL DÍA "+fechaCompleta+", A lAS "+horaIntervencion+" EN EL SALON DE ACTOS DEL GADMC-MANTA";
+	    	String titulo = "SESIÃ“N "+cbx_tipoSes.getValue()+" DEL CONCEJO DEL GOBIERNO AUTÃ“NOMO DESCENTRALIZADO MUNICIPAL DEL CANTÃ“N MANTA, CORRESPONDIENTE AL DÃ�A "+fechaCompleta+", A lAS "+horaIntervencion+" EN EL SALON DE ACTOS DEL GADMC-MANTA";
 		    
 	    	String tipo_sesion = cbx_tipoSes.getValue();
 	    	Date fechaIntervencion = Date.valueOf(date.getValue());
@@ -542,7 +542,7 @@ public class ModificacionSesionCtrl implements Initializable{
     	
     	System.out.println("La convocatoria es: "+convocatoria);
     	if(convocatoria=="") {
-    		mostrarMesaje("Primero tiene que agregar la sesión");
+    		mostrarMesaje("Primero tiene que agregar la sesiÃ³n");
     	}else {
     		System.out.println(PuntoOrden.getText());
     		System.out.println(txt_descripcion.getText());
@@ -555,13 +555,13 @@ public class ModificacionSesionCtrl implements Initializable{
         	
     		
     		if(txt_descripcion.getLength()==0) {
-        		mostrarMesaje("Falta ingresar la descripción del punto");
+        		mostrarMesaje("Falta ingresar la descripciÃ³n del punto");
         	}else if( cbx_proponente.getValue().getId()==0) {
         		mostrarMesaje("Falta selecionar el Proponente del punto");
         	}else {
         		
         		if(longitud_lista==0) {
-            		mostrarMesaje("No se a agredado documentación "
+            		mostrarMesaje("No se a agredado documentaciÃ³n "
             				+ "para el punto "+PuntoOrden.getText()+"");
             	}
         		if(data.documentacion==0) {
@@ -620,7 +620,7 @@ public class ModificacionSesionCtrl implements Initializable{
 			num_punto.setCellValueFactory(
 	                new PropertyValueFactory<>("numeroPunto"));
 			@SuppressWarnings("rawtypes")
-			TableColumn descrip = new TableColumn("Descripción");
+			TableColumn descrip = new TableColumn("DescripciÃ³n");
 			descrip.setMinWidth(300);
 			descrip.setCellValueFactory(
 	                new PropertyValueFactory<>("tema"));
@@ -641,13 +641,13 @@ public class ModificacionSesionCtrl implements Initializable{
         	longitud_lista=list_pdf.getItems().size();
         			
     		if(txt_descripcion.getLength()==0) {
-        		mostrarMesaje("Falta ingresar la descripción del punto");
+        		mostrarMesaje("Falta ingresar la descripciÃ³n del punto");
         	}else if( cbx_proponente.getValue().getId()==0) {
         		mostrarMesaje("Falta selecionar el Proponente del punto");
         	}else {
         		
         		if(longitud_lista==0) {
-            		mostrarMesaje("No se a agredado documentación "
+            		mostrarMesaje("No se a agredado documentaciÃ³n "
             				+ "para el punto "+PuntoOrden.getText()+"");
             	}
         		if(data.documentacion==0) {
@@ -724,7 +724,7 @@ public class ModificacionSesionCtrl implements Initializable{
 			num_punto.setCellValueFactory(
 	                new PropertyValueFactory<>("numeroPunto"));
 			@SuppressWarnings("rawtypes")
-			TableColumn descrip = new TableColumn("Descripción");
+			TableColumn descrip = new TableColumn("DescripciÃ³n");
 			descrip.setMinWidth(300);
 			descrip.setCellValueFactory(
 	                new PropertyValueFactory<>("tema"));
@@ -811,7 +811,7 @@ public class ModificacionSesionCtrl implements Initializable{
 			String sql ="DELETE FROM public.acta_ve WHERE id_pdf="+resultado.getInt(1)+";";
 			PreparedStatement instruccion = db.prepareStatement(sql);
 			if(!instruccion.execute()) {
-				mostrarMesaje("La sesión"+cbx_convocatoria.getValue().getConvocatoria()+" a sido eliminada correctamemte");			
+				mostrarMesaje("La sesiÃ³n"+cbx_convocatoria.getValue().getConvocatoria()+" a sido eliminada correctamemte");			
 				data.num_punto=0;
 				limpiar();
 				activar();
@@ -835,7 +835,7 @@ public class ModificacionSesionCtrl implements Initializable{
 				conexion.cerrarConexion();
 		    	
 			}else {
-				mostrarMesaje("Hubo un error al eliminar sesión"+cbx_convocatoria.getValue().getConvocatoria()+"");
+				mostrarMesaje("Hubo un error al eliminar sesiÃ³n"+cbx_convocatoria.getValue().getConvocatoria()+"");
 			}
 		}
 		db.close();
@@ -895,7 +895,7 @@ public class ModificacionSesionCtrl implements Initializable{
 		num_punto.setCellValueFactory(
                 new PropertyValueFactory<>("numeroPunto"));
 		@SuppressWarnings("rawtypes")
-		TableColumn descrip = new TableColumn("Descripción");
+		TableColumn descrip = new TableColumn("DescripciÃ³n");
 		descrip.setMinWidth(300);
 		descrip.setCellValueFactory(
                 new PropertyValueFactory<>("tema"));
@@ -995,9 +995,13 @@ public class ModificacionSesionCtrl implements Initializable{
     void llenar_sesion(ActionEvent  event) throws IOException{
     		List<gad.manta.common.Sesion>lista_sesion = null;
     		tabla.getItems().clear();
-
-			String a = cbx_convocatoria.getValue().getConvocatoria(); 
-	    	lista_sesion=servidor.consultarSesion_Modificacion(a);
+    		
+    		String a = cbx_convocatoria.getValue().getConvocatoria();
+    		
+			if(a!=null) {
+				lista_sesion=servidor.consultarSesion_Modificacion(a);
+			}
+	    	
 	    	
 	    	id_quorum = lista_sesion.get(0).getId_quorum();
 	    	System.out.println("el idquorum es: "+id_quorum);
