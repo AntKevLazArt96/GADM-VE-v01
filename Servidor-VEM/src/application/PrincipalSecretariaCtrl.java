@@ -205,8 +205,8 @@ public class PrincipalSecretariaCtrl implements Initializable {
 			pdf.setVisible(false);
 			pdf.setCellValueFactory(new PropertyValueFactory<>("id_pdf"));
 
-			TableColumn punto = new TableColumn("Documentaci�n perteneciente al punto");
-			punto.setMinWidth(250);
+			TableColumn punto = new TableColumn("Punto");
+			punto.setMinWidth(100);
 			punto.setCellValueFactory(new PropertyValueFactory<>("punto"));
 			TableColumn nombre = new TableColumn("Nombre");
 			nombre.setMinWidth(700);

@@ -87,7 +87,7 @@ public class ClientePreSesionCtrl implements Initializable {
 			num_punto.setMinWidth(50);
 			num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 
-			TableColumn descripcion = new TableColumn("Descripción");
+			TableColumn descripcion = new TableColumn("DescripciÃ³n");
 			descripcion.setMinWidth(900);
 			descripcion.setCellValueFactory(new PropertyValueFactory<>("tema"));
 
@@ -99,8 +99,8 @@ public class ClientePreSesionCtrl implements Initializable {
 			tabla_ordenDia.setItems(datos);
 
 			List<Documentacion> lista_documentacion = LoginController.servidor.mostrarDocumentacion();
-			TableColumn punto = new TableColumn("Documentación perteneciente al punto");
-			punto.setMinWidth(250);
+			TableColumn punto = new TableColumn("Punto");
+			punto.setMinWidth(100);
 			punto.setCellValueFactory(new PropertyValueFactory<>("punto"));
 
 			TableColumn nombre = new TableColumn("Nombre");
