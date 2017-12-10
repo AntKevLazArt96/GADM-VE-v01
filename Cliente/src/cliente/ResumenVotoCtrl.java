@@ -126,18 +126,14 @@ public class ResumenVotoCtrl implements Initializable {
 		lbl_punto.setText(puntoATratar.num_punto);
 		lbl_proponente.setText(puntoATratar.proponente);
 		limpiar();
-		List<Voto> lista;
-		List<Voto> favor;
-		List<Voto> contra;
-		List<Voto> salvados;
-		List<Voto> blanco;
+		
 		try {
 			// lista que devuelve todos los votantes con sus votos
-			lista = LoginController.servidor.votantesPunto();
-			favor = LoginController.servidor.votosAFavor();
-			contra = LoginController.servidor.votosEnContra();
-			salvados = LoginController.servidor.votosSalvados();
-			blanco = LoginController.servidor.votosBlanco();
+			List<Voto> lista = LoginController.servidor.votantesPunto();
+			List<Voto> favor = LoginController.servidor.votosAFavor();
+			List<Voto> contra = LoginController.servidor.votosEnContra();
+			List<Voto> salvados = LoginController.servidor.votosSalvados();
+			List<Voto> blanco = LoginController.servidor.votosBlanco();
 			System.out.println(lista.size());
 			lblAFavor.setText(String.valueOf(favor.size()));
 			lblEnContra.setText(String.valueOf(contra.size()));
@@ -387,17 +383,7 @@ public class ResumenVotoCtrl implements Initializable {
 			e.printStackTrace();
 		}
 
-		try {
-			LoginController.servidor.limpiarVoto();
-			/*VotoResumen.si=0;
-			VotoResumen.no=0;
-			VotoResumen.blanco=0;
-			VotoResumen.salvo=0;*/
-			// Se inicio la votacion
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 
 	}
 

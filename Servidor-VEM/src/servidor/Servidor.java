@@ -608,25 +608,26 @@ public class Servidor implements IServidor {
 
 	@SuppressWarnings("unlikely-arg-type")
 	@Override
-	public String reiniciarVoto(String user, String voto, int index) throws RemoteException {
+	public String reiniciarVoto(String user, String voto, int index, int index2) throws RemoteException {
 
 		if (voto.contains("PROPONENTE A FAVOR")) {
-			listaVotoAFavor.remove(index);
+			listaVotoAFavor.remove(index2);
 		} else {
 			if (voto.contains("A FAVOR")) {
-				listaVotoAFavor.remove(index);
+				listaVotoAFavor.remove(index2);
 			}
 		}
 
 		if (voto.contains("EN CONTRA")) {
-			listaVotoEnContra.remove(index);
+			listaVotoEnContra.remove(index2);
 		}
 		if (voto.contains("VOTO SALVADO")) {
-			listaVotoSalvado.remove(index);
+			listaVotoSalvado.remove(index2);
 		}
 		if (voto.contains("EN BLANCO")) {
-			listaVotoBlanco.remove(index);
+			listaVotoBlanco.remove(index2);
 		}
+		
 		listaVotantesPunto.remove(index);
 
 		return "El usuario " + user + " ha sido borrado correctamente del registro";

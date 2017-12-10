@@ -52,7 +52,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <JFXTextArea fx:id="txtCumple" editable="false" layoutX="26.0" layoutY="287.0" prefHeight="53.0" prefWidth="254.0" text="No se cumple con el mínimo de miembros para inicar la sesión.">
+            <JFXTextArea fx:id="txtCumple" editable="false" layoutX="26.0" layoutY="287.0" prefHeight="53.0" prefWidth="254.0" text="No se cumple con el mínimo de miembros para inicar la sesión." unFocusColor="#00bcd4">
                <font>
                   <Font size="14.0" />
                </font>

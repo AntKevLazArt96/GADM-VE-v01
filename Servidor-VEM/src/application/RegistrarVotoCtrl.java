@@ -75,7 +75,7 @@ public class RegistrarVotoCtrl implements Initializable {
 	@SuppressWarnings("unchecked")
 	@FXML
 	void finVoto(ActionEvent event) throws IOException {
-
+		
 		try {
 			
 			 String message = LoginController.servidor.limpiarVoto();
@@ -459,7 +459,7 @@ public class RegistrarVotoCtrl implements Initializable {
 			e.printStackTrace();
 		}
 		
-		try {
+		/*try {
 			LoginController.servidor.limpiarVoto();
 			VotoResumen.si = 0;
 			VotoResumen.no = 0;
@@ -469,7 +469,7 @@ public class RegistrarVotoCtrl implements Initializable {
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 

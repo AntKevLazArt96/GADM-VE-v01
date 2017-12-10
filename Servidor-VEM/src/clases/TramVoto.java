@@ -15,11 +15,11 @@ import javafx.scene.image.Image;
 public class TramVoto {
 
 	// Listas
-	List<Voto> lista;
-	List<Voto> favor;
-	List<Voto> contra ;
-	List<Voto> salvados;
-	List<Voto> blanco;
+	static List<Voto> lista;
+	static List<Voto> favor;
+	static List<Voto> contra;
+	static List<Voto> salvados;
+	static List<Voto> blanco;
 
 	public static InicioVotoCtrl iv;
 
@@ -85,7 +85,7 @@ public class TramVoto {
 		iv.status11.setStyle("-fx-text-fill: #4caf50;");
 		iv.estatus12.setStyle("-fx-text-fill: #4caf50;");
 	}
-	
+
 	public void tramiteVoto() {
 		try {
 			// lista que devuelve todos los votantes con sus votos
@@ -94,22 +94,20 @@ public class TramVoto {
 			contra = LoginController.servidor.votosEnContra();
 			salvados = LoginController.servidor.votosSalvados();
 			blanco = LoginController.servidor.votosBlanco();
-			 
-			
-			
+
 			// lista que verifica el total de asistentes
 			List<Usuario> quorum = LoginController.servidor.consultaQuorum();
 
-			VotoResumen.si =favor.size();
-			VotoResumen.no=contra.size();
-			VotoResumen.blanco=blanco.size();
-			VotoResumen.salvo=salvados.size();
-			
+			VotoResumen.si = favor.size();
+			VotoResumen.no = contra.size();
+			VotoResumen.blanco = blanco.size();
+			VotoResumen.salvo = salvados.size();
+
 			iv.lblAFavor.setText(String.valueOf(favor.size()));
 			iv.lblEnContra.setText(String.valueOf(contra.size()));
 			iv.lblSalvoVoto.setText(String.valueOf(salvados.size()));
 			iv.lblBlanco.setText(String.valueOf(blanco.size()));
-			
+
 			iv.lblEspera.setText(String.valueOf(quorum.size() - lista.size()));
 
 			// reiniciando los usuarios
@@ -126,13 +124,13 @@ public class TramVoto {
 					iv.status1.setText(lista.get(i).getVoto());
 					iv.status1.setVisible(true);
 					iv.btnRe1.setVisible(true);
-					//cambiamos el color de acuerdo al voto
+					// cambiamos el color de acuerdo al voto
 					if (lista.get(i).getVoto().equals("EN CONTRA")) {
 						iv.status1.setStyle("-fx-text-fill: #F44336;");
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.status1.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.status1.setStyle("-fx-text-fill: black;");
@@ -151,7 +149,7 @@ public class TramVoto {
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.status2.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.status2.setStyle("-fx-text-fill: black;");
@@ -170,7 +168,7 @@ public class TramVoto {
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.status3.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.status3.setStyle("-fx-text-fill: black;");
@@ -189,7 +187,7 @@ public class TramVoto {
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.status4.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.status4.setStyle("-fx-text-fill: black;");
@@ -208,7 +206,7 @@ public class TramVoto {
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.status5.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.status5.setStyle("-fx-text-fill: black;");
@@ -227,7 +225,7 @@ public class TramVoto {
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.status6.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.status6.setStyle("-fx-text-fill: black;");
@@ -246,7 +244,7 @@ public class TramVoto {
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.status7.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.status7.setStyle("-fx-text-fill: black;");
@@ -265,7 +263,7 @@ public class TramVoto {
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.status8.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.status8.setStyle("-fx-text-fill: black;");
@@ -284,7 +282,7 @@ public class TramVoto {
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.status9.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.status9.setStyle("-fx-text-fill: black;");
@@ -303,7 +301,7 @@ public class TramVoto {
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.status10.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.status10.setStyle("-fx-text-fill: black;");
@@ -322,7 +320,7 @@ public class TramVoto {
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.status11.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.status11.setStyle("-fx-text-fill: black;");
@@ -341,7 +339,7 @@ public class TramVoto {
 					}
 					if (lista.get(i).getVoto().equals("VOTO SALVADO")) {
 						iv.estatus12.setStyle("-fx-text-fill: #B2EBF2;");
-						
+
 					}
 					if (lista.get(i).getVoto().equals("EN BLANCO")) {
 						iv.estatus12.setStyle("-fx-text-fill: black;");
@@ -386,12 +384,12 @@ public class TramVoto {
 			} catch (IOException E) {
 				E.printStackTrace();
 			}
-			/*Stage newStage = new Stage();
-			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("VentanaDialogo.fxml"));
-			Scene scene = new Scene(pane);
-			newStage.setScene(scene);
-			newStage.initStyle(StageStyle.UNDECORATED);
-			newStage.show();*/
+			/*
+			 * Stage newStage = new Stage(); AnchorPane pane = (AnchorPane)
+			 * FXMLLoader.load(getClass().getResource("VentanaDialogo.fxml")); Scene scene =
+			 * new Scene(pane); newStage.setScene(scene);
+			 * newStage.initStyle(StageStyle.UNDECORATED); newStage.show();
+			 */
 
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -400,83 +398,117 @@ public class TramVoto {
 		iv.btn_finVoto.setDisable(true);
 		iv.btn_reVoto.setDisable(true);
 	}
-	
-	
+
 	@SuppressWarnings("unchecked")
-	public void reiniciarcontrol(String user, String voto,int indice ) throws RemoteException {
+	public void reiniciarcontrol(String user, String voto, int indice, int indice2) throws RemoteException {
 		limpiar();
-    	System.out.println("riniciando xD");
-    	LoginController.servidor.reiniciarVoto(user,voto ,indice);
-    	
-    	try {
-    		
-            JSONObject js = new JSONObject();
-            js.put("name", "REINICIAR1VOTO");
-            js.put("status", user);
+		System.out.println("riniciando xD");
+		LoginController.servidor.reiniciarVoto(user, voto, indice, indice2);
+		try {
 
-            String json = js.toJSONString();
+			JSONObject js = new JSONObject();
+			js.put("name", "REINICIAR1VOTO");
+			js.put("status", user);
 
+			String json = js.toJSONString();
 
-            System.out.println("Se envio:"+json);
+			System.out.println("Se envio:" + json);
 
-            PantallaPrincipalCtrl.dos.writeUTF(json);
+			PantallaPrincipalCtrl.dos.writeUTF(json);
 
-        } catch(IOException E) {
-            E.printStackTrace();
-        }
+		} catch (IOException E) {
+			E.printStackTrace();
+		}
 	}
-	
-	
-	
+
 	public void reiniciarVoto() throws RemoteException {
-		reiniciarcontrol(iv.user1.getText(),iv.status1.getText(),0);
+		System.out.println(contra.size());
+		String voto = iv.status1.getText();
+		System.out.println(voto);
+		
+		if (voto.equals("A FAVOR")) {
+			reiniciarcontrol(iv.user1.getText(), iv.status1.getText(), 0, 0);
+		}
+		
+		if (voto.equals("PROPONENTE A FAVOR")) {
+			reiniciarcontrol(iv.user1.getText(), iv.status1.getText(), 0, 0);
+		}
+		if (voto.equals("EN CONTRA")) {
+			reiniciarcontrol(iv.user1.getText(), iv.status1.getText(), 0, 0);
+		}
+		if (voto.equals("EN BLANCO")) {
+			reiniciarcontrol(iv.user1.getText(), iv.status1.getText(), 0, 0);
+		}
+		if (voto.equals("VOTO SALVADO")) {
+			reiniciarcontrol(iv.user1.getText(), iv.status1.getText(), 0, 0);
+		}
+
 	}
-	
+
 	public void reiniciarVoto2() throws RemoteException {
-		reiniciarcontrol(iv.user2.getText(),iv.status2.getText(),1);
+		String voto = iv.status2.getText();
+		System.out.println(voto);
+		
+		if (voto.equals("A FAVOR")) {
+			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
+		}
+		
+		if (voto.equals("PROPONENTE A FAVOR")) {
+			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
+		}
+		if (contra.size()==2) {
+			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
+		}else{
+			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 0);
+		}
+		if (voto.equals("EN BLANCO")) {
+			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
+		}
+		if (voto.equals("VOTO SALVADO")) {
+			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
+		}
 	}
-	
+
 	public void reiniciarVoto3() throws RemoteException {
-		reiniciarcontrol(iv.user3.getText(),iv.status3.getText(),2);
+		// reiniciarcontrol(iv.user3.getText(),iv.status3.getText(),2);
 	}
-	
+
 	public void reiniciarVoto4() throws RemoteException {
-		reiniciarcontrol(iv.user4.getText(),iv.status4.getText(),3);
+		// reiniciarcontrol(iv.user4.getText(),iv.status4.getText(),3);
 	}
-	
+
 	public void reiniciarVoto5() throws RemoteException {
-		reiniciarcontrol(iv.user5.getText(),iv.status5.getText(),4);
+		// reiniciarcontrol(iv.user5.getText(),iv.status5.getText(),4);
 	}
-	
+
 	public void reiniciarVoto6() throws RemoteException {
-		reiniciarcontrol(iv.user6.getText(),iv.status6.getText(),5);
+		// reiniciarcontrol(iv.user6.getText(),iv.status6.getText(),5);
 	}
-	
+
 	public void reiniciarVoto7() throws RemoteException {
-		reiniciarcontrol(iv.user7.getText(),iv.status7.getText(),6);
+		// reiniciarcontrol(iv.user7.getText(),iv.status7.getText(),6);
 	}
-	
+
 	public void reiniciarVoto8() throws RemoteException {
-		reiniciarcontrol(iv.user8.getText(),iv.status8.getText(),7);
+		// reiniciarcontrol(iv.user8.getText(),iv.status8.getText(),7);
 	}
-	
-	
+
 	public void reiniciarVoto9() throws RemoteException {
-		reiniciarcontrol(iv.user9.getText(),iv.status9.getText(),8);
+		// reiniciarcontrol(iv.user9.getText(),iv.status9.getText(),8);
 	}
-	
+
 	public void reiniciarVoto10() throws RemoteException {
-		reiniciarcontrol(iv.user10.getText(),iv.status10.getText(),9);
+		// reiniciarcontrol(iv.user10.getText(),iv.status10.getText(),9);
 	}
-	
+
 	public void reiniciarVoto11() throws RemoteException {
-		reiniciarcontrol(iv.user11.getText(),iv.status11.getText(),10);
+		// reiniciarcontrol(iv.user11.getText(),iv.status11.getText(),10);
 	}
-	
+
 	public void reiniciarVoto12() throws RemoteException {
-		reiniciarcontrol(iv.user12.getText(),iv.estatus12.getText(),11);
+		// reiniciarcontrol(iv.user12.getText(),iv.estatus12.getText(),11);
 	}
-	
+
 	// meotodo para convertir la la imagen
 	public Image convertirImg(byte[] bytes) throws IOException {
 		ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
@@ -484,8 +516,6 @@ public class TramVoto {
 		Image img = new Image(bis);
 		return img;
 	}
-	
-	
 
 	@SuppressWarnings("unchecked")
 	public void iniciarVotacion() {
@@ -508,18 +538,19 @@ public class TramVoto {
 		}
 
 	}
-	
+
 	public void guardarVotos(int id_ordendia) {
 		try {
 			System.out.println(VotoResumen.si);
-			String estado = LoginController.servidor.guardarVotos(id_ordendia, VotoResumen.si, VotoResumen.no, VotoResumen.blanco, VotoResumen.salvo);
-			//guardamos la variable estado
-			VotoResumen.estado=estado;
-			
+			String estado = LoginController.servidor.guardarVotos(id_ordendia, VotoResumen.si, VotoResumen.no,
+					VotoResumen.blanco, VotoResumen.salvo);
+			// guardamos la variable estado
+			VotoResumen.estado = estado;
+
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 	}
-	
+
 }

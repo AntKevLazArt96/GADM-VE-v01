@@ -41,12 +41,12 @@
                   <Font size="41.0" />
                </font>
             </JFXButton>
-            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="50.0" layoutY="82.0" prefHeight="81.0" prefWidth="780.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="Lectura y aprobacion del Acta No. 011-2017">
+            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="50.0" layoutY="82.0" prefHeight="81.0" prefWidth="780.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXTextArea>
-            <Label fx:id="label_punto" layoutX="168.0" layoutY="39.0" text="1" textFill="#212121">
+            <Label fx:id="label_punto" layoutX="168.0" layoutY="39.0" textFill="#212121">
                <font>
                   <Font size="26.0" />
                </font>
@@ -59,7 +59,7 @@
                   <MaterialDesignIconView glyphName="ACCOUNT_MULTIPLE" size="30" />
                </graphic>
             </Label>
-            <Label fx:id="lbl_proponente" layoutX="640.0" layoutY="42.0" text="Ab. Jose" textFill="#212121" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="42.0">
+            <Label fx:id="lbl_proponente" layoutX="640.0" layoutY="42.0" textFill="#212121" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="42.0">
                <font>
                   <Font size="22.0" />
                </font>
