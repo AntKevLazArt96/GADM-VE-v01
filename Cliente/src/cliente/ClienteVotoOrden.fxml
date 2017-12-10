@@ -31,7 +31,7 @@
                   <Font size="48.0" />
                </font>
             </JFXButton>
-            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="86.0" layoutY="80.0" prefHeight="90.0" prefWidth="717.0" text="SESION ORDINARIA DEL CONCEJO DEL GOBIERNO AUTONOMO DESCENTRALIZADOGADMC-MANTA" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="100.0">
+            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="86.0" layoutY="80.0" prefHeight="90.0" prefWidth="717.0" unFocusColor="#00bcd4" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="100.0">
                <font>
                   <Font size="18.0" />
                </font>

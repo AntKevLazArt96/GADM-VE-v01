@@ -114,18 +114,6 @@ public class ModificacionSesionCtrl implements Initializable{
     private Label lbl_file;
     
     @FXML
-    private Label lbl1;
-    @FXML
-    private Label lbl2;
-
-
-    @FXML
-    private Label lbl3;
-
-    @FXML
-    private Label lbl4;
-
-    @FXML
     private JFXTextArea txt_descripcion;
     
     @FXML
@@ -342,7 +330,8 @@ public class ModificacionSesionCtrl implements Initializable{
 	    	String [] meses = {"ENERO","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
 	    	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
 	    	String horaIntervencion = time.getValue().toString();
-	    	String titulo = lbl1.getText()+" "+cbx_tipoSes.getValue()+lbl2.getText()+" "+lbl3.getText()+fechaCompleta+", A lAS "+horaIntervencion+" "+lbl4.getText();
+	    	String titulo = "SESIÓN "+cbx_tipoSes.getValue()+" DEL CONCEJO DEL GOBIERNO AUTÓNOMO DESCENTRALIZADO MUNICIPAL DEL CANTÓN MANTA, CORRESPONDIENTE AL DÍA "+fechaCompleta+", A lAS "+horaIntervencion+" EN EL SALON DE ACTOS DEL GADMC-MANTA";
+		    
 	    	String tipo_sesion = cbx_tipoSes.getValue();
 	    	Date fechaIntervencion = Date.valueOf(date.getValue());
 	    	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());

@@ -24,12 +24,12 @@
                   <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <Label fx:id="lbl_punto" layoutX="152.0" layoutY="58.0" text="10" textFill="#212121">
+            <Label fx:id="lbl_punto" layoutX="152.0" layoutY="58.0" textFill="#212121">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="51.0" layoutY="99.0" prefHeight="109.0" prefWidth="780.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="Lectura y aprobacion del Acta Nggt">
+            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="51.0" layoutY="99.0" prefHeight="109.0" prefWidth="780.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" unFocusColor="#00bcd4">
                <font>
                   <Font size="18.0" />
                </font>
@@ -42,7 +42,7 @@
                   <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <Label fx:id="label_proponente" layoutX="208.0" layoutY="231.0" prefHeight="41.0" prefWidth="243.0" text="ING. ANTHONY LAZ ARTEAGA" textFill="#212121">
+            <Label fx:id="label_proponente" layoutX="208.0" layoutY="231.0" prefHeight="41.0" prefWidth="243.0" textFill="#212121">
                <font>
                   <Font size="18.0" />
                </font>

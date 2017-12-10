@@ -108,7 +108,7 @@
                   <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="25.0" layoutY="70.0" prefHeight="59.0" prefWidth="885.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="Lectura y apro" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="25.0" layoutY="70.0" prefHeight="59.0" prefWidth="885.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" unFocusColor="#00bcd4" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
                <font>
                   <Font size="14.0" />
                </font>

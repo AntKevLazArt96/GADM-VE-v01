@@ -93,7 +93,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <JFXButton fx:id="btn_finVoto" layoutX="80.0" layoutY="361.0" onAction="#finVoto" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #0097a7;" text="TERMINAR VOTACION" textFill="WHITE" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <JFXButton fx:id="btn_finVoto" layoutX="80.0" layoutY="361.0" onAction="#finVoto" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #0097a7;" text="TERMINAR VOTACIÓN" textFill="WHITE" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -101,7 +101,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="ALERT_BOX" size="30" text="" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_reVoto" layoutX="50.0" layoutY="472.0" onAction="#reiniciarVoto" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #757575;" text="REINICIAR VOTACION" textFill="WHITE" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <JFXButton fx:id="btn_reVoto" layoutX="50.0" layoutY="472.0" onAction="#reiniciarVoto" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #757575;" text="REINICIAR VOTACIÓN" textFill="WHITE" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -125,12 +125,12 @@
                   <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="25.0" layoutY="70.0" prefHeight="59.0" prefWidth="885.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="Lectura y apro" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="25.0" layoutY="70.0" prefHeight="59.0" prefWidth="885.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" unFocusColor="#00bcd4" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
                <font>
                   <Font size="14.0" />
                </font>
             </JFXTextArea>
-            <Label fx:id="lbl_punto" layoutX="129.0" layoutY="30.0" text="1" textFill="#212121">
+            <Label fx:id="lbl_punto" layoutX="129.0" layoutY="30.0" textFill="#212121">
                <font>
                   <Font size="22.0" />
                </font>
@@ -143,7 +143,7 @@
                   <MaterialDesignIconView glyphName="ACCOUNT_MULTIPLE" size="30" />
                </graphic>
             </Label>
-            <Label fx:id="lbl_proponente" layoutX="702.0" layoutY="30.0" text="Ab. Jose" textFill="#212121">
+            <Label fx:id="lbl_proponente" layoutX="702.0" layoutY="30.0" textFill="#212121">
                <font>
                   <Font size="22.0" />
                </font>

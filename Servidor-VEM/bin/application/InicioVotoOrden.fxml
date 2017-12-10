@@ -70,7 +70,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <JFXButton fx:id="btn_finVoto" layoutX="80.0" layoutY="361.0" onAction="#finVoto" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #0097a7;" text="TERMINAR VOTACION" textFill="WHITE" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <JFXButton fx:id="btn_finVoto" layoutX="80.0" layoutY="361.0" onAction="#finVoto" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #0097a7;" text="TERMINAR VOTACIÓN" textFill="WHITE" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -102,7 +102,7 @@
                   <MaterialDesignIconView fill="#212121" glyphName="LABEL" size="20.0" />
                </graphic>
             </Label>
-            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="25.0" layoutY="70.0" prefHeight="59.0" prefWidth="885.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" text="SESION ORDINARIA DEL CONSEJO DEL GOBIERNO AUTONOMOO DESENTRALIZADO MUNICIPAL DEL CANTON MANTA, CORRESPONDE AL DIA LUNES 10 DE ABRIL DEL 2017, A LAS 16H00. EN EL SALON DE ACTOS DEL GADMC-MANTA" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+            <JFXTextArea fx:id="label_titulo" editable="false" layoutX="25.0" layoutY="70.0" prefHeight="59.0" prefWidth="885.0" promptText="texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto genericotexto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico texto generico" unFocusColor="#00bcd4" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
                <font>
                   <Font size="14.0" />
                </font>
