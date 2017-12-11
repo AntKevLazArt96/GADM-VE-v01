@@ -270,7 +270,7 @@ public class NuevaSesionCtrl implements Initializable {
 		db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
 				"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 		Statement st = db.createStatement();
-<<<<<<< HEAD
+
 		ResultSet resultado= st.executeQuery("SELECT convocatoria_sesion  FROM public.sesion_ve where convocatoria_sesion='"+txt_convocatoria.getText()+"';");		
 		Statement st2 = db.createStatement();
 		ResultSet resultado2=null;
@@ -339,72 +339,10 @@ public class NuevaSesionCtrl implements Initializable {
     	
     	
     }
-    @FXML
-    void onModSesion(ActionEvent event) throws NotBoundException, IOException, SQLException {
-    	
-		if(txt_convocatoria.getLength()==0) {
-=======
-		ResultSet resultado = st
-				.executeQuery("SELECT convocatoria_sesion  FROM public.sesion_ve where convocatoria_sesion='"
-						+ txt_convocatoria.getText() + "';");
-		db.close();
-		if (resultado.next()) {
-			mostrarMesaje("La convocatoria " + txt_convocatoria.getText() + ", ya se encuantra agregada en el sistema");
-		} else if (txt_convocatoria.getLength() == 0) {
-			mostrarMesaje("Falta ingresar la convocatoria");
-		} else if (date.getValue() == null) {
-			mostrarMesaje("Falta selecionar la fecha de intervenciÃ³n");
-		} else if (pdf_acta.getItems().size() == 0) {
-			mostrarMesaje("Falta agregar el acta de la sesiÃ³n");
-		} else {
-
-			String txtconvocatoria = txt_convocatoria.getText();
-			String[] meses = { "ENERO", "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO",
-					"SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE" };
-			String fechaCompleta = date.getValue().getDayOfMonth() + " DE " + meses[date.getValue().getMonthValue()]
-					+ " DEL " + date.getValue().getYear();
-			String horaIntervencion = time.getValue().toString();
-			String titulo = "SESIÃ“N " + cbx_tipoSes.getValue()
-					+ " DEL CONCEJO DEL GOBIERNO AUTÃ“NOMO DESCENTRALIZADO MUNICIPAL DEL CANTÃ“N MANTA, CORRESPONDIENTE AL DÃ�A "
-					+ fechaCompleta + ", A lAS " + horaIntervencion + " EN EL SALON DE ACTOS DEL GADMC-MANTA";
-			String tipo_sesion = cbx_tipoSes.getValue();
-			Date fechaIntervencion = Date.valueOf(date.getValue());
-			Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
-
-			conexion.establecerConexion();
-			ActaPdf pdf = new ActaPdf(nombre_acta, ruta_acta);
-			idActa = pdf.guardarRegistro_pdf(conexion.getConnection());
-			conexion.cerrarConexion();
-
-			Sesion sesion = new Sesion(txtconvocatoria, titulo, tipo_sesion, fechaRegistro, fechaIntervencion,
-					horaIntervencion, 0, idActa);
-			conexion.establecerConexion();
-			convocatoria = sesion.guardarRegistro(conexion.getConnection());
-			System.out.println(convocatoria);
-			conexion.cerrarConexion();
-
-			if (convocatoria == "") {
-
-				mostrarMesaje("No se pudo registrar la sesiÃ³n");
-			} else {
-				btn_modSesion.setDisable(false);
-				btn_ActSesion.setVisible(true);
-				btn_modSesion.setVisible(true);
-				btn_elimSesion.setVisible(true);
-				mostrarMesaje("Ahora prodece a agregar la orden del dia " + convocatoria);
-				bloquear();
-
-			}
-
-		}
-
-	}
-
-	@FXML
+@FXML
 	void onModSesion(ActionEvent event) throws NotBoundException, IOException, SQLException {
 
 		if (txt_convocatoria.getLength() == 0) {
->>>>>>> anthony
 			mostrarMesaje("Falta ingresar la convocatoria");
 		} else if (date.getValue() == null) {
 			mostrarMesaje("Falta selecionar la fecha de intervenciÃ³n");
@@ -413,7 +351,6 @@ public class NuevaSesionCtrl implements Initializable {
 		} else {
 
 			String txtconvocatoria = txt_convocatoria.getText();
-<<<<<<< HEAD
 	    	String [] meses = {"ENERO","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
 	    	String fechaCompleta = date.getValue().getDayOfMonth()+" DE "+meses[date.getValue().getMonthValue()]+" DEL "+date.getValue().getYear();
 	    	String horaIntervencion = time.getValue().toString();
@@ -433,32 +370,6 @@ public class NuevaSesionCtrl implements Initializable {
 				Connection db;
 		    	
 				db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-=======
-			String[] meses = { "ENERO", "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO",
-					"SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE" };
-			String fechaCompleta = date.getValue().getDayOfMonth() + " DE " + meses[date.getValue().getMonthValue()]
-					+ " DEL " + date.getValue().getYear();
-			String horaIntervencion = time.getValue().toString();
-			String titulo = "SESIÃ“N " + cbx_tipoSes.getValue()
-					+ " DEL CONCEJO DEL GOBIERNO AUTÃ“NOMO DESCENTRALIZADO MUNICIPAL DEL CANTÃ“N MANTA, CORRESPONDIENTE AL DÃ�A "
-					+ fechaCompleta + ", A lAS " + horaIntervencion + " EN EL SALON DE ACTOS DEL GADMC-MANTA";
-
-			String tipo_sesion = cbx_tipoSes.getValue();
-			Date fechaIntervencion = Date.valueOf(date.getValue());
-			Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
-
-			Connection db;
-			String sql = " UPDATE public.sesion_ve SET convocatoria_sesion='" + txtconvocatoria
-					+ "', description_sesion='" + titulo + "', tipo_sesion='" + tipo_sesion + "', register_sesion='"
-					+ fechaRegistro + "'," + " intervention_sesion='" + fechaIntervencion + "', hour_sesion='"
-					+ horaIntervencion + "' WHERE convocatoria_sesion='" + convocatoria + "';";
-
-			String sql2 = "UPDATE public.acta_ve SET nombre_pdf=?, archivo_pdf=? WHERE id_pdf=" + idActa + ";";
-
-			try {
-				db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-						"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
->>>>>>> anthony
 				PreparedStatement instruccion = db.prepareStatement(sql);
 
 				File pdf = new File(ruta_acta);
@@ -889,15 +800,9 @@ public class NuevaSesionCtrl implements Initializable {
 
 			String sql = "DELETE FROM public.acta_ve WHERE id_pdf=" + resultado.getInt(1) + ";";
 			PreparedStatement instruccion = db.prepareStatement(sql);
-<<<<<<< HEAD
 			if(!instruccion.execute()) {
 				mostrarMesaje("La sesión"+txt_convocatoria.getText()+" a sido eliminada correctamemte");			
 				data.num_punto=1;
-=======
-			if (!instruccion.execute()) {
-				mostrarMesaje("La sesiÃ³n" + txt_convocatoria.getText() + " a sido eliminada correctamemte");
-				data.num_punto = 0;
->>>>>>> 1210e2303336fbb9b3da916c3c460f07e1cfaeb2
 				limpiar();
 				activar();
 				limpiar_sesion();
