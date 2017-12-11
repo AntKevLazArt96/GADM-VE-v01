@@ -859,7 +859,7 @@ public class NuevaSesionCtrl implements Initializable{
 			PreparedStatement instruccion = db.prepareStatement(sql);
 			if(!instruccion.execute()) {
 				mostrarMesaje("La sesión"+txt_convocatoria.getText()+" a sido eliminada correctamemte");			
-				data.num_punto=0;
+				data.num_punto=1;
 				limpiar();
 				activar();
 				limpiar_sesion();
