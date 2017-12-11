@@ -73,6 +73,12 @@ public class InicioVotoOrdenCtrl implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("InicioSesion.fxml"));
 			AnchorPane quorum = (AnchorPane) loader.load();
 			panelInicioVotoOrden.getChildren().setAll(quorum);
+			try {
+				LoginController.servidor.limpiarVotoOrden();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 
 		}

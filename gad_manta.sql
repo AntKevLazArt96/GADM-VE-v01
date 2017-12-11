@@ -1,4 +1,4 @@
-﻿drop schema public cascade;
+drop schema public cascade;
 create schema public authorization postgres;
 set search_path to public;
 
@@ -218,7 +218,17 @@ $$
 LANGUAGE plpgsql VOLATILE COST 100;
 
 
-select *from verificar_usuario('secretaria','1234');
+create or replace function obtener_img(in character varying,out integer, out character varying,out bytea)
+RETURNS SETOF record AS
+$$
+begin
+	return query select id_user, name_user, img from User_VE u inner join Img_VE i on u.id_img=i.id_img where username_user=$1;
+	
+end
+$$
+LANGUAGE plpgsql VOLATILE COST 100;
+
+
 
 create or replace function ingresar_usuario(varchar,varchar, varchar, varchar, varchar, integer)
 returns void as 

@@ -9,17 +9,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
-
 
 public class Usuario implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1317952102785898032L;
 	private int id;
-	private String nombre,status;
+	private String nombre, status;
 	private byte[] img;
 	private String cedula;
 	private String cargo;
@@ -27,56 +25,58 @@ public class Usuario implements Serializable {
 	private String password;
 	private int id_img;
 	private String codigoHuella;
-	
+
 	public Usuario() {
-		super();	
+		super();
 	}
-	
-	public Usuario(int id, String nombre,String status,byte[] img) {
-		this.id=id;
-		this.nombre= nombre;
+
+	public Usuario(int id, String nombre, String status, byte[] img) {
+		this.id = id;
+		this.nombre = nombre;
 		this.status = status;
-		this.img= img;
+		this.img = img;
 	}
-	
-	public Usuario(Integer id , String cedula, String cargo,String nombre, String usuario, String password, String ruta_img, String codigoHuella) {
-		this.id=id;
-		this.cedula=cedula;
-		this.nombre=nombre;
-		this.cargo=cargo;
-		this.usuario=usuario;
-		this.password=password;
-		this.codigoHuella=codigoHuella;
+
+	public Usuario(Integer id, String cedula, String cargo, String nombre, String usuario, String password,
+			String ruta_img, String codigoHuella) {
+		this.id = id;
+		this.cedula = cedula;
+		this.nombre = nombre;
+		this.cargo = cargo;
+		this.usuario = usuario;
+		this.password = password;
+		this.codigoHuella = codigoHuella;
 	}
-	
-	public Usuario(String cedula, String cargo,String nombre, String usuario, String password, int id_img) {
-		this.cedula=cedula;
-		this.nombre=nombre;
-		this.cargo=cargo;
-		this.usuario=usuario;
-		this.password=password;
-		this.id_img=id_img;
+
+	public Usuario(String cedula, String cargo, String nombre, String usuario, String password, int id_img) {
+		this.cedula = cedula;
+		this.nombre = nombre;
+		this.cargo = cargo;
+		this.usuario = usuario;
+		this.password = password;
+		this.id_img = id_img;
 	}
-	public Usuario(String cedula, String cargo,String nombre, String usuario, String password, int id_img, String codigoHuella ) {
-		this.cedula=cedula;
-		this.nombre=nombre;
-		this.cargo=cargo;
-		this.usuario=usuario;
-		this.password=password;
-		this.id_img=id_img;
-		this.codigoHuella=codigoHuella;
+
+	public Usuario(String cedula, String cargo, String nombre, String usuario, String password, int id_img,
+			String codigoHuella) {
+		this.cedula = cedula;
+		this.nombre = nombre;
+		this.cargo = cargo;
+		this.usuario = usuario;
+		this.password = password;
+		this.id_img = id_img;
+		this.codigoHuella = codigoHuella;
 	}
-	
 
 	public Usuario(int id, String nombre, byte[] img) {
-		this.id=id;
-		this.nombre= nombre;
-		this.img= img;
+		this.id = id;
+		this.nombre = nombre;
+		this.img = img;
 	}
 
 	public Usuario(int id, String usuario) {
-		this.id=id;
-		this.usuario=usuario;
+		this.id = id;
+		this.usuario = usuario;
 	}
 
 	public int getId() {
@@ -163,58 +163,62 @@ public class Usuario implements Serializable {
 		try {
 			Statement statement = connection.createStatement();
 			ResultSet resultado = statement.executeQuery("select *from User_VE");
-			while(resultado.next()) {
-				users.add(new Usuario(resultado.getInt(1),resultado.getString(2),resultado.getString(3),resultado.getString(4),resultado.getString(5),resultado.getString(6),resultado.getString(7),resultado.getString(8)));
+			while (resultado.next()) {
+				users.add(new Usuario(resultado.getInt(1), resultado.getString(2), resultado.getString(3),
+						resultado.getString(4), resultado.getString(5), resultado.getString(6), resultado.getString(7),
+						resultado.getString(8)));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return nombre;
 	}
-	public int guardarRegistro(Connection connection)  throws IOException {
+
+	public int guardarRegistro(Connection connection) throws IOException {
 		String sql = "select ingresar_usuario(?,?,?,?,?,?);";
 		try {
 			PreparedStatement instruccion = connection.prepareStatement(sql);
 			instruccion.setString(1, getCedula());
-			instruccion.setString(2,getCargo() );
-			instruccion.setString(3,getNombre() );
+			instruccion.setString(2, getCargo());
+			instruccion.setString(3, getNombre());
 			instruccion.setString(4, getUsuario());
-			instruccion.setString(5,getPassword());
+			instruccion.setString(5, getPassword());
 			instruccion.setInt(6, getId_img());
 			instruccion.execute();
 			return 1;
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0;
-		}		
+		}
 	}
-	public int actualizarRegistro(Connection connection)  throws IOException {
-		String sql = "UPDATE user_ve SET cedula_user=?, position_user=?, name_user=?, username_user=?, password_user=?, id_img=?, cod_huella=? WHERE cedula_user='"+getCedula()+"';";
+
+	public int actualizarRegistro(Connection connection) throws IOException {
+		String sql = "UPDATE user_ve SET cedula_user=?, position_user=?, name_user=?, username_user=?, password_user=?, id_img=?, cod_huella=? WHERE cedula_user='"
+				+ getCedula() + "';";
 		try {
 			PreparedStatement instruccion = connection.prepareStatement(sql);
 			instruccion.setString(1, getCedula());
-			instruccion.setString(2,getCargo() );
-			instruccion.setString(3,getNombre() );
+			instruccion.setString(2, getCargo());
+			instruccion.setString(3, getNombre());
 			instruccion.setString(4, getUsuario());
-			instruccion.setString(5,getPassword());
+			instruccion.setString(5, getPassword());
 			instruccion.setInt(6, getId_img());
 			instruccion.setString(7, getCodigoHuella());
 			instruccion.execute();
 			return 1;
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return 0;
-		}		
+		}
 	}
-	
+
 }

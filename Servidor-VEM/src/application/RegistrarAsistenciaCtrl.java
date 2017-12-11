@@ -204,10 +204,11 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 		try {
 			
 			List<Usuario> lista = LoginController.servidor.asistenciaUsuarios(data.idquorum);
+			int presentes = LoginController.servidor.presentes();
+			
+			lblpresentes.setText(String.valueOf(presentes));
 
-			lblpresentes.setText(String.valueOf(lista.size()));
-
-			lblausentes.setText(String.valueOf(12 - lista.size()));
+			lblausentes.setText(String.valueOf(lista.size() - presentes));
 
 			for (int i = 0; i < lista.size(); i++) {
 				if (i == 0) {
@@ -361,6 +362,8 @@ public class RegistrarAsistenciaCtrl implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 
 	}
 
