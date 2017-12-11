@@ -350,6 +350,12 @@ public class TramVoto {
 					iv.btn_finVoto.setDisable(false);
 					iv.btn_reVoto.setDisable(false);
 				}
+				
+				if(favor.size()>contra.size()) {
+					data.voto="APROBADO";
+				}else {
+					data.voto="RECHAZADO";
+				}
 
 			}
 
@@ -422,9 +428,7 @@ public class TramVoto {
 	}
 
 	public void reiniciarVoto() throws RemoteException {
-		System.out.println(contra.size());
 		String voto = iv.status1.getText();
-		System.out.println(voto);
 		
 		if (voto.equals("A FAVOR")) {
 			reiniciarcontrol(iv.user1.getText(), iv.status1.getText(), 0, 0);
@@ -446,25 +450,41 @@ public class TramVoto {
 	}
 
 	public void reiniciarVoto2() throws RemoteException {
-		String voto = iv.status2.getText();
-		System.out.println(voto);
+		int t_favor=favor.size();
+		int t_contra= contra.size();
+		int t_blanco=blanco.size();
+		int t_salvo= salvados.size();
 		
-		if (voto.equals("A FAVOR")) {
-			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
-		}
-		
-		if (voto.equals("PROPONENTE A FAVOR")) {
-			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
-		}
-		if (contra.size()==2) {
-			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
-		}else{
+		if(t_favor==1) {
 			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 0);
 		}
-		if (voto.equals("EN BLANCO")) {
+		
+		
+		if (t_favor==2) {
 			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
 		}
-		if (voto.equals("VOTO SALVADO")) {
+		
+		if (t_contra==1){
+			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 0);
+		}
+		
+		if (t_contra==2) {
+			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
+		}
+		
+		if(t_blanco==1) {
+			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 0);
+		}
+		
+		if (t_blanco==2) {
+			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
+		}
+		
+		if(t_salvo==1) {
+			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 0);
+		}
+		
+		if (t_salvo==2) {
 			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
 		}
 	}

@@ -19,26 +19,25 @@ import javafx.stage.StageStyle;
 
 public class TramVotoOrden {
 
-	// Listas
-	List<Voto> lista;
-	List<Voto> aprueba;
-	List<Voto> rechaza;
+	
 
 	public static InicioVotoOrdenCtrl ivo;
 
 	public void tramiteVotoOrden() {
 		try {
 			// lista que devuelve todos los votantes con sus votos
-			lista = LoginController.servidor.votantes();
+			List<Voto> lista = LoginController.servidor.votantes();
 
-			aprueba = LoginController.servidor.votosAprobados();
-			rechaza = LoginController.servidor.votosRechazados();
+			List<Voto> aprueba = LoginController.servidor.votosAprobados();
+			List<Voto> rechaza = LoginController.servidor.votosRechazados();
 
 			List<Usuario> quorum = LoginController.servidor.consultaQuorum();
 
 			ivo.lblAprobado.setText(String.valueOf(aprueba.size()));
 			ivo.lblRechazado.setText(String.valueOf(rechaza.size()));
-
+			
+			System.out.println("El tamano del quorum es "+quorum.size());
+			System.out.println("El tamano de la lista es"+lista.size());
 			ivo.lblEspera.setText(String.valueOf(quorum.size() - lista.size()));
 
 			// reiniciando los usuarios

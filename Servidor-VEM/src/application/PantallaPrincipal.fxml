@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -18,11 +17,7 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="113.0" prefWidth="1280.0" style="-fx-background-color: #03a9f4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="130.0" fitWidth="1262.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="@../../res/titulo.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="logo" fitHeight="130.0" fitWidth="1262.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="0.0" />
             <JFXButton fx:id="btn_voz" layoutX="1168.0" layoutY="23.0" onAction="#handleButtonAction" text=" " AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="23.0">
                <graphic>
                   <MaterialDesignIconView fill="WHITE" glyphName="TEXT_TO_SPEECH" size="60.0" text="" />

@@ -9,11 +9,8 @@ import java.util.ResourceBundle;
 import org.json.simple.JSONObject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
-import clases.TramVoto;
-import clases.VotoResumen;
 import clases.data;
 import clases.puntoATratar;
-import gad.manta.common.Usuario;
 import gad.manta.common.Voto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -173,6 +170,7 @@ public class RegistrarVotoCtrl implements Initializable {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		lbl_estado.setText(data.voto);
 		try {
 
 			// String json = "{" + " 'name' : '" + data.name + "', 'message' : '" + msg +
@@ -180,6 +178,7 @@ public class RegistrarVotoCtrl implements Initializable {
 
 			JSONObject js = new JSONObject();
 			js.put("name", "VOTO RESUMEN");
+			js.put("status", data.voto);
 
 			String json = js.toJSONString();
 

@@ -37,7 +37,7 @@ public class Servidor implements IServidor {
 	List<Voto> listaVotoEnContra = new ArrayList<>();
 	List<Voto> listaVotoSalvado = new ArrayList<>();
 	List<Voto> listaVotoBlanco = new ArrayList<>();
-	
+
 	List<Usuario> listaPedirPalabra = new ArrayList<>();
 
 	Calendar fecha = new GregorianCalendar();
@@ -50,37 +50,37 @@ public class Servidor implements IServidor {
 
 		try {
 			Class.forName("org.postgresql.Driver");
-			
-		}catch(ClassNotFoundException cnfe){
+
+		} catch (ClassNotFoundException cnfe) {
 			System.out.println("Drive no encontrado");
 			cnfe.printStackTrace();
-			
+
 		}
 		try {
-		//conecci�n a la base de datos  
-		Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-		Statement st = db.createStatement();
-		int id;
-		String usuario="";
-		byte[] img=null;
-		//ejecucion y resultado de la consulta
-		ResultSet resultado = st.executeQuery("select *from verificar_usuario('"+username+"','"+password+"');");
-		resultado.next();
-		id= resultado.getInt(1);
-		usuario= resultado.getString(2);
-		img= resultado.getBytes(3);
-		db.close();
-		
-		
-		
-		//Para el Quorum
-		if(!username.equals("secretaria")) {
-			listaUsuario.add(new Usuario(id,usuario,"PRESENTE", img));	
-		}
-		System.out.println("el usuario se ha logueado correctamente");
-			
-		return usuario;
-		}catch(Exception e) {
+			// conecci�n a la base de datos
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
+			Statement st = db.createStatement();
+			int id;
+			String usuario = "";
+			byte[] img = null;
+			// ejecucion y resultado de la consulta
+			ResultSet resultado = st
+					.executeQuery("select *from verificar_usuario('" + username + "','" + password + "');");
+			resultado.next();
+			id = resultado.getInt(1);
+			usuario = resultado.getString(2);
+			img = resultado.getBytes(3);
+			db.close();
+
+			// Para el Quorum
+			if (!username.equals("secretaria")) {
+				listaUsuario.add(new Usuario(id, usuario, "PRESENTE", img));
+			}
+			System.out.println("el usuario se ha logueado correctamente");
+
+			return usuario;
+		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
 			e.printStackTrace();
 			return null;
@@ -92,7 +92,8 @@ public class Servidor implements IServidor {
 	public Usuario usuario(String name) {
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from consulta_usuario_name('" + name + "');");
@@ -113,7 +114,8 @@ public class Servidor implements IServidor {
 	public void add_nota_pdf(int id_punto, int id_user, String nota) {
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			st.executeUpdate("insert into notaspdf_ve (id_user, id_pdf, descripcion_notas)values(" + id_punto + ","
@@ -134,7 +136,8 @@ public class Servidor implements IServidor {
 			System.out.println(id_punto);
 			System.out.println(id_user);
 			System.out.println(nota);
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			st.executeUpdate("insert into notasActa_ve (id_user, id_acta, descripcion_notas)values(" + id_punto + ","
@@ -153,7 +156,8 @@ public class Servidor implements IServidor {
 	public ActaPdf acta_sesion(int id) {
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 
@@ -176,16 +180,16 @@ public class Servidor implements IServidor {
 		Connection db;
 		Pdf user = null;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select * from pdf_ve where id_pdf=" + id + ";");
-			if(resultado.next()) {
-			 user= new Pdf(resultado.getInt(1), resultado.getInt(2), resultado.getString(3), resultado.getBytes(4));
-			
+			if (resultado.next()) {
+				user = new Pdf(resultado.getInt(1), resultado.getInt(2), resultado.getString(3), resultado.getBytes(4));
 
 			}
-			
+
 			db.close();
 			return user;
 		} catch (SQLException e) {
@@ -194,7 +198,6 @@ public class Servidor implements IServidor {
 			return null;
 		}
 
-
 	}
 
 	@Override
@@ -202,7 +205,8 @@ public class Servidor implements IServidor {
 		List<Usuario> listaUsuario = new ArrayList<>();
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from consulta_usuarios();");
@@ -225,7 +229,8 @@ public class Servidor implements IServidor {
 		List<Usuario> listaUsuario = new ArrayList<>();
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from asistencia_concejales(" + id_quorum + ");");
@@ -242,10 +247,35 @@ public class Servidor implements IServidor {
 			return null;
 		}
 	}
+	
+	@Override
+	public int presentes() throws RemoteException {
+		Connection db;
+		try {
+			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
+			Statement st = db.createStatement();
+			// ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select count(*) from Asistencia_VE where estado_asistencia='PRESENTE'");
+			resultado.next();
+			int numero = resultado.getInt(1);
+			db.close();
+			return numero;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return 0;
+		}
+	}
 
 	@Override
 	public List<Usuario> consultaQuorum() throws RemoteException {
 		return listaUsuario;
+	}
+	
+	@Override
+	public void limpiarQuorum() throws RemoteException {
+		listaUsuario.clear();
 	}
 
 	@Override
@@ -286,7 +316,8 @@ public class Servidor implements IServidor {
 		int idsesion = 0;
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -310,7 +341,8 @@ public class Servidor implements IServidor {
 		List<String> listausuario = new ArrayList<>();
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select name_user from User_VE;");
@@ -344,8 +376,9 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			// conecci�n a la base de datos
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -378,8 +411,9 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			// conecci�n a la base de datos
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -388,8 +422,9 @@ public class Servidor implements IServidor {
 
 			while (resultado.next()) {
 				listaSesion.add(new Sesion(resultado.getString(1), resultado.getString(2), resultado.getString(3),
-						resultado.getDate(4), resultado.getDate(5), resultado.getString(6),resultado.getInt(7), resultado.getInt(8)));
-				
+						resultado.getDate(4), resultado.getDate(5), resultado.getString(6), resultado.getInt(7),
+						resultado.getInt(8)));
+
 			}
 			db.close();
 
@@ -415,8 +450,9 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			// conecci�n a la base de datos
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -452,8 +488,9 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			// conecci�n a la base de datos
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -488,8 +525,9 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			// conecci�n a la base de datos
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -523,12 +561,14 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			// conecci�n a la base de datos
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
-			System.out.println(id_punto+" punto en metodo");
+			System.out.println(id_punto + " punto en metodo");
 			// ejecucion y resultado de la consulta
-			ResultSet resultado = st.executeQuery("select id_pdf,nombre_pdf from pdf_ve where id_ordendia=" + id_punto + ";");
+			ResultSet resultado = st
+					.executeQuery("select id_pdf,nombre_pdf from pdf_ve where id_ordendia=" + id_punto + ";");
 
 			while (resultado.next()) {
 				lista_PDF.add(new Pdf(resultado.getInt(1), resultado.getString(2)));
@@ -558,8 +598,9 @@ public class Servidor implements IServidor {
 				cnfe.printStackTrace();
 
 			}
-			//conecci�n a la base de datos  
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			// conecci�n a la base de datos
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
 
 			// ejecucion y resultado de la consulta
@@ -627,7 +668,7 @@ public class Servidor implements IServidor {
 		if (voto.contains("EN BLANCO")) {
 			listaVotoBlanco.remove(index2);
 		}
-		
+
 		listaVotantesPunto.remove(index);
 
 		return "El usuario " + user + " ha sido borrado correctamente del registro";
@@ -699,7 +740,8 @@ public class Servidor implements IServidor {
 	public List<Pdf> consultarPdfsPunto(int id_ordendia) throws RemoteException {
 		List<Pdf> listaPdfsOrdenDia = new ArrayList<>();
 		try {
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
@@ -744,7 +786,8 @@ public class Servidor implements IServidor {
 
 			}
 			// conecci�n a la base de datos
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 
 			PreparedStatement instruccion = db.prepareStatement(
 					"update OrdenDia_VE set si_ordendia=?, no_ordendia=?, blanco_ordendia=?, salvo_ordendia=?, estado_ordendia=?, verifica_ordendia='TERMINADO' where id_ordendia=?;");
@@ -754,8 +797,7 @@ public class Servidor implements IServidor {
 			instruccion.setInt(4, salvo);
 			instruccion.setString(5, estado);
 			instruccion.setInt(6, id_ordendia);
-			
-			
+
 			instruccion.execute();
 			db.close();
 
@@ -769,14 +811,16 @@ public class Servidor implements IServidor {
 	@Override
 	public String verificarSiSeVoto(int id_ordendia) throws RemoteException {
 		try {
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
-			//ejecucion y resultado de la consulta
-			ResultSet resultado = st.executeQuery("select verifica_ordendia from OrdenDia_VE where id_ordendia="+id_ordendia+";");
+			// ejecucion y resultado de la consulta
+			ResultSet resultado = st
+					.executeQuery("select verifica_ordendia from OrdenDia_VE where id_ordendia=" + id_ordendia + ";");
 			db.close();
 			resultado.next();
 			return resultado.getString(1);
-		
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -787,25 +831,27 @@ public class Servidor implements IServidor {
 	@Override
 	public String verificarSiTerminoSesion(String convocatoria) throws RemoteException {
 		try {
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
 			Statement st = db.createStatement();
-			//ejecucion y resultado de la consulta
-			ResultSet resultado = st.executeQuery("select verifica_ordendia from OrdenDia_VE where convocatoria_sesion='"+convocatoria+"' group by verifica_ordendia;");
+			// ejecucion y resultado de la consulta
+			ResultSet resultado = st
+					.executeQuery("select verifica_ordendia from OrdenDia_VE where convocatoria_sesion='" + convocatoria
+							+ "' group by verifica_ordendia;");
 			db.close();
 			int contador = 0;
 			String estado = "NO HAY ESTADO";
-			while(resultado.next()) {
-				estado=resultado.getString(1);
+			while (resultado.next()) {
+				estado = resultado.getString(1);
 				contador++;
 			}
-			
-			if(contador==1) {
+
+			if (contador == 1) {
 				return estado;
-			}else {
+			} else {
 				return "NO HA TERMINADO";
 			}
-			
-		
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -816,14 +862,15 @@ public class Servidor implements IServidor {
 	@Override
 	public String TerminarSesion(String convocatoria) throws RemoteException {
 		try {
-			Connection db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
-			PreparedStatement instruccion = db.prepareStatement("update Sesion_VE set estado_sesion='TERMINADO' where convocatoria_sesion=?;");
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
+			PreparedStatement instruccion = db
+					.prepareStatement("update Sesion_VE set estado_sesion='TERMINADO' where convocatoria_sesion=?;");
 			instruccion.setString(1, convocatoria);
 			instruccion.execute();
 			db.close();
 			return "TERMINADO";
-			
-		
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -835,16 +882,16 @@ public class Servidor implements IServidor {
 	public Config obtenerConfiguracion() throws RemoteException {
 		try {
 			Connection db;
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql:gad_voto", "postgres", "1234");
 			Statement st = db.createStatement();
-			ResultSet resultado= st.executeQuery("select * from configuracion_ve where id_confi=1;");
+			ResultSet resultado = st.executeQuery("select * from configuracion_ve where id_confi=1;");
 			resultado.next();
-			
+
 			Config config = new Config(resultado.getString(3), resultado.getInt(5));
-			//socket
+			// socket
 			db.close();
 			return config;
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -854,14 +901,46 @@ public class Servidor implements IServidor {
 
 	@Override
 	public String pedirPalabra(int id, String usuario) throws RemoteException {
-		listaPedirPalabra.add(new Usuario(id,usuario));
-		return "El usuario "+usuario+" ha pedido la palabra";
+		listaPedirPalabra.add(new Usuario(id, usuario));
+		return "El usuario " + usuario + " ha pedido la palabra";
 	}
 
 	@Override
 	public List<Usuario> listaPalabraPedida() throws RemoteException {
 		// TODO Auto-generated method stub
 		return listaPedirPalabra;
+	}
+
+	@Override
+	public Usuario obtener_img(String username) throws RemoteException {
+		try {
+			Class.forName("org.postgresql.Driver");
+
+		} catch (ClassNotFoundException cnfe) {
+			System.out.println("Drive no encontrado");
+			cnfe.printStackTrace();
+
+		}
+		try {
+			// conecci�n a la base de datos
+			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
+					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
+			Statement st = db.createStatement();
+			int id;
+			String usuario = "";
+			byte[] img = null;
+			// ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery("select *from obtener_img('" + username + "');");
+			resultado.next();
+			id = resultado.getInt(1);
+			usuario = resultado.getString(2);
+			img = resultado.getBytes(3);
+			db.close();
+			Usuario user = new Usuario(id, usuario, img);
+			return user;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }

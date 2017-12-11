@@ -8,8 +8,6 @@ import org.json.simple.JSONObject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import clases.TramVoto;
-import clases.VotoResumen;
-import clases.data;
 import clases.puntoATratar;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
