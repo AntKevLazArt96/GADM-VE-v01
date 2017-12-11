@@ -3,6 +3,7 @@ package cliente;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
@@ -25,7 +26,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -34,11 +34,11 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -48,7 +48,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 	private JFXButton btn_voz;
 
 	@FXML
-	private Label label_convocatoria,lbl_fecha;
+	private Label label_convocatoria, lbl_fecha;
 
 	@FXML
 	private Circle cirlogin;
@@ -58,6 +58,8 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 	@FXML
 	private AnchorPane contenedor;
+	@FXML
+	private ImageView logo;
 
 	Sesion sesion;
 
@@ -68,9 +70,10 @@ public class PantallaPrincipalCtrl implements Initializable {
 	DataInputStream dis;
 	// llamando a los controladores de las clases
 	ClienteSesionCtrl c;
+	ResumenVotoCtrl resumen;
 
 	// inicializamos socket
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes", "unchecked", "deprecation" })
 	public PantallaPrincipalCtrl() {
 		try {
 			System.out.println(data_configuracion.ip);
@@ -99,6 +102,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 						newMsg.setName((String) msg.get("name"));
 						newMsg.setMessage((String) msg.get("status"));
 						Platform.runLater(new Runnable() {
+
 							@Override
 							public void run() {
 								if (newMsg.getName().equals("InicioVotoOrden")) {
@@ -153,7 +157,8 @@ public class PantallaPrincipalCtrl implements Initializable {
 									}
 								}
 
-								if (newMsg.getName().equals("REINICIAR1VOTO")&&newMsg.getMessage().equals(data.name)) {
+								if (newMsg.getName().equals("REINICIAR1VOTO")
+										&& newMsg.getMessage().equals(data.name)) {
 									try {
 										FXMLLoader loader = new FXMLLoader(getClass().getResource("ClienteVoto.fxml"));
 										AnchorPane Presesion = (AnchorPane) loader.load();
@@ -181,16 +186,17 @@ public class PantallaPrincipalCtrl implements Initializable {
 									}
 
 								}
-								
+
 								if (newMsg.getName().contains("VOTO RESUMEN")) {
 
 									try {
-										FXMLLoader loader = new FXMLLoader(
-												getClass().getResource("ResumenVoto.fxml"));
+										FXMLLoader loader = new FXMLLoader(getClass().getResource("ResumenVoto.fxml"));
 										AnchorPane Presesion = (AnchorPane) loader.load();
 										contenedor.getChildren().setAll(Presesion);
 										// obtengo el controlador y se lo designo a la variable global c
-										//c = loader.getController();
+
+										resumen = loader.getController();
+										resumen.lbl_estado.setText(newMsg.getMessage());
 
 									} catch (IOException e) {
 										// TODO Auto-generated catch block
@@ -198,7 +204,6 @@ public class PantallaPrincipalCtrl implements Initializable {
 									}
 
 								}
-								
 
 								if (newMsg.getName().contains("NO SE VOTO")) {
 
@@ -335,6 +340,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 		return img;
 	}
 
+	@SuppressWarnings("unchecked")
 	@FXML
 	void pedirPalabra(ActionEvent event) throws RemoteException {
 		String result = LoginController.servidor.pedirPalabra(data.id_user, data.name);
@@ -354,10 +360,13 @@ public class PantallaPrincipalCtrl implements Initializable {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		Date d= new Date();
+		File f = new File("C:\\GIT\\GADM-VE-v01\\Cliente\\src\\imgs\\titulo.png");
+		Image im1 = new Image(f.toURI().toString());
+		logo.setImage(im1);
+		Date d = new Date();
 		List<String> dias = new ArrayList<>();
 		dias.add("Domingo");
 		dias.add("Lunes");
@@ -366,7 +375,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 		dias.add("Jueves");
 		dias.add("Viernes");
 		dias.add("Sabado");
-		
+
 		List<String> meses = new ArrayList<>();
 		meses.add("Enero");
 		meses.add("Febrero");
@@ -380,13 +389,13 @@ public class PantallaPrincipalCtrl implements Initializable {
 		meses.add("Octubre");
 		meses.add("Noviembre");
 		meses.add("Diciembre");
-		
+
 		String dia = dias.get(d.getDay());
 		String mes = meses.get(d.getMonth());
-	
-		//cargamos la fecha actual
-		lbl_fecha.setText(dia+", 08 de "+mes+" del "+(d.getYear()+1900));
-		
+
+		// cargamos la fecha actual
+		lbl_fecha.setText(dia + ", 08 de " + mes + " del " + (d.getYear() + 1900));
+
 		try {
 			sesion = LoginController.servidor.consultarSesion();
 			label_convocatoria.setText(sesion.getConvocatoria());
@@ -399,7 +408,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 		try {
 			Usuario user = LoginController.servidor.usuario(data.name);
-			data.id_user =user.getId();
+			data.id_user = user.getId();
 			data.img = user.getImg();
 			Image im = convertirImg(data.img);
 			data.Imagen = im;

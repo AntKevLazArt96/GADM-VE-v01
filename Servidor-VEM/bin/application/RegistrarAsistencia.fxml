@@ -175,7 +175,7 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="status6" text="Ausente" textFill="#f20000" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                              <Label fx:id="status6" text="Ausente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                  <font>
                                     <Font name="System Bold" size="18.0" />
                                  </font>
@@ -265,7 +265,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="status8" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <Label fx:id="status8" text="Ausente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
@@ -280,12 +280,12 @@
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="status10" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                    <Label fx:id="status10" text="Ausente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="estatus12" text="Ausente" textFill="#d32f2f" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                    <Label fx:id="estatus12" text="Ausente" textFill="#4caf50" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>

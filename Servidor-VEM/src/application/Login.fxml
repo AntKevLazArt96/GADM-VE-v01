@@ -5,32 +5,32 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="350.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="377.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
    <children>
       <AnchorPane prefHeight="350.0" prefWidth="258.0" style="-fx-background-color: #03a9f4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Circle fill="WHITE" layoutX="129.0" layoutY="117.0" radius="97.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-            <Label layoutX="102.0" layoutY="316.0" text="Alcaldia" textFill="WHITE">
+            <Circle fx:id="cirlogin" fill="WHITE" layoutX="129.0" layoutY="111.0" onKeyTyped="#getImage" radius="97.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+            <Label layoutX="103.0" layoutY="342.0" text="Alcaldia" textFill="WHITE">
                <font>
                   <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="52.0" layoutY="282.0" prefHeight="48.0" prefWidth="153.0" text="GAD Manta" textFill="WHITE">
+            <Label alignment="CENTER" layoutX="53.0" layoutY="308.0" prefHeight="48.0" prefWidth="153.0" text="GAD Manta" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <ImageView fitHeight="72.0" fitWidth="81.0" layoutX="88.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Cliente/res/logomanta.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="logo" fitHeight="72.0" fitWidth="81.0" layoutX="89.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="lbl_nombre" layoutX="19.0" layoutY="208.0" prefHeight="37.0" prefWidth="223.0" text="LIC. VERONICA ABAD ARTEAGA" textAlignment="CENTER" textFill="WHITE" visible="false" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Label layoutX="287.0" layoutY="30.0" text="INICIO DE SESION" textFill="#757575">
@@ -38,7 +38,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="txt_username" layoutX="341.0" layoutY="101.0" prefHeight="39.0" prefWidth="183.0" unFocusColor="#00bcd4">
+      <JFXTextField fx:id="txt_username" layoutX="341.0" layoutY="101.0" onKeyReleased="#getImage" prefHeight="39.0" prefWidth="183.0" unFocusColor="#00bcd4">
          <font>
             <Font size="18.0" />
          </font>

@@ -73,7 +73,7 @@ public class IngresoPerCtrl implements Initializable {
     void onBuscarFoto(ActionEvent event) {
     	try {
         	FileChooser fc = new FileChooser();
-        	//fc.setInitialDirectory(new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res"));
+        	fc.setInitialDirectory(new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\res"));
         	fc.getExtensionFilters().addAll(new ExtensionFilter("PNG Files","*.png"));
         	File selectedf = fc.showOpenDialog(null);
         	if(selectedf!=null) {

@@ -86,7 +86,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbl_estado" layoutX="130.0" layoutY="219.0" text="APROBADO" textFill="#4caf50">
+                  <Label fx:id="lbl_estado" layoutX="130.0" layoutY="219.0" text="eee" textFill="#4caf50">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

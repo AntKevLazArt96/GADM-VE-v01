@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,13 +14,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class InicioController implements Initializable {
 	
-	
+	@FXML
+	private ImageView logo;
+	@FXML
+    private ImageView logo2;
 	@FXML
     private JFXButton inicioButton;
 
@@ -37,11 +43,23 @@ public class InicioController implements Initializable {
 	
 	@FXML
     private Label txt_username;
+	@FXML
+    private ImageView img_secretaria;
 
 
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    	File f = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\src\\imgs\\logomanta.png");
+		Image im = new Image(f.toURI().toString());
+		logo.setImage(im);
+		
+		File f2 = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\src\\imgs\\GADM-de-Manta-01-01.png");
+		Image im2 = new Image(f2.toURI().toString());
+		logo2.setImage(im2);
+    	
+    	
+    	img_secretaria.setImage(data.Imagen);
     	txt_username.setText(data.name);
     	try {
 			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("SubInicio.fxml"));

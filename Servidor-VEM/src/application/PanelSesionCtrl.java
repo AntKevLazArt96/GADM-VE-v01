@@ -74,6 +74,7 @@ public class PanelSesionCtrl implements Initializable{
         newStage.show();
     }
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		String fechaActual=annio+"-"+mes+"-"+dia;

@@ -34,7 +34,6 @@ import gad.manta.common.Pdf;
 import gad.manta.common.Usuario;
 import gad.manta.common.data_configuracion;
 import javafx.embed.swing.SwingNode;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -59,7 +58,6 @@ public class LecturaPDF extends JFrame implements  Initializable {
 	private int paginas;
 	static java.awt.Image image;
 	
-	private Conexion conexion;
 	private static IServidor servidor;
 	@FXML
     private Circle cirlogin;

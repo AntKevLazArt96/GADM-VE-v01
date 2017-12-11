@@ -37,6 +37,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -64,7 +65,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 	public PantallaPrincipalCtrl() {
 
 		try {
-		
+
 			// Iniciamos el servicio socket
 			sock = new Socket(data_configuracion.ip, data_configuracion.port);
 			dos = new DataOutputStream(sock.getOutputStream());
@@ -93,45 +94,39 @@ public class PantallaPrincipalCtrl implements Initializable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								if(newMsg.getName().equals("PEDIR PALABRA")) {
+								if (newMsg.getName().equals("PEDIR PALABRA")) {
 									System.out.println("Se ha pedido la palabra");
 									try {
 										List<Usuario> user = LoginController.servidor.listaPalabraPedida();
 										System.out.println(user.get(0).getNombre());
-										final Label label1 = new Label("holi "+user.get(0).getNombre());
-										
+										final Label label1 = new Label("holi " + user.get(0).getNombre());
+
 										final JFXButton button = new JFXButton();
 										final MaterialDesignIconView icono = new MaterialDesignIconView();
 										icono.setGlyphName("CHECK");
 										icono.setSize("25");
 										button.setStyle("-fx-background-color: #4CAF50");
 										icono.getParent();
-										
-										/*gridPane.addRow(0, label1);
-										gridPane.addColumn(1, button);*/
-										
+
+										/*
+										 * gridPane.addRow(0, label1); gridPane.addColumn(1, button);
+										 */
+
 										gridPane.addRow(1, label1);
-										/*gridPane.addRow(2, label3);
-										gridPane.addRow(3, label4);
-										gridPane.addRow(4, label5);
-										gridPane.addRow(5, label6);
-										gridPane.addRow(6, label7);
-										gridPane.addRow(7, label8);
-										gridPane.addRow(8, label9);
-										gridPane.addRow(9, label10);
-										gridPane.addRow(10, label11);
-										//gridPane.add(button,0,0 );*/
-										
-										
+										/*
+										 * gridPane.addRow(2, label3); gridPane.addRow(3, label4); gridPane.addRow(4,
+										 * label5); gridPane.addRow(5, label6); gridPane.addRow(6, label7);
+										 * gridPane.addRow(7, label8); gridPane.addRow(8, label9); gridPane.addRow(9,
+										 * label10); gridPane.addRow(10, label11); //gridPane.add(button,0,0 );
+										 */
+
 									} catch (RemoteException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
 									}
-									
-									
-									
+
 								}
-								
+
 								if (tramite != null) {
 									if (tramite.equals("quorum")) {
 										System.out.println("Se inicio el Tramite quorum");
@@ -167,8 +162,10 @@ public class PantallaPrincipalCtrl implements Initializable {
 			E.printStackTrace();
 		}
 	}
-
+	
 	// controles para esta clase
+	@FXML
+    private ImageView logo;
 	@FXML
 	private JFXButton btn_voz;
 
@@ -179,7 +176,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 	private Circle cirlogin;
 
 	@FXML
-	private Label lbl_nombre,lbl_fecha;
+	private Label lbl_nombre, lbl_fecha;
 
 	@FXML
 	private AnchorPane panelvoz;
@@ -191,11 +188,10 @@ public class PantallaPrincipalCtrl implements Initializable {
 	private JFXButton btn_fin;
 
 	@FXML
-    private GridPane gridPane;
-	
-	
+	private GridPane gridPane;
+
 	// Acciones para esta clase
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@FXML
 	void finAction(ActionEvent event) throws IOException {
 		try {
@@ -252,31 +248,43 @@ public class PantallaPrincipalCtrl implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			LoginController.servidor.limpiarQuorum();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@FXML
 	void handleButtonAction(ActionEvent event) {
-		if(event.getSource()==btn_voz) {
-    		
-    		if(panelvoz.visibleProperty().getValue()==true)
-    		{
-    			panelvoz.setVisible(false);
-    		}
-    		else {
-    			panelvoz.setVisible(true);
-    		}
-    		
-    	}
-		
-		
+		if (event.getSource() == btn_voz) {
+
+			if (panelvoz.visibleProperty().getValue() == true) {
+				panelvoz.setVisible(false);
+			} else {
+				panelvoz.setVisible(true);
+			}
+
+		}
+
 	}
 
 	// se ejecuta cada vez que se inicia el programa
+	@SuppressWarnings("deprecation")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		File f = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\src\\imgs\\titulo.png");
+		Image im = new Image(f.toURI().toString());
+		logo.setImage(im);
+		
+		cirlogin.setFill(new ImagePattern(data.Imagen));
+		cirlogin.setStroke(Color.SEAGREEN);
+		cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
+
 		panelvoz.setVisible(false);
-		Date d= new Date();
+		Date d = new Date();
 		List<String> dias = new ArrayList<>();
 		dias.add("Domingo");
 		dias.add("Lunes");
@@ -285,7 +293,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 		dias.add("Jueves");
 		dias.add("Viernes");
 		dias.add("Sabado");
-		
+
 		List<String> meses = new ArrayList<>();
 		meses.add("Enero");
 		meses.add("Febrero");
@@ -299,24 +307,22 @@ public class PantallaPrincipalCtrl implements Initializable {
 		meses.add("Octubre");
 		meses.add("Noviembre");
 		meses.add("Diciembre");
-		
+
 		String dia = dias.get(d.getDay());
 		String mes = meses.get(d.getMonth());
-	
-		//cargamos la fecha actual
-		lbl_fecha.setText(dia+", 08 de "+mes+" del "+(d.getYear()+1900));
-		lbl_nombre.setText(data.name);
-		cirlogin.setStroke(Color.SEAGREEN);
-		File f = new File("C:\\librerias\\concejal1.png");
-		Image im = new Image(f.toURI().toString());
-		cirlogin.setFill(new ImagePattern(im));
-		cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKSEAGREEN));
 
+		// cargamos la fecha actual
+		lbl_fecha.setText(dia + ", 08 de " + mes + " del " + (d.getYear() + 1900));
+		lbl_nombre.setText(data.name);
+		cirlogin.setFill(new ImagePattern(data.Imagen));
+		cirlogin.setStroke(Color.SEAGREEN);
+		cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
+		
 		try {
 			sesion = LoginController.servidor.consultarSesion();
-			data.convocatoria_sesion=sesion.getConvocatoria();
+			data.convocatoria_sesion = sesion.getConvocatoria();
 			label_convocatoria.setText(sesion.getConvocatoria());
-			
+
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Quorum.fxml"));
 			AnchorPane quorum = (AnchorPane) loader.load();
 			contenido.getChildren().setAll(quorum);
@@ -328,9 +334,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
+
 	}
 
 }

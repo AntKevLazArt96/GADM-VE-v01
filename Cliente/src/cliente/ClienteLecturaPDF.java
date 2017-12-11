@@ -36,6 +36,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
@@ -72,6 +73,8 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
     
     @FXML
     private JFXTextArea nota_pdf;
+    @FXML
+	private ImageView logo;
     
 
     
@@ -133,6 +136,9 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		File f = new File("C:\\GIT\\GADM-VE-v01\\Cliente\\src\\imgs\\titulo.png");
+		Image im1 = new Image(f.toURI().toString());
+		logo.setImage(im1);
 		
 		try {
 			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
