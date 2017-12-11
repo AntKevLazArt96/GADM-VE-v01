@@ -289,15 +289,23 @@ public class NuevaSesionCtrl implements Initializable{
     	Connection db;
     	db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 		Statement st = db.createStatement();
-		ResultSet resultado= st.executeQuery("SELECT convocatoria_sesion  FROM public.sesion_ve where convocatoria_sesion='"+txt_convocatoria.getText()+"';");	
-		db.close();
-		if(resultado.next()) {
-			mostrarMesaje("La convocatoria "+txt_convocatoria.getText()+", ya se encuantra agregada en el sistema");
-		}else if(txt_convocatoria.getLength()==0) {
+		ResultSet resultado= st.executeQuery("SELECT convocatoria_sesion  FROM public.sesion_ve where convocatoria_sesion='"+txt_convocatoria.getText()+"';");		
+		Statement st2 = db.createStatement();
+		ResultSet resultado2=null;
+		if(date.getValue()!=null) {
+			resultado2= st2.executeQuery("SELECT convocatoria_sesion  FROM public.sesion_ve where intervention_sesion='"+date.getValue()+"';");	
+				
+		}
+		
+		 if(txt_convocatoria.getLength()==0) {
 			mostrarMesaje("Falta ingresar la convocatoria");
 		}else if(date.getValue()==null) {
 			mostrarMesaje("Falta selecionar la fecha de intervención");
-		}else if(pdf_acta.getItems().size()==0){
+		}else if(resultado.next()) {
+			mostrarMesaje("La convocatoria "+txt_convocatoria.getText()+", ya se encuentra agregada en el sistema");
+		}else if(resultado2.next()) {
+			mostrarMesaje("Ya se encuentra una sesión agregada en el sistema para la fecha "+date.getValue());
+		} else if(pdf_acta.getItems().size()==0){
 			mostrarMesaje("Falta agregar el acta de la sesión");
 		}else {
 			
@@ -337,7 +345,7 @@ public class NuevaSesionCtrl implements Initializable{
 	    	}	
 
 			
-				
+	    	db.close();	
 			
 		}
 		
@@ -351,7 +359,7 @@ public class NuevaSesionCtrl implements Initializable{
     }
     @FXML
     void onModSesion(ActionEvent event) throws NotBoundException, IOException, SQLException {
-
+    	
 		if(txt_convocatoria.getLength()==0) {
 			mostrarMesaje("Falta ingresar la convocatoria");
 		}else if(date.getValue()==null) {
@@ -370,7 +378,6 @@ public class NuevaSesionCtrl implements Initializable{
 	    	Date fechaIntervencion = Date.valueOf(date.getValue());
 	    	Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
 
-	    	Connection db;
 			String sql =" UPDATE public.sesion_ve SET convocatoria_sesion='"+txtconvocatoria+"', description_sesion='"+titulo+"', tipo_sesion='"+tipo_sesion+"', register_sesion='"+fechaRegistro+"',"
 					+ " intervention_sesion='"+fechaIntervencion+"', hour_sesion='"+horaIntervencion+"' WHERE convocatoria_sesion='"+convocatoria+"';";
 			
@@ -378,6 +385,8 @@ public class NuevaSesionCtrl implements Initializable{
 		
 			
 			try {
+				Connection db;
+		    	
 				db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 				PreparedStatement instruccion = db.prepareStatement(sql);
 				
