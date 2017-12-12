@@ -1,6 +1,7 @@
 package application;
 	
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -27,7 +28,13 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		
+		try {
+			Runtime.getRuntime().exec("cmd /c java -jar C:\\Socket.jar");
+			System.out.println(Runtime.getRuntime().toString());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			
     		Utils.setCodeBase(IServidor.class);

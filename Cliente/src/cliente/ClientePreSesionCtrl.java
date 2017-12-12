@@ -87,7 +87,7 @@ public class ClientePreSesionCtrl implements Initializable {
 			num_punto.setMinWidth(50);
 			num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 
-			TableColumn descripcion = new TableColumn("DescripciÃ³n");
+			TableColumn descripcion = new TableColumn("Descripción");
 			descripcion.setMinWidth(900);
 			descripcion.setCellValueFactory(new PropertyValueFactory<>("tema"));
 
