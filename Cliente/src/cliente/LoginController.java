@@ -141,24 +141,6 @@ public class LoginController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	public void mostrarMesaje(String subtitulo) {
-
-		try {
-			data.header = "Aviso";
-			data.cuerpo = subtitulo;
-			Stage newStage = new Stage();
-			AnchorPane pane;
-			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("VentanaDialogo.fxml"));
-			Scene scene = new Scene(pane);
-			newStage.setScene(scene);
-			newStage.initStyle(StageStyle.UNDECORATED);
-			newStage.show();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -167,18 +149,11 @@ public class LoginController implements Initializable {
 		logo.setImage(im);
 		try {
 			servidor = (IServidor) Naming.lookup("rmi://192.168.1.6/VotoE");
-			if(servidor!=null) {
-				configuraciones();
-			}
-			
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
-			
-				mostrarMesaje("No exixte conecion con el sevidor");
-		
+			e.printStackTrace();
 		}
-		
+		configuraciones();
 		txt_username.setText("concejal1");
 		txt_password.setText("1234");
 	}

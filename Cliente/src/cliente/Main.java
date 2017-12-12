@@ -1,8 +1,5 @@
 package cliente;
 
-import java.rmi.Naming;
-
-import gad.manta.common.IServidor;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -15,7 +12,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			
+
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("Login.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
