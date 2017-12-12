@@ -12,28 +12,49 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class VentanaDialogoCtrl implements Initializable {
+public class VentanaDialogoCtrl implements Initializable{
 
-	@FXML
-	private Label lbl_header;
+    @FXML
+    private Label lbl_header;
 
-	@FXML
-	private Label lbl_cuerpo;
+    @FXML
+    private Label lbl_cuerpo;
 
-	@FXML
-	private JFXButton btn_aceptar;
+    @FXML
+    private JFXButton btn_aceptar;
 
-	@FXML
-	void onAceptar(ActionEvent event) throws IOException {
-		Stage stage = (Stage) btn_aceptar.getScene().getWindow();
+    @FXML
+    private JFXButton btn_cancelar;
+
+    @FXML
+    void onAceptar(ActionEvent event) throws IOException {
+    	data.documentacion=0;
+    	Stage stage = (Stage) btn_aceptar.getScene().getWindow();
 		// do what you have to do
 		stage.close();
-		System.exit(0);
-	}
+		
+		
+
+    }
+
+    @FXML
+    void onCancel(ActionEvent event) {
+    	data.documentacion=1;
+    	Stage stage = (Stage) btn_aceptar.getScene().getWindow();
+		// do what you have to do
+		stage.close();
+    }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		btn_cancelar.setVisible(false);
+		lbl_header.setText(data.header);
+		lbl_cuerpo.setText(data.cuerpo);
+		
+		if(data.tipoMsgDial!= null && data.tipoMsgDial.equals("Cancel")) {
+			btn_cancelar.setVisible(true);
+		}
+		
 	}
 
 }
