@@ -321,7 +321,7 @@ public class NuevaSesionCtrl implements Initializable {
 	        	btn_ActSesion.setVisible(true);
 	        	btn_modSesion.setVisible(true);
 	        	btn_elimSesion.setVisible(true);
-	    		mostrarMesaje("Ahora prodece a agregar la orden del dia "+convocatoria);
+	    		mostrarMesaje("Ahora prodece a agregar los puntos del dia para la "+convocatoria);
 	    		bloquear();
 	    	
 	    	}	
@@ -551,13 +551,8 @@ public class NuevaSesionCtrl implements Initializable {
 
 		System.out.println("La convocatoria es: " + convocatoria);
 		if (convocatoria == "") {
-			mostrarMesaje("Primero tiene que agregar la sesiÃ³n");
+			mostrarMesaje("Primero tiene que agregar la sesión");
 		} else {
-			System.out.println(PuntoOrden.getText());
-			System.out.println(txt_descripcion.getText());
-			System.out.println(rutapdf);
-			System.out.println(cbx_proponente.getValue().getId());
-			System.out.println(convocatoria);
 
 			int longitud_lista = 0;
 			longitud_lista = list_pdf.getItems().size();
@@ -569,7 +564,7 @@ public class NuevaSesionCtrl implements Initializable {
 			} else {
 
 				if (longitud_lista == 0) {
-					mostrarMesaje("No se a agredado documentaciÃ³n " + "para el punto " + PuntoOrden.getText() + "");
+					mostrarMesaje("No se a agredado documentación " + "para el punto " + PuntoOrden.getText() + "");
 				}
 				if (data.documentacion == 0) {
 
@@ -813,7 +808,7 @@ public class NuevaSesionCtrl implements Initializable {
 				btn_addSesion.setVisible(true);
 
 			} else {
-				mostrarMesaje("Hubo un error al eliminar sesiÃ³n" + txt_convocatoria.getText() + "");
+				mostrarMesaje("Hubo un error al eliminar sesión" + txt_convocatoria.getText() + "");
 			}
 		}
 		db.close();
@@ -867,7 +862,7 @@ public class NuevaSesionCtrl implements Initializable {
 		num_punto.setMinWidth(80);
 		num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 		@SuppressWarnings("rawtypes")
-		TableColumn descrip = new TableColumn("DescripciÃ³n");
+		TableColumn descrip = new TableColumn("Descripción");
 		descrip.setMinWidth(300);
 		descrip.setCellValueFactory(new PropertyValueFactory<>("tema"));
 		ObservableList<OrdenDia> datos = FXCollections.observableArrayList(listaOrden);
