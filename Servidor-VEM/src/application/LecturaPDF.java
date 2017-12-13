@@ -14,6 +14,9 @@ import java.nio.channels.FileChannel;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 import javax.swing.ImageIcon;
@@ -62,7 +65,7 @@ public class LecturaPDF extends JFrame implements  Initializable {
 	@FXML
     private Circle cirlogin;
 	@FXML
-    private Label lbl_nombre;
+    private Label lbl_nombre,lbl_fecha;
 	@FXML
     private JFXButton btn_voz;
 	
@@ -139,9 +142,39 @@ public class LecturaPDF extends JFrame implements  Initializable {
 			return file.getPath();
 		}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		Date d = new Date();
+		List<String> dias = new ArrayList<>();
+		dias.add("Domingo");
+		dias.add("Lunes");
+		dias.add("Martes");
+		dias.add("Miercoles");
+		dias.add("Jueves");
+		dias.add("Viernes");
+		dias.add("Sabado");
+
+		List<String> meses = new ArrayList<>();
+		meses.add("Enero");
+		meses.add("Febrero");
+		meses.add("Marzo");
+		meses.add("Abril");
+		meses.add("Mayo");
+		meses.add("Junio");
+		meses.add("Julio");
+		meses.add("Agosto");
+		meses.add("Septiembre");
+		meses.add("Octubre");
+		meses.add("Noviembre");
+		meses.add("Diciembre");
+
+		String dia = dias.get(d.getDay());
+		String mes = meses.get(d.getMonth());
+		int di = d.getDate();
 		
+		// cargamos la fecha actual
+		lbl_fecha.setText(dia + ", "+di+" de " + mes + " del " + (d.getYear() + 1900));
 		try {
 			servidor = (IServidor)Naming.lookup("rmi://"+data_configuracion.ip_rmi+"/VotoE");
 		} catch (MalformedURLException | RemoteException | NotBoundException e2) {

@@ -93,7 +93,6 @@ public class InicioVotoOrdenCtrl implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
 		try {
 			Sesion sesion = LoginController.servidor.consultarSesion();
 			label_titulo.setText(sesion.getDescription());
@@ -101,7 +100,6 @@ public class InicioVotoOrdenCtrl implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		btn_finVoto.setDisable(true);
 		btn_reVoto.setDisable(true);
 

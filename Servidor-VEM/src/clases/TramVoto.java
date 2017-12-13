@@ -350,11 +350,11 @@ public class TramVoto {
 					iv.btn_finVoto.setDisable(false);
 					iv.btn_reVoto.setDisable(false);
 				}
-				
-				if(favor.size()>contra.size()) {
-					data.voto="APROBADO";
-				}else {
-					data.voto="RECHAZADO";
+
+				if (favor.size() > contra.size()) {
+					data.voto = "APROBADO";
+				} else {
+					data.voto = "RECHAZADO";
 				}
 
 			}
@@ -406,10 +406,10 @@ public class TramVoto {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void reiniciarcontrol(String user, String voto, int indice, int indice2) throws RemoteException {
+	public void reiniciarcontrol(String user, String voto) throws RemoteException {
 		limpiar();
 		System.out.println("riniciando xD");
-		LoginController.servidor.reiniciarVoto(user, voto, indice, indice2);
+		LoginController.servidor.reiniciarVoto(user, voto);
 		try {
 
 			JSONObject js = new JSONObject();
@@ -428,65 +428,20 @@ public class TramVoto {
 	}
 
 	public void reiniciarVoto() throws RemoteException {
-		String voto = iv.status1.getText();
-		
-		if (voto.equals("A FAVOR")) {
-			reiniciarcontrol(iv.user1.getText(), iv.status1.getText(), 0, 0);
-		}
-		
-		if (voto.equals("PROPONENTE A FAVOR")) {
-			reiniciarcontrol(iv.user1.getText(), iv.status1.getText(), 0, 0);
-		}
-		if (voto.equals("EN CONTRA")) {
-			reiniciarcontrol(iv.user1.getText(), iv.status1.getText(), 0, 0);
-		}
-		if (voto.equals("EN BLANCO")) {
-			reiniciarcontrol(iv.user1.getText(), iv.status1.getText(), 0, 0);
-		}
-		if (voto.equals("VOTO SALVADO")) {
-			reiniciarcontrol(iv.user1.getText(), iv.status1.getText(), 0, 0);
-		}
+		String user = iv.user1.getText();
+		String status = iv.status1.getText();
+		reiniciarcontrol(user,status);
 
 	}
 
 	public void reiniciarVoto2() throws RemoteException {
-		int t_favor=favor.size();
-		int t_contra= contra.size();
-		int t_blanco=blanco.size();
-		int t_salvo= salvados.size();
+		String user = lista.get(1).getNombre();
 		
-		if(t_favor==1) {
-			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 0);
-		}
+		Voto voto =lista.stream().filter(p->p.getNombre().equals(user)).findFirst().get();
+		lista.remove(voto);
 		
-		
-		if (t_favor==2) {
-			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
-		}
-		
-		if (t_contra==1){
-			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 0);
-		}
-		
-		if (t_contra==2) {
-			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
-		}
-		
-		if(t_blanco==1) {
-			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 0);
-		}
-		
-		if (t_blanco==2) {
-			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
-		}
-		
-		if(t_salvo==1) {
-			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 0);
-		}
-		
-		if (t_salvo==2) {
-			reiniciarcontrol(iv.user2.getText(), iv.status1.getText(), 1, 1);
-		}
+
+			
 	}
 
 	public void reiniciarVoto3() throws RemoteException {

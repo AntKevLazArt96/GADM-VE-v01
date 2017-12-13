@@ -26,6 +26,7 @@ public class Servidor implements IServidor {
 	public Servidor() throws RemoteException {
 		super();
 	}
+
 	Conexion conexion = new Conexion();
 	List<Usuario> listaUsuario = new ArrayList<>();
 	// votacion para aprobar el orden del dia propuesto
@@ -52,9 +53,9 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
+			Connection db = conexion.getConnection();
 			Statement st = db.createStatement();
-			
+
 			int id;
 			String usuario = "";
 			byte[] img = null;
@@ -84,11 +85,11 @@ public class Servidor implements IServidor {
 
 	@Override
 	public Usuario usuario(String name) {
-		
+
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
+			Connection db = conexion.getConnection();
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from consulta_usuario_name('" + name + "');");
@@ -107,12 +108,12 @@ public class Servidor implements IServidor {
 
 	@Override
 	public void add_nota_pdf(int id_punto, int id_user, String nota) {
-	
+
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 			st.executeUpdate("insert into notaspdf_ve (id_user, id_pdf, descripcion_notas)values(" + id_punto + ","
 					+ id_user + ",'" + nota + "');");
 			db.close();
@@ -126,18 +127,18 @@ public class Servidor implements IServidor {
 
 	@Override
 	public void add_nota_acta(int id_punto, int id_user, String nota) {
-		
+
 		try {
 			System.out.println(id_punto);
 			System.out.println(id_user);
 			System.out.println(nota);
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
+			Connection db = conexion.getConnection();
 			Statement st = db.createStatement();// ejecucion y resultado de la consulta
 			st.executeUpdate("insert into notasActa_ve (id_user, id_acta, descripcion_notas)values(" + id_punto + ","
 					+ id_user + ",'" + nota + "');");
-		
+
 			conexion.cerrarConexion();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -149,19 +150,19 @@ public class Servidor implements IServidor {
 
 	@Override
 	public ActaPdf acta_sesion(int id) {
-		
+
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			ResultSet resultado = st.executeQuery("select * from acta_ve where id_pdf=" + id + ";");
 			resultado.next();
 			ActaPdf user = new ActaPdf(resultado.getInt(1), resultado.getString(2), resultado.getBytes(3));
 			conexion.cerrarConexion();
 			return user;
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -172,13 +173,13 @@ public class Servidor implements IServidor {
 
 	@Override
 	public Pdf pdf_punto(int id) {
-		
+
 		Pdf user = null;
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select * from pdf_ve where id_pdf=" + id + ";");
 			if (resultado.next()) {
@@ -199,12 +200,12 @@ public class Servidor implements IServidor {
 	@Override
 	public List<Usuario> listaUsuarios() throws RemoteException {
 		List<Usuario> listaUsuario = new ArrayList<>();
-		
+
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from consulta_usuarios();");
@@ -225,12 +226,12 @@ public class Servidor implements IServidor {
 	@Override
 	public List<Usuario> asistenciaUsuarios(int id_quorum) throws RemoteException {
 		List<Usuario> listaUsuario = new ArrayList<>();
-		
+
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from asistencia_concejales(" + id_quorum + ");");
@@ -247,18 +248,19 @@ public class Servidor implements IServidor {
 			return null;
 		}
 	}
-	
+
 	@Override
 	public int presentes() throws RemoteException {
-		
+
 		try {
-		
+
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 			// ejecucion y resultado de la consulta
-			ResultSet resultado = st.executeQuery("select count(*) from Asistencia_VE where estado_asistencia='PRESENTE'");
+			ResultSet resultado = st
+					.executeQuery("select count(*) from Asistencia_VE where estado_asistencia='PRESENTE'");
 			resultado.next();
 			int numero = resultado.getInt(1);
 			conexion.cerrarConexion();
@@ -274,7 +276,7 @@ public class Servidor implements IServidor {
 	public List<Usuario> consultaQuorum() throws RemoteException {
 		return listaUsuario;
 	}
-	
+
 	@Override
 	public void limpiarQuorum() throws RemoteException {
 		listaUsuario.clear();
@@ -316,15 +318,14 @@ public class Servidor implements IServidor {
 	public int agregarSesion(String fechaRegistro, String fechaIntervencion, String horaIntervencion,
 			String convocatoria, String titulo) throws RemoteException {
 		int idsesion = 0;
-		
+
 		try {
 
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
-			
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select *from ingresar_sesion('" + fechaRegistro + "','"
 					+ fechaIntervencion + "','" + horaIntervencion + "','" + convocatoria + "','" + titulo + "');");
@@ -343,13 +344,13 @@ public class Servidor implements IServidor {
 	@Override
 	public List<String> consultaUsuario() throws RemoteException {
 		List<String> listausuario = new ArrayList<>();
-		
+
 		try {
-		
+
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select name_user from User_VE;");
 
@@ -374,8 +375,8 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery(
@@ -399,8 +400,8 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st
@@ -428,8 +429,8 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery(
 					"select id_ordenDia,numpunto_ordendia,descrip_ordendia,us.name_user from Sesion_VE as s inner join OrdenDia_VE as od on s.convocatoria_sesion=od.convocatoria_sesion inner join User_VE as us on us.id_user=od.id_user where s.intervention_sesion='"
@@ -455,8 +456,8 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select id_ordendia, numpunto_ordendia,descrip_ordendia \r\n"
@@ -482,8 +483,8 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select * from OrdenDia_VE where id_ordendia=" + id_punto + ";");
@@ -508,8 +509,8 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st
@@ -536,8 +537,8 @@ public class Servidor implements IServidor {
 
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery(
@@ -583,29 +584,34 @@ public class Servidor implements IServidor {
 		return usuario;
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
 	@Override
-	public String reiniciarVoto(String user, String voto, int index, int index2) throws RemoteException {
+	public String reiniciarVoto(String user, String voto) throws RemoteException {
 
 		if (voto.contains("PROPONENTE A FAVOR")) {
-			listaVotoAFavor.remove(index2);
+			Voto voto2 = listaVotoAFavor.stream().filter(p -> p.getNombre().equals(user)).findFirst().get();
+			listaVotoAFavor.remove(voto2);
 		} else {
 			if (voto.contains("A FAVOR")) {
-				listaVotoAFavor.remove(index2);
+				Voto voto2 = listaVotoAFavor.stream().filter(p -> p.getNombre().equals(user)).findFirst().get();
+				listaVotoAFavor.remove(voto2);
 			}
 		}
 
 		if (voto.contains("EN CONTRA")) {
-			listaVotoEnContra.remove(index2);
+			Voto voto2 = listaVotoEnContra.stream().filter(p -> p.getNombre().equals(user)).findFirst().get();
+			listaVotoEnContra.remove(voto2);
 		}
 		if (voto.contains("VOTO SALVADO")) {
-			listaVotoSalvado.remove(index2);
+			Voto voto2 = listaVotoSalvado.stream().filter(p -> p.getNombre().equals(user)).findFirst().get();
+			listaVotoSalvado.remove(voto2);
 		}
 		if (voto.contains("EN BLANCO")) {
-			listaVotoBlanco.remove(index2);
+			Voto voto2 = listaVotoBlanco.stream().filter(p -> p.getNombre().equals(user)).findFirst().get();
+			listaVotoBlanco.remove(voto2);
 		}
 
-		listaVotantesPunto.remove(index);
+		Voto voto1 = listaVotantesPunto.stream().filter(p -> p.getNombre().equals(user)).findFirst().get();
+		listaVotantesPunto.remove(voto1);
 
 		return "El usuario " + user + " ha sido borrado correctamente del registro";
 	}
@@ -678,8 +684,8 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			// ejecucion y resultado d la consulta
 			ResultSet resultado = st.executeQuery("select * from pdf_ve where id_ordendia=" + id_ordendia + ";");
@@ -716,7 +722,7 @@ public class Servidor implements IServidor {
 
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
+			Connection db = conexion.getConnection();
 
 			PreparedStatement instruccion = db.prepareStatement(
 					"update OrdenDia_VE set si_ordendia=?, no_ordendia=?, blanco_ordendia=?, salvo_ordendia=?, estado_ordendia=?, verifica_ordendia='TERMINADO' where id_ordendia=?;");
@@ -741,8 +747,8 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st
@@ -763,8 +769,8 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st
@@ -796,7 +802,7 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
+			Connection db = conexion.getConnection();
 			PreparedStatement instruccion = db
 					.prepareStatement("update Sesion_VE set estado_sesion='TERMINADO' where convocatoria_sesion=?;");
 			instruccion.setString(1, convocatoria);
@@ -816,8 +822,8 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			ResultSet resultado = st.executeQuery("select * from configuracion_ve where id_confi=1;");
 			resultado.next();
@@ -853,8 +859,8 @@ public class Servidor implements IServidor {
 			// conecci�n a la base de datos
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
 
 			int id;
 			String usuario = "";

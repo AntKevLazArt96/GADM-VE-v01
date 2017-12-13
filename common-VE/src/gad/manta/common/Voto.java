@@ -16,6 +16,10 @@ public class Voto implements Serializable {
 		this.voto=voto;
 		this.img=img;
 	}
+	
+	public Voto(String nombre) {
+		this.nombre=nombre;
+	}
 
 	public String getNombre() {
 		return nombre;

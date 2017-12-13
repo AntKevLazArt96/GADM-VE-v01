@@ -29,7 +29,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Runtime.getRuntime().exec("cmd /c java -jar C:\\Socket.jar");
+			Runtime.getRuntime().exec("cmd /c java -jar C:\\Socket.jar start");
 			System.out.println(Runtime.getRuntime().toString());
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

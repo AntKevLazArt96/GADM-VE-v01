@@ -73,7 +73,7 @@
                   <MaterialDesignIconView fill="#212121" glyphName="BOOK_OPEN" size="20.0" />
                </graphic>
             </Label>
-            <TableView fx:id="table_pdf" layoutX="51.0" layoutY="334.0" prefHeight="200.0" prefWidth="382.0" />
+            <TableView fx:id="table_pdf" layoutX="51.0" layoutY="334.0" onMouseClicked="#mostrar_pdf" prefHeight="200.0" prefWidth="382.0" />
             <JFXButton fx:id="btnIniVoto" layoutX="477.0" layoutY="501.0" onAction="#IniVotoAction" prefHeight="47.0" prefWidth="185.0" style="-fx-background-color: #00bcd4;" text="INICIAR VOTACIÓN" textFill="WHITE" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="206.0">
                <font>
                   <Font size="14.0" />

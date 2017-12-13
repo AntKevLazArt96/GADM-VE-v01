@@ -392,10 +392,11 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 		String dia = dias.get(d.getDay());
 		String mes = meses.get(d.getMonth());
-
+		int di = d.getDate();
+		
 		// cargamos la fecha actual
 		lbl_fecha.setText(dia + ", 08 de " + mes + " del " + (d.getYear() + 1900));
-
+		lbl_fecha.setText(dia + ", "+di+" de " + mes + " del " + (d.getYear() + 1900));
 		try {
 			sesion = LoginController.servidor.consultarSesion();
 			label_convocatoria.setText(sesion.getConvocatoria());

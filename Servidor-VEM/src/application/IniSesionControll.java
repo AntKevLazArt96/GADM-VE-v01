@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import clases.TramVoto;
+import clases.data;
 import clases.puntoATratar;
 import gad.manta.common.OrdenDia;
 import gad.manta.common.Pdf;
@@ -18,12 +19,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class IniSesionControll implements Initializable {
 	int posicionPersonaEnTabla;
@@ -248,7 +254,43 @@ public class IniSesionControll implements Initializable {
 		}
 
 	}
+	
+	@FXML
+	void mostrar_pdf(MouseEvent event) {
 
+		Stage newStage = new Stage();
+
+		AnchorPane pane;
+		try {
+
+			data.id_acta = 0;
+			data.tipo_lectura=2;
+			data.id_pdf = table_pdf.getSelectionModel().selectedItemProperty().get().getId();
+			System.out.println(data.id_pdf);
+
+			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+			Scene scene = new Scene(pane);
+
+			// Pantalla completa
+			Screen screen = Screen.getPrimary();
+			Rectangle2D bounds = screen.getVisualBounds();
+
+			newStage.setX(bounds.getMinX());
+			newStage.setY(bounds.getMinY());
+			newStage.setWidth(bounds.getWidth());
+			newStage.setHeight(bounds.getHeight());
+
+			newStage.setScene(scene);
+			newStage.initStyle(StageStyle.UNDECORATED);
+			newStage.show();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
 	@FXML
 	void prueba(MouseEvent event) throws RemoteException {
 		ponerPersonaSeleccionada();

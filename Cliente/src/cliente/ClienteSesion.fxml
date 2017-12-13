@@ -55,7 +55,7 @@
                   <MaterialDesignIconView fill="#212121" glyphName="BOOK_OPEN" size="20.0" />
                </graphic>
             </Label>
-            <TableView fx:id="table_pdf" layoutX="51.0" layoutY="334.0" prefHeight="200.0" prefWidth="780.0" />
+            <TableView fx:id="table_pdf" layoutX="51.0" layoutY="334.0" onMouseClicked="#mostrar_pdf" prefHeight="200.0" prefWidth="780.0" />
          </children>
       </AnchorPane>
    </children>
