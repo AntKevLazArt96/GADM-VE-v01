@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
 import clases.data;
+import gad.manta.common.Conexion;
 import gad.manta.common.data_configuracion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,7 +50,7 @@ public class ConfiguracionCtrl implements Initializable {
 	    @FXML
 	    private JFXButton btn_modificar;
 
-	 
+	    Conexion conexion = new Conexion();
 	public ConfiguracionCtrl() {
 		// TODO Auto-generated constructor stub
 	}
@@ -57,9 +58,12 @@ public class ConfiguracionCtrl implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Connection db;
+		
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			conexion.establecerConexion();
+			// conecci�n a la base de datos
+			conexion.getConnection();
+			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();
 			ResultSet resultado= st.executeQuery("select * from configuracion_ve where id_confi=1;");
 			
@@ -77,7 +81,7 @@ public class ConfiguracionCtrl implements Initializable {
     		}else{
     			mostrarMesaje("Configuracion no encontrada");
     		}
-			db.close();
+			conexion.cerrarConexion();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,11 +136,13 @@ public class ConfiguracionCtrl implements Initializable {
 	@FXML
 	void  guardar(ActionEvent e)throws IOException {
 		
-		Connection db;
 		
 		String sql = "UPDATE public.configuracion_ve SET  iprmi_confi=?, ipsocket_confi=?, puertormi_confi=?,puertosocket_confi=?, nombrebd_confi=?, userdb_confi=?, passbd_confi=? WHERE id_confi=1;";
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			conexion.establecerConexion();
+			// conecci�n a la base de datos
+			conexion.getConnection();
+			Connection db =conexion.getConnection();
 			PreparedStatement instruccion = db.prepareStatement(sql);
 			instruccion.setString(1, txt_iprmi.getText());
 			instruccion.setString(2,txt_ipsocket.getText() );
@@ -159,7 +165,7 @@ public class ConfiguracionCtrl implements Initializable {
 			}else{
 				mostrarMesaje("No se a podido actualizar la configuración");
 			};
-			db.close();
+			conexion.cerrarConexion();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

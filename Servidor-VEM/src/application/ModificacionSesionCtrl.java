@@ -318,7 +318,7 @@ public class ModificacionSesionCtrl implements Initializable {
 			Date fechaIntervencion = Date.valueOf(date.getValue());
 			Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
 
-			Connection db;
+			
 			String sql = " UPDATE public.sesion_ve SET convocatoria_sesion='" + txtconvocatoria
 					+ "', description_sesion='" + titulo + "', tipo_sesion='" + tipo_sesion + "', register_sesion='"
 					+ fechaRegistro + "'," + " intervention_sesion='" + fechaIntervencion + "', hour_sesion='"
@@ -327,8 +327,10 @@ public class ModificacionSesionCtrl implements Initializable {
 			String sql2 = "UPDATE public.acta_ve SET nombre_pdf=?, archivo_pdf=? WHERE id_pdf=" + idActa + ";";
 
 			try {
-				db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-						"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
+				conexion.establecerConexion();
+				// conecci�n a la base de datos
+				conexion.getConnection();
+				Connection db =conexion.getConnection();
 				PreparedStatement instruccion = db.prepareStatement(sql);
 
 				File pdf = new File(ruta_acta);
@@ -351,7 +353,7 @@ public class ModificacionSesionCtrl implements Initializable {
 					mostrarMesaje("No se a podido actualizar la convocatoria");
 				}
 				;
-				db.close();
+				conexion.cerrarConexion();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				// e1.printStackTrace();
@@ -507,25 +509,20 @@ public class ModificacionSesionCtrl implements Initializable {
 
 		System.out.println("La convocatoria es: " + convocatoria);
 		if (convocatoria == "") {
-			mostrarMesaje("Primero tiene que agregar la sesiÃ³n");
+			mostrarMesaje("Primero tiene que agregar la sesión");
 		} else {
-			System.out.println(PuntoOrden.getText());
-			System.out.println(txt_descripcion.getText());
-			System.out.println(rutapdf);
-			System.out.println(cbx_proponente.getValue().getId());
-			System.out.println(convocatoria);
 
 			int longitud_lista = 0;
 			longitud_lista = list_pdf.getItems().size();
 
 			if (txt_descripcion.getLength() == 0) {
-				mostrarMesaje("Falta ingresar la descripciÃ³n del punto");
-			} else if (cbx_proponente.getValue().getId() == 0) {
+				mostrarMesaje("Falta ingresar la descripción del punto");
+			} else if (cbx_proponente.getValue() == null) {
 				mostrarMesaje("Falta selecionar el Proponente del punto");
 			} else {
 
 				if (longitud_lista == 0) {
-					mostrarMesaje("No se a agredado documentaciÃ³n " + "para el punto " + PuntoOrden.getText() + "");
+					mostrarMesaje("No se a agredado documentaciónn " + "para el punto " + PuntoOrden.getText() + "");
 				}
 				if (data.documentacion == 0) {
 
@@ -575,7 +572,7 @@ public class ModificacionSesionCtrl implements Initializable {
 			num_punto.setMinWidth(80);
 			num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 			@SuppressWarnings("rawtypes")
-			TableColumn descrip = new TableColumn("DescripciÃ³n");
+			TableColumn descrip = new TableColumn("Descripción");
 			descrip.setMinWidth(300);
 			descrip.setCellValueFactory(new PropertyValueFactory<>("tema"));
 			ObservableList<OrdenDia> datos = FXCollections.observableArrayList(listaOrden);
@@ -593,17 +590,17 @@ public class ModificacionSesionCtrl implements Initializable {
 		longitud_lista = list_pdf.getItems().size();
 
 		if (txt_descripcion.getLength() == 0) {
-			mostrarMesaje("Falta ingresar la descripciÃ³n del punto");
+			mostrarMesaje("Falta ingresar la descripción del punto");
 		} else if (cbx_proponente.getValue().getId() == 0) {
 			mostrarMesaje("Falta selecionar el Proponente del punto");
 		} else {
 
 			if (longitud_lista == 0) {
-				mostrarMesaje("No se a agredado documentaciÃ³n " + "para el punto " + PuntoOrden.getText() + "");
+				mostrarMesaje("No se a agredado documentación " + "para el punto " + PuntoOrden.getText() + "");
 			}
 			if (data.documentacion == 0) {
 
-				Connection db;
+				
 				String sql = "UPDATE public.ordendia_ve SET  convocatoria_sesion='"
 						+ cbx_convocatoria.getValue().getConvocatoria() + "', numpunto_ordendia="
 						+ Integer.valueOf(PuntoOrden.getText()) + ", descrip_ordendia='" + txt_descripcion.getText()
@@ -612,8 +609,10 @@ public class ModificacionSesionCtrl implements Initializable {
 				String sql3 = "INSERT INTO pdf_ve(id_ordendia,nombre_pdf,archivo_pdf) VALUES (?, ?, ?);";
 
 				try {
-					db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-							"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
+					conexion.establecerConexion();
+					// conecci�n a la base de datos
+					conexion.getConnection();
+					Connection db =conexion.getConnection();
 					PreparedStatement instruccion = db.prepareStatement(sql);
 
 					PreparedStatement instruccion2 = db.prepareStatement(sql2);
@@ -638,7 +637,7 @@ public class ModificacionSesionCtrl implements Initializable {
 						fis.close();
 						longitud_lista--;
 					}
-					db.close();
+					conexion.cerrarConexion();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -670,7 +669,7 @@ public class ModificacionSesionCtrl implements Initializable {
 		num_punto.setMinWidth(80);
 		num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 		@SuppressWarnings("rawtypes")
-		TableColumn descrip = new TableColumn("DescripciÃ³n");
+		TableColumn descrip = new TableColumn("Descripción");
 		descrip.setMinWidth(300);
 		descrip.setCellValueFactory(new PropertyValueFactory<>("tema"));
 		ObservableList<OrdenDia> datos = FXCollections.observableArrayList(listaOrden);
@@ -745,10 +744,10 @@ public class ModificacionSesionCtrl implements Initializable {
 
 	@FXML
 	public void onElimSesion(ActionEvent event) throws SQLException {
-		Connection db;
-		db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-				"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
-
+		conexion.establecerConexion();
+		// conecci�n a la base de datos
+		conexion.getConnection();
+		Connection db =conexion.getConnection();
 		Statement st = db.createStatement();
 		ResultSet resultado = st.executeQuery("SELECT id_pdf  FROM public.sesion_ve where convocatoria_sesion='"
 				+ cbx_convocatoria.getValue().getConvocatoria() + "';");
@@ -758,7 +757,7 @@ public class ModificacionSesionCtrl implements Initializable {
 			String sql = "DELETE FROM public.acta_ve WHERE id_pdf=" + resultado.getInt(1) + ";";
 			PreparedStatement instruccion = db.prepareStatement(sql);
 			if (!instruccion.execute()) {
-				mostrarMesaje("La sesiÃ³n" + cbx_convocatoria.getValue().getConvocatoria()
+				mostrarMesaje("La sesión" + cbx_convocatoria.getValue().getConvocatoria()
 						+ " a sido eliminada correctamemte");
 				data.num_punto = 0;
 				limpiar();
@@ -784,10 +783,10 @@ public class ModificacionSesionCtrl implements Initializable {
 				conexion.cerrarConexion();
 
 			} else {
-				mostrarMesaje("Hubo un error al eliminar sesiÃ³n" + cbx_convocatoria.getValue().getConvocatoria() + "");
+				mostrarMesaje("Hubo un error al eliminar sesión" + cbx_convocatoria.getValue().getConvocatoria() + "");
 			}
 		}
-		db.close();
+		conexion.cerrarConexion();
 
 	}
 
@@ -795,13 +794,15 @@ public class ModificacionSesionCtrl implements Initializable {
 	@FXML
 	public void onElimOrden(ActionEvent event) {
 
-		Connection db;
+		
 		String sql = "DELETE FROM public.ordendia_ve WHERE id_ordendia=" + id_punto_od + ";";
 		String sql2 = "DELETE FROM public.pdf_ve WHERE id_ordendia=" + id_punto_od + ";";
 
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
+			conexion.establecerConexion();
+			// conecci�n a la base de datos
+			conexion.getConnection();
+			Connection db =conexion.getConnection();
 			PreparedStatement instruccion = db.prepareStatement(sql);
 			PreparedStatement instruccion2 = db.prepareStatement(sql2);
 
@@ -811,7 +812,7 @@ public class ModificacionSesionCtrl implements Initializable {
 				mostrarMesaje("No se a podido eliminar el el punto");
 			}
 			;
-			db.close();
+			conexion.cerrarConexion();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -838,7 +839,7 @@ public class ModificacionSesionCtrl implements Initializable {
 		num_punto.setMinWidth(80);
 		num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 		@SuppressWarnings("rawtypes")
-		TableColumn descrip = new TableColumn("DescripciÃ³n");
+		TableColumn descrip = new TableColumn("Descripción");
 		descrip.setMinWidth(300);
 		descrip.setCellValueFactory(new PropertyValueFactory<>("tema"));
 		ObservableList<OrdenDia> datos = FXCollections.observableArrayList(listaOrden);
@@ -907,7 +908,7 @@ public class ModificacionSesionCtrl implements Initializable {
 		String tmpFileName = UUID.randomUUID().toString();
 		if (!new File(tmpDir).exists()) {
 			if (!new File(tmpDir).mkdirs()) {
-				System.out.print("Imposibe crear directorio temporal");
+				System.out.print("Imposible crear directorio temporal");
 				return null;
 			}
 

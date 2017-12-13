@@ -117,9 +117,12 @@ public class IngresoPerCtrl implements Initializable {
     	
     	
     	try {
-    		Connection db;
-    		db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+    		conexion.establecerConexion();
+			// conecci�n a la base de datos
+			conexion.getConnection();
+			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();
+			
 			ResultSet resultado1= st.executeQuery("select * from consulta_usuario_ced('"+txt_cedula.getText()+"');");
 			db.close();
 			conexion.establecerConexion();

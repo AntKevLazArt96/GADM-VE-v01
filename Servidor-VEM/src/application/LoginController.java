@@ -109,7 +109,7 @@ public class LoginController implements Initializable {
 		data.name = username;
 
 		if (username != null) {
-
+			
 			AnchorPane pane = loader.load();
 			Scene scene = new Scene(pane);
 
