@@ -52,7 +52,6 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();
 			
@@ -89,7 +88,6 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
@@ -113,7 +111,6 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 			st.executeUpdate("insert into notaspdf_ve (id_user, id_pdf, descripcion_notas)values(" + id_punto + ","
@@ -136,7 +133,6 @@ public class Servidor implements IServidor {
 			System.out.println(nota);
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();// ejecucion y resultado de la consulta
 			st.executeUpdate("insert into notasActa_ve (id_user, id_acta, descripcion_notas)values(" + id_punto + ","
@@ -181,7 +177,6 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 			// ejecucion y resultado de la consulta
@@ -208,7 +203,6 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -235,7 +229,6 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -262,7 +255,6 @@ public class Servidor implements IServidor {
 		
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 			// ejecucion y resultado de la consulta
@@ -329,7 +321,6 @@ public class Servidor implements IServidor {
 
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -357,7 +348,6 @@ public class Servidor implements IServidor {
 		
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 			// ejecucion y resultado de la consulta
@@ -384,7 +374,6 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -410,7 +399,6 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -440,7 +428,6 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 			// ejecucion y resultado de la consulta
@@ -468,7 +455,6 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -496,7 +482,6 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -523,7 +508,6 @@ public class Servidor implements IServidor {
 			// para verificar si esta instalado el drive de postgressql
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -552,7 +536,6 @@ public class Servidor implements IServidor {
 
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -695,7 +678,6 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -734,7 +716,6 @@ public class Servidor implements IServidor {
 
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 
 			PreparedStatement instruccion = db.prepareStatement(
@@ -760,7 +741,6 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -783,7 +763,6 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -817,7 +796,6 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			PreparedStatement instruccion = db
 					.prepareStatement("update Sesion_VE set estado_sesion='TERMINADO' where convocatoria_sesion=?;");
@@ -838,7 +816,6 @@ public class Servidor implements IServidor {
 		try {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
@@ -876,7 +853,6 @@ public class Servidor implements IServidor {
 			// conecci�n a la base de datos
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			conexion.getConnection();
 			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();	// ejecucion y resultado de la consulta
 
