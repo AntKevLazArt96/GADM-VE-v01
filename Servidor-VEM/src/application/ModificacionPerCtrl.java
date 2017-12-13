@@ -68,7 +68,7 @@ public class ModificacionPerCtrl implements Initializable {
 
 	int id_img = 0;
 	int id_usuario = 0;
-
+	Conexion conexion= new Conexion();
 	@FXML
 	void onBuscarFoto(ActionEvent event) {
 		try {
@@ -109,11 +109,11 @@ public class ModificacionPerCtrl implements Initializable {
 	void onGuardar(ActionEvent event) throws SQLException {
 
 		try {
-			Connection db;
-			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
-			// conexion.establecerConexion();
-
+			
+			conexion.establecerConexion();
+			// conecci�n a la base de datos
+			Connection db =conexion.getConnection();
+			Statement st = db.createStatement();	
 			if (txt_cedula.getLength() == 0) {
 				txt_cedula.requestFocus();
 				mostrarMesaje("Falta ingresar el número de cédula");
@@ -151,7 +151,7 @@ public class ModificacionPerCtrl implements Initializable {
 
 			}
 
-			db.close();
+			conexion.cerrarConexion();
 			// conexion.cerrarConexion();
 
 		} catch (IOException e) {
@@ -257,13 +257,13 @@ public class ModificacionPerCtrl implements Initializable {
 	@FXML
 	void buscar_usuario() throws IOException {
 
-		Connection db;
+		
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
-			Statement st = db.createStatement();
-			ResultSet resultado = st
-					.executeQuery("select * from consulta_usuario_ced('" + txt_cedula.getText() + "');");
+			conexion.establecerConexion();
+			// conecci�n a la base de datos
+			Connection db =conexion.getConnection();
+			Statement st = db.createStatement();	
+			ResultSet resultado = st.executeQuery("select * from consulta_usuario_ced('" + txt_cedula.getText() + "');");
 
 			if (resultado.next()) {
 				id_usuario = resultado.getInt(1);
@@ -286,7 +286,7 @@ public class ModificacionPerCtrl implements Initializable {
 				lbl_foto.setImage(img);
 			}
 
-			db.close();
+			conexion.cerrarConexion();
 
 			btn_examinar.setVisible(true);
 
@@ -320,11 +320,12 @@ public class ModificacionPerCtrl implements Initializable {
 	@FXML
 	void eliminar_usuario(ActionEvent e) {
 
-		Connection db;
+		
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
-			Statement st = db.createStatement();
+			conexion.establecerConexion();
+			// conecci�n a la base de datos
+			Connection db =conexion.getConnection();
+			Statement st = db.createStatement();	
 
 			ResultSet resultado1 = st
 					.executeQuery("select * from consulta_usuario_ced('" + txt_cedula.getText() + "');");
@@ -337,8 +338,7 @@ public class ModificacionPerCtrl implements Initializable {
 						"El usuario con cédula " + txt_cedula.getText() + " no se ecuentra registrado en el sistema");
 			}
 
-			db.close();
-
+			conexion.cerrarConexion();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
