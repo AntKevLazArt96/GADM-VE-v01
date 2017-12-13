@@ -41,7 +41,7 @@ public class Main extends Application {
 			
 			Servidor servidor = new Servidor();
 			IServidor remote = (IServidor)UnicastRemoteObject.exportObject(servidor, data_configuracion.puerto_rmi);
-			
+			//System.out.println(data_configuracion.puerto_rmi);
 			Registry registry = LocateRegistry.createRegistry(1099);
 			registry.rebind("VotoE", remote);
 			
