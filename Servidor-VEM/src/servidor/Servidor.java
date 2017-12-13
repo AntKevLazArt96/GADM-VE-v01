@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 
 import gad.manta.common.ActaPdf;
 import gad.manta.common.Comentario;
+import gad.manta.common.Conexion;
 import gad.manta.common.Config;
 import gad.manta.common.Documentacion;
 import gad.manta.common.IServidor;
@@ -25,7 +26,7 @@ public class Servidor implements IServidor {
 	public Servidor() throws RemoteException {
 		super();
 	}
-
+	Conexion conexion = new Conexion();
 	List<Usuario> listaUsuario = new ArrayList<>();
 	// votacion para aprobar el orden del dia propuesto
 	List<Voto> listaVotantes = new ArrayList<>();
@@ -57,10 +58,12 @@ public class Servidor implements IServidor {
 
 		}
 		try {
+			conexion.establecerConexion();
 			// conecci�n a la base de datos
-			Connection db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
+			conexion.getConnection();
+			Connection db =conexion.getConnection();
 			Statement st = db.createStatement();
+			
 			int id;
 			String usuario = "";
 			byte[] img = null;
