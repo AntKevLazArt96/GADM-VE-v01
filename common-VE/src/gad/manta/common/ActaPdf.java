@@ -121,7 +121,7 @@ public class ActaPdf implements Serializable {
 		Connection db;
 		ActaPdf actaPdf = null;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+			db = DriverManager.getConnection("jdbc:postgresql://"+data_configuracion.ipBaseDatos+"/"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
 			Statement st = db.createStatement();
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st.executeQuery("select * from acta_ve where id_pdf=" + id + ";");
