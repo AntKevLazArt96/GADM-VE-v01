@@ -8,6 +8,11 @@ import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -131,29 +136,49 @@ public class LoginController implements Initializable {
 	}
 
 	public static void configuraciones() {
+		Connection db;
 		try {
-			Config config = servidor.obtenerConfiguracion();
-			data_configuracion.ip = config.getIp_s();
-			data_configuracion.port = config.getPort_s();
-			System.out.println(data_configuracion.ip);
-		} catch (RemoteException e) {
+			db = DriverManager.getConnection("jdbc:postgresql://"+data_configuracion.ipBaseDatos+"/gad_voto","postgres","123456");
+			Statement st = db.createStatement();
+			ResultSet resultado= st.executeQuery("select * from configuracion_ve where id_confi=1;");
+			resultado.next();
+			//rmi
+			data_configuracion.ip_rmi=resultado.getString(2);
+			data_configuracion.puerto_rmi=resultado.getInt(4);
+			System.out.println(data_configuracion.ip_rmi);
+			
+			//bd
+			data_configuracion.nombre_bd=resultado.getString(6);
+			
+			data_configuracion.usu_db=resultado.getString(7);
+			
+			data_configuracion.conta_usu=resultado.getString(8);
+			
+			//socket
+			data_configuracion.ip=resultado.getString(3);
+			data_configuracion.port=resultado.getInt(5);
+			db.close();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		configuraciones();
 		File f = new File("C:\\GIT\\GADM-VE-v01\\Cliente\\src\\imgs\\logomanta.png");
 		Image im = new Image(f.toURI().toString());
 		logo.setImage(im);
 		try {
-			servidor = (IServidor) Naming.lookup("rmi://194.170.13.25/VotoE");
+			System.out.println(data_configuracion.ip_rmi);
+			servidor = (IServidor) Naming.lookup("rmi://"+data_configuracion.ip_rmi+"/VotoE");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		configuraciones();
+		
 		/*txt_username.setText("concejal1");
 		txt_password.setText("1234");*/
 	}

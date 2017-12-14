@@ -827,8 +827,8 @@ public class Servidor implements IServidor {
 
 			ResultSet resultado = st.executeQuery("select * from configuracion_ve where id_confi=1;");
 			resultado.next();
-
-			Config config = new Config(resultado.getString(3), resultado.getInt(5));
+			
+			Config config = new Config(resultado.getString(3), resultado.getInt(5),resultado.getString(2), resultado.getInt(4));
 			// socket
 			conexion.cerrarConexion();
 			return config;

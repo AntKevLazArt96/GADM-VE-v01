@@ -118,7 +118,7 @@ public class Imagen {
 		try {
 
 			Connection db;
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql://"+data_configuracion.ipBaseDatos+"/"+data_configuracion.nombre_bd,data_configuracion.usu_db,data_configuracion.conta_usu);
 			PreparedStatement instruccion = db.prepareStatement(sql);
 			instruccion.setInt(1, id_img);
 			

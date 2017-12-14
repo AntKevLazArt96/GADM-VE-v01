@@ -226,7 +226,7 @@ public class ModificacionSesionCtrl implements Initializable {
 		num_punto.setMinWidth(80);
 		num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 		@SuppressWarnings("rawtypes")
-		TableColumn descrip = new TableColumn("DescripciÃ³n");
+		TableColumn descrip = new TableColumn("Descripción");
 		descrip.setMinWidth(300);
 		descrip.setCellValueFactory(new PropertyValueFactory<>("tema"));
 
@@ -290,9 +290,9 @@ public class ModificacionSesionCtrl implements Initializable {
 		if (cbx_convocatoria.getValue().getConvocatoria() == null) {
 			mostrarMesaje("Falta ingresar la convocatoria");
 		} else if (date.getValue() == null) {
-			mostrarMesaje("Falta selecionar la fecha de intervenciÃ³n");
+			mostrarMesaje("Falta selecionar la fecha de intervención");
 		} else if (pdf_acta.getItems().size() == 0) {
-			mostrarMesaje("Falta agregar el acta de la sesiÃ³n");
+			mostrarMesaje("Falta agregar el acta de la sesión");
 		} else {
 
 			String txtconvocatoria = cbx_convocatoria.getValue().getConvocatoria();
@@ -334,7 +334,7 @@ public class ModificacionSesionCtrl implements Initializable {
 				fis.close();
 
 				if (!(instruccion.execute() && ps.execute())) {
-					mostrarMesaje("La convocatoria a sido atualizada");
+					mostrarMesaje("La convocatoria a sido actualizada");
 					btn_modSesion.setDisable(false);
 					btn_ActSesion.setVisible(true);
 					btn_modSesion.setVisible(true);
@@ -609,7 +609,7 @@ public class ModificacionSesionCtrl implements Initializable {
 					PreparedStatement instruccion2 = db.prepareStatement(sql2);
 
 					if (!(instruccion.execute()) && !(instruccion2.execute())) {
-						mostrarMesaje("El punto a sido atualizada");
+						mostrarMesaje("Este punto a sido atualizado");
 					} else {
 						mostrarMesaje("No se a podido actualizar el punto");
 					}
@@ -919,7 +919,7 @@ public class ModificacionSesionCtrl implements Initializable {
 	void llenar_sesion(ActionEvent event) throws IOException {
 		List<gad.manta.common.Sesion> lista_sesion = null;
 		tabla.getItems().clear();
-
+		
 		String a = cbx_convocatoria.getValue().getConvocatoria();
 
 		if (a != null) {

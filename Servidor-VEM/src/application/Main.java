@@ -29,8 +29,15 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Runtime.getRuntime().exec("cmd /c java -jar C:\\Socket.jar start");
-			System.out.println(Runtime.getRuntime().toString());
+			
+			if(Runtime.getRuntime()!=null) {
+				System.out.println("Ya se esta ejecuntado");
+			}else {
+				Runtime.getRuntime().exec("cmd /c java -jar C:\\Socket.jar start");
+				System.out.println(Runtime.getRuntime().toString());
+			}
+			
+			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -84,6 +91,7 @@ public class Main extends Application {
 			//rmi
 			data_configuracion.ip_rmi=resultado.getString(2);
 			data_configuracion.puerto_rmi=resultado.getInt(4);
+			System.out.println(data_configuracion.ip_rmi);
 			
 			//bd
 			data_configuracion.nombre_bd=resultado.getString(6);
