@@ -163,6 +163,7 @@ public class ModificacionSesionCtrl implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// date.setConverter(new LocalDateStringConverter(FormatStyle.FULL));
+		PuntoOrden.setText(String.valueOf(data.num_punto));
 		conexion = new Conexion();
 		time.setValue(LocalTime.of(16, 00));
 		cbx_tipoSes.setValue("ORDINARIA");
@@ -187,18 +188,8 @@ public class ModificacionSesionCtrl implements Initializable {
 
 		conexion.cerrarConexion();
 
-		try {
-			servidor = (IServidor) Naming.lookup("rmi://192.168.1.6/VotoE");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		servidor = LoginController.servidor;
+		
 
 		bloquear_control_pdf();
 		btn_modOrden.setDisable(true);

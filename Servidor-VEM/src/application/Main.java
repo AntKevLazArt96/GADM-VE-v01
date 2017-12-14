@@ -77,7 +77,7 @@ public class Main extends Application {
 	public static void configuraciones() {
 		Connection db;
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql://194.170.13.29/gad_voto","postgres","123456");
 			Statement st = db.createStatement();
 			ResultSet resultado= st.executeQuery("select * from configuracion_ve where id_confi=1;");
 			resultado.next();

@@ -142,8 +142,8 @@ public class LoginController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		txt_username.setText("secretaria");
-		txt_password.setText("1234");
+		/*txt_username.setText("secretaria");
+		txt_password.setText("1234");*/
 
 	}
 

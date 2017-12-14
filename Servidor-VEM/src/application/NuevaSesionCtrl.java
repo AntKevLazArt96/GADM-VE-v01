@@ -266,9 +266,9 @@ public class NuevaSesionCtrl implements Initializable {
 	@FXML
 	void onAddSesion(ActionEvent event) throws NotBoundException, IOException, SQLException {
 
-		Connection db;
-		db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-				"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
+		conexion.establecerConexion();
+		// conecciï¿½n a la base de datos
+		Connection db =conexion.getConnection();
 		Statement st = db.createStatement();
 
 		ResultSet resultado= st.executeQuery("SELECT convocatoria_sesion  FROM public.sesion_ve where convocatoria_sesion='"+txt_convocatoria.getText()+"';");		
@@ -326,8 +326,7 @@ public class NuevaSesionCtrl implements Initializable {
 	    	
 	    	}	
 
-			
-	    	db.close();	
+	    	conexion.cerrarConexion();
 			
 		}
 		
@@ -367,9 +366,10 @@ public class NuevaSesionCtrl implements Initializable {
 		
 			
 			try {
-				Connection db;
-		    	
-				db = DriverManager.getConnection("jdbc:postgresql:"+data_configuracion.nombre_bd+"",""+data_configuracion.usu_db+"",""+data_configuracion.conta_usu+"");
+				conexion.establecerConexion();
+				// conecciï¿½n a la base de datos
+				Connection db =conexion.getConnection();
+				Statement st = db.createStatement();
 				PreparedStatement instruccion = db.prepareStatement(sql);
 
 				File pdf = new File(ruta_acta);
@@ -392,7 +392,7 @@ public class NuevaSesionCtrl implements Initializable {
 					mostrarMesaje("No se a podido actualizar la convocatoria");
 				}
 				;
-				db.close();
+				conexion.cerrarConexion();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				// e1.printStackTrace();
@@ -559,7 +559,7 @@ public class NuevaSesionCtrl implements Initializable {
 
 			if (txt_descripcion.getLength() == 0) {
 				mostrarMesaje("Falta ingresar la descripciÃ³n del punto");
-			} else if (cbx_proponente.getValue().getId() == 0) {
+			} else if (cbx_proponente.getValue()==null) {
 				mostrarMesaje("Falta selecionar el Proponente del punto");
 			} else {
 
@@ -633,7 +633,7 @@ public class NuevaSesionCtrl implements Initializable {
 
 		if (txt_descripcion.getLength() == 0) {
 			mostrarMesaje("Falta ingresar la descripciÃ³n del punto");
-		} else if (cbx_proponente.getValue().getId() == 0) {
+		} else if (cbx_proponente.getValue()==null) {
 			mostrarMesaje("Falta selecionar el Proponente del punto");
 		} else {
 
@@ -784,9 +784,9 @@ public class NuevaSesionCtrl implements Initializable {
 
 	@FXML
 	public void onElimSesion(ActionEvent event) throws SQLException {
-		Connection db;
-		db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-				"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
+		conexion.establecerConexion();
+		// conecciï¿½n a la base de datos
+		Connection db =conexion.getConnection();
 		Statement st = db.createStatement();
 		ResultSet resultado = st.executeQuery(
 				"SELECT id_pdf  FROM public.sesion_ve where convocatoria_sesion='" + txt_convocatoria.getText() + "';");
@@ -811,7 +811,7 @@ public class NuevaSesionCtrl implements Initializable {
 				mostrarMesaje("Hubo un error al eliminar sesión" + txt_convocatoria.getText() + "");
 			}
 		}
-		db.close();
+		conexion.cerrarConexion();
 
 	}
 
@@ -819,14 +819,15 @@ public class NuevaSesionCtrl implements Initializable {
 	@FXML
 	public void onElimOrden(ActionEvent event) {
 
-		Connection db;
+		
 		String sql = "DELETE FROM public.ordendia_ve WHERE id_ordendia=" + id_punto_od + ";";
 		String sql2 = "DELETE FROM public.pdf_ve WHERE id_ordendia=" + id_punto_od + ";";
 
 		try {
-			db = DriverManager.getConnection("jdbc:postgresql:" + data_configuracion.nombre_bd + "",
-					"" + data_configuracion.usu_db + "", "" + data_configuracion.conta_usu + "");
-			PreparedStatement instruccion = db.prepareStatement(sql);
+			conexion.establecerConexion();
+			// conecciï¿½n a la base de datos
+			Connection db =conexion.getConnection();
+			Statement st = db.createStatement();PreparedStatement instruccion = db.prepareStatement(sql);
 			PreparedStatement instruccion2 = db.prepareStatement(sql2);
 
 			if (!(instruccion.execute() && instruccion2.execute())) {
@@ -835,7 +836,7 @@ public class NuevaSesionCtrl implements Initializable {
 				mostrarMesaje("No se a podido eliminar el el punto");
 			}
 			;
-			db.close();
+			conexion.cerrarConexion();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

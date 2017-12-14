@@ -148,14 +148,14 @@ public class LoginController implements Initializable {
 		Image im = new Image(f.toURI().toString());
 		logo.setImage(im);
 		try {
-			servidor = (IServidor) Naming.lookup("rmi://192.168.1.6/VotoE");
+			servidor = (IServidor) Naming.lookup("rmi://194.170.13.25/VotoE");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		configuraciones();
-		txt_username.setText("concejal1");
-		txt_password.setText("1234");
+		/*txt_username.setText("concejal1");
+		txt_password.setText("1234");*/
 	}
 
 }
