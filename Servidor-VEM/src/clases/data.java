@@ -23,4 +23,5 @@ public class data {
     public static String cuerpo;
     public static File archivo_pff;
     public static int tipo_lectura;
+    
 }

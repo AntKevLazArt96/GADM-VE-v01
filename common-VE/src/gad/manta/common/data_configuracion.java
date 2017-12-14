@@ -10,5 +10,6 @@ public class data_configuracion {
     public static String nombre_bd;
     public static String usu_db;
     public static String conta_usu;
+    public static String ipBaseDatos="194.170.14.63";
     
 }

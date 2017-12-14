@@ -25,7 +25,7 @@ public class Server {
 		Connection db;
 		try {
 			
-			db = DriverManager.getConnection("jdbc:postgresql:gad_voto","postgres","1234");
+			db = DriverManager.getConnection("jdbc:postgresql://"+data_configuracion.ipBaseDatos+"/gad_voto","postgres","123456");
 			Statement st = db.createStatement();
 			ResultSet resultado= st.executeQuery("select * from configuracion_ve where id_confi=1;");
 			resultado.next();
