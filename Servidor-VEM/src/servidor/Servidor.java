@@ -546,8 +546,7 @@ public class Servidor implements IServidor {
 							+ annio + "-" + mes + "-" + dia + "';");
 			while (resultado.next()) {
 
-				lista_documentacion
-						.add(new Documentacion(resultado.getInt(1), resultado.getInt(2), resultado.getString(3)));
+				lista_documentacion.add(new Documentacion(resultado.getInt(1), resultado.getInt(2), resultado.getString(3)));
 				System.out.println(resultado.getInt(1));
 			}
 			conexion.cerrarConexion();

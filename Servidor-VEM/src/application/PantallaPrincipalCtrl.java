@@ -200,7 +200,8 @@ public class PantallaPrincipalCtrl implements Initializable {
 			if (estado.equals("TERMINADO")) {
 				LoginController.servidor.TerminarSesion(sesion.getConvocatoria());
 				System.out.println("se termino la sesion");
-
+				
+				
 				try {
 
 					JSONObject js = new JSONObject();
@@ -239,7 +240,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 				newStage.setScene(scene);
 				newStage.initStyle(StageStyle.UNDECORATED);
 				newStage.show();
-
+				Runtime.getRuntime().exec("cmd /c taskkill /F /IM java.exe");
 			} else {
 				System.out.println("No HA TERMINADO");
 			}

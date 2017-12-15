@@ -14,4 +14,6 @@ public class data {
     public static Image Imagen;
     public static byte[] img;
     public static byte[] pdf;
+	public static String header;
+	public static String cuerpo;
 }

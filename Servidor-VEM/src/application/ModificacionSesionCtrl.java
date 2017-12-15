@@ -70,12 +70,12 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class ModificacionSesionCtrl implements Initializable {
 	public static IServidor servidor;
 
-	public static String convocatoria = "";
-	public static Integer idPdf = 0;
-	public static Integer idActa = 0;
-	public static Integer idOrden = 0;
-	public static String ruta_acta = "";
-	public static String nombre_acta = "";
+	String convocatoria = "";
+	Integer idPdf = 0;
+	Integer idActa = 0;
+	Integer idOrden = 0;
+	String ruta_acta = "";
+	String nombre_acta = "";
 	ObservableList<String> tipoSesion = FXCollections.observableArrayList("ORDINARIA", "EXTRAORDINARIA");
 
 	private Conexion conexion;
@@ -179,17 +179,11 @@ public class ModificacionSesionCtrl implements Initializable {
 
 		cbx_proponente.setItems(proponentes);
 
-		conexion.cerrarConexion();
-
-		conexion.establecerConexion();
 		lis_convocatoria = FXCollections.observableArrayList();
 		Sesion.llenarInformacion_sesion(conexion.getConnection(), lis_convocatoria);
 		cbx_convocatoria.setItems(lis_convocatoria);
 
-		conexion.cerrarConexion();
-
 		servidor = LoginController.servidor;
-		
 
 		bloquear_control_pdf();
 		btn_modOrden.setDisable(true);
@@ -231,6 +225,15 @@ public class ModificacionSesionCtrl implements Initializable {
 		descrip.setCellValueFactory(new PropertyValueFactory<>("tema"));
 
 		tabla.getColumns().addAll(id_punto, num_punto, descrip);
+		System.out.println(data.verSesion);
+		if(data.verSesion==true) {
+			
+			Sesion s = Sesion.consultarConvocatoria(conexion.getConnection(),data.convocatoria_sesion);
+			System.out.println("Convocatoria "+s.getConvocatoria());
+			cbx_convocatoria.setValue(s);
+		}
+		
+		conexion.cerrarConexion();
 
 	}
 
@@ -309,7 +312,6 @@ public class ModificacionSesionCtrl implements Initializable {
 			Date fechaIntervencion = Date.valueOf(date.getValue());
 			Date fechaRegistro = new Date(Calendar.getInstance().getTime().getTime());
 
-			
 			String sql = " UPDATE public.sesion_ve SET convocatoria_sesion='" + txtconvocatoria
 					+ "', description_sesion='" + titulo + "', tipo_sesion='" + tipo_sesion + "', register_sesion='"
 					+ fechaRegistro + "'," + " intervention_sesion='" + fechaIntervencion + "', hour_sesion='"
@@ -321,7 +323,7 @@ public class ModificacionSesionCtrl implements Initializable {
 				conexion.establecerConexion();
 				// conecci�n a la base de datos
 				conexion.getConnection();
-				Connection db =conexion.getConnection();
+				Connection db = conexion.getConnection();
 				PreparedStatement instruccion = db.prepareStatement(sql);
 
 				File pdf = new File(ruta_acta);
@@ -463,33 +465,35 @@ public class ModificacionSesionCtrl implements Initializable {
 
 	@FXML
 	void mostrar_acta(MouseEvent event) throws RemoteException {
+		if (ruta_acta == "") {
+			mostrarMesaje("No ha agregado un pdf para poder vizualizarlo");
+		} else {
+			try {
+				File archivo = new File(ruta_acta);
+				data.archivo_pff = archivo;
+				data.tipo_lectura = 3;
+				Stage newStage = new Stage();
 
-		try {
+				AnchorPane pane;
+				pane = (AnchorPane) FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
+				Scene scene = new Scene(pane);
 
-			File archivo = new File(ruta_acta);
-			data.archivo_pff = archivo;
-			data.tipo_lectura = 3;
-			Stage newStage = new Stage();
+				// Pantalla completa
+				Screen screen = Screen.getPrimary();
+				Rectangle2D bounds = screen.getVisualBounds();
 
-			AnchorPane pane;
-			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
-			Scene scene = new Scene(pane);
+				newStage.setX(bounds.getMinX());
+				newStage.setY(bounds.getMinY());
+				newStage.setWidth(bounds.getWidth());
+				newStage.setHeight(bounds.getHeight());
 
-			// Pantalla completa
-			Screen screen = Screen.getPrimary();
-			Rectangle2D bounds = screen.getVisualBounds();
+				newStage.setScene(scene);
+				newStage.initStyle(StageStyle.UNDECORATED);
+				newStage.show();
 
-			newStage.setX(bounds.getMinX());
-			newStage.setY(bounds.getMinY());
-			newStage.setWidth(bounds.getWidth());
-			newStage.setHeight(bounds.getHeight());
-
-			newStage.setScene(scene);
-			newStage.initStyle(StageStyle.UNDECORATED);
-			newStage.show();
-
-		} catch (IOException ex) {
-			ex.printStackTrace();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
 		}
 
 	}
@@ -591,7 +595,6 @@ public class ModificacionSesionCtrl implements Initializable {
 			}
 			if (data.documentacion == 0) {
 
-				
 				String sql = "UPDATE public.ordendia_ve SET  convocatoria_sesion='"
 						+ cbx_convocatoria.getValue().getConvocatoria() + "', numpunto_ordendia="
 						+ Integer.valueOf(PuntoOrden.getText()) + ", descrip_ordendia='" + txt_descripcion.getText()
@@ -603,7 +606,7 @@ public class ModificacionSesionCtrl implements Initializable {
 					conexion.establecerConexion();
 					// conecci�n a la base de datos
 					conexion.getConnection();
-					Connection db =conexion.getConnection();
+					Connection db = conexion.getConnection();
 					PreparedStatement instruccion = db.prepareStatement(sql);
 
 					PreparedStatement instruccion2 = db.prepareStatement(sql2);
@@ -738,7 +741,7 @@ public class ModificacionSesionCtrl implements Initializable {
 		conexion.establecerConexion();
 		// conecci�n a la base de datos
 		conexion.getConnection();
-		Connection db =conexion.getConnection();
+		Connection db = conexion.getConnection();
 		Statement st = db.createStatement();
 		ResultSet resultado = st.executeQuery("SELECT id_pdf  FROM public.sesion_ve where convocatoria_sesion='"
 				+ cbx_convocatoria.getValue().getConvocatoria() + "';");
@@ -785,7 +788,6 @@ public class ModificacionSesionCtrl implements Initializable {
 	@FXML
 	public void onElimOrden(ActionEvent event) {
 
-		
 		String sql = "DELETE FROM public.ordendia_ve WHERE id_ordendia=" + id_punto_od + ";";
 		String sql2 = "DELETE FROM public.pdf_ve WHERE id_ordendia=" + id_punto_od + ";";
 
@@ -793,7 +795,7 @@ public class ModificacionSesionCtrl implements Initializable {
 			conexion.establecerConexion();
 			// conecci�n a la base de datos
 			conexion.getConnection();
-			Connection db =conexion.getConnection();
+			Connection db = conexion.getConnection();
 			PreparedStatement instruccion = db.prepareStatement(sql);
 			PreparedStatement instruccion2 = db.prepareStatement(sql2);
 
@@ -917,63 +919,66 @@ public class ModificacionSesionCtrl implements Initializable {
 
 	@FXML
 	void llenar_sesion(ActionEvent event) throws IOException {
-		List<gad.manta.common.Sesion> lista_sesion = null;
+		List<Sesion> lista_sesion = null;
 		tabla.getItems().clear();
-		
-		String a = cbx_convocatoria.getValue().getConvocatoria();
 
-		if (a != null) {
-			lista_sesion = servidor.consultarSesion_Modificacion(a);
-		}
-
-		id_quorum = lista_sesion.get(0).getId_quorum();
-		System.out.println("el idquorum es: " + id_quorum);
-		cbx_tipoSes.setValue(lista_sesion.get(0).getTipo_sesion());
-		date.setValue(lista_sesion.get(0).getFechaIntervencion().toLocalDate());
-		time.setValue(LocalTime.parse(lista_sesion.get(0).getHoraIntervencion()));
-		int id_acta = lista_sesion.get(0).getId_pdf();
-
-		convocatoria = a;
-		ActaPdf pdf_file = ActaPdf.pdf_acta(id_acta);
-
-		File n = new File(convertirPdf(pdf_file.getPdf()));
-		ruta_acta = n.getPath();
-		nombre_acta = pdf_file.getNombre();
-		// agrega al lisview
-		pdf_acta.getItems().clear();
-		pdf_acta.getItems().add(nombre_acta);
-
-		List<OrdenDia> listaOrden = FXCollections.observableArrayList();
-		conexion.establecerConexion();
-
-		OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden, a);
-		conexion.cerrarConexion();
-		bloquear();
-
-		int longi = 0;
-		int bandera = 0;
-		longi = listaOrden.size();
-		int numMax = 0;
-
-		while (longi > 0) {
-			if (listaOrden.get(bandera).getNumeroPunto() > numMax) {
-				numMax = listaOrden.get(bandera).getNumeroPunto();
+		if (cbx_convocatoria.getValue().getConvocatoria() == null) {
+			System.out.println("no hay datos");
+		} else {
+			String a = cbx_convocatoria.getValue().getConvocatoria();
+			if (a != null) {
+				lista_sesion = servidor.consultarSesion_Modificacion(a);
 			}
-			bandera++;
-			longi--;
+
+			id_quorum = lista_sesion.get(0).getId_quorum();
+			System.out.println("el idquorum es: " + id_quorum);
+			cbx_tipoSes.setValue(lista_sesion.get(0).getTipo_sesion());
+			date.setValue(lista_sesion.get(0).getFechaIntervencion().toLocalDate());
+			time.setValue(LocalTime.parse(lista_sesion.get(0).getHoraIntervencion()));
+			int id_acta = lista_sesion.get(0).getId_pdf();
+
+			convocatoria = a;
+
+			ActaPdf pdf_file = ActaPdf.pdf_acta(id_acta);
+
+			File n = new File(convertirPdf(pdf_file.getPdf()));
+			ruta_acta = n.getPath();
+			nombre_acta = pdf_file.getNombre();
+			// agrega al lisview
+			pdf_acta.getItems().clear();
+			pdf_acta.getItems().add(nombre_acta);
+
+			List<OrdenDia> listaOrden = FXCollections.observableArrayList();
+			conexion.establecerConexion();
+
+			OrdenDia.llenarInformacion(conexion.getConnection(), listaOrden, a);
+			conexion.cerrarConexion();
+			bloquear();
+			int longi = 0;
+			int bandera = 0;
+			longi = listaOrden.size();
+			int numMax = 0;
+
+			while (longi > 0) {
+				if (listaOrden.get(bandera).getNumeroPunto() > numMax) {
+					numMax = listaOrden.get(bandera).getNumeroPunto();
+				}
+				bandera++;
+				longi--;
+			}
+			data.num_punto = numMax + 1;
+			PuntoOrden.setText(String.valueOf(data.num_punto));
+			btn_modSesion.setDisable(false);
+
+			btn_modSesion.setVisible(false);
+			btn_elimSesion.setVisible(true);
+			btn_ActSesion.setVisible(true);
+			btn_nuevo.setDisable(false);
+			PuntoOrden.setDisable(false);
+
+			ObservableList<OrdenDia> datos = FXCollections.observableArrayList(listaOrden);
+			tabla.setItems(datos);
 		}
-		data.num_punto = numMax + 1;
-		PuntoOrden.setText(String.valueOf(data.num_punto));
-		btn_modSesion.setDisable(false);
-
-		btn_modSesion.setVisible(false);
-		btn_elimSesion.setVisible(true);
-		btn_ActSesion.setVisible(true);
-		btn_nuevo.setDisable(false);
-		PuntoOrden.setDisable(false);
-
-		ObservableList<OrdenDia> datos = FXCollections.observableArrayList(listaOrden);
-		tabla.setItems(datos);
 
 	}
 

@@ -103,14 +103,14 @@ public class IngresoPerCtrl implements Initializable {
 		}
     }
     
-    /*private void limpiar() {
+    private void limpiar() {
     	txt_cedula.setText("");
     	txt_cargo.setText("");
     	txt_nombre.setText("");
     	txt_username.setText("");
     	txt_password.setText("");
     	id_img=0;
-    }*/
+    }
     
     @FXML
     void onGuardar(ActionEvent event) throws SQLException {
@@ -129,12 +129,12 @@ public class IngresoPerCtrl implements Initializable {
     		
     		if(txt_cedula.getLength()==0) {
     			txt_cedula.requestFocus();
-    			mostrarMesaje("Falta ingresar el nÃºmero de cÃ©dula");
+    			mostrarMesaje("Falta ingresar el número de cédula");
     			
     		}else
     			if(resultado1.next()) {
         			txt_cedula.requestFocus();
-        			mostrarMesaje("El usuario con cÃ©dula "+txt_cedula.getText()+ " ya estÃ¡ registrado en el sistema");
+        			mostrarMesaje("El usuario con cédula "+txt_cedula.getText()+ " ya está registrado en el sistema");
         			
         		}else 
             
@@ -163,7 +163,7 @@ public class IngresoPerCtrl implements Initializable {
                         		int resultado = user.guardarRegistro(conexion.getConnection());                       		
                         		
                         		if(resultado ==1) {
-                        			//limpiar();
+                        			limpiar();
                         			imgBlanco();
                         			mostrarMesaje("El usuario "+txt_nombre.getText()+" a sido ingresado correctamente");
                         		}else{
@@ -205,11 +205,11 @@ public class IngresoPerCtrl implements Initializable {
     }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		txt_nombre.setText("AB. JOSï¿½ PICO ARTEAGA");
+		/*txt_nombre.setText("AB. JOSï¿½ PICO ARTEAGA");
 		txt_cedula.setText("123456789");
 		txt_cargo.setText("concejal");
 		txt_username.setText("concejal1");
-		txt_password.setText("1234");
+		txt_password.setText("1234");*/
 		conexion = new Conexion();
 		
 		btn_eliminar.setText("");

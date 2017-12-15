@@ -8,6 +8,7 @@ import java.net.URL;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXPasswordField;
@@ -59,6 +60,14 @@ public class LoginController implements Initializable {
 		Stage stage = (Stage) closeButton.getScene().getWindow();
 		// do what you have to do
 		stage.close();
+		try {
+			Main.registry.unbind("VotoE");
+			//UnicastRemoteObject.unexportObject(servidor, true);
+		} catch (RemoteException | NotBoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
 		System.exit(0);
 	}
 
@@ -137,7 +146,7 @@ public class LoginController implements Initializable {
 		Image im = new Image(f.toURI().toString());
 		logo.setImage(im);
 		try {
-			servidor = (IServidor) Naming.lookup("rmi://" + data_configuracion.ip_rmi + "/VotoE");
+			servidor = (IServidor) Naming.lookup("rmi://"+ data_configuracion.ip_rmi + "/VotoE");
 		} catch (MalformedURLException | RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

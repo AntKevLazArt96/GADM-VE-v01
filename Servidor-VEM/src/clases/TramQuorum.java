@@ -154,7 +154,7 @@ public class TramQuorum {
 					asistencia.tomarAsistencia(conexion.getConnection());
 				}
 
-				if (lista.size() >= 0) {
+				if (lista.size() >= 7) {
 					q.btn_finAsistencia.setDisable(false);
 					q.txtCumple.setText("Cumple con el mínimo de miembros para inicar la sesión");
 

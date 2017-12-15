@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,7 +19,6 @@ import clases.data;
 import gad.manta.common.Conexion;
 import gad.manta.common.Imagen;
 import gad.manta.common.Usuario;
-import gad.manta.common.data_configuracion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -113,10 +111,9 @@ public class ModificacionPerCtrl implements Initializable {
 			conexion.establecerConexion();
 			// conecciï¿½n a la base de datos
 			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();	
 			if (txt_cedula.getLength() == 0) {
 				txt_cedula.requestFocus();
-				mostrarMesaje("Falta ingresar el nÃºmero de cÃ©dula");
+				mostrarMesaje("Falta ingresar el número de cédula");
 
 			} else
 
@@ -128,7 +125,7 @@ public class ModificacionPerCtrl implements Initializable {
 				mostrarMesaje("Falta ingresar el nombre de usuario");
 			} else if (txt_password.getLength() == 0) {
 				txt_password.requestFocus();
-				mostrarMesaje("Falta ingresar la contraceÃ±a del usuario");
+				mostrarMesaje("Falta ingresar la contraceña del usuario");
 			} else if (txt_cargo.getLength() == 0) {
 				txt_cargo.requestFocus();
 				mostrarMesaje("Falta ingresar el cargo del usuario");
@@ -183,7 +180,7 @@ public class ModificacionPerCtrl implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		
 		txt_cedula.setText("123456787");
 
 	}
@@ -276,7 +273,7 @@ public class ModificacionPerCtrl implements Initializable {
 
 			} else {
 				mostrarMesaje(
-						"El usuario con cÃ©dula " + txt_cedula.getText() + " no se ecuentra registrado en el sistema");
+						"El usuario con cédula " + txt_cedula.getText() + " no se ecuentra registrado en el sistema");
 			}
 
 			System.out.println(id_img);
@@ -335,7 +332,7 @@ public class ModificacionPerCtrl implements Initializable {
 
 			} else {
 				mostrarMesaje(
-						"El usuario con cÃ©dula " + txt_cedula.getText() + " no se ecuentra registrado en el sistema");
+						"El usuario con cédula " + txt_cedula.getText() + " no se ecuentra registrado en el sistema");
 			}
 
 			conexion.cerrarConexion();

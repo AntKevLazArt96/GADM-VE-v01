@@ -184,9 +184,7 @@ public class LecturaPDF extends JFrame implements  Initializable {
 	
 	lbl_nombre.setText(data.name);
 	
-	File f = new File("C:\\librerias\\concejal1.png");
-	Image im = new Image(f.toURI().toString());
-	cirlogin.setFill(new ImagePattern(im));
+	cirlogin.setFill(new ImagePattern(data.Imagen));
 	cirlogin.setStroke(Color.SEAGREEN);
 	cirlogin.setEffect(new DropShadow(+25d, 0d, +2d, Color.DARKGREEN));
 	
