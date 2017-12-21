@@ -156,7 +156,7 @@ public class ConfiguracionIniCtrl implements Initializable {
 		Source source = new DOMSource(document);
 		StreamResult result = new StreamResult(new
 
-		java.io.File("C://GIT/GADM-VE-v01/Conexion.xml"));// nombre del archivo
+		File("C://GIT/GADM-VE-v01/Conexion.xml"));// nombre del archivo
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		transformer.transform(source, result);
 	}
