@@ -325,12 +325,18 @@ public class PantallaPrincipalCtrl implements Initializable {
 			data.convocatoria_sesion = sesion.getConvocatoria();
 			label_convocatoria.setText(sesion.getConvocatoria());
 
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Quorum.fxml"));
-			AnchorPane quorum = (AnchorPane) loader.load();
-			contenido.getChildren().setAll(quorum);
-
-			// llamamos al controllador con todos sus componentes
-			TramQuorum.q = loader.getController();
+			
+			if(data.tipo_modi==2) {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("PrincipalSecretaria.fxml"));
+				AnchorPane quorum = (AnchorPane) loader.load();
+				contenido.getChildren().setAll(quorum);
+			}else {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("Quorum.fxml"));
+				AnchorPane quorum = (AnchorPane) loader.load();
+				contenido.getChildren().setAll(quorum);
+				// llamamos al controllador con todos sus componentes
+				TramQuorum.q = loader.getController();
+			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

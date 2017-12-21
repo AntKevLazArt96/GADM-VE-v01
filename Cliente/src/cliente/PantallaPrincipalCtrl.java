@@ -120,6 +120,20 @@ public class PantallaPrincipalCtrl implements Initializable {
 									}
 
 								}
+								if (newMsg.getName().equals("ordenModificada")) {
+
+									try {
+										FXMLLoader loader = new FXMLLoader(
+												getClass().getResource("ClientePreSesion.fxml"));
+										AnchorPane ordenModificada = (AnchorPane) loader.load();
+										contenedor.getChildren().setAll(ordenModificada);
+
+									} catch (IOException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+
+								}
 								if (newMsg.getName().equals("REINICIAR")) {
 									try {
 										FXMLLoader loader = new FXMLLoader(
@@ -255,10 +269,10 @@ public class PantallaPrincipalCtrl implements Initializable {
 
 								if (newMsg.getName().contains("APROBADO")) {
 									Alert mensaje = new Alert(AlertType.INFORMATION);
-									mensaje.setTitle("Orden del día Aprobado");
+									mensaje.setTitle("Orden del dï¿½a Aprobado");
 									mensaje.setContentText(
-											"LA orden del día fue aprobada ahora se procedera a mostrar ");
-									mensaje.setHeaderText("Orden del día Aprobado");
+											"LA orden del dï¿½a fue aprobada ahora se procedera a mostrar ");
+									mensaje.setHeaderText("Orden del dï¿½a Aprobado");
 									mensaje.show();
 									try {
 										FXMLLoader loader = new FXMLLoader(

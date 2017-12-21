@@ -205,7 +205,7 @@
             <JFXComboBox fx:id="cbx_tipoSes" layoutX="178.0" layoutY="77.0" prefHeight="25.0" prefWidth="140.0" unFocusColor="#00bcd4" />
             <JFXDatePicker fx:id="date" defaultColor="#00bcd4" editable="false" layoutX="559.0" layoutY="42.0" prefHeight="25.0" prefWidth="133.0" />
             <JFXTimePicker fx:id="time" defaultColor="#00bcd4" editable="false" layoutX="559.0" layoutY="82.0" prefHeight="25.0" prefWidth="133.0" />
-            <Label layoutX="40.0" layoutY="121.0" text="ACTA" AnchorPane.leftAnchor="40.0">
+            <Label layoutX="40.0" layoutY="121.0" text="CONVOCATORIA" AnchorPane.leftAnchor="40.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -213,11 +213,8 @@
                   <MaterialDesignIconView fill="#212121" glyphName="FILE_PDF" size="18.0" />
                </graphic>
             </Label>
-            <JFXListView fx:id="pdf_acta" layoutX="123.0" layoutY="117.0" onMouseClicked="#mostrar_acta" prefHeight="35.0" prefWidth="344.0" />
-            <JFXButton fx:id="btn_examinarActa" layoutX="467.0" layoutY="117.0" onAction="#onExaActa" prefHeight="35.0" prefWidth="220.0" style="-fx-background-color: #00bcd4;" text="AGREGAR ACTA" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
+            <JFXListView fx:id="pdf_acta" layoutX="213.0" layoutY="117.0" onMouseClicked="#mostrar_acta" prefHeight="35.0" prefWidth="254.0" />
+            <JFXButton fx:id="btn_examinarActa" layoutX="471.0" layoutY="117.0" onAction="#onExaActa" prefHeight="35.0" prefWidth="216.0" style="-fx-background-color: #00bcd4;" text="AGREGAR CONVOCATORIA" textFill="WHITE">
                <graphic>
                   <MaterialDesignIconView fill="WHITE" glyphName="PLUS" size="25" />
                </graphic>

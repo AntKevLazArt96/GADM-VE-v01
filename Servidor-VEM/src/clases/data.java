@@ -24,5 +24,5 @@ public class data {
     public static File archivo_pff;
     public static int tipo_lectura;
 	public static boolean verSesion;
-    
+    public static int tipo_modi=1;
 }

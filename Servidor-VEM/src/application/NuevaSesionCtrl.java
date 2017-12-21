@@ -419,6 +419,7 @@ public class NuevaSesionCtrl implements Initializable {
 		if (puntoAgregado) {
 			puntoAgregado = false;
 			try {
+				data.num_punto=1;
 				AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("subSesiones.fxml"));
 				panel.getChildren().setAll(pane);
 			} catch (IOException e) {

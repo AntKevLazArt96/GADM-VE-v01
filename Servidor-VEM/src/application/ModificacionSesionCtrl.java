@@ -37,6 +37,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 
+import clases.TramQuorum;
 import clases.data;
 import gad.manta.common.ActaPdf;
 import gad.manta.common.Conexion;
@@ -359,10 +360,36 @@ public class ModificacionSesionCtrl implements Initializable {
 	@FXML
 	void onFinAction(ActionEvent event) {
 		try {
-			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("subSesiones.fxml"));
+			if(data.tipo_modi==2) {
+				data.num_punto=1;
+				// get a handle to the stage
+				Stage actualStage = (Stage) btn_cancelar.getScene().getWindow();
+				// do what you have to do
+				actualStage.close();
+				
+				Stage newStage = new Stage();
+				AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("PantallaPrincipal.fxml"));
+				Scene scene = new Scene(pane);
+				// Pantalla completa
+				Screen screen = Screen.getPrimary();
+				Rectangle2D bounds = screen.getVisualBounds();
 
-			panel.getChildren().setAll(pane);
+				newStage.setX(bounds.getMinX());
+				newStage.setY(bounds.getMinY());
+				newStage.setWidth(bounds.getWidth());
+				newStage.setHeight(bounds.getHeight());
 
+				newStage.setScene(scene);
+				newStage.initStyle(StageStyle.UNDECORATED);
+				newStage.show();
+				
+			}else {
+				AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("subSesiones.fxml"));
+
+				panel.getChildren().setAll(pane);
+				data.num_punto=1;
+			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

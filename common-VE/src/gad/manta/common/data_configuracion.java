@@ -17,5 +17,6 @@ public class data_configuracion {
     public static String nombre_bd_postgres;
     public static String usu_db_postgres;
     public static String conta_usu_postgres;
+
     //public static String ipBaseDatos="192.168.1.6";
 }

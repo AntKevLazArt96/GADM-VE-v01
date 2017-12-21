@@ -106,18 +106,23 @@ public class LoginController implements Initializable {
 
 	@FXML
 	private void loginAction() throws IOException, NotBoundException {
-		// get a handle to the stage
-
-		Stage actualStage = (Stage) closeButton.getScene().getWindow();
-		// do what you have to do
-		actualStage.close();
-
-		Stage newStage = new Stage();
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
-		String username = servidor.login(txt_username.getText(), txt_password.getText());
+		
+		String username ="";
+		username= servidor.login(txt_username.getText(), txt_password.getText());
+		
 		data.name = username;
+		System.out.println(username+"  aaaaaaaaa");
+		if (username.equals("")) {
+			mostrarMesaje("Usuario incorrecto");
+			
+		} else {
+			// get a handle to the stage
+			Stage actualStage = (Stage) closeButton.getScene().getWindow();
+			// do what you have to do
+			actualStage.close();
 
-		if (username != null) {
+			Stage newStage = new Stage();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
 			
 			AnchorPane pane = loader.load();
 			Scene scene = new Scene(pane);
@@ -134,11 +139,28 @@ public class LoginController implements Initializable {
 			newStage.setScene(scene);
 			newStage.initStyle(StageStyle.UNDECORATED);
 			newStage.show();
-		} else {
-			System.out.println("Usuario incorrecto");
 		}
 	}
 
+	public void mostrarMesaje(String subtitulo) {
+
+		try {
+			data.header = "Aviso";
+			data.cuerpo = subtitulo;
+
+			Stage newStage = new Stage();
+			AnchorPane pane;
+			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("VentanaDialogo.fxml"));
+			Scene scene = new Scene(pane);
+			newStage.setScene(scene);
+			newStage.initStyle(StageStyle.UNDECORATED);
+			newStage.show();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -151,8 +173,8 @@ public class LoginController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*txt_username.setText("secretaria");
-		txt_password.setText("1234");*/
+		txt_username.setText("secretaria");
+		txt_password.setText("1234");
 
 	}
 

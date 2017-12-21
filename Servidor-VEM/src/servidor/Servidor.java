@@ -56,23 +56,26 @@ public class Servidor implements IServidor {
 			Connection db = conexion.getConnection();
 			Statement st = db.createStatement();
 
-			int id;
+			int id = 0;
 			String usuario = "";
 			byte[] img = null;
 			// ejecucion y resultado de la consulta
 			ResultSet resultado = st
 					.executeQuery("select *from verificar_usuario('" + username + "','" + password + "');");
-			resultado.next();
-			id = resultado.getInt(1);
-			usuario = resultado.getString(2);
-			img = resultado.getBytes(3);
+			
+			if(resultado.next()){
+				id = resultado.getInt(1);
+				usuario = resultado.getString(2);
+				img = resultado.getBytes(3);	
+			}
+			
 			db.close();
 
 			// Para el Quorum
 			if (!username.equals("secretaria")) {
 				listaUsuario.add(new Usuario(id, usuario, "PRESENTE", img));
 			}
-			System.out.println("el usuario se ha logueado correctamente");
+			System.out.println(usuario);
 
 			return usuario;
 		} catch (Exception e) {

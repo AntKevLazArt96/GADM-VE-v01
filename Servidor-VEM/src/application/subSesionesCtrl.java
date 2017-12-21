@@ -5,6 +5,7 @@ import java.io.IOException;
 import com.jfoenix.controls.JFXButton;
 
 import clases.data;
+import gad.manta.common.data_configuracion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,6 +36,7 @@ public class subSesionesCtrl {
     @FXML
     void btnModiAction(ActionEvent event) {
     	data.verSesion=false;
+    	data.tipo_modi=1;
     	try {
     		AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ModificacionSesion.fxml"));
 			

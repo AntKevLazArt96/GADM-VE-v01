@@ -8,6 +8,9 @@ import java.rmi.RemoteException;
 //import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import org.json.simple.JSONObject;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
@@ -16,6 +19,7 @@ import clases.data;
 import gad.manta.common.Documentacion;
 import gad.manta.common.OrdenDia;
 import gad.manta.common.Sesion;
+import gad.manta.common.data_configuracion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -82,21 +86,31 @@ public class PrincipalSecretariaCtrl implements Initializable {
 		t.iniciarVotacion();
 	}
 
+	@SuppressWarnings("unchecked")
 	@FXML
 	void modificar_sesion(ActionEvent event) {
 
 		try {
+			data.tipo_modi=2;
+			
+			// get a handle to the stage
+			Stage actualStage = (Stage) btn_modificar.getScene().getWindow();
+			// do what you have to do
+			actualStage.close();
 			Stage newStage = new Stage();
-
 			AnchorPane pane;
-
 			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("ModificacionSesion.fxml"));
 			Scene scene = new Scene(pane);
-
 			newStage.setScene(scene);
 			newStage.initStyle(StageStyle.UNDECORATED);
 			newStage.show();
-
+			//no se
+			JSONObject js = new JSONObject();
+			js.put("name", "ordenModificada	");
+			String json = js.toJSONString();
+			System.out.println("Se envio:" + json);
+			PantallaPrincipalCtrl.dos.writeUTF(json);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
