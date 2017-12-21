@@ -71,22 +71,5 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="472.0" layoutY="322.0" prefHeight="178.0" prefWidth="179.0" AnchorPane.topAnchor="322.0">
-         <children>
-            <JFXButton layoutX="45.0" layoutY="41.0" prefHeight="116.0" prefWidth="120.0" style="-fx-background-color: #00bcd4;" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="18.0">
-               <font>
-                  <Font size="11.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="PLAY" size="80" />
-               </graphic>
-            </JFXButton>
-            <Label layoutX="28.0" layoutY="137.0" prefHeight="27.0" prefWidth="130.0" text="INICIAR SESION" textAlignment="CENTER">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
    </children>
 </AnchorPane>

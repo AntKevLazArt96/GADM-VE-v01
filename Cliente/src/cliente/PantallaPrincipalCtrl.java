@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import com.jfoenix.controls.JFXButton;
+
 import gad.manta.common.Pdf;
 import gad.manta.common.Sesion;
 import gad.manta.common.Usuario;
@@ -28,9 +29,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -259,7 +260,6 @@ public class PantallaPrincipalCtrl implements Initializable {
 											"LA orden del día fue aprobada ahora se procedera a mostrar ");
 									mensaje.setHeaderText("Orden del día Aprobado");
 									mensaje.show();
-								
 									try {
 										FXMLLoader loader = new FXMLLoader(
 												getClass().getResource("ClienteSesion.fxml"));
@@ -267,7 +267,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 										contenedor.getChildren().setAll(Presesion);
 										// obtengo el controlador y se lo designo a la variable global c
 										c = loader.getController();
-
+										//mostrarMesaje("Se ha Aprobado la orden del dia");
 									} catch (IOException e) {
 										// TODO Auto-generated catch block
 										e.printStackTrace();
@@ -360,6 +360,26 @@ public class PantallaPrincipalCtrl implements Initializable {
 		}
 	}
 
+	public void mostrarMesaje(String subtitulo) {
+
+		try {
+			data.header = "Aviso";
+			data.cuerpo = subtitulo;
+
+			Stage newStage = new Stage();
+			AnchorPane pane;
+			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("VentanaDialogo.fxml"));
+			Scene scene = new Scene(pane);
+			newStage.setScene(scene);
+			newStage.initStyle(StageStyle.UNDECORATED);
+			newStage.show();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -393,10 +413,10 @@ public class PantallaPrincipalCtrl implements Initializable {
 		String dia = dias.get(d.getDay());
 		String mes = meses.get(d.getMonth());
 		int di = d.getDate();
-		
+
 		// cargamos la fecha actual
 		lbl_fecha.setText(dia + ", 08 de " + mes + " del " + (d.getYear() + 1900));
-		lbl_fecha.setText(dia + ", "+di+" de " + mes + " del " + (d.getYear() + 1900));
+		lbl_fecha.setText(dia + ", " + di + " de " + mes + " del " + (d.getYear() + 1900));
 		try {
 			sesion = LoginController.servidor.consultarSesion();
 			label_convocatoria.setText(sesion.getConvocatoria());

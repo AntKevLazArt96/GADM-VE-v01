@@ -1,13 +1,9 @@
-/Server/
+/LICENSE.txt
+/README.txt
+/jdom-2.0.6-contrib.jar
+/jdom-2.0.6-javadoc.jar
+/jdom-2.0.6-junit.jar
+/jdom-2.0.6-sources.jar
+/jdom-2.0.6.jar
+/lib/
 /application/
-/clases/
-<<<<<<< HEAD
-=======
-/fontawesomefx-8.6.jar
-/imgs/
-/jfoenix.jar
-/json_simple-1.1.jar
-/pdf-renderer-1.0.5.jar
-/postgresql-42.1.4.jar
-/servidor/
->>>>>>> master

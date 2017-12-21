@@ -174,12 +174,8 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 		Image im1 = new Image(f.toURI().toString());
 		logo.setImage(im1);
 		
-		try {
-			servidor = (IServidor)Naming.lookup("rmi://192.168.1.6/VotoE");
-		} catch (MalformedURLException | RemoteException | NotBoundException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+		servidor = LoginController.servidor;
+		
 	
 	lbl_nombre.setText(data.name);
 	

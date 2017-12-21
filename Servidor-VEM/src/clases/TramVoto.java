@@ -435,53 +435,69 @@ public class TramVoto {
 	}
 
 	public void reiniciarVoto2() throws RemoteException {
-		String user = lista.get(1).getNombre();
-		
-		Voto voto =lista.stream().filter(p->p.getNombre().equals(user)).findFirst().get();
-		lista.remove(voto);
-		
-
-			
+		String user = iv.user2.getText();
+		String status = iv.status2.getText();
+		reiniciarcontrol(user,status);		
 	}
 
 	public void reiniciarVoto3() throws RemoteException {
-		// reiniciarcontrol(iv.user3.getText(),iv.status3.getText(),2);
+		String user = iv.user3.getText();
+		String status = iv.status3.getText();
+		reiniciarcontrol(user,status);
 	}
 
 	public void reiniciarVoto4() throws RemoteException {
-		// reiniciarcontrol(iv.user4.getText(),iv.status4.getText(),3);
+		String user = iv.user4.getText();
+		String status = iv.status4.getText();
+		reiniciarcontrol(user,status);
 	}
 
 	public void reiniciarVoto5() throws RemoteException {
-		// reiniciarcontrol(iv.user5.getText(),iv.status5.getText(),4);
+		String user = iv.user5.getText();
+		String status = iv.status5.getText();
+		reiniciarcontrol(user,status);
 	}
 
 	public void reiniciarVoto6() throws RemoteException {
-		// reiniciarcontrol(iv.user6.getText(),iv.status6.getText(),5);
+		String user = iv.user6.getText();
+		String status = iv.status6.getText();
+		reiniciarcontrol(user,status);
 	}
 
 	public void reiniciarVoto7() throws RemoteException {
-		// reiniciarcontrol(iv.user7.getText(),iv.status7.getText(),6);
+		String user = iv.user7.getText();
+		String status = iv.status7.getText();
+		reiniciarcontrol(user,status);
 	}
 
 	public void reiniciarVoto8() throws RemoteException {
-		// reiniciarcontrol(iv.user8.getText(),iv.status8.getText(),7);
+		String user = iv.user8.getText();
+		String status = iv.status8.getText();
+		reiniciarcontrol(user,status);
 	}
 
 	public void reiniciarVoto9() throws RemoteException {
-		// reiniciarcontrol(iv.user9.getText(),iv.status9.getText(),8);
+		String user = iv.user9.getText();
+		String status = iv.status9.getText();
+		reiniciarcontrol(user,status);
 	}
 
 	public void reiniciarVoto10() throws RemoteException {
-		// reiniciarcontrol(iv.user10.getText(),iv.status10.getText(),9);
+		String user = iv.user10.getText();
+		String status = iv.status10.getText();
+		reiniciarcontrol(user,status);
 	}
 
 	public void reiniciarVoto11() throws RemoteException {
-		// reiniciarcontrol(iv.user11.getText(),iv.status11.getText(),10);
+		String user = iv.user11.getText();
+		String status = iv.status11.getText();
+		reiniciarcontrol(user,status);
 	}
 
 	public void reiniciarVoto12() throws RemoteException {
-		// reiniciarcontrol(iv.user12.getText(),iv.estatus12.getText(),11);
+		String user = iv.user12.getText();
+		String status = iv.estatus12.getText();
+		reiniciarcontrol(user,status);
 	}
 
 	// meotodo para convertir la la imagen

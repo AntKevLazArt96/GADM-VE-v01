@@ -3,14 +3,11 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 
-import clases.DataSesion;
 import clases.data;
 import gad.manta.common.Conexion;
 import gad.manta.common.Sesion;
@@ -20,28 +17,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class subInicioCtrl implements Initializable {
-
 	private Conexion conexion;
 
 	// private Servidor servidor;
 	@FXML
 	private AnchorPane panel;
-	
-	@FXML
-    private ScrollPane scrollPane;
 
-	/*
-	 * @FXML private AnchorPane paneHaySesion,panelSesiones;
-	 */
 	@FXML
-	private AnchorPane panelSesiones;
+	private AnchorPane paneHaySesion;
 
 	@FXML
 	private JFXButton btn_inicio;
@@ -50,63 +40,47 @@ public class subInicioCtrl implements Initializable {
 	private JFXButton btn_ver;
 
 	@FXML
+	private Label lbl_fecha;
+
+	@FXML
+	private Label lbl_convocatoria;
+
+	@FXML
 	private AnchorPane paneNoHaySesion;
 
 	@FXML
 	private JFXButton btn_nuevaSesion;
 	
-	public PanelSesionCtrl panelSesion;
-
+	Sesion sesion;
+		
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		conexion = new Conexion();
-
 		Date fechaActual = new Date(Calendar.getInstance().getTime().getTime());
-
 		conexion.establecerConexion();
-		List<Sesion> sesion = new ArrayList<>();
-		String resultado = Sesion.haySesionParaHoy(conexion.getConnection(), fechaActual, sesion);
-
-		System.out.println(resultado);
-		if (resultado.equals("PENDIENTE")) {
-			scrollPane.setVisible(true);
-			paneNoHaySesion.setVisible(false);
-			data.convocatoria_sesion = resultado;
-			
-			int contador = 150;
-			
-			for (int i = 0; i < sesion.size(); i++) {
-				System.out.println(i);
-				DataSesion.convocatoria=sesion.get(i).getConvocatoria();
-				DataSesion.description=sesion.get(i).getDescription();
-				DataSesion.fechaIntervencion=sesion.get(i).getFechaIntervencion();
-				DataSesion.estado_sesion=sesion.get(i).getEstado_sesion();
-				DataSesion.tipo_sesion=sesion.get(i).getTipo_sesion();
-				try {
-					
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("PanelSesion.fxml"));
-					AnchorPane pane = (AnchorPane) loader.load();
-					panelSesiones.getChildren().add(pane);
-					panelSesion = loader.getController();
-					
-					System.out.println("panel" + i + "en la posision " + ((i*125)+20));
-					panelSesion.panelInicioVoto.setLayoutY((i*150)+20);
-					panelSesion.panelInicioVoto.setLayoutX(12);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				contador=i*150;
+		sesion = Sesion.haySesionParaHoy(conexion.getConnection(), fechaActual);
+		String resultado="";
+		if(sesion!=null) {
+			resultado = sesion.getConvocatoria();
+		}
+		
+		//System.out.println("El resultado es " + resultado);
+		if (resultado != "") {
+			sesion.getConvocatoria();
+			//System.out.println(sesion.getConvocatoria()+" "+sesion.getFechaIntervencion()+" "+fechaActual);
+			if(sesion.getFechaIntervencion().equals(fechaActual)) {
+				lbl_fecha.setText("HOY");
+			}else {
+				lbl_fecha.setText("EL "+sesion.getFechaIntervencion());
 			}
-			
-			
-
+			lbl_convocatoria.setText(sesion.getTipo_sesion()+" "+sesion.getConvocatoria());
+			data.convocatoria_sesion = resultado;
+			paneHaySesion.setVisible(true);
+			paneNoHaySesion.setVisible(false);
 		} else {
-			scrollPane.setVisible(false);
+			paneHaySesion.setVisible(false);
 			paneNoHaySesion.setVisible(true);
-			paneNoHaySesion.setLayoutX(100);
-			paneNoHaySesion.setLayoutY(130);
+			paneNoHaySesion.setLayoutY(141);
 
 		}
 		conexion.cerrarConexion();
@@ -148,5 +122,18 @@ public class subInicioCtrl implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+    void verSesion(ActionEvent event) {
+		data.verSesion=true;
+		System.out.println(sesion.getConvocatoria());
+		try {
+			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("ModificacionSesion.fxml"));
+			panel.getChildren().setAll(pane);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
 }

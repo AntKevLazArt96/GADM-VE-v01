@@ -7,9 +7,14 @@
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/common-VE"/>
 	<classpathentry exported="true" kind="lib" path="postgresql-42.1.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/json_simple-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/fontawesomefx-8.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/fontawesomefx-8.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jfoenix.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/pdf-renderer-1.0.5.jar"/>
-	<classpathentry kind="lib" path="lib/postgresql-42.1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/postgresql-42.1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GIT/GADM-VE-v01/Servidor-VEM/lib/jdom-2.0.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GIT/GADM-VE-v01/Servidor-VEM/lib/jdom-2.0.6-contrib.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GIT/GADM-VE-v01/Servidor-VEM/lib/jdom-2.0.6-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GIT/GADM-VE-v01/Servidor-VEM/lib/jdom-2.0.6-junit.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/GIT/GADM-VE-v01/Servidor-VEM/lib/jdom-2.0.6-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

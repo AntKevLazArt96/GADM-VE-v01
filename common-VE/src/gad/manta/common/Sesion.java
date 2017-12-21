@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
 
 import javafx.collections.ObservableList;
 
@@ -25,7 +24,11 @@ public class Sesion implements Serializable {
 	private int id_quorum;
 	private int id_pdf;
 	private String estado_sesion;
-
+	
+	public Sesion() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Sesion(String convocatoria, String description, String tipo_sesion, Date fechaRegistro,
 			Date fechaIntervencion, String horaIntervencion, int quorum, int id_pdf) {
 		super();
@@ -35,7 +38,7 @@ public class Sesion implements Serializable {
 		this.fechaRegistro = fechaRegistro;
 		this.fechaIntervencion = fechaIntervencion;
 		this.horaIntervencion = horaIntervencion;
-		this.id_quorum=quorum;
+		this.id_quorum = quorum;
 		this.id_pdf = id_pdf;
 
 	}
@@ -108,12 +111,12 @@ public class Sesion implements Serializable {
 		return convocatoria;
 	}
 
-	public Sesion(String convocatoria, String description, String estado, Date intervencion,String tipo_sesion) {
+	public Sesion(String convocatoria, String description, String estado, Date intervencion, String tipo_sesion) {
 		this.convocatoria = convocatoria;
 		this.description = description;
 		this.estado_sesion = estado;
 		this.fechaIntervencion = intervencion;
-		this.tipo_sesion=tipo_sesion;
+		this.tipo_sesion = tipo_sesion;
 	}
 
 	public Sesion(String convocatoria, String description, Date registro, Date intervencion, String hora) {
@@ -158,6 +161,12 @@ public class Sesion implements Serializable {
 		this.fechaRegistro = fechaRegistro;
 		this.fechaIntervencion = fechaIntervencion;
 		this.horaIntervencion = horaIntervencion;
+	}
+
+	public Sesion(String convocatoria, String tipo_sesion, Date fechaIntervencion) {
+		this.convocatoria=convocatoria;
+		this.tipo_sesion=tipo_sesion;
+		this.fechaIntervencion=fechaIntervencion;
 	}
 
 	public String guardarRegistro(Connection connection) {
@@ -212,25 +221,39 @@ public class Sesion implements Serializable {
 		}
 	}
 
-	public static String haySesionParaHoy(Connection connection, Date fechaIntervencion, List<Sesion> sesion) {
+	public static Sesion haySesionParaHoy(Connection connection, Date fechaIntervencion) {
 		try {
 			Statement statement = connection.createStatement();
-			//ResultSet resultado = statement.executeQuery(	"select convocatoria_sesion,description_sesion,estado_sesion,intervention_sesion from Sesion_VE where intervention_sesion='"+ fechaIntervencion + "' and estado_sesion='PENDIENTE';");
-			ResultSet resultado = statement.executeQuery("select convocatoria_sesion,description_sesion,estado_sesion,intervention_sesion, tipo_sesion from Sesion_VE where estado_sesion='PENDIENTE';");
-			
-			String estado = "No Hay Datos";
-			while (resultado.next()) {
-				sesion.add(new Sesion(resultado.getString(1), resultado.getString(2), resultado.getString(3),
-						resultado.getDate(4),resultado.getString(5)));
-				estado=resultado.getString(3);
+			ResultSet resultado = statement.executeQuery("select * from Sesion_VE where intervention_sesion='"
+					+ fechaIntervencion + "' and estado_sesion='PENDIENTE';");
+			if (resultado.next()) {
+				Sesion sesion = new Sesion(resultado.getString(1), resultado.getString(3),resultado.getDate(5));
+				return sesion;
+			} else {
+				return null;
 			}
-
-			return estado;
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return "No Hay Datos";
+			return null;
+		}
+
+	}
+	
+	public static Sesion consultarConvocatoria(Connection connection, String convocatoria) {
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet resultado = statement.executeQuery("select * from Sesion_VE where convocatoria_sesion='"+convocatoria+"';");
+			if (resultado.next()) {
+				Sesion sesion = new Sesion(resultado.getString(1), resultado.getString(3),resultado.getDate(5));
+				return sesion;
+			} else {
+				return null;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
 		}
 
 	}
@@ -241,7 +264,7 @@ public class Sesion implements Serializable {
 			PreparedStatement instruccion = connection.prepareStatement(sql);
 			System.out.println(getId_quorum());
 			instruccion.setInt(1, getId_quorum());
-			System.out.println("la convocatoria es"+getConvocatoria());
+			System.out.println("la convocatoria es" + getConvocatoria());
 			instruccion.setString(2, getConvocatoria());
 
 			instruccion.execute();
