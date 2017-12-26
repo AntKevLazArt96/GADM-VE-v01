@@ -587,13 +587,19 @@ public class NuevaSesionCtrl implements Initializable {
 				}
 				if (data.documentacion == 0) {
 					int id=0;
+					OrdenDia orden;
 					if(cbx_proponente.getValue()!=null) {
 						id =cbx_proponente.getValue().getId();
+						orden = new OrdenDia(convocatoria, Integer.valueOf(PuntoOrden.getText()),
+								txt_descripcion.getText(),id );
+						
 					}else {
-						id=0;
+						 orden= new OrdenDia(convocatoria, Integer.valueOf(PuntoOrden.getText()),
+								txt_descripcion.getText(),0);
+						
 					}
-					OrdenDia orden = new OrdenDia(convocatoria, Integer.valueOf(PuntoOrden.getText()),
-							txt_descripcion.getText(),id );
+					
+					
 					conexion.establecerConexion();
 					idOrden = orden.guardarRegistro(conexion.getConnection());
 					conexion.cerrarConexion();
