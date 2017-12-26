@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javafx.collections.ObservableList;
+import sun.util.logging.resources.logging;
 
 public class Usuario implements Serializable {
 
@@ -25,16 +26,37 @@ public class Usuario implements Serializable {
 	private String password;
 	private int id_img;
 	private String codigoHuella;
-
+	private int isLogged;
+	
 	public Usuario() {
 		super();
 	}
-
+	
+	public Usuario(String status) {
+		this.status = status;
+	}
+	//para login
+	public Usuario(int id, String nombre, byte[] img, String Tipo,int islogged) {
+		this.id = id;
+		this.nombre = nombre;
+		this.img = img;
+		this.cargo = Tipo;
+		this.isLogged=islogged;
+	}
+	
 	public Usuario(int id, String nombre, String status, byte[] img) {
 		this.id = id;
 		this.nombre = nombre;
 		this.status = status;
 		this.img = img;
+	}
+	
+	public Usuario(int id, String nombre, String status, byte[] img,String username) {
+		this.id = id;
+		this.nombre = nombre;
+		this.status = status;
+		this.img = img;
+		this.usuario=username;
 	}
 
 	public Usuario(Integer id, String cedula, String cargo, String nombre, String usuario, String password,
@@ -219,6 +241,14 @@ public class Usuario implements Serializable {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+
+	public int getIsLogged() {
+		return isLogged;
+	}
+
+	public void setIsLogged(int isLogged) {
+		this.isLogged = isLogged;
 	}
 
 }

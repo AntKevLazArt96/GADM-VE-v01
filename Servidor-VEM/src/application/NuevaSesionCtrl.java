@@ -577,17 +577,22 @@ public class NuevaSesionCtrl implements Initializable {
 
 			if (txt_descripcion.getLength() == 0) {
 				mostrarMesaje("Falta ingresar la descripción del punto");
-			} else if (cbx_proponente.getValue() == null) {
-				mostrarMesaje("Falta selecionar el Proponente del punto");
 			} else {
-
+				if (cbx_proponente.getValue() == null) {
+					mostrarMesaje("No se a agredado Proponente " + "para el punto " + PuntoOrden.getText() + "");
+				} 
 				if (longitud_lista == 0) {
 					mostrarMesaje("No se a agredado documentación " + "para el punto " + PuntoOrden.getText() + "");
 				}
 				if (data.documentacion == 0) {
-
+					int id=0;
+					if(cbx_proponente.getValue()!=null) {
+						id =cbx_proponente.getValue().getId();
+					}else {
+						id=0;
+					}
 					OrdenDia orden = new OrdenDia(convocatoria, Integer.valueOf(PuntoOrden.getText()),
-							txt_descripcion.getText(), cbx_proponente.getValue().getId());
+							txt_descripcion.getText(),id );
 					conexion.establecerConexion();
 					idOrden = orden.guardarRegistro(conexion.getConnection());
 					conexion.cerrarConexion();

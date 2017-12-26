@@ -18,7 +18,7 @@
                   <MaterialDesignIconView fill="WHITE" glyphName="TEXT_TO_SPEECH" size="60.0" text="" />
                </graphic>
             </JFXButton>
-            <Label layoutX="732.0" layoutY="60.0" text="Concejal" textFill="WHITE" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="732.0" AnchorPane.topAnchor="60.0">
+            <Label fx:id="lbl_tipo" layoutX="732.0" layoutY="60.0" text="Concejal" textFill="WHITE" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="732.0" AnchorPane.topAnchor="60.0">
                <font>
                   <Font size="18.0" />
                </font>

@@ -1,6 +1,6 @@
 package application;
-	
 
+import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -11,8 +11,15 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
-import clases.data;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import gad.manta.common.IServidor;
 import gad.manta.common.Utils;
 import gad.manta.common.data_configuracion;
@@ -24,96 +31,78 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
-
 public class Main extends Application {
-	static boolean hayConfig;
+	public static List<String> config = new ArrayList<>();
 	public static Registry registry;
-	
-	public void mostrarMesaje(String tipo,String subtitulo) {
-
+	static boolean hayConfig;
+	public static boolean cargar() {
 		try {
-			data.header = tipo;
-			data.cuerpo = subtitulo;
-			Stage newStage = new Stage();
-			AnchorPane pane;
-			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("VentanaDialogo.fxml"));
-			Scene scene = new Scene(pane);
-			newStage.setScene(scene);
-			newStage.initStyle(StageStyle.UNDECORATED);
-			newStage.show();
+			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+			File f = new File("C://GIT/GADM-VE-v01/Conexion.xml");
+			Document document = builder.parse(f);
+			recorrerRama(document);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
 
+	private static void recorrerRama(Node nodo) {
+		if (nodo != null) {
+			if (nodo.getNodeName().equals("#text")) {
+				System.out.println("valor del nodo: " + nodo.getNodeValue());
+				config.add(nodo.getNodeValue());
+			}
+			// System.out.println("nombre del nodo: "+nodo.getNodeName());
+			// System.out.println("valor del nodo: "+nodo.getNodeValue());
+			NodeList hijos = nodo.getChildNodes();
+			for (int i = 0; i < hijos.getLength(); i++) {
+				Node nodoNieto = hijos.item(i);
+				recorrerRama(nodoNieto);
+			}
+		}
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws IOException {
+		if (cargar()) {
+
+			data_configuracion.ipBaseDatos = config.get(0);
+			data_configuracion.puerto_postgres = Integer.valueOf(config.get(1));
+			data_configuracion.usu_db_postgres = config.get(2);
+			data_configuracion.conta_usu_postgres = config.get(3);
+			data_configuracion.nombre_bd_postgres = config.get(4);
+		}
+		configuraciones();
+		try {
+			Utils.setCodeBase(IServidor.class);
+			Servidor servidor = new Servidor();
+			IServidor remote = (IServidor) UnicastRemoteObject.exportObject(servidor, data_configuracion.puerto_rmi);
+			// System.out.println(data_configuracion.puerto_rmi);
+			registry = LocateRegistry.createRegistry(1099);
+			registry.rebind("VotoE", remote);
+			System.out.println(registry.toString());
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("Login.fxml"));
+			// Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.initStyle(StageStyle.UNDECORATED);
+			primaryStage.show();
+
+			/*
+			 * System.in.read();
+			 * 
+			 * registry.unbind("VotoE"); UnicastRemoteObject.unexportObject(servidor, true);
+			 */
+		} catch (RemoteException e) {
+			System.out.println(e);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	@Override
-	public void start(Stage primaryStage) throws IOException {
-			Process r =Runtime.getRuntime().exec("cmd /c java -jar C:\\Socket.jar start");
-			System.out.println(r.getInputStream().toString());
-		if (ConfiguracionIniCtrl.cargar()) {
-			
-			data_configuracion.ipBaseDatos=ConfiguracionIniCtrl.config.get(0);
-			data_configuracion.puerto_postgres=Integer.valueOf(ConfiguracionIniCtrl.config.get(1));
-			data_configuracion.usu_db_postgres=ConfiguracionIniCtrl.config.get(2);
-			data_configuracion.conta_usu_postgres=ConfiguracionIniCtrl.config.get(3);
-			data_configuracion.nombre_bd_postgres=ConfiguracionIniCtrl.config.get(4);
-		}
-		configuraciones();		
-		if(hayConfig){
-			try {
-	    		Utils.setCodeBase(IServidor.class);
-				Servidor servidor = new Servidor();
-				IServidor remote = (IServidor)UnicastRemoteObject.exportObject(servidor, data_configuracion.puerto_rmi);
-				//System.out.println(data_configuracion.puerto_rmi);
-				registry = LocateRegistry.createRegistry(1099);
-				registry.rebind("VotoE", remote);
-				System.out.println(registry.toString());
-				AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Login.fxml"));
-				//Scene scene = new Scene(root,400,400);
-				Scene scene = new Scene(root);
-				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-				primaryStage.setScene(scene);
-				primaryStage.initStyle(StageStyle.UNDECORATED);
-				primaryStage.show();
-				
-				/*System.in.read();
-		    	
-		        registry.unbind("VotoE");
-		        UnicastRemoteObject.unexportObject(servidor, true);
-				*/
-			} catch (RemoteException e) {
-				System.out.println(e);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}else {
-			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("ConfiguracionIni.fxml"));
-			//Scene scene = new Scene(root,400,400);
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			//primaryStage.initStyle(StageStyle.UNDECORATED);
-			primaryStage.show();
-			mostrarMesaje("No se pudo conectar con el servidor de base de datos deseado","por favor cambie las configuraciones para poder inicar a app");
-		}
-		//ejecutar socket al iniciar la App
-		/*try {
-			
-			if(Runtime.getRuntime()!=null) {
-				System.out.println("Ya se esta ejecuntado");
-			}else {
-				Runtime.getRuntime().exec("cmd /c java -jar C:\\Socket.jar start");
-				System.out.println(Runtime.getRuntime().toString());
-			}
-			
-			
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}*/
-		
-		
+
 	}
 	
 	public static void configuraciones() {
@@ -152,8 +141,6 @@ public class Main extends Application {
 	}
 	public static void main(String[] args) {
 		launch(args);
-				
-			
-				
+
 	}
 }

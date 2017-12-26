@@ -22,7 +22,7 @@
       </AnchorPane>
       <AnchorPane layoutX="151.0" layoutY="131.0" prefHeight="178.0" prefWidth="179.0" AnchorPane.leftAnchor="151.0" AnchorPane.topAnchor="131.0">
          <children>
-            <JFXButton fx:id="bnt_nuevo" layoutX="45.0" layoutY="41.0" onAction="#btnNuevoAction" prefHeight="116.0" prefWidth="120.0" style="-fx-background-color: #00bcd4;" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0">
+            <JFXButton fx:id="bnt_nuevo" layoutX="45.0" layoutY="41.0" onAction="#btnNuevoAction" prefHeight="116.0" prefWidth="120.0" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0">
                <font>
                   <Font size="11.0" />
                </font>
@@ -39,7 +39,7 @@
       </AnchorPane>
       <AnchorPane layoutX="472.0" layoutY="122.0" prefHeight="178.0" prefWidth="179.0" AnchorPane.topAnchor="131.0">
          <children>
-            <JFXButton fx:id="btn_modifi" layoutX="45.0" layoutY="41.0" onAction="#btnModiAction" prefHeight="116.0" prefWidth="120.0" style="-fx-background-color: #00bcd4;" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="18.0">
+            <JFXButton fx:id="btn_modifi" layoutX="45.0" layoutY="41.0" onAction="#btnModiAction" prefHeight="116.0" prefWidth="120.0" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="18.0">
                <font>
                   <Font size="11.0" />
                </font>
@@ -56,7 +56,7 @@
       </AnchorPane>
       <AnchorPane layoutX="151.0" layoutY="322.0" prefHeight="178.0" prefWidth="179.0" AnchorPane.topAnchor="322.0">
          <children>
-            <JFXButton layoutX="45.0" layoutY="41.0" prefHeight="116.0" prefWidth="120.0" style="-fx-background-color: #00bcd4;" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="18.0">
+            <JFXButton layoutX="45.0" layoutY="41.0" prefHeight="116.0" prefWidth="120.0" text=" " textFill="WHITE" AnchorPane.bottomAnchor="44.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="18.0">
                <font>
                   <Font size="11.0" />
                </font>

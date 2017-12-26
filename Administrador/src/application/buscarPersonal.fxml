@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="panel" prefHeight="661.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BuscarPersonalCtrl">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="73.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="13.0" layoutY="19.0" text="Buscar Usuario" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="25.0">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView glyphName="FORMAT_ALIGN_JUSTIFY" size="30" />
+               </graphic>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="41.0" layoutY="81.0" prefHeight="114.0" prefWidth="903.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="81.0">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="794.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="24.0" layoutY="28.0" text="Cedula" AnchorPane.leftAnchor="24.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="ACCOUNT_BOX" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="txt_cedula" layoutX="24.0" layoutY="48.0" onKeyTyped="#validar_cedula" prefHeight="34.0" prefWidth="298.0" unFocusColor="#00bcd4" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="48.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton fx:id="btn_buscar_usu" layoutX="551.0" layoutY="48.0" onAction="#buscar_usuario" prefHeight="39.0" prefWidth="171.0" style="-fx-background-color: #00bcd4;" text="Buscar usuario" textFill="WHITE" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="176.0" AnchorPane.topAnchor="48.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="MAGNIFY" size="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="743.0" layoutY="48.0" onAction="#cerrar" prefHeight="39.0" prefWidth="133.0" style="-fx-background-color: #00bcd4;" text="Cancelar" textFill="WHITE" AnchorPane.bottomAnchor="27.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="48.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#e0f0f2" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" text="" />
+               </graphic>
+            </JFXButton>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="panelDatos" layoutX="41.0" layoutY="201.0" prefHeight="432.0" prefWidth="898.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="220.0">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="794.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <JFXButton fx:id="btn_modificar" layoutX="40.0" layoutY="371.0" onAction="#onModificar" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Modificar usuario" textFill="#f2eeee">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" glyphStyle="PENCIL" size="25" />
+               </graphic>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <TableView fx:id="table" layoutX="40.0" layoutY="77.0" onMouseClicked="#seleccionarUser" prefHeight="274.0" prefWidth="839.0" AnchorPane.bottomAnchor="81.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="77.0">
+              <columns>
+                <TableColumn fx:id="id" prefWidth="56.0" text="id" />
+                <TableColumn fx:id="cedula" prefWidth="128.0" text="Cédula" />
+                  <TableColumn fx:id="cargo" prefWidth="115.0" text="Cargo" />
+                  <TableColumn fx:id="nombre" prefWidth="394.0" text="Nombres" />
+                  <TableColumn fx:id="username" minWidth="0.0" prefWidth="124.0" text="Nombre de Usuario" />
+              </columns>
+            </TableView>
+            <Label layoutX="22.0" layoutY="33.0" text="Lista de Usuarios">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="ACCOUNT_BOX" size="20" />
+               </graphic>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

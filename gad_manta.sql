@@ -28,6 +28,7 @@ CREATE TABLE User_VE (
                 password_user VARCHAR NOT NULL,
                 id_img INTEGER,
                 cod_huella VARCHAR,
+    			isLogged int,
                 CONSTRAINT user_ve_pk PRIMARY KEY (id_user)
 );
 
@@ -100,7 +101,7 @@ CREATE TABLE configuracion_VE (
                 );
 
 INSERT INTO configuracion_VE(id_confi,ipRmi_confi,ipSocket_confi,puertoRmi_confi,puertoSocket_confi,nombreBD_confi,userDB_confi,passBD_confi) 
- VALUES(1,'192.168.1.6','192.168.1.6',1099,6666,'gad_voto','postgres','1234');
+ VALUES(1,'192.168.1.6','192.168.1.6',8888,6666,'gad_voto','postgres','1234');
 
 select * from configuracion_VE where id_confi=1;
 ALTER TABLE User_VE ADD CONSTRAINT img_ve_user_ve_fk
@@ -207,16 +208,17 @@ ALTER TABLE notasActa_ve
 
 --drop function verificar_usuario(varchar, varchar);
 
-create or replace function verificar_usuario(in character varying,in character varying,out integer, out character varying,out bytea)
+create or replace function verificar_usuario(in character varying,in character varying,out integer, out character varying,out bytea, out character varying,out integer)
 RETURNS SETOF record AS
 $$
 begin
-	return query select id_user, name_user, img from User_VE u inner join Img_VE i on u.id_img=i.id_img where username_user=$1 and password_user=$2;
+	return query select id_user, name_user, img, position_user,islogged from User_VE u inner join Img_VE i on u.id_img=i.id_img where username_user=$1 and password_user=$2;
 	
 end
 $$
 LANGUAGE plpgsql VOLATILE COST 100;
 
+select *from verificar_usuario('admin','1234');
 
 create or replace function obtener_img(in character varying,out integer, out character varying,out bytea)
 RETURNS SETOF record AS
@@ -227,15 +229,14 @@ begin
 end
 $$
 LANGUAGE plpgsql VOLATILE COST 100;
-
-
+select *from user_ve;
 
 create or replace function ingresar_usuario(varchar,varchar, varchar, varchar, varchar, integer)
 returns void as 
 $$
 begin 
-	insert into User_VE(cedula_user,position_user,name_user,username_user,password_user,id_img) values
-				($1,$2,$3,$4,$5,$6);
+	insert into User_VE(cedula_user,position_user,name_user,username_user,password_user,id_img,islogged) values
+				($1,$2,$3,$4,$5,$6,0);
 end;
 $$
 LANGUAGE plpgsql;
@@ -244,8 +245,8 @@ select * from Img_VE;
 
 ---insertar usuarios
 insert into Img_VE(nombre_img,img)values('holi','holi');
-
-select ingresar_usuario('131560461','secretaria','LCDA. PATRICIA GONZÁLES LOPEZ','secretaria','1234',1);
+--update user_ve set isLogged=0 where username_user='secretaria';
+select ingresar_usuario('123456789','Administrador','ING. CARLOS MANOSALVAS','admin','1234',1);
 --select ingresar_usuario('123456789','concejal','LCDA. VERONICA ABAD ARTEAGA','concejal1','1234','C://IMG/secretaria.png');
 --select ingresar_usuario('123456789','concejal','LCDA. LADY GARCÍA MEJIA','concejal2','1234','C://IMG/secretaria.png','V4443V2242');
 --select ingresar_usuario('123456789','concejal','SRA. ESTEFANIA MACIAS SUAREZ','concejal3','1234','C://IMG/secretaria.png','V4443V2242');
@@ -289,8 +290,8 @@ select * from User_VE;
 --LANGUAGE plpgsql;
 
 
-
-create or replace function consulta_usuario(in integer,out integer, out varchar,out varchar, out varchar, out varchar, out varchar, out integer,out varchar)
+--drop function consulta_usuario(integer);
+create or replace function consulta_usuario(in integer,out integer, out varchar,out varchar, out varchar, out varchar, out varchar, out integer,out varchar,out integer)
 RETURNS SETOF record AS
 $$
 begin
@@ -301,7 +302,7 @@ LANGUAGE plpgsql VOLATILE;
 
 select * from consulta_usuario(2);
 
-create or replace function consulta_usuario_ced(in varchar,out integer, out varchar,out varchar, out varchar, out varchar, out varchar, out integer,out varchar)
+create or replace function consulta_usuario_ced(in varchar,out integer, out varchar,out varchar, out varchar, out varchar, out varchar, out integer,out varchar,out integer)
 RETURNS SETOF record AS
 $$
 begin
@@ -312,7 +313,7 @@ LANGUAGE plpgsql VOLATILE;
 
 select * from consulta_usuario_ced('123456789');
 
-create or replace function consulta_usuario_user(in varchar,out integer, out varchar,out varchar, out varchar, out varchar, out varchar, out integer,out varchar)
+create or replace function consulta_usuario_user(in varchar,out integer, out varchar,out varchar, out varchar, out varchar, out varchar, out integer,out varchar,out integer)
 RETURNS SETOF record AS
 $$
 begin

@@ -24,5 +24,8 @@ public class data {
     public static File archivo_pff;
     public static int tipo_lectura;
 	public static boolean verSesion;
+	public static String tipo_user;
+	public static boolean cerrar;
+	public static String username;
     
 }

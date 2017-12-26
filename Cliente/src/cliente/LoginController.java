@@ -99,37 +99,85 @@ public class LoginController implements Initializable {
 		}
 	}
 
+	public void mostrarMesaje(String subtitulo) {
+		try {
+			data.header = "Aviso";
+			data.cuerpo = subtitulo;
+			Stage newStage = new Stage();
+			AnchorPane pane;
+			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("VentanaDialogo.fxml"));
+			Scene scene = new Scene(pane);
+			newStage.setScene(scene);
+			newStage.initStyle(StageStyle.UNDECORATED);
+			newStage.show();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	@FXML
 	private void loginAction() throws IOException, NotBoundException {
+		if (txt_username.getLength() == 0) {
+			txt_username.requestFocus();
+			mostrarMesaje("Por favor ingrese su nombre de usuario");
+		} else {
+			if (txt_password.getLength() == 0) {
+				txt_password.requestFocus();
+				mostrarMesaje("Por Favor ingrese su contraceña");
+			} else {
+				Usuario user = servidor.login(txt_username.getText(), txt_password.getText());
+				if (user != null) {
+					if (!user.getCargo().equals("Concejal Principal")) {
+						mostrarMesaje("sus credenciales no son de una secretaria");
+						txt_username.requestFocus();
+					} else if(user.getIsLogged()==1) {
+						mostrarMesaje("este usuario ya esta logeado en el sistema");
+					} else {
+						data.name = user.getNombre();
+						data.tipo_user = user.getCargo();
+						Stage actualStage = (Stage) closeButton.getScene().getWindow();
+						// do what you have to do
+						actualStage.close();
 
-		// get a handle to the stage
-		Stage actualStage = (Stage) closeButton.getScene().getWindow();
-		// do what you have to do
-		actualStage.close();
+						Stage newStage = new Stage();
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaPrincipal.fxml"));
+						AnchorPane pane = loader.load();
+						Scene scene = new Scene(pane);
+						scene.getStylesheets().add(getClass().getResource("inicio.css").toExternalForm());
 
-		Stage newStage = new Stage();
+						// Pantalla completa
+						Screen screen = Screen.getPrimary();
+						Rectangle2D bounds = screen.getVisualBounds();
 
-		String login = servidor.login(txt_username.getText(), txt_password.getText());
+						newStage.setX(bounds.getMinX());
+						newStage.setY(bounds.getMinY());
+						newStage.setWidth(bounds.getWidth());
+						newStage.setHeight(bounds.getHeight());
 
-		System.out.println("Clicked");
+						newStage.setScene(scene);
+						newStage.initStyle(StageStyle.UNDECORATED);
+						newStage.show();
+					}
+				} else {
+					mostrarMesaje("Nombre de usuario o contracena incorrectos");
+				}
+			}
 
-		data.name = login;
-		System.out.println(login);
-		AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("PantallaPrincipal.fxml"));
-		Scene scene = new Scene(pane);
+		}
+	}
+	
+	public void buttonPressed(KeyEvent e) throws IOException, NotBoundException {
+		if (e.getCode().toString().equals("ENTER")) {
+			loginAction();
+		}
+	}
 
-		// Pantalla completa
-		Screen screen = Screen.getPrimary();
-		Rectangle2D bounds = screen.getVisualBounds();
-
-		newStage.setX(bounds.getMinX());
-		newStage.setY(bounds.getMinY());
-		newStage.setWidth(bounds.getWidth());
-		newStage.setHeight(bounds.getHeight());
-
-		newStage.setScene(scene);
-		newStage.initStyle(StageStyle.UNDECORATED);
-		newStage.show();
+	public void pressedExit(KeyEvent e) throws IOException, NotBoundException {
+		if (e.getCode().toString().equals("ENTER")) {
+			closeButtonAction();
+		}
 	}
 
 	public static void configuraciones() {
