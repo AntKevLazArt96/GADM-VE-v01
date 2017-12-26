@@ -8,7 +8,7 @@ import java.util.List;
 public interface IServidor extends Remote {
 	public Usuario obtener_img(String username)throws RemoteException;
 	
-	public String login(String username,String password) throws RemoteException;
+	public Usuario login(String username,String password) throws RemoteException;
 	public int agregarSesion(String fechaRegistro,String fechaIntervencion,String horaIntervencion,String convocatoria,String titulo) throws RemoteException;
 	public List<String> consultaUsuario()throws RemoteException;
 	
@@ -70,6 +70,8 @@ public interface IServidor extends Remote {
 	public List<Usuario> listaPalabraPedida()throws RemoteException;
 
 	void limpiarQuorum() throws RemoteException;
+	
+	public void cerrarSesion(String username)throws RemoteException;
 
 	
 }

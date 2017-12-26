@@ -25,4 +25,8 @@ public class data {
     public static int tipo_lectura;
 	public static boolean verSesion;
     public static int tipo_modi=1;
+	public static String tipo_user;
+	public static boolean cerrar;
+	public static String username;
+    
 }

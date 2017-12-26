@@ -5,21 +5,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import clases.Conexion;
+import clases.Imagen;
+import clases.Usuarios;
 import clases.data;
-import gad.manta.common.Conexion;
-import gad.manta.common.Imagen;
-import gad.manta.common.Usuario;
-import gad.manta.common.data_configuracion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +37,9 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 
 public class IngresoPerCtrl implements Initializable {
-
+	//variable para saber de donde proviene
+	public static String origen="";
+	
     @FXML
     private JFXTextField txt_cedula;
 
@@ -49,8 +52,6 @@ public class IngresoPerCtrl implements Initializable {
     @FXML
     private JFXPasswordField txt_password;
 
-    @FXML
-    private JFXTextField txt_cargo;
 
     @FXML
     private JFXButton btn_examinar;
@@ -62,7 +63,11 @@ public class IngresoPerCtrl implements Initializable {
     private JFXButton btn_guardar;
     @FXML
     private JFXButton btn_eliminar;
-
+    
+    @FXML
+    private JFXComboBox<String> cbx_cargo;
+    ObservableList<String> tipo = FXCollections.observableArrayList("Administrador", "Concejal Principal", "Concejal Alterno", "Secretaria");
+    
     @FXML
     public AnchorPane panel;
     
@@ -105,10 +110,10 @@ public class IngresoPerCtrl implements Initializable {
     
     private void limpiar() {
     	txt_cedula.setText("");
-    	txt_cargo.setText("");
     	txt_nombre.setText("");
     	txt_username.setText("");
     	txt_password.setText("");
+    	cbx_cargo.setValue("");
     	id_img=0;
     }
     
@@ -116,72 +121,65 @@ public class IngresoPerCtrl implements Initializable {
     void onGuardar(ActionEvent event) throws SQLException {
     	
     	
-    	try {
-    		conexion.establecerConexion();
-			// conecciï¿½n a la base de datos
-			conexion.getConnection();
-			Connection db =conexion.getConnection();
-			Statement st = db.createStatement();
-			
-			ResultSet resultado1= st.executeQuery("select * from consulta_usuario_ced('"+txt_cedula.getText()+"');");
-			db.close();
-			conexion.establecerConexion();
-    		
-    		if(txt_cedula.getLength()==0) {
-    			txt_cedula.requestFocus();
-    			mostrarMesaje("Falta ingresar el número de cédula");
-    			
-    		}else
-    			if(resultado1.next()) {
-        			txt_cedula.requestFocus();
-        			mostrarMesaje("El usuario con cédula "+txt_cedula.getText()+ " ya está registrado en el sistema");
-        			
-        		}else 
-            
-        		if(txt_nombre.getLength()==0) {
-        			txt_nombre.requestFocus();
-        			mostrarMesaje("Falta ingresar el nombre del usuario");
-        		}else 
-            		if(txt_username.getLength()==0) {
-            			txt_username.requestFocus();
-            			mostrarMesaje("Falta ingresar el nombre de usuario");
-            		}else 
-            			if(txt_password.getLength()==0) {
-            				txt_password.requestFocus();
-            				mostrarMesaje("Falta ingresar la contraceÃ±a del usuario");
-            			}else 
-            				if(txt_cargo.getLength()==0) {
-            					txt_cargo.requestFocus();
-            					mostrarMesaje("Falta ingresar el cargo del usuario");
-            				}else if(id_img==0) {
-            					btn_examinar.requestFocus();
-            					mostrarMesaje("Falta ingresar la foto del usuario");
-            				}else {
-            					
-            		  						
-                    			Usuario user = new Usuario(txt_cedula.getText(),txt_cargo.getText(),txt_nombre.getText(),txt_username.getText(),txt_password.getText(),id_img);
-                        		int resultado = user.guardarRegistro(conexion.getConnection());                       		
-                        		
-                        		if(resultado ==1) {
-                        			limpiar();
-                        			imgBlanco();
-                        			mostrarMesaje("El usuario "+txt_nombre.getText()+" a sido ingresado correctamente");
-                        		}else{
-                        			mostrarMesaje("El usuario "+txt_nombre.getText()+" no se a podido agregar");
-                        		}
-                        		
-                    		}
-    		
-    		
-    		
-    		conexion.cerrarConexion();
-    		
-    		
-    		
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		conexion.establecerConexion();
+		// conecciï¿½n a la base de datos
+		Connection db = conexion.getConnection();
+		Statement st = db.createStatement();
+		ResultSet resultado1 = st.executeQuery("select * from consulta_usuario_ced('" + txt_cedula.getText() + "');");
+		db.close();
+		
+		conexion.establecerConexion();
+		Connection db1 = conexion.getConnection();
+		Statement st2 = db1.createStatement();
+		ResultSet resultado2 = st2.executeQuery("select * from consulta_usuario_user('" + txt_username.getText() + "');");
+		db.close();
+
+		
+		if (txt_cedula.getLength() == 0) {
+			txt_cedula.requestFocus();
+			mostrarMesaje("Falta ingresar el número de cédula");
+
+		} else if (resultado1.next()) {
+			txt_cedula.requestFocus();
+			mostrarMesaje("El usuario con cédula " + txt_cedula.getText() + " ya está registrado en el sistema");
+
+		} else if (txt_nombre.getLength() == 0) {
+			txt_nombre.requestFocus();
+			mostrarMesaje("Falta ingresar los nombres y los apellidos");
+		} else if (txt_username.getLength() == 0) {
+			txt_username.requestFocus();
+			mostrarMesaje("Falta ingresar el nombre de usuario");
+		} else if (resultado2.next()) {
+			txt_username.requestFocus();
+			mostrarMesaje("La persona con el username " + txt_username.getText() + " ya está registrada en el sistema");
+
+		} else if (txt_password.getLength() == 0) {
+			txt_password.requestFocus();
+			mostrarMesaje("Falta ingresar la contraceÃ±a del usuario");
+		} else if (cbx_cargo.getValue() == null) {
+			cbx_cargo.requestFocus();
+			//txt_cargo.requestFocus();
+			mostrarMesaje("Falta ingresar el cargo del usuario");
+		} else if (id_img == 0) {
+			btn_examinar.requestFocus();
+			mostrarMesaje("Falta ingresar la foto del usuario");
+		} else {
+			System.out.println(cbx_cargo.getValue());
+			Usuarios user = new Usuarios(txt_cedula.getText(), cbx_cargo.getValue(), txt_nombre.getText(),
+					txt_username.getText(), txt_password.getText(), id_img);
+			int resultado = user.guardarRegistro(conexion.getConnection());
+
+			if (resultado == 1) {
+				limpiar();
+				imgBlanco();
+				mostrarMesaje("El usuario " + txt_nombre.getText() + " a sido ingresado correctamente");
+			} else {
+				mostrarMesaje("El usuario " + txt_nombre.getText() + " no se a podido agregar");
+			}
+
 		}
+
+		conexion.cerrarConexion();
 		
     }
     public void mostrarMesaje(String subtitulo) {
@@ -210,6 +208,7 @@ public class IngresoPerCtrl implements Initializable {
 		txt_cargo.setText("concejal");
 		txt_username.setText("concejal1");
 		txt_password.setText("1234");*/
+		cbx_cargo.setItems(tipo);
 		conexion = new Conexion();
 		
 		btn_eliminar.setText("");
@@ -307,25 +306,18 @@ public class IngresoPerCtrl implements Initializable {
 		
 	}
 	
-	@FXML
-	void  validar_cargo(KeyEvent e) {
-		
-		char car = e.getCharacter().charAt(0);
-		if(!(Character.isDigit(car) || Character.isLetter(car))) {
-			e.consume();
-		}
-		if(txt_cargo.getLength()==15) {
-			e.consume();
-		}
-		
-		
-	}
 	
 	@FXML
 	void  cerrar(ActionEvent e) {
 		try {
-			AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PanelControl.fxml"));
-			panel.getChildren().setAll(pane);
+			if(origen.equals("inicio")) {
+				AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("subInicio.fxml"));
+				panel.getChildren().setAll(pane);
+			}else if(origen.equals("usuario")) {
+				AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("Usuarios.fxml"));
+				panel.getChildren().setAll(pane);
+			}
+			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

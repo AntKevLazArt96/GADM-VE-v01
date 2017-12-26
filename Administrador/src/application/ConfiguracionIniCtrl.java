@@ -29,9 +29,17 @@ import javax.xml.transform.dom.*;
 import javax.xml.transform.stream.*;
 
 public class ConfiguracionIniCtrl implements Initializable {
+	
+	///variable para saber si viene del panel control o del inicio del todo
+	public static boolean isPanel;
+	
 	// Lista donde se guarda la configuracion del Nodo
 	public static List<String> config = new ArrayList<>();
 
+	public static String origen="";
+
+	@FXML
+	private AnchorPane panel;
 	@FXML
 	private JFXTextField txt_hostname;
 
@@ -52,11 +60,37 @@ public class ConfiguracionIniCtrl implements Initializable {
 
 	@FXML
 	void cerrar(ActionEvent event) {
-		// get a handle to the stage
-		Stage stage = (Stage) btn_cerrar.getScene().getWindow();
-		// do what you have to do
-		stage.close();
-		System.exit(0);
+		if(isPanel==true) {
+			if(origen.equals("inicio")) {
+				try {
+					AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("subInicio.fxml"));
+					panel.getChildren().setAll(pane);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else if(origen.equals("panel")) {
+				try {
+					AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PanelControl.fxml"));
+					panel.getChildren().setAll(pane);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			
+			
+			
+		}else {
+			// get a handle to the stage
+			Stage stage = (Stage) btn_cerrar.getScene().getWindow();
+			// do what you have to do
+			stage.close();
+			System.exit(0);
+		}
+		
+	
+	
 	}
 
 	@FXML

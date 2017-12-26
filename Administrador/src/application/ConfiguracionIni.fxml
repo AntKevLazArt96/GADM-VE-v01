@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="613.0" prefWidth="939.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ConfiguracionIniCtrl">
+<AnchorPane id="AnchorPane" fx:id="panel" prefHeight="613.0" prefWidth="939.0" style="-fx-background-color: #eeeeee;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ConfiguracionIniCtrl">
    <children>
       <AnchorPane layoutX="36.0" layoutY="80.0" prefHeight="576.0" prefWidth="903.0">
          <children>
@@ -82,7 +82,7 @@
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="btn_cerrar" layoutX="230.0" layoutY="344.0" onAction="#cerrar" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Cerrar" textFill="WHITE" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="344.0">
+            <JFXButton fx:id="btn_cerrar" layoutX="230.0" layoutY="344.0" onAction="#cerrar" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Cancelar" textFill="WHITE" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="344.0">
                <font>
                   <Font size="16.0" />
                </font>

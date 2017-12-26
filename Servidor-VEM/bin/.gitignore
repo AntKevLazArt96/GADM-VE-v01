@@ -1,6 +1,8 @@
 /LICENSE.txt
 /README.txt
+/Server/
 /application/
+/clases/
 /fontawesomefx-8.6.jar
 /imgs/
 /jdom-2.0.6-contrib.jar
@@ -11,8 +13,6 @@
 /jfoenix.jar
 /json_simple-1.1.jar
 /lib/
-/Server/
-/clases/
 /pdf-renderer-1.0.5.jar
 /postgresql-42.1.4.jar
 /servidor/

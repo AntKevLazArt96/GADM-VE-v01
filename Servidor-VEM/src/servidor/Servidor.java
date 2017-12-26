@@ -3,7 +3,6 @@ package servidor;
 import java.rmi.RemoteException;
 
 import gad.manta.common.ActaPdf;
-import gad.manta.common.Comentario;
 import gad.manta.common.Conexion;
 import gad.manta.common.Config;
 import gad.manta.common.Documentacion;
@@ -12,7 +11,6 @@ import gad.manta.common.OrdenDia;
 import gad.manta.common.Pdf;
 import gad.manta.common.Usuario;
 import gad.manta.common.Voto;
-import gad.manta.common.data_configuracion;
 import gad.manta.common.Sesion;
 //import modelo.Sesion;
 
@@ -22,10 +20,15 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import clases.data;
+
+
 public class Servidor implements IServidor {
 	public Servidor() throws RemoteException {
 		super();
 	}
+	
+	
 
 	Conexion conexion = new Conexion();
 	List<Usuario> listaUsuario = new ArrayList<>();
@@ -48,42 +51,47 @@ public class Servidor implements IServidor {
 	int dia = fecha.get(Calendar.DAY_OF_MONTH);
 
 	@Override
-	public String login(String username, String password) throws RemoteException {
-
+	public Usuario login(String username, String password) throws RemoteException {
 		try {
 			conexion.establecerConexion();
-			// conecci�n a la base de datos
+			// conexion a la base de datos
 			Connection db = conexion.getConnection();
 			Statement st = db.createStatement();
-
 			int id = 0;
-			String usuario = "";
+			String usuario = "no hay datos";
 			byte[] img = null;
-			// ejecucion y resultado de la consulta
+			String tipo_user = "";
+			Usuario user = null;
+			int logged =0;
+			
 			ResultSet resultado = st
 					.executeQuery("select *from verificar_usuario('" + username + "','" + password + "');");
-			
-			if(resultado.next()){
+			while (resultado.next()) {
 				id = resultado.getInt(1);
 				usuario = resultado.getString(2);
-				img = resultado.getBytes(3);	
+				img = resultado.getBytes(3);
+				tipo_user = resultado.getString(4);
+				logged = resultado.getInt(5);
 			}
 			
-			db.close();
-
-			// Para el Quorum
-			if (!username.equals("secretaria")) {
-				listaUsuario.add(new Usuario(id, usuario, "PRESENTE", img));
+			if (usuario.equals("no hay datos")) {
+				return user;
+			} else {
+				// Para el Quorum
+				if (!tipo_user.equals("Secretaria") && !tipo_user.equals("Administrador")) {
+					listaUsuario.add(new Usuario(id, usuario, "PRESENTE", img, username));
+					System.out.println("el usuario se ha logueado correctamente");
+				}
+				user = new Usuario(id, usuario, img, tipo_user,logged);
+				return user;
 			}
-			System.out.println(usuario);
+			
 
-			return usuario;
 		} catch (Exception e) {
 			System.out.println("Error: " + e.getMessage());
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 
 	@Override
@@ -549,7 +557,8 @@ public class Servidor implements IServidor {
 							+ annio + "-" + mes + "-" + dia + "';");
 			while (resultado.next()) {
 
-				lista_documentacion.add(new Documentacion(resultado.getInt(1), resultado.getInt(2), resultado.getString(3)));
+				lista_documentacion
+						.add(new Documentacion(resultado.getInt(1), resultado.getInt(2), resultado.getString(3)));
 				System.out.println(resultado.getInt(1));
 			}
 			conexion.cerrarConexion();
@@ -815,7 +824,7 @@ public class Servidor implements IServidor {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
+			return "";
 		}
 	}
 
@@ -829,8 +838,9 @@ public class Servidor implements IServidor {
 
 			ResultSet resultado = st.executeQuery("select * from configuracion_ve where id_confi=1;");
 			resultado.next();
-			
-			Config config = new Config(resultado.getString(3), resultado.getInt(5),resultado.getString(2), resultado.getInt(4));
+
+			Config config = new Config(resultado.getString(3), resultado.getInt(5), resultado.getString(2),
+					resultado.getInt(4));
 			// socket
 			conexion.cerrarConexion();
 			return config;
@@ -868,6 +878,7 @@ public class Servidor implements IServidor {
 			String usuario = "";
 			byte[] img = null;
 			// ejecucion y resultado de la consulta
+			System.out.println(username);
 			ResultSet resultado = st.executeQuery("select *from obtener_img('" + username + "');");
 			resultado.next();
 			id = resultado.getInt(1);
@@ -879,6 +890,23 @@ public class Servidor implements IServidor {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	@Override
+	public void cerrarSesion(String username) throws RemoteException {
+		conexion.establecerConexion();
+		
+		try {
+			Connection con = conexion.getConnection();
+			PreparedStatement st1 = con.prepareStatement("update user_ve set isLogged=0 where username_user=?");
+			st1.setString(1, username);
+			st1.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		conexion.cerrarConexion();
+		
 	}
 
 }

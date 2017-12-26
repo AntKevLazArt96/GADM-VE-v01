@@ -55,7 +55,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 	private Circle cirlogin;
 
 	@FXML
-	private Label lbl_nombre;
+	private Label lbl_nombre,lbl_tipo;
 
 	@FXML
 	private AnchorPane contenedor;
@@ -81,7 +81,7 @@ public class PantallaPrincipalCtrl implements Initializable {
 			sock = new Socket(data_configuracion.ip, data_configuracion.port);
 			dos = new DataOutputStream(sock.getOutputStream());
 			dis = new DataInputStream(sock.getInputStream());
-
+			System.out.println(data.name);
 			dos.writeUTF(data.name);
 			/*
 			 * This Thread let the client recieve the message from the server for any time;
@@ -433,7 +433,8 @@ public class PantallaPrincipalCtrl implements Initializable {
 		lbl_fecha.setText(dia + ", " + di + " de " + mes + " del " + (d.getYear() + 1900));
 		try {
 			sesion = LoginController.servidor.consultarSesion();
-			label_convocatoria.setText(sesion.getConvocatoria());
+			System.out.println(sesion.getConvocatoria());
+			//label_convocatoria.setText(sesion.getConvocatoria());
 		} catch (RemoteException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -445,6 +446,8 @@ public class PantallaPrincipalCtrl implements Initializable {
 			Usuario user = LoginController.servidor.usuario(data.name);
 			data.id_user = user.getId();
 			data.img = user.getImg();
+			data.tipo = user.getNombre();
+			lbl_tipo.setText(data.tipo);
 			Image im = convertirImg(data.img);
 			data.Imagen = im;
 			cirlogin.setFill(new ImagePattern(im));

@@ -14,9 +14,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import clases.Conexion;
 import clases.data;
-import gad.manta.common.Conexion;
-import gad.manta.common.data_configuracion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +27,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class ConfiguracionCtrl implements Initializable {
-	 @FXML
+	 public static String origen="";
+	@FXML
 	    private JFXTextField txt_nombrebd;
 	 @FXML
 	    private JFXTextField txt_userdb;
@@ -68,7 +68,6 @@ public class ConfiguracionCtrl implements Initializable {
 			ResultSet resultado= st.executeQuery("select * from configuracion_ve where id_confi=1;");
 			
 			if(resultado.next()) {
-				
 				txt_iprmi.setText(resultado.getString(2));
 				txt_ipsocket.setText(resultado.getString(3));
 				txt_portrmi.setText(resultado.getString(4));
@@ -110,13 +109,32 @@ public class ConfiguracionCtrl implements Initializable {
 	 
 		@FXML
 		void  cerrar(ActionEvent e) {
-			try {
-				AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PanelControl.fxml"));
-				panel.getChildren().setAll(pane);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			if(origen.equals("inicio")) {
+				try {
+					AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("subInicio.fxml"));
+					panel.getChildren().setAll(pane);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else if(origen.equals("panel")) {
+				try {
+					AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("PanelControl.fxml"));
+					panel.getChildren().setAll(pane);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else if(origen.equals("rmi")) {
+				try {
+					AnchorPane pane = (AnchorPane)FXMLLoader.load(getClass().getResource("ServidorRmi.fxml"));
+					panel.getChildren().setAll(pane);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
+			
 
 		}
 	@FXML

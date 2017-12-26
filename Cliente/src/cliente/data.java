@@ -16,4 +16,6 @@ public class data {
     public static byte[] pdf;
 	public static String header;
 	public static String cuerpo;
+	public static String tipo;
+	public static String tipo_user;
 }

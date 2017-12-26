@@ -12,8 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import application.ConfiguracionIniCtrl;
+import application.Main;
 import gad.manta.common.data_configuracion;
 
 public class Server {
@@ -47,13 +46,13 @@ public class Server {
 
 	}
 
-	Server() {
-		if (ConfiguracionIniCtrl.cargar()) {
-			data_configuracion.ipBaseDatos = ConfiguracionIniCtrl.config.get(0);
-			data_configuracion.puerto_postgres = Integer.valueOf(ConfiguracionIniCtrl.config.get(1));
-			data_configuracion.usu_db_postgres = ConfiguracionIniCtrl.config.get(2);
-			data_configuracion.conta_usu_postgres = ConfiguracionIniCtrl.config.get(3);
-			data_configuracion.nombre_bd_postgres = ConfiguracionIniCtrl.config.get(4);
+	public Server() {
+		if (Main.cargar()) {
+			data_configuracion.ipBaseDatos = Main.config.get(0);
+			data_configuracion.puerto_postgres = Integer.valueOf(Main.config.get(1));
+			data_configuracion.usu_db_postgres = Main.config.get(2);
+			data_configuracion.conta_usu_postgres = Main.config.get(3);
+			data_configuracion.nombre_bd_postgres = Main.config.get(4);
 		}
 		configuraciones();
 		System.out.println("Server in the " + data_configuracion.ip + ":" + data_configuracion.port + " ");
@@ -63,7 +62,7 @@ public class Server {
 		clients = new ArrayList<Client>();
 
 		try {
-			servSock = new ServerSocket(data_configuracion.port);
+			servSock = new ServerSocket(6666);
 
 			while (true) {
 				client = servSock.accept();
