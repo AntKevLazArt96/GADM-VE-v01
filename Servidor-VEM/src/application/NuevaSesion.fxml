@@ -17,35 +17,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="715.0" prefWidth="1014.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NuevaSesionCtrl">
+<AnchorPane id="AnchorPane" fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="962.0" prefWidth="1035.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NuevaSesionCtrl">
    <children>
-      <AnchorPane fx:id="panelOrden" layoutX="12.0" layoutY="225.0" prefHeight="462.0" prefWidth="308.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="225.0">
-         <children>
-            <AnchorPane layoutY="2.0" prefHeight="34.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="10.0" layoutY="5.0" prefHeight="26.0" prefWidth="166.0" text="ORDEN DEL DIA" textFill="#212121" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <graphic>
-                        <MaterialDesignIconView fill="#212121" glyphName="FORMAT_LIST_NUMBERS" size="18.0" />
-                     </graphic>
-                  </Label>
-               </children></AnchorPane>
-            <TableView fx:id="tabla" layoutX="17.0" layoutY="44.0" onMouseClicked="#mostrar_punto" prefHeight="370.0" prefWidth="280.0" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="44.0" />
-            <JFXButton fx:id="btn_cancelar" layoutX="62.0" layoutY="429.0" onAction="#onFinAction" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="FINALIZAR" textFill="WHITE" AnchorPane.bottomAnchor="10.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" />
-               </graphic>
-            </JFXButton>
-         </children>
-         <effect>
-            <DropShadow color="#a8a8a8" />
-         </effect>
-      </AnchorPane>
       <Label layoutX="7.0" layoutY="21.0" prefHeight="38.0" prefWidth="447.0" text="PREPARACIÓN DE LA SESIÓN" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="10.0">
          <font>
             <Font name="System Bold" size="26.0" />
@@ -54,133 +27,16 @@
             <MaterialDesignIconView glyphName="FORMAT_ALIGN_JUSTIFY" size="30" />
          </graphic>
       </Label>
-      <AnchorPane fx:id="panelAddPunto" layoutX="336.0" layoutY="225.0" prefHeight="485.0" prefWidth="668.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="336.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="225.0">
-         <children>
-            <AnchorPane prefHeight="34.0" prefWidth="656.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label layoutX="42.0" layoutY="-3.0" prefHeight="34.0" prefWidth="210.0" text="DETALLES DEL PUNTO" textFill="#212121" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <graphic>
-                        <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
-                     </graphic>
-                  </Label>
-               </children></AnchorPane>
-            <Label layoutX="37.0" layoutY="68.0" text="Descripción del punto" AnchorPane.leftAnchor="37.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <graphic>
-                  <MaterialIconView glyphName="DESCRIPTION" size="20" />
-               </graphic>
-            </Label>
-            <JFXTextArea fx:id="txt_descripcion" layoutX="29.0" layoutY="124.0" prefHeight="45.0" prefWidth="532.0" unFocusColor="#00bcd4" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="31.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXTextArea>
-            <Label layoutX="43.0" layoutY="204.0" text="Documentos y Anexos" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="204.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <graphic>
-                  <MaterialIconView glyphName="ATTACH_FILE" size="20" text="" />
-               </graphic>
-            </Label>
-            <JFXButton fx:id="btn_examinar" layoutX="403.0" layoutY="222.0" onAction="#onExaAction" prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: #00bcd4;" text="AGREGAR DOCUMENTACIÓN" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="222.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btn_elimOrden" layoutX="261.0" layoutY="445.0" onAction="#onElimOrden" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="320.0">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" glyphStyle="FLOPPY_ALT" size="20" />
-               </graphic>
-               <font>
-                  <Font size="11.0" />
-               </font>
-            </JFXButton>
-            <Label layoutX="32.0" layoutY="386.0" text="Proponente">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <graphic>
-                  <MaterialIconView glyphName="DESCRIPTION" size="20" />
-               </graphic>
-            </Label>
-            <JFXComboBox fx:id="cbx_proponente" layoutX="218.0" layoutY="387.0" prefHeight="25.0" prefWidth="419.0" unFocusColor="#00bcd4" />
-            <Label layoutX="428.0" layoutY="42.0" text="Punto No." AnchorPane.rightAnchor="124.0" AnchorPane.topAnchor="60.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <graphic>
-                  <MaterialIconView glyphName="DESCRIPTION" size="20" />
-               </graphic>
-            </Label>
-            <JFXTextField fx:id="PuntoOrden" alignment="CENTER" layoutX="551.0" layoutY="37.0" onKeyTyped="#validar_punto" prefHeight="25.0" prefWidth="78.0" unFocusColor="#00bcd4" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="45.0">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font></JFXTextField>
-            <JFXButton fx:id="btn_eli_lista_pdf" layoutX="511.0" layoutY="351.0" onAction="#eli_lista_pdf" prefHeight="35.0" prefWidth="149.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR " textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="330.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="CLOSE" size="25" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btn_ver" layoutX="511.0" layoutY="271.0" onAction="#mostrar_pdf" prefHeight="35.0" prefWidth="152.0" style="-fx-background-color: #00bcd4;" text="VER" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="290.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="20" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btn_addOrden" layoutX="509.0" layoutY="396.0" onAction="#onAddOrden" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="GUARDAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="20" />
-               </graphic>
-               <font>
-                  <Font size="11.0" />
-               </font>
-            </JFXButton>
-            <TableView fx:id="list_pdf" layoutX="37.0" layoutY="230.0" onMouseClicked="#activar_controles_pdf" prefHeight="140.0" prefWidth="359.0" />
-            <JFXButton fx:id="btn_nuevo" layoutX="55.0" layoutY="445.0" onAction="#onNewOrden" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="NUEVO PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="470.0">
-               <font>
-                  <Font size="11.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
-               </graphic>
-            </JFXButton>
-            <JFXButton fx:id="btn_modOrden" layoutX="205.0" layoutY="442.0" onAction="#onModOrden" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="ACTUALIZAR PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="170.0">
-               <font>
-                  <Font size="11.0" />
-               </font>
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" glyphStyle="FLOPPY_ALT" size="20" />
-               </graphic>
-            </JFXButton>
-         </children>
-         <effect>
-            <DropShadow color="#a8a8a8" />
-         </effect>
-      </AnchorPane>
       <AnchorPane layoutX="22.0" layoutY="68.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="163.0" prefWidth="993.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="60.0">
          <children>
             <AnchorPane prefHeight="35.0" prefWidth="350.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label layoutX="34.0" layoutY="7.0" prefHeight="27.0" prefWidth="339.0" text="DETALLES DE LA CONVOCATORIA" textFill="#212121" AnchorPane.leftAnchor="10.0">
+                  <Label layoutX="34.0" layoutY="7.0" prefHeight="27.0" prefWidth="339.0" text="DETALLES DE LA CONVOCATORIA" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                      <graphic>
-                        <MaterialDesignIconView fill="#212121" glyphName="POCKET" size="18.0" />
+                        <MaterialDesignIconView fill="WHITE" glyphName="POCKET" size="18.0" />
                      </graphic>
                   </Label>
                </children></AnchorPane>
@@ -235,15 +91,15 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_elimSesion" layoutX="786.0" layoutY="39.0" onAction="#onElimSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="39.0">
+            <JFXButton fx:id="btn_elimSesion" layoutX="810.0" layoutY="37.0" onAction="#onElimSesion" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="37.0">
                <font>
                   <Font size="14.0" />
                </font>
                <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" size="25" text="" />
+                  <FontAwesomeIconView fill="WHITE" glyphName="TIMES" size="25" />
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btn_addSesion" layoutX="786.0" layoutY="39.0" onAction="#onAddSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="AGREGAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="39.0">
+            <JFXButton fx:id="btn_addSesion" layoutX="807.0" layoutY="37.0" onAction="#onAddSesion" prefHeight="35.0" prefWidth="164.0" style="-fx-background-color: #00bcd4;" text="AGREGAR SESIÓN" textFill="WHITE" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="37.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -267,6 +123,255 @@
                   <MaterialDesignIconView fill="#212121" glyphName="CALENDAR_CLOCK" size="18.0" />
                </graphic>
             </Label>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="panelOrden" layoutX="33.0" layoutY="236.0" prefHeight="472.0" prefWidth="308.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="236.0">
+         <children>
+            <AnchorPane layoutY="2.0" prefHeight="34.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="10.0" layoutY="5.0" prefHeight="26.0" prefWidth="166.0" text="ORDEN DEL DIA" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="FORMAT_LIST_NUMBERS" size="18.0" />
+                     </graphic>
+                  </Label>
+               </children></AnchorPane>
+            <TableView fx:id="tabla" layoutX="17.0" layoutY="44.0" onMouseClicked="#mostrar_punto" prefHeight="370.0" prefWidth="280.0" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="44.0" />
+            <JFXButton fx:id="btn_cancelar" layoutX="62.0" layoutY="429.0" onAction="#onFinAction" prefHeight="35.0" prefWidth="178.0" style="-fx-background-color: #00bcd4;" text="FINALIZAR" textFill="WHITE" visible="false" AnchorPane.bottomAnchor="10.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" />
+               </graphic>
+            </JFXButton>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="panelAddPunto" layoutX="343.0" layoutY="236.0" prefHeight="472.0" prefWidth="655.0" style="-fx-background-color: #FFFFFF;" AnchorPane.leftAnchor="333.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="236.0">
+         <children>
+            <AnchorPane prefHeight="34.0" prefWidth="656.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="42.0" layoutY="-3.0" prefHeight="34.0" prefWidth="210.0" text="DETALLES DEL PUNTO" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="POCKET" size="18.0" />
+                     </graphic>
+                  </Label>
+               </children></AnchorPane>
+            <Label layoutX="37.0" layoutY="68.0" text="Descripción del punto" AnchorPane.leftAnchor="37.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="DESCRIPTION" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextArea fx:id="txt_descripcion" layoutX="29.0" layoutY="124.0" prefHeight="45.0" prefWidth="532.0" unFocusColor="#00bcd4" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="31.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextArea>
+            <Label layoutX="43.0" layoutY="204.0" text="Documentos y Anexos" AnchorPane.leftAnchor="43.0" AnchorPane.topAnchor="204.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="ATTACH_FILE" size="20" text="" />
+               </graphic>
+            </Label>
+            <JFXButton fx:id="btn_examinar" layoutX="403.0" layoutY="222.0" onAction="#onExaAction" prefHeight="35.0" prefWidth="235.0" style="-fx-background-color: #00bcd4;" text="AGREGAR DOCUMENTACIÓN" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="222.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="LIBRARY_BOOKS" size="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_elimOrden" layoutX="328.0" layoutY="435.0" onAction="#onElimOrden" prefHeight="35.0" prefWidth="89.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="239.0">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="TIMES" glyphStyle="TIMES" size="20" />
+               </graphic>
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="32.0" layoutY="386.0" text="Proponente">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="DESCRIPTION" size="20" />
+               </graphic>
+            </Label>
+            <JFXComboBox fx:id="cbx_proponente" layoutX="218.0" layoutY="387.0" prefHeight="25.0" prefWidth="419.0" unFocusColor="#00bcd4" />
+            <Label layoutX="428.0" layoutY="42.0" text="Punto No." AnchorPane.rightAnchor="124.0" AnchorPane.topAnchor="60.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="DESCRIPTION" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="PuntoOrden" alignment="CENTER" layoutX="551.0" layoutY="37.0" onKeyTyped="#validar_punto" prefHeight="25.0" prefWidth="78.0" unFocusColor="#00bcd4" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="45.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font></JFXTextField>
+            <JFXButton fx:id="btn_eli_lista_pdf" layoutX="511.0" layoutY="351.0" onAction="#eli_lista_pdf" prefHeight="35.0" prefWidth="149.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR " textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="330.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="CLOSE" size="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_ver" layoutX="511.0" layoutY="271.0" onAction="#mostrar_pdf" prefHeight="35.0" prefWidth="152.0" style="-fx-background-color: #00bcd4;" text="VER" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="290.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_addOrden" layoutX="509.0" layoutY="396.0" onAction="#onAddOrden" prefHeight="35.0" prefWidth="96.0" style="-fx-background-color: #00bcd4;" text="GUARDAR" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="20" />
+               </graphic>
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXButton>
+            <TableView fx:id="list_pdf" layoutX="37.0" layoutY="230.0" onMouseClicked="#activar_controles_pdf" prefHeight="140.0" prefWidth="359.0" />
+            <JFXButton fx:id="btn_nuevo" layoutX="229.0" layoutY="435.0" onAction="#onNewOrden" prefHeight="35.0" prefWidth="89.0" style="-fx-background-color: #00bcd4;" text="NUEVO" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="338.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_modOrden" layoutX="428.0" layoutY="435.0" onAction="#onModOrden" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #00bcd4;" text="ACTUALIZAR" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="124.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" glyphStyle="FLOPPY_ALT" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_resoluciones" layoutX="43.0" layoutY="427.0" onAction="#onResoluciones" prefHeight="35.0" prefWidth="117.0" style="-fx-background-color: #00bcd4;" text="RESOLUCIONES" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="520.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="POCKET" size="18.0" />
+               </graphic>
+            </JFXButton>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="panelAddReso" layoutX="338.0" layoutY="792.0" prefHeight="303.0" prefWidth="668.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <AnchorPane prefHeight="34.0" prefWidth="656.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="104.0" layoutY="-1.0" prefHeight="34.0" prefWidth="210.0" text="Resoluciones del punto" textFill="WHITE" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="104.0" AnchorPane.topAnchor="-1.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="POCKET" size="18.0" />
+                     </graphic>
+                  </Label>
+                  <JFXButton fx:id="btn_volver" onAction="#onVolver" prefHeight="35.0" prefWidth="104.0" style="-fx-background-color: #00bcd4;" text="VOLVER" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BACKWARD" glyphStyle="BACKWARD" size="20" />
+                     </graphic>
+                  </JFXButton>
+                  <Label fx:id="lbl_puntoReso" layoutX="316.0" layoutY="-1.0" prefHeight="38.0" prefWidth="26.0" text="10" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label layoutX="37.0" layoutY="68.0" text="Descripción" AnchorPane.leftAnchor="37.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="DESCRIPTION" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextArea fx:id="txt_desReso" layoutX="29.0" layoutY="124.0" prefHeight="45.0" prefWidth="532.0" unFocusColor="#00bcd4" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="31.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextArea>
+            <JFXButton fx:id="btn_elimReso" layoutX="185.0" layoutY="206.0" onAction="#onElimReso" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="ELIMINAR" textFill="WHITE" AnchorPane.bottomAnchor="62.0" AnchorPane.rightAnchor="343.0">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" glyphStyle="FLOPPY_ALT" size="20" />
+               </graphic>
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btn_addReso" layoutX="500.0" layoutY="206.0" onAction="#onAddReso" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="GUARDAR" textFill="WHITE" AnchorPane.bottomAnchor="62.0" AnchorPane.rightAnchor="28.0">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="20" />
+               </graphic>
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btn_nuevoReso" layoutX="29.0" layoutY="206.0" onAction="#onNewReso" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="NUEVO" textFill="WHITE" AnchorPane.bottomAnchor="62.0" AnchorPane.rightAnchor="499.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PLUS" glyphStyle="FLOPPY_ALT" size="20" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_modReso" layoutX="341.0" layoutY="206.0" onAction="#onModReso" prefHeight="35.0" prefWidth="140.0" style="-fx-background-color: #00bcd4;" text="ACTUALIZAR" textFill="WHITE" AnchorPane.bottomAnchor="62.0" AnchorPane.rightAnchor="187.0">
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="PENCIL" glyphStyle="FLOPPY_ALT" size="20" />
+               </graphic>
+            </JFXButton>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="panelReso" layoutX="14.0" layoutY="792.0" prefHeight="425.0" prefWidth="308.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <AnchorPane layoutY="2.0" prefHeight="34.0" prefWidth="308.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label layoutX="10.0" layoutY="5.0" prefHeight="27.0" prefWidth="210.0" text="Lista de Resoluciones" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="FORMAT_LIST_NUMBERS" size="18.0" />
+                     </graphic>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <TableView fx:id="tablaResoluciones" layoutX="17.0" layoutY="44.0" onMouseClicked="#mostrarResoluciones" prefHeight="360.0" prefWidth="280.0" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="44.0" />
          </children>
          <effect>
             <DropShadow color="#a8a8a8" />

@@ -73,5 +73,7 @@ public interface IServidor extends Remote {
 	
 	public void cerrarSesion(String username)throws RemoteException;
 
+	public List<OrdenDia> consultarOrdenSinPro() throws RemoteException;
+
 	
 }

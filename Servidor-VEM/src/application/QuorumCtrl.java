@@ -86,7 +86,10 @@ public class QuorumCtrl implements Initializable {
 		try {
 			List<Usuario> lista = LoginController.servidor.listaUsuarios();
 			conexion.establecerConexion();
+			System.out.println(lista.get(0).getId());
+			System.out.println(data.idquorum);
 			for (int i = 0; i < lista.size(); i++) {
+				lista.get(i).getNombre();
 				Asistencia asiste = new Asistencia(lista.get(i).getId(), data.idquorum, "AUSENTE");
 				asiste.guardarRegistro(conexion.getConnection());
 			}

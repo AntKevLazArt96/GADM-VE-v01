@@ -434,7 +434,8 @@ public class PantallaPrincipalCtrl implements Initializable {
 		try {
 			sesion = LoginController.servidor.consultarSesion();
 			System.out.println(sesion.getConvocatoria());
-			//label_convocatoria.setText(sesion.getConvocatoria());
+			label_convocatoria.setText(sesion.getConvocatoria());
+			data.convocatoria=sesion.getConvocatoria();
 		} catch (RemoteException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();

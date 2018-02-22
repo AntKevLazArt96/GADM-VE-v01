@@ -209,7 +209,7 @@ public class Sesion implements Serializable {
 	public static void llenarInformacion(Connection connection, ObservableList<Usuario> users) {
 		try {
 			Statement statement = connection.createStatement();
-			ResultSet resultado = statement.executeQuery("select *from User_VE where position_user='Concejal Principal' and position_user='Concejal Alterno'");
+			ResultSet resultado = statement.executeQuery("select *from User_VE where position_user='Concejal Principal';");
 			while (resultado.next()) {
 				users.add(new Usuario(resultado.getInt(1), resultado.getString(2), resultado.getString(3),
 						resultado.getString(4), resultado.getString(5), resultado.getString(6), resultado.getString(7),

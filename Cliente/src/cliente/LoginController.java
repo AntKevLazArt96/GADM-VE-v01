@@ -129,8 +129,9 @@ public class LoginController implements Initializable {
 			} else {
 				Usuario user = servidor.login(txt_username.getText(), txt_password.getText());
 				if (user != null) {
+					System.out.println(user.getCargo());
 					if (!user.getCargo().equals("Concejal Principal")) {
-						mostrarMesaje("sus credenciales no son de una secretaria");
+						mostrarMesaje("sus credenciales no son de un concejal");
 						txt_username.requestFocus();
 					} else if(user.getIsLogged()==1) {
 						mostrarMesaje("este usuario ya esta logeado en el sistema");
@@ -145,7 +146,7 @@ public class LoginController implements Initializable {
 						FXMLLoader loader = new FXMLLoader(getClass().getResource("PantallaPrincipal.fxml"));
 						AnchorPane pane = loader.load();
 						Scene scene = new Scene(pane);
-						scene.getStylesheets().add(getClass().getResource("inicio.css").toExternalForm());
+						
 
 						// Pantalla completa
 						Screen screen = Screen.getPrimary();

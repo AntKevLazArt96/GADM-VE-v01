@@ -79,6 +79,8 @@ public class ModificacionSesionCtrl implements Initializable {
 	String nombre_acta = "";
 	ObservableList<String> tipoSesion = FXCollections.observableArrayList("ORDINARIA", "EXTRAORDINARIA");
 
+	ObservableList<Pdf> datos;
+	
 	private Conexion conexion;
 	private ObservableList<Sesion> lis_convocatoria;
 	@FXML
@@ -164,7 +166,7 @@ public class ModificacionSesionCtrl implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// date.setConverter(new LocalDateStringConverter(FormatStyle.FULL));
-		PuntoOrden.setText(String.valueOf(data.num_punto));
+		PuntoOrden.setText(String.valueOf(datos.size()+1));
 		conexion = new Conexion();
 		time.setValue(LocalTime.of(16, 00));
 		cbx_tipoSes.setValue("ORDINARIA");
@@ -258,7 +260,7 @@ public class ModificacionSesionCtrl implements Initializable {
 	}
 
 	public void limpiar() {
-		PuntoOrden.setText(String.valueOf(data.num_punto));
+		PuntoOrden.setText(String.valueOf(datos.size()+1));
 		txt_descripcion.setText(null);
 		cbx_proponente.setValue(null);
 		rutapdf = "";
@@ -361,7 +363,6 @@ public class ModificacionSesionCtrl implements Initializable {
 	void onFinAction(ActionEvent event) {
 		try {
 			if(data.tipo_modi==2) {
-				data.num_punto=1;
 				// get a handle to the stage
 				Stage actualStage = (Stage) btn_cancelar.getScene().getWindow();
 				// do what you have to do
@@ -387,7 +388,6 @@ public class ModificacionSesionCtrl implements Initializable {
 				AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("subSesiones.fxml"));
 
 				panel.getChildren().setAll(pane);
-				data.num_punto=1;
 			}
 			
 		} catch (IOException e) {
@@ -425,7 +425,7 @@ public class ModificacionSesionCtrl implements Initializable {
 				// lista_pdf.set(0,new Pdf(fichero.getName(),dbpath));
 				lista_pdf.add(new Pdf(fichero.getName(), dbpath));
 
-				ObservableList<Pdf> datos = FXCollections.observableArrayList(lista_pdf);
+				datos = FXCollections.observableArrayList(lista_pdf);
 				list_pdf.setItems(datos);
 
 				// agrega al lisview
@@ -570,7 +570,6 @@ public class ModificacionSesionCtrl implements Initializable {
 						}
 					conexion.cerrarConexion();
 
-					data.num_punto = data.num_punto + 1;
 					limpiar();
 
 				}
@@ -613,22 +612,37 @@ public class ModificacionSesionCtrl implements Initializable {
 
 		if (txt_descripcion.getLength() == 0) {
 			mostrarMesaje("Falta ingresar la descripción del punto");
-		} else if (cbx_proponente.getValue().getId() == 0) {
-			mostrarMesaje("Falta selecionar el Proponente del punto");
-		} else {
-
+		}  else {
+			if (cbx_proponente.getValue() == null) {
+				mostrarMesaje("No se a agredado Proponente " + "para el punto " + PuntoOrden.getText() + "");
+			} 
 			if (longitud_lista == 0) {
 				mostrarMesaje("No se a agredado documentación " + "para el punto " + PuntoOrden.getText() + "");
 			}
 			if (data.documentacion == 0) {
-
-				String sql = "UPDATE public.ordendia_ve SET  convocatoria_sesion='"
-						+ cbx_convocatoria.getValue().getConvocatoria() + "', numpunto_ordendia="
-						+ Integer.valueOf(PuntoOrden.getText()) + ", descrip_ordendia='" + txt_descripcion.getText()
-						+ "', id_user=" + cbx_proponente.getValue().getId() + " WHERE id_ordendia=" + id_punto_od + ";";
+				
+				int id=0;
+				String sql;
+				if(cbx_proponente.getValue()!=null) {
+					id =cbx_proponente.getValue().getId();
+					sql = "UPDATE public.ordendia_ve SET  convocatoria_sesion='"
+							+ cbx_convocatoria.getValue().getConvocatoria() + "', numpunto_ordendia="
+							+ Integer.valueOf(PuntoOrden.getText()) + ", descrip_ordendia='" + txt_descripcion.getText()
+							+ "', id_user=" + cbx_proponente.getValue().getId() + " WHERE id_ordendia=" + id_punto_od + ";";
+					
+				}else {
+					sql = "UPDATE public.ordendia_ve SET  convocatoria_sesion='"
+							+ cbx_convocatoria.getValue().getConvocatoria() + "', numpunto_ordendia="
+							+ Integer.valueOf(PuntoOrden.getText()) + ", descrip_ordendia='" + txt_descripcion.getText()
+							+ "' WHERE id_ordendia=" + id_punto_od + ";";
+					
+				}
+				
+				
+				
 				String sql2 = "DELETE FROM public.pdf_ve WHERE id_ordendia=" + id_punto_od + ";";
 				String sql3 = "INSERT INTO pdf_ve(id_ordendia,nombre_pdf,archivo_pdf) VALUES (?, ?, ?);";
-
+				
 				try {
 					conexion.establecerConexion();
 					// conecci�n a la base de datos
@@ -751,7 +765,7 @@ public class ModificacionSesionCtrl implements Initializable {
 		btn_elimOrden.setDisable(true);
 		list_pdf.setDisable(false);
 
-		PuntoOrden.setText(String.valueOf(data.num_punto));
+		PuntoOrden.setText(String.valueOf(datos.size()+1));
 	}
 
 	@FXML
@@ -780,7 +794,6 @@ public class ModificacionSesionCtrl implements Initializable {
 			if (!instruccion.execute()) {
 				mostrarMesaje("La sesión" + cbx_convocatoria.getValue().getConvocatoria()
 						+ " a sido eliminada correctamemte");
-				data.num_punto = 0;
 				limpiar();
 				activar();
 				limpiar_sesion();
@@ -949,7 +962,7 @@ public class ModificacionSesionCtrl implements Initializable {
 		List<Sesion> lista_sesion = null;
 		tabla.getItems().clear();
 
-		if (cbx_convocatoria.getValue().getConvocatoria() == null) {
+		if (cbx_convocatoria.getValue() == null) {
 			System.out.println("no hay datos");
 		} else {
 			String a = cbx_convocatoria.getValue().getConvocatoria();
@@ -993,8 +1006,8 @@ public class ModificacionSesionCtrl implements Initializable {
 				bandera++;
 				longi--;
 			}
-			data.num_punto = numMax + 1;
-			PuntoOrden.setText(String.valueOf(data.num_punto));
+	
+			PuntoOrden.setText(String.valueOf(datos.size()+1));
 			btn_modSesion.setDisable(false);
 
 			btn_modSesion.setVisible(false);

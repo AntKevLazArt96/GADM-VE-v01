@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="panel" prefHeight="720.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IngresoPerCtrl">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="73.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="13.0" layoutY="19.0" text="Nuevo Usuario" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="25.0">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView glyphName="FORMAT_ALIGN_JUSTIFY" size="30" />
+               </graphic>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="44.0" layoutY="80.0" prefHeight="584.0" prefWidth="843.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <AnchorPane prefHeight="25.0" prefWidth="843.0" style="-fx-background-color: #00bcd4;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label layoutX="36.0" layoutY="52.0" text="Cedula" AnchorPane.leftAnchor="36.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="ACCOUNT_BOX" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="txt_cedula" layoutX="36.0" layoutY="76.0" onKeyTyped="#validar_cedula" prefHeight="34.0" prefWidth="298.0" unFocusColor="#00bcd4" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="76.0">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+            <Label layoutX="36.0" layoutY="155.0" text="Nombres y Apellidos" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="155.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="BORDER_COLOR" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="txt_nombre" layoutX="36.0" layoutY="179.0" onKeyTyped="#validar_nombre" prefHeight="34.0" prefWidth="298.0" unFocusColor="#00bcd4" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="179.0">
+               <font>
+                  <Font size="18.0" />
+               </font></JFXTextField>
+            <Label layoutX="33.0" layoutY="263.0" text="Usuario" AnchorPane.leftAnchor="33.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView fill="#070707" glyphName="PERSON" size="20" />
+               </graphic>
+            </Label>
+            <JFXTextField fx:id="txt_username" layoutX="36.0" layoutY="286.0" onKeyTyped="#validar_usuario" prefHeight="34.0" prefWidth="298.0" unFocusColor="#00bcd4" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="286.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXTextField>
+            <Label layoutX="30.0" layoutY="382.0" text="Contraseña" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="382.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView fill="#070707" glyphName="LOCK" size="20" />
+               </graphic>
+            </Label>
+            <JFXPasswordField fx:id="txt_password" layoutX="34.0" layoutY="407.0" onKeyTyped="#validar_contracena" prefHeight="39.0" prefWidth="298.0" unFocusColor="#00bcd4" />
+            <Label layoutX="486.0" layoutY="50.0" text="Cargo" AnchorPane.leftAnchor="486.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="PERSON_ADD" size="20" />
+               </graphic>
+            </Label>
+            <JFXComboBox fx:id="cbx_cargo" layoutX="487.0" layoutY="74.0" prefHeight="39.0" prefWidth="298.0" unFocusColor="#00bcd4" visibleRowCount="20" />
+            <Label layoutX="486.0" layoutY="186.0" text="Foto" AnchorPane.leftAnchor="486.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView glyphName="PERSON" size="20" />
+               </graphic>
+            </Label>
+            <JFXButton fx:id="btn_examinar" layoutX="661.0" layoutY="180.0" onAction="#onBuscarFoto" prefHeight="39.0" prefWidth="112.0" style="-fx-background-color: #00bcd4;" text="Buscar" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialIconView fill="#fff7f7" glyphName="CAMERA_ENHANCE" size="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="btn_eliminar" contentDisplay="CENTER" layoutX="611.0" layoutY="180.0" onAction="#eliminarImg" prefHeight="39.0" prefWidth="36.0" style="-fx-background-color: #00bcd4;" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#e0f0f2" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" text="" wrappingWidth="25.0" />
+               </graphic>
+            </JFXButton>
+            <ImageView fx:id="lbl_foto" fitHeight="222.0" fitWidth="200.0" layoutX="492.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imgs/customer_person_people_woman_you_1627.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btn_guardar" layoutX="60.0" layoutY="462.0" onAction="#onGuardar" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Guardar" textFill="#f2eeee">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="FLOPPY_ALT" glyphStyle="FLOPPY_ALT" size="25" />
+               </graphic>
+            </JFXButton>
+            <JFXButton layoutX="245.0" layoutY="462.0" onAction="#cerrar" prefHeight="47.0" prefWidth="177.0" style="-fx-background-color: #00bcd4;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <MaterialDesignIconView fill="#e0f0f2" glyphName="CLOSE_CIRCLE_OUTLINE" size="25" text="" />
+               </graphic>
+            </JFXButton>
+         </children>
+         <effect>
+            <DropShadow color="#a8a8a8" />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

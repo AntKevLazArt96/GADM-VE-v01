@@ -1,3 +1,10 @@
+/LICENSE.txt
+/README.txt
 /application/
+/Server/
 /clases/
+/json_simple-1.1.jar
+/lib/
+/pdf-renderer-1.0.5.jar
+/postgresql-42.1.4.jar
 /servidor/

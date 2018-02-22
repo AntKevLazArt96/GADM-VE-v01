@@ -8,7 +8,6 @@ public class data {
     public static String voto="holi";
     public static String convocatoria_sesion;
     public static int idquorum;
-    public static int num_punto=1;
     
     public static int documentacion;
     public static int id_acta;

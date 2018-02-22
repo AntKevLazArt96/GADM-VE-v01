@@ -91,26 +91,16 @@ public class PrincipalSecretariaCtrl implements Initializable {
 	void modificar_sesion(ActionEvent event) {
 
 		try {
-			data.tipo_modi=2;
-			
-			// get a handle to the stage
-			Stage actualStage = (Stage) btn_modificar.getScene().getWindow();
-			// do what you have to do
-			actualStage.close();
-			Stage newStage = new Stage();
 			AnchorPane pane;
-			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("ModificacionSesion.fxml"));
-			Scene scene = new Scene(pane);
-			newStage.setScene(scene);
-			newStage.initStyle(StageStyle.UNDECORATED);
-			newStage.show();
-			//no se
+			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("ModiSesionSocket.fxml"));
+			panel_psecretaria.getChildren().setAll(pane);
+			// no se
 			JSONObject js = new JSONObject();
-			js.put("name", "ordenModificada	");
+			js.put("name", "ModificandoOrden");
 			String json = js.toJSONString();
 			System.out.println("Se envio:" + json);
 			PantallaPrincipalCtrl.dos.writeUTF(json);
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -124,8 +114,8 @@ public class PrincipalSecretariaCtrl implements Initializable {
 		Stage newStage = new Stage();
 		AnchorPane pane;
 		try {
-			data.tipo_lectura=1;
-			
+			data.tipo_lectura = 1;
+
 			data.id_acta = sesion.getId_pdf();
 			pane = (AnchorPane) FXMLLoader.load(getClass().getResource("LecturaPDF.fxml"));
 			Scene scene = new Scene(pane);
@@ -159,7 +149,7 @@ public class PrincipalSecretariaCtrl implements Initializable {
 		try {
 
 			data.id_acta = 0;
-			data.tipo_lectura=2;
+			data.tipo_lectura = 2;
 			data.id_pdf = table_documentacion.getSelectionModel().selectedItemProperty().get().getId_pdf();
 			System.out.println(data.id_pdf);
 
@@ -195,23 +185,41 @@ public class PrincipalSecretariaCtrl implements Initializable {
 			sesion = LoginController.servidor.consultarSesion();
 			label_titulo.setText(sesion.getDescription());
 
-			List<OrdenDia> lista_orden = LoginController.servidor.consultarOrden();
+			List<OrdenDia> lista_orden;
 
-			TableColumn num_punto = new TableColumn("No. Punto");
-			num_punto.setMinWidth(50);
-			num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
+			lista_orden = LoginController.servidor.consultarOrden();
+			if (lista_orden == null) {
+				System.out.println("no hay proponente");
+				lista_orden = LoginController.servidor.consultarOrdenSinPro();
+				System.out.println(lista_orden.get(0).getNumeroPunto());
+				TableColumn num_punto = new TableColumn("No. Punto");
+				num_punto.setMinWidth(50);
+				num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 
-			TableColumn descripcion = new TableColumn("Descripciï¿½n");
-			descripcion.setMinWidth(900);
-			descripcion.setCellValueFactory(new PropertyValueFactory<>("tema"));
+				TableColumn descripcion = new TableColumn("Descripción");
+				descripcion.setMinWidth(900);
+				descripcion.setCellValueFactory(new PropertyValueFactory<>("tema"));
 
-			TableColumn proponente = new TableColumn("Proponente");
-			proponente.setMinWidth(300);
-			proponente.setCellValueFactory(new PropertyValueFactory<>("proponente_nombre"));
-			ObservableList<OrdenDia> datos = FXCollections.observableArrayList(lista_orden);
+				ObservableList<OrdenDia> datos = FXCollections.observableArrayList(lista_orden);
+				tabla_ordenDia.getColumns().addAll(num_punto, descripcion);
+				tabla_ordenDia.setItems(datos);
+			} else {
+				System.out.println("Hay proponente");
+				TableColumn num_punto = new TableColumn("No. Punto");
+				num_punto.setMinWidth(50);
+				num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 
-			tabla_ordenDia.getColumns().addAll(num_punto, descripcion, proponente);
-			tabla_ordenDia.setItems(datos);
+				TableColumn descripcion = new TableColumn("Descripción");
+				descripcion.setMinWidth(900);
+				descripcion.setCellValueFactory(new PropertyValueFactory<>("tema"));
+
+				TableColumn proponente = new TableColumn("Proponente");
+				proponente.setMinWidth(300);
+				proponente.setCellValueFactory(new PropertyValueFactory<>("proponente_nombre"));
+				ObservableList<OrdenDia> datos = FXCollections.observableArrayList(lista_orden);
+				tabla_ordenDia.getColumns().addAll(num_punto, descripcion, proponente);
+				tabla_ordenDia.setItems(datos);
+			}
 
 			List<Documentacion> lista_documentacion = LoginController.servidor.mostrarDocumentacion();
 			TableColumn pdf = new TableColumn("id");

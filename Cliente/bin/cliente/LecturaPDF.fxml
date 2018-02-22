@@ -39,7 +39,7 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Label layoutX="809.0" layoutY="60.0" text="Consejal " textFill="WHITE" AnchorPane.rightAnchor="399.0" AnchorPane.topAnchor="60.0">
+            <Label fx:id="lbl_tipo" layoutX="809.0" layoutY="60.0" text="Consejal " textFill="WHITE" AnchorPane.rightAnchor="399.0" AnchorPane.topAnchor="60.0">
                <font>
                   <Font size="18.0" />
                </font>

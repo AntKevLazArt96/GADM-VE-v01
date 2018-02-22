@@ -82,7 +82,7 @@ public class LoginController implements Initializable {
 				if (user != null) {
 					Image image = convertirImg(user.getImg());
 					data.Imagen = image;
-					data.username=txt_username.getText();
+					data.username = txt_username.getText();
 					System.out.println(user.getNombre());
 					lbl_nombre.setVisible(true);
 					lbl_nombre.setText(user.getNombre());
@@ -226,6 +226,7 @@ public class LoginController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		File fi = new File("C:\\GIT\\GADM-VE-v01\\Servidor-VEM\\src\\imgs\\customer_person_people_woman_you_1627.png");
@@ -247,9 +248,8 @@ public class LoginController implements Initializable {
 
 		}
 
-		/*
-		 * txt_username.setText("secretaria"); txt_password.setText("1234");
-		 */
+		txt_username.setText("secretaria");
+		txt_password.setText("1234");
 
 	}
 

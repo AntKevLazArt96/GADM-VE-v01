@@ -20,9 +20,6 @@ public class Conexion {
 	
 	public void establecerConexion() {
 		try {
-			System.out.println(user);
-			System.out.println(password);
-			System.out.println(url);
 			Class.forName("org.postgresql.Driver");
 			connection = DriverManager.getConnection(url,user,password);
 			

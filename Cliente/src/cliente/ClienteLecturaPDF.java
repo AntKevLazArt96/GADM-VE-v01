@@ -58,7 +58,7 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 	@FXML
     private Circle cirlogin;
 	@FXML
-    private Label lbl_nombre,lbl_fecha;
+    private Label lbl_nombre,lbl_fecha,lbl_tipo;
 	@FXML
     private JFXButton btn_voz;
 	
@@ -177,10 +177,11 @@ public class ClienteLecturaPDF extends JFrame implements  Initializable {
 		servidor = LoginController.servidor;
 		
 	
-	lbl_nombre.setText(data.name);
-	
+		lbl_nombre.setText(data.name);
+		lbl_tipo.setText(data.tipo);
 	try {
 		 user = servidor.usuario(data.name);
+		 
 		Image im = convertirImg(user.getImg());
         cirlogin.setFill(new ImagePattern(im));
         cirlogin.setStroke(Color.SEAGREEN);

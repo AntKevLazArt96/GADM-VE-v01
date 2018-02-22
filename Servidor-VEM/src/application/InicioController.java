@@ -115,7 +115,6 @@ public class InicioController implements Initializable {
 	@FXML
 	void sessionButtonAction(ActionEvent event) {
 		try {
-			data.num_punto=1;
 			AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("SubSesiones.fxml"));
 			pane.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			panel.getChildren().setAll(pane);

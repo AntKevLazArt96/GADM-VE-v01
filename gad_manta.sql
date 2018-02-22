@@ -33,12 +33,13 @@ CREATE TABLE User_VE (
 );
 
 
+
 CREATE TABLE OrdenDia_VE (
                 id_ordenDia SERIAL NOT NULL,
                 convocatoria_sesion VARCHAR NOT NULL,
                 numPunto_ordenDia INTEGER NOT NULL,
                 descrip_ordenDia VARCHAR NOT NULL,
-                id_user INTEGER NOT NULL,
+                id_user INTEGER,
                 si_ordenDia INTEGER,
                 no_ordenDia INTEGER,
                 blanco_ordenDia INTEGER,
@@ -46,6 +47,13 @@ CREATE TABLE OrdenDia_VE (
                 estado_ordenDia VARCHAR,--por defecto null --- APROBADO, RECHADO, NOVOTO
     			verifica_ordenDia VARCHAR,--por defecto se guarda por PENDIENTE,PROGRESO,TERMINADO
                 CONSTRAINT ordendia_ve_pk PRIMARY KEY (id_ordenDia)
+);
+
+CREATE TABLE ResolucionPunto_VE (
+                id_resolucion SERIAL NOT NULL,
+                descrip_resolucion VARCHAR NOT NULL,
+                id_ordendia INTEGER NOT NULL,
+                CONSTRAINT resolucion_punto_ve_pk PRIMARY KEY (id_resolucion)
 );
 
 
@@ -56,12 +64,12 @@ CREATE TABLE Pdf_VE (
                 archivo_pdf BYTEA NOT NULL,
                 CONSTRAINT pdf_ve_pk PRIMARY KEY (id_pdf)
 );
-CREATE TABLE acta_ve
-(
-  id_pdf serial,
-  nombre_pdf character varying NOT NULL,
-  archivo_pdf bytea NOT NULL,
-  CONSTRAINT acta_ve_pk PRIMARY KEY (id_pdf) 
+
+CREATE TABLE acta_ve(
+              id_pdf serial,
+              nombre_pdf character varying NOT NULL,
+              archivo_pdf bytea NOT NULL,
+              CONSTRAINT acta_ve_pk PRIMARY KEY (id_pdf) 
 );
 
 CREATE TABLE Sesion_VE (
@@ -95,15 +103,19 @@ CREATE TABLE configuracion_VE (
                 ipSocket_confi varchar not null,
                 puertoRmi_confi integer not null,
                 puertoSocket_confi integer not null,
-		nombreBD_confi varchar not null,
-		userDB_confi varchar not null,
-		passBD_confi varchar not null
-                );
+                nombreBD_confi varchar not null,
+                userDB_confi varchar not null,
+                passBD_confi varchar not null
+ );
 
+CREATE TABLE notasActa_ve(
+              id_user integer NOT NULL,
+              id_acta integer NOT NULL,
+              descripcion_notas character varying NOT NULL
+);
 INSERT INTO configuracion_VE(id_confi,ipRmi_confi,ipSocket_confi,puertoRmi_confi,puertoSocket_confi,nombreBD_confi,userDB_confi,passBD_confi) 
  VALUES(1,'192.168.1.6','192.168.1.6',8888,6666,'gad_voto','postgres','1234');
 
-select * from configuracion_VE where id_confi=1;
 ALTER TABLE User_VE ADD CONSTRAINT img_ve_user_ve_fk
 FOREIGN KEY (id_img)
 REFERENCES Img_VE (id_img)
@@ -117,7 +129,6 @@ REFERENCES Quorum_VE (id_quorum)
 ON DELETE CASCADE
 ON UPDATE CASCADE
 NOT DEFERRABLE;
-
 
 
 ALTER TABLE Asistencia_VE ADD CONSTRAINT quorum_ve_asistencia_ve_fk
@@ -148,10 +159,6 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 NOT DEFERRABLE;
 
-
-
-
-
 ALTER TABLE Pdf_VE ADD CONSTRAINT ordendia_ve_pdf_ve_fk
 FOREIGN KEY (id_ordenDia)
 REFERENCES OrdenDia_VE (id_ordenDia)
@@ -173,10 +180,12 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 NOT DEFERRABLE;
 
-ALTER TABLE public.sesion_ve
-  ADD CONSTRAINT session_ve_acta FOREIGN KEY (id_pdf)
-      REFERENCES public.acta_ve (id_pdf) MATCH SIMPLE
-      ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE sesion_ve ADD CONSTRAINT session_ve_acta 
+FOREIGN KEY (id_pdf)
+REFERENCES public.acta_ve (id_pdf) 
+MATCH SIMPLE
+ON UPDATE CASCADE 
+ON DELETE CASCADE;
       
 ALTER TABLE OrdenDia_VE ADD CONSTRAINT sesion_ve_ordendia_ve_fk
 FOREIGN KEY (convocatoria_sesion)
@@ -185,24 +194,26 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 NOT DEFERRABLE;
 
-CREATE TABLE notasActa_ve
-(
-  id_user integer NOT NULL,
-  id_acta integer NOT NULL,
-  descripcion_notas character varying NOT NULL,
-  CONSTRAINT acta_ve_notaspdf_ve_fk FOREIGN KEY (id_acta)
-      REFERENCES acta_ve (id_pdf) MATCH SIMPLE
-      ON UPDATE CASCADE ON DELETE CASCADE,
-  CONSTRAINT user_ve_notasacta_ve_fk FOREIGN KEY (id_user)
-      REFERENCES user_ve (id_user) MATCH SIMPLE
-      ON UPDATE CASCADE ON DELETE CASCADE
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE notasActa_ve
-  OWNER TO postgres;
-  
+ALTER TABLE notasActa_ve ADD CONSTRAINT acta_ve_notaspdf_ve_fk 
+FOREIGN KEY (id_acta)
+REFERENCES acta_ve (id_pdf) 
+MATCH SIMPLE
+ON UPDATE CASCADE 
+ON DELETE CASCADE;
+
+ALTER TABLE notasActa_ve ADD CONSTRAINT user_ve_notasacta_ve_fk 
+FOREIGN KEY (id_user)
+REFERENCES user_ve (id_user) 
+MATCH SIMPLE
+ON UPDATE CASCADE 
+ON DELETE CASCADE;
+
+ALTER TABLE ResolucionPunto_ve ADD CONSTRAINT resolucion_ve_ordendia_ve_fk 
+FOREIGN KEY (id_ordendia)
+REFERENCES ordendia_ve (id_ordendia) 
+MATCH SIMPLE
+ON UPDATE CASCADE 
+ON DELETE CASCADE;
  
 --insert into notasActa_ve (id_user, id_acta, descripcion_notas)values(2,10,'sa');
 
@@ -338,7 +349,7 @@ create or replace function consulta_usuarios(out integer, out varchar, out bytea
 RETURNS SETOF record AS
 $$
 begin
-	return query select id_user,position_user,img from User_VE u inner join Img_VE i on u.id_img=i.id_img where position_user='concejal';
+	return query select id_user,position_user,img from User_VE u inner join Img_VE i on u.id_img=i.id_img where position_user='Concejal Principal' ;
 end
 $$
 LANGUAGE plpgsql VOLATILE;
@@ -398,10 +409,13 @@ LANGUAGE plpgsql;
 select *from Sesion_VE;
 
 
+select *from quorum_ve;
 select *from Asistencia_VE;
 
-
-
+select convocatoria_sesion,description_sesion ,id_pdf from Sesion_VE where intervention_sesion='26/12/2017';
+select id_ordenDia,numpunto_ordendia,descrip_ordendia from Sesion_VE as s inner join OrdenDia_VE as od on s.convocatoria_sesion=od.convocatoria_sesion  where s.intervention_sesion='26/12/2017';
+select id_ordenDia,numpunto_ordendia,descrip_ordendia from Sesion_VE as s inner join OrdenDia_VE as od on s.convocatoria_sesion=od.convocatoria_sesion  where s.intervention_sesion='26/12/2017';
+select convocatoria_sesion,description_sesion ,id_pdf from Sesion_VE where intervention_sesion='26/12/2017';
 --drop function asistencia_concejales(integer);
 create or replace function asistencia_concejales(in integer, out integer,  out varchar, out varchar,out bytea)
 RETURNS SETOF record AS
@@ -429,8 +443,7 @@ select *from sesion_VE where estado_sesion='';
 --select estado_ordendia from OrdenDia_VE where id_ordendia=15;
 --select * from OrdenDia_VE where convocatoria_sesion='090-2017';
 --select estado_ordendia from OrdenDia_VE where convocatoria_sesion='090-2017' group by estado_ordendia;
-
-
+select *from asistencia_concejales(1);
 
 --insert into OrdenDia_VE (convocatoria_sesion,numpunto_ordendia,descrip_ordendia,id_user)values
 --('090-2017',6,'Conocimiento de la no se que cosa que paso ayer',2);

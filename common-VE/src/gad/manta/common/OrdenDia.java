@@ -121,27 +121,86 @@ public class OrdenDia implements Serializable {
 	}
 
 	public int guardarRegistro(Connection connection) {
-		String sql = "select *from ingresar_orden_dia(?,?,?,?);";
-		try {
-			PreparedStatement instruccion = connection.prepareStatement(sql);
-			instruccion.setString(1, convocatoria);
-			instruccion.setInt(2, numeroPunto);
-			instruccion.setString(3, tema);
-			instruccion.setInt(4, proponente);
-			instruccion.execute();
-			Statement statement = connection.createStatement();
-			ResultSet resultado = statement
-					.executeQuery("select id_ordendia from OrdenDia_VE order by id_ordendia desc limit  1");
-			int id = 0;
-			resultado.next();
-			id = resultado.getInt(1);
-			return id;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return 0;
+		if (proponente == 0) {
+			String sql = "insert into ordendia_ve (convocatoria_sesion,numpunto_ordendia,descrip_ordendia)values(?,?,?)";
+			try {
+				PreparedStatement instruccion = connection.prepareStatement(sql);
+				instruccion.setString(1, convocatoria);
+				instruccion.setInt(2, numeroPunto);
+				instruccion.setString(3, tema);
+				instruccion.execute();
+				Statement statement = connection.createStatement();
+				ResultSet resultado = statement
+						.executeQuery("select id_ordendia from OrdenDia_VE order by id_ordendia desc limit  1");
+				int id = 0;
+				resultado.next();
+				id = resultado.getInt(1);
+				System.out.println("El id orden da es "+id);
+				setId(id);
+				return id;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return 0;
+			}
+		} else {
+			String sql = "select *from ingresar_orden_dia(?,?,?,?);";
+			try {
+				PreparedStatement instruccion = connection.prepareStatement(sql);
+				instruccion.setString(1, convocatoria);
+				instruccion.setInt(2, numeroPunto);
+				instruccion.setString(3, tema);
+
+				instruccion.setInt(4, proponente);
+				instruccion.execute();
+				Statement statement = connection.createStatement();
+				ResultSet resultado = statement
+						.executeQuery("select id_ordendia from OrdenDia_VE order by id_ordendia desc limit  1");
+				int id = 0;
+				resultado.next();
+				id = resultado.getInt(1);
+				return id;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return 0;
+			}
 		}
 
+	}
+
+	public int actualizarRegistro(Connection connection,int id) {
+		if(proponente==0) {
+			String sql = "UPDATE ordendia_ve SET numpunto_ordendia=?, descrip_ordendia=? WHERE id_ordendia=?;";
+			try {
+				PreparedStatement instruccion = connection.prepareStatement(sql);
+				instruccion.setInt(1, numeroPunto);
+				instruccion.setString(2, tema);
+				instruccion.setInt(3, id);
+				instruccion.execute();
+				return getId();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return 0;
+			}
+		}else {
+			String sql = "UPDATE ordendia_ve SET numpunto_ordendia=?, descrip_ordendia=?, id_user=? WHERE id_ordendia=?;";
+			try {
+				PreparedStatement instruccion = connection.prepareStatement(sql);
+				instruccion.setInt(1, numeroPunto);
+				instruccion.setString(2, tema);
+				instruccion.setInt(3, proponente);
+				instruccion.setInt(4, id);
+				instruccion.execute();
+				return getId();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return 0;
+			}
+		}
+		
 	}
 
 	public static void llenarInformacion(Connection connection, List<OrdenDia> orden, String convocatoria) {

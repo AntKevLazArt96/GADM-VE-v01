@@ -46,9 +46,6 @@ public class ClientePreSesionCtrl implements Initializable {
 	private JFXButton btnIniSesion;
 
 	@FXML
-	private Label label_convocatoria;
-
-	@FXML
 	private JFXTextArea label_titulo;
 
 	@FXML
@@ -76,27 +73,47 @@ public class ClientePreSesionCtrl implements Initializable {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
 		try {
-			
 			sesion = LoginController.servidor.consultarSesion();
+			System.out.println(sesion.getConvocatoria());
 			label_titulo.setText(sesion.getDescription());
+			List<OrdenDia> lista_orden;
+			
+			lista_orden = LoginController.servidor.consultarOrden();
+			if(lista_orden==null) {
+				System.out.println("no hay proponente");
+				lista_orden = LoginController.servidor.consultarOrdenSinPro();
+				System.out.println(lista_orden.get(0).getNumeroPunto());
+				TableColumn num_punto = new TableColumn("No. Punto");
+				num_punto.setMinWidth(50);
+				num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 
-			List<OrdenDia> lista_orden = LoginController.servidor.consultarOrden();
-			TableColumn num_punto = new TableColumn("No. Punto");
-			num_punto.setMinWidth(50);
-			num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
+				TableColumn descripcion = new TableColumn("Descripción");
+				descripcion.setMinWidth(900);
+				descripcion.setCellValueFactory(new PropertyValueFactory<>("tema"));
 
-			TableColumn descripcion = new TableColumn("Descripción");
-			descripcion.setMinWidth(900);
-			descripcion.setCellValueFactory(new PropertyValueFactory<>("tema"));
+				ObservableList<OrdenDia> datos = FXCollections.observableArrayList(lista_orden);
+				tabla_ordenDia.getColumns().addAll(num_punto, descripcion);
+				tabla_ordenDia.setItems(datos);
+			}else {
+				System.out.println("Hay proponente");
+				TableColumn num_punto = new TableColumn("No. Punto");
+				num_punto.setMinWidth(50);
+				num_punto.setCellValueFactory(new PropertyValueFactory<>("numeroPunto"));
 
-			TableColumn proponente = new TableColumn("Proponente");
-			proponente.setMinWidth(300);
-			proponente.setCellValueFactory(new PropertyValueFactory<>("proponente_nombre"));
-			ObservableList<OrdenDia> datos = FXCollections.observableArrayList(lista_orden);
-			tabla_ordenDia.getColumns().addAll(num_punto, descripcion, proponente);
-			tabla_ordenDia.setItems(datos);
+				TableColumn descripcion = new TableColumn("Descripción");
+				descripcion.setMinWidth(900);
+				descripcion.setCellValueFactory(new PropertyValueFactory<>("tema"));
+
+				TableColumn proponente = new TableColumn("Proponente");
+				proponente.setMinWidth(300);
+				proponente.setCellValueFactory(new PropertyValueFactory<>("proponente_nombre"));
+				ObservableList<OrdenDia> datos = FXCollections.observableArrayList(lista_orden);
+				tabla_ordenDia.getColumns().addAll(num_punto, descripcion, proponente);
+				tabla_ordenDia.setItems(datos);
+			}
+			
+			
 
 			List<Documentacion> lista_documentacion = LoginController.servidor.mostrarDocumentacion();
 			TableColumn punto = new TableColumn("Punto");

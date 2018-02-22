@@ -294,7 +294,7 @@ public class IniSesionControll implements Initializable {
 	@FXML
 	void prueba(MouseEvent event) throws RemoteException {
 		ponerPersonaSeleccionada();
-
+		
 	}
 
 }

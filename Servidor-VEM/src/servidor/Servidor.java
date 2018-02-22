@@ -446,10 +446,44 @@ public class Servidor implements IServidor {
 			ResultSet resultado = st.executeQuery(
 					"select id_ordenDia,numpunto_ordendia,descrip_ordendia,us.name_user from Sesion_VE as s inner join OrdenDia_VE as od on s.convocatoria_sesion=od.convocatoria_sesion inner join User_VE as us on us.id_user=od.id_user where s.intervention_sesion='"
 							+ annio + "-" + mes + "-" + dia + "';");
+			if(resultado.next()) {
+				while (resultado.next()) {
+					lista_ordendia.add(new OrdenDia(resultado.getInt(1), resultado.getInt(2), resultado.getString(3),
+							resultado.getString(4)));
+				}
+				conexion.cerrarConexion();
+				return lista_ordendia;
+			}else {
+				return null;
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println("Error: " + e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
 
+		
+	}
+	
+	//obtener orden del dia sin proponentes
+	@Override
+	public List<OrdenDia> consultarOrdenSinPro() throws RemoteException {
+		List<OrdenDia> lista_ordendia = new ArrayList<OrdenDia>();
+		try {
+			// para verificar si esta instalado el drive de postgressql
+			conexion.establecerConexion();
+			// conecci�n a la base de datos
+			Connection db = conexion.getConnection();
+			Statement st = db.createStatement(); // ejecucion y resultado de la consulta
+			// ejecucion y resultado de la consulta
+			ResultSet resultado = st.executeQuery(
+					"select id_ordenDia,numpunto_ordendia,descrip_ordendia from Sesion_VE as s inner join OrdenDia_VE as od on s.convocatoria_sesion=od.convocatoria_sesion  where s.intervention_sesion='"
+							+ annio + "-" + mes + "-" + dia + "';");
+			
 			while (resultado.next()) {
-				lista_ordendia.add(new OrdenDia(resultado.getInt(1), resultado.getInt(2), resultado.getString(3),
-						resultado.getString(4)));
+				lista_ordendia.add(new OrdenDia(resultado.getInt(1), resultado.getInt(2), resultado.getString(3)));
 			}
 			conexion.cerrarConexion();
 		} catch (Exception e) {
